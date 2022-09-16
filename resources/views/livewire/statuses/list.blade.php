@@ -1,9 +1,9 @@
-<tr class="h5">
+<tr>
     <td>{{ $record->spanish }}</td>
+    <td>{{ $record->short_spanish }}</td>
     <td>{{ $record->english }}</td>
-    <td class="text-center" style="background-color: {{ $record->color }};color: {{ $record->text_color }}">
-        {{ $record->color .'-' . $record->text_color }}
-    </td>
+    <td>{{ $record->short_english }}</td>
+
     @include('common.crud_actions')
 </tr>
 

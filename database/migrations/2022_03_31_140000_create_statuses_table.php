@@ -19,7 +19,6 @@ class CreateStatusesTable extends Migration
             $table->string('short_spanish',6)->unique();
             $table->string('english',25)->unique();
             $table->string('short_english',6)->unique();
-            $table->string('color',20)->nullable();
         });
     }
 

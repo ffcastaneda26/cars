@@ -1,4 +1,5 @@
 {
+    "Full Access": "¿Acceso Total?",
     "All rights reserved.":"Todos los Derechos Reservados",
     "Address": "Domicilio",
     "Email Password Reset Link": "Enviar Correo con Liga para Restablecer Contraseña",
@@ -138,6 +139,9 @@
     "Confirm": "Confirmar",
     "Pause": "Pausar",
     "Successfully": "Satisfactoriamente",
+    "Successfully!!": "Satisfactoriamente!!",
+    "Updated": "Actualizado",
+    "Created": "Creado",
     "Are you sure?":"¿Estas seguro?",
     "You wo not be able to revert this!":"¡No podrás revertir esto!",
     "Yes, delete it":"Si, Eliminarlo",

@@ -1,7 +1,4 @@
 <div class="container-fluid">
-    @if($go_dashboard)
-        @livewire('dashboard-controller')
-    @else
         @include('common.crud_header')
         @include('common.crud_message')
 
@@ -31,5 +28,4 @@
         @if($isOpen && isset($view_form))
             @include('common.crud_modal_form')
         @endif
-    @endif
 </div>

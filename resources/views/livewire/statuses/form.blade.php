@@ -6,9 +6,6 @@
             <label class="input-group-text mb-2">{{__("Short")}}</label>
             <label class="input-group-text mb-2">{{__("English")}}</label>
             <label class="input-group-text mb-2">{{__("Short")}}</label>
-            <label class="input-group-text mb-2">{{__("Color")}}</label>
-            <label class="input-group-text mb-2">{{__("Text Color")}}</label>
-
         </div>
 
         <div class="col flex flex-col">
@@ -41,29 +38,6 @@
                 maxlength="6">
             </div>
 
-            {{-- Color --}}
-            <div class="flex flex-column">
-                <input type="color"
-                        wire:model="main_record.color"
-                        class="form-control form-control-color"
-                        title="{{__('Choose color')}}"
-                >
-                @if($main_record->color)
-                    <span style="background-color:{{$main_record->color}} ">{{$main_record->color}}</span>
-                @endif
-            </div>
-
-                {{-- Color del Texto --}}
-            <div class="flex-flex-column mb-2">
-                <input type="color"
-                    wire:model="main_record.text_color"
-                    class="form-control form-control-color"
-                    title="{{__('Choose color')}}"
-                >
-                @if($main_record->text_color)
-                    <span style="color:{{$main_record->text_color}}">{{$main_record->text_color}}</span>
-                @endif
-            </div>
         </div>
     </div>
 </div>

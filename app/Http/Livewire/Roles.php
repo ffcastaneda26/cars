@@ -68,8 +68,8 @@ class Roles extends Component {
 
         $this->validate([
             'name'               => 'required|max:100',
-            'english'   => 'required',
-            'spanish'               => 'required|max:100',
+            'english'           => 'required',
+            'spanish'           => 'required|max:100',
         ]);
 
             if(!Auth::user()->isAdmin()){

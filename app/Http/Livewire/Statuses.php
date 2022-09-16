@@ -23,8 +23,6 @@ class Statuses extends Component
         'main_record.short_spanish' => 'required|min:3|max:6|unique:statuses,short_spanish',
         'main_record.english'       => 'required|min:5|max:25|unique:statuses,english',
         'main_record.short_english' => 'required|min:3|max:6|unique:statuses,short_english',
-        'main_record.color'         => 'nullable',
-        'main_record.text_color'    => 'nullable',
     ];
 
     public function mount()
@@ -70,22 +68,23 @@ class Statuses extends Component
         $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:25|unique:statuses,english,{$this->main_record->id}"
                                                                      : 'required|min:5|max:25|unique:statuses,english';
         $this->rules['main_record.short_spanish'] = $this->main_record->id ? "required|min:3|max:10|unique:statuses,short_spanish,{$this->main_record->id}"
-                                                                      : 'required|min:3|max:6|unique:statuses,short_spanish';
+                                                                           : 'required|min:3|max:6|unique:statuses,short_spanish';
         $this->rules['main_record.short_english'] = $this->main_record->id ? "required|min:3|max:10|unique:statuses,short_english,{$this->main_record->id}"
-                                                                            : 'required|min:3|max:6|unique:statuses,short_english';
+                                                                           : 'required|min:3|max:6|unique:statuses,short_english';
 
         $this->validate();
         $this->close_store('Status');
     }
 
-    /*+------------------------------+
+/*+------------------------------+
  | Lee Registro Editar o Borar  |
  +------------------------------+
  */
 
     public function edit(Status $record)
     {
-        $this->main_record = $record;
+        $this->main_record  = $record;
+        $this->record_id    = $record->id;
         $this->create_button_label = __('Update') . ' ' . __('Status');
         $this->openModal();
     }
