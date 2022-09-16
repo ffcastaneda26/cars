@@ -52,5 +52,12 @@
         </a>
     </li>
 
+        {{-- Regalos --}}
+        <li>
+            <a href="{{route('types-question')}}" class="waves-effect">
+                <i class="mdi mdi-frequently-asked-questions"></i>
+                <span>{{__('Types Question')}}</span>
+            </a>
+        </li>
 
 </ul>
