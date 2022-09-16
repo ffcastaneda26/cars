@@ -19,7 +19,6 @@
 
         @endif
 
-
     </td>
     <td colspan="2" class="px-1 text-center">
         <button type="button"

@@ -35,16 +35,17 @@
         </a>
     </li>
 
-
-
-
-
-    {{-- Idiomas --}}
+    {{-- Promociones --}}
     <li>
-        <a href="{{route('languages')}}" class="waves-effect">
-            <i class="fas fa-language"></i>
-            <span>{{__('Languages')}}</span>
+        <a href="{{route('promotions')}}" class="waves-effect">
+            <i class="mdi mdi-spin mdi-klingon"></i>
+            <span>{{__('Promotions')}}</span>
         </a>
     </li>
+
+
+
+
+
 
 </ul>

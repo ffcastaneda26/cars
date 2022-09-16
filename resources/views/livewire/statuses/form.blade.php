@@ -1,5 +1,7 @@
 <div class="container">
-    <x-jet-validation-errors></x-jet-validation-errors>
+    <div class="text-danger">
+        <x-jet-validation-errors></x-jet-validation-errors>
+    </div>
     <div class="row align-items-start">
         <div class="col-md-4 flex flex-col">
             <label class="input-group-text mb-2">{{__("Spanish")}}</label>
