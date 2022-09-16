@@ -1,8 +1,8 @@
 
-    <a href="javascript: void(0);" class="has-arrow waves-effect">
-        <i class="mdi mdi-buffer"></i>
-        <span> {{__('Configuration')}}</span>
-    </a>
+<a href="javascript: void(0);" class="has-arrow waves-effect">
+    <i class="mdi mdi-buffer"></i>
+    <span> {{__('Configuration')}}</span>
+</a>
 
 <ul class="sub-menu" aria-expanded="false">
     <li>
@@ -28,12 +28,12 @@
     </li>
 
     {{-- Estados --}}
-    <li>
+    {{-- <li>
         <a href="{{route('statuses')}}" class="waves-effect">
             <i class="mdi mdi-list-status"></i>
             <span>{{__('Statuses')}}</span>
         </a>
-    </li>
+    </li> --}}
 
     {{-- Promociones --}}
     <li>
@@ -51,8 +51,6 @@
             <span>{{__('Gifts')}}</span>
         </a>
     </li>
-
-
 
 
 </ul>
