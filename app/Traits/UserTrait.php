@@ -78,14 +78,12 @@ trait UserTrait {
         return $this->hasRole(strtolower($role));
     }
 
-
     public function isAdmin(){
        return $this->is('admin');
     }
 
-
-    public function isAccountManager(){
-        return $this->is('AccountManager');
+    public function isManager(){
+        return $this->is('Manager');
     }
 
     public function isCashier(){

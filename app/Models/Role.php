@@ -46,16 +46,6 @@ class Role extends Model
         return $this->hasMany(AllowRoles::class);
     }
 
-    // Roles Permitidos
-    public function allowed_roles(){
-        return $this->hasMany(AllowRoles::class,'allow_role_id');
-    }
-
-    // ¿El rol que se recibe como parámetro ya lo tiene el rol asignado?
-	public function hasAllowRole($role_id){
-        return $this->roles()->where('allow_role_id',intval($role_id))->count();
-	}
-
 	// ¿Puede ser borrado?
 	public function can_be_delete(){
 		if($this->permissions()->count()){ return false;}

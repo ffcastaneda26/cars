@@ -37,23 +37,8 @@ class Status extends Model
       +-----------------+
      */
 
-    // Estados Permitidos
-    public function allow_statuses(): HasMany
-    {
-      return $this->hasMany(AllowStatus::class,'allow_status_id');
-    }
 
-    // Bitácora: Estado anterior
-    public function change_logs_previous(): HasMany
-    {
-        return $this->hasMany(ChangeLog::class,'previous_status_id');
-    }
 
-    // Bitácora: Estado nuevo
-    public function change_logs_news(): HasMany
-    {
-        return $this->hasMany(ChangeLog::class,'new_status_id');
-    }
 
     /*+-----------------+
       | Funciones Apoyo |
@@ -61,16 +46,9 @@ class Status extends Model
      */
 
     public function can_be_delete(){
-        if($this->allow_statuses()->count()) return false;
-       /*  if($this->change_logs_previous()->count()) return false;
-        if($this->change_logs_news()->count()) return false; */
         return true;
     }
 
-    // ¿Está ligado al grupo
-    public function isLinkedToGroup($group_status_id){
-        return $this->belongsToMany(GroupStatus::class)->where('group_status_id', $group_status_id)->count();
-    }
 
 
     /*+-------------------+
