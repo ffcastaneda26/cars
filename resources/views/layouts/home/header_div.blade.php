@@ -10,33 +10,30 @@
         </div>
 
         <div class="d-flex">
-            <!-- Cambio de idioma -->
+
             <div class="d-flex">
-                <div class="dropdown d-none d-lg-inline-block me-2">
+                {{-- Pantalla Completa --}}
+                {{-- <div class="dropdown d-none d-lg-inline-block me-2">
                     <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
                         <i class="mdi mdi-fullscreen"></i>
                     </button>
-                </div>
-                <div class="dropdown d-none d-md-block me-2">
-                    <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @if(App::isLocale('en'))
-                            <span class="font-size-16 font-extrabold">{{__('Cambiar Idioma')}}</span>
-                        @else
-                            <span class="font-size-16 font-extrabold">{{__('Change Languaje')}}</span>
-                        @endif
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
-                        <a href="/language/en" class="dropdown-item notify-item">
-                            <img src="{{asset('images/usa.png')}}" alt="user-image" height="12">
-                            <span class="align-middle">{{__('English')}} </span>
-                        </a>
-                        <!-- item-->
-                        <a href="/language/es" class="dropdown-item notify-item">
-                            <img src="{{asset('images/mexico.png')}}" alt="user-image" height="12">
-                            <span class="align-middle">{{__('Español')}} </span>
-                        </a>
-                    </div>
+                </div> --}}
+
+                <!-- Cambio de idioma -->
+                <div class="dropdown d-none d-lg-inline-block me-2">
+                    @if(App::isLocale('en'))
+                        <button type="button" class="btn header-item noti-icon waves-effect" title="Cambiar a Español">
+                            <a href="/language/es" class="dropdown-item notify-item">
+                                <img src="{{asset('images/mexico.png')}}" alt="user-image" height="25">
+                            </a>
+                        </button>
+                    @else
+                        <button type="button" class="btn header-item noti-icon waves-effect" title="Change to English">
+                            <a href="/language/en" class="dropdown-item notify-item">
+                                <img src="{{asset('images/usa.png')}}" alt="user-image" height="25">
+                            </a>
+                        </button>
+                    @endif
                 </div>
 
                 {{--  Profile / Logout  --}}
@@ -73,12 +70,6 @@
                     </div>
                 </div>
 
-                {{--  Boton para los settings de ajax
-                    <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                        <i class="mdi mdi-spin mdi-cog"></i>
-                    </button>
-                </div>  --}}
             </div>
         </div>
     </div>
