@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,3 +28,14 @@ Route::get('language/{locale}', function ($locale) {
     App::setLocale(session()->get('locale'));
     return back();
 })->name('changelanguage');
+
+/* Logout alternativo para bootstrap */
+Route::group(['namespace' => 'App\Http\Controllers'], function() {
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/logout', function(){
+            \Session::flush();
+            Auth::logout();
+            return redirect('/');
+        })->name('logout.perform');
+    });
+});
