@@ -3,120 +3,101 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Permission;
+use App\Traits\UserTrait;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\App;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Permission;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Permissions extends Component {
+class Permissions extends Component
+{
     use AuthorizesRequests;
     use WithPagination;
     use CrudTrait;
+    use UserTrait;
 
-	public $name;
-    public $slug;
-    public $english;
-    public $spanish;
-    public $record_id;
-    protected $paginationTheme = 'bootstrap';
     protected $listeners = ['destroy'];
-    // Revisa que tenga acceso
+
+    protected $rules = [
+        'main_record.name'          => 'required|min:5|max:100|unique:permissions,name',
+        'main_record.slug'          => 'required|min:5|max:100|unique:permissions,slug',
+        'main_record.spanish'       => 'required|min:5|unique:permissions,spanish',
+        'main_record.english'       => 'required|min:5|unique:permissions,english',
+    ];
+
+
     public function mount()
     {
-        $this->authorize('hasaccess', 'permissions.index');
-        $this->manage_title = "Manage Permissions";
-        $this->create_button_label = "Create Permission";
-        $this->search_label = "Name";
-        $this->view_form    = 'livewire.permissions.form';
-        $this->view_table   = 'livewire.permissions.table';
-        $this->view_list    = 'livewire.permissions.list';
+        $this->authorize('hasaccess', 'status.index');
+        $this->manage_title = __('Manage') . ' ' . __('Permissions');
+        $this->search_label = __('Permission');
+        $this->view_form = 'livewire.permissions.form';
+        $this->view_table = 'livewire.permissions.table';
+        $this->view_list = 'livewire.permissions.list';
+        $this->main_record = new Permission();
     }
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 
-	public function render() {
-        $this->create_button_label =  $this->record_id  ? __('Update') . ' ' . __('Permission')
-                                                        : __('Create') . ' ' . __('Permission');
-		$searchTerm = '%' . $this->search . '%';
+    /*+---------------------------------+
+      | Regresa Vista con Resultados    |
+      +---------------------------------+
+    */
 
-        if(App::isLocale('en')){
-            return view('livewire.index', [
-                'records' => Permission::English($this->search)->paginate($this->pagination),
-            ]);
-         }
+    public function render()
+    {
+        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Permission')
+                                                            : __('Create') . ' ' . __('Permission');
 
         return view('livewire.index', [
-            'records' => Permission::Spanish($this->search)->paginate($this->pagination),
+            'records' => Permission::Permission($this->search)->paginate($this->pagination),
         ]);
-	}
+    }
 
+    public function resetInputFields()
+    {
+        $this->main_record = new Permission();
+        $this->resetErrorBag();
+    }
 
-	private function resetInputFields() {
-        $this->record_id = null;
-        $this->record = null;
-        $this->reset([
-            'name',
-            'slug',
-            'english',
-            'spanish',
-        ]);
-	}
+    /*+---------------+
+    | Guarda Registro |
+    +-----------------+
+    */
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
+    public function store()
+    {
+        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:100|unique:Permissions,name,{$this->main_record->id}"
+                                                                    : 'required|min:5|max:100|unique:Permissions,name';
+        $this->rules['main_record.slug'] = $this->main_record->id ? "required|min:5|max:100|unique:Permissions,slug,{$this->main_record->id}"
+                                                                    : 'required|min:5|max:100|unique:Permissions,slug';
 
-	public function store() {
-		$this->validate([
-            'name'      =>  'required|min:3, max:100',
-            'slug'      =>  'required|min:3, max:100|unique:permissions,slug,' . $this->record_id,
-            'spanish'   =>  'required|min:3, max:100',
-            'english'   =>  'required|min:3, max:100'
-		]);
+       $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5unique:Permissions,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:5|unique:Permissions,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|unique:Permissions,english,{$this->main_record->id}"
+                                                                     : 'required|min:5|unique:Permissions,english';
 
+        $this->validate();
+        $this->close_store('Permission');
+    }
 
-		Permission::updateOrCreate(['id' => $this->record_id], [
-            'name'   => $this->name,
-            'slug'      => $this->slug,
-            'spanish'   => $this->spanish,
-            'english' => $this->english,
-		]);
+/*+------------------------------+
+ | Lee Registro Editar o Borar  |
+ +------------------------------+
+ */
 
-        $this->create_button_label = __('Create') . ' ' . __('Permission');
-        $this->store_message(__('Permission'));
-        $this->resetInputFields();
-	}
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-
-	public function edit(Permission $record) {
-        $this->resetInputFields();
+    public function edit(Permission $record)
+    {
+        $this->main_record  = $record;
+        $this->record_id    = $record->id;
         $this->create_button_label = __('Update') . ' ' . __('Permission');
-        $this->record       = $record;
-		$this->record_id    = $record->id;
-        $this->name = $record->name;
-        $this->slug = $record->slug;
-        $this->english = $record->english;
-        $this->spanish = $record->spanish;
-		$this->openModal();
-	}
+        $this->openModal();
+    }
 
-
-	/*+----------------------------+
-	| Elimina Registro             |
-	+------------------------------+
-	 */
-	public function destroy(Permission $record) {
-        $this->delete_record($record,__('Permission') . ' ' . __('Deleted Successfully!!'));
+/*+------------------------------+
+ | Elimina Registro             |
+ +------------------------------+
+ */
+    public function destroy(Permission $record)
+    {
+        $this->delete_record($record, __('Permission') . ' ' . __('Deleted') . ' ' . __('Successfully!!'));
     }
 }

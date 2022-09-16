@@ -3,7 +3,7 @@
     <td>
         @if(App::isLocale('en'))
             {{ $record->english }}
-        @else 
+        @else
         {{ $record->spanish }}
         @endif
     </td>

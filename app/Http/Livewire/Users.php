@@ -35,9 +35,6 @@ class Users extends Component {
 
     public $roles=null,$role_id=null,$role=null;
     public $header;
-    public $selUser;
-    public $membership_id=null,$memberships=null,$expire_at, $expire_at_record;
-    public $is_client = false;
     public $show_roles = true;
 
     /* Inicio de Paginacion y listener */

@@ -61,6 +61,7 @@
     "Allow Roles": "Permitir Roles a Rol",
     "Allow Roles To Role": "Roles Permitidos a otro Rol",
     "Role":"Rol",
+    "Permission": "Permiso",
     "Users": "Usuarios",
     "Update Password": "Actualizar Contraseña",
     "Current Password":"Contraseña Actual",
