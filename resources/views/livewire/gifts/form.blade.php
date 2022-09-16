@@ -4,15 +4,30 @@
     </div>
     <div class="row align-items-start">
         <div class="col-md-3 flex flex-col">
+            <label class="input-group-text mb-2">{{__("Promotion")}}</label>
             <label class="input-group-text mb-2">{{__("Spanish")}}</label>
             <label class="input-group-text mb-2">{{__("English")}}</label>
-            <label class="input-group-text mb-2">{{__("Begin  At")}}</label>
-            <label class="input-group-text mb-4">{{__("Expire At")}}</label>
             <label class="input-group-text mb-2">{{__("Active?")}}</label>
 
         </div>
 
         <div class="col flex flex-col">
+            {{-- Promoción --}}
+            <select wire:model="main_record.promotion_id"
+                    class="form-select form-select-md  rounded w-auto mb-2"
+            >
+                <option>{{ __('Select') }}</option>
+                @foreach ($promotions as $promotion)
+                    <option value="{{ $promotion->id }}">
+                        @if (App::isLocale('en'))
+                            {{ $promotion->english }}
+                        @else
+                            {{ $promotion->spanish }}
+                        @endif
+                    </option>
+                @endforeach
+            </select>
+
             {{-- Español --}}
             <div class="flex-flex-column">
                 <input type="text" wire:model="main_record.spanish" required placeholder="{{__("Spanish")}}"
@@ -26,24 +41,6 @@
                 <input type="text" wire:model="main_record.english" required placeholder="{{__("English")}}"
                 class="form-control mb-2"
                 maxlength="25">
-            </div>
-
-
-            {{-- Fecha Inicia --}}
-            <div class="flex-flex-column mb-4">
-                <input type="date"
-                        wire:model="main_record.begin_at"
-                        required min=<?php $hoy = date('Y-m-d'); echo $hoy; ?>
-                >
-            </div>
-
-
-            {{-- Fecha Expira --}}
-            <div class="flex-flex-column mb-4">
-                <input type="date"
-                        wire:model="main_record.expire_at"
-                        required min=<?php $hoy = date('Y-m-d'); echo $hoy; ?>
-                >
             </div>
 
             {{-- ¿Activo? --}}

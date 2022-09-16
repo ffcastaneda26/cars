@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Promotion extends Model
+class Gift extends Model
 {
     use HasFactory;
-    protected $table = 'promotions';
+    protected $table = 'gifts';
     public $timestamps = false;
     protected $fillable =  [
+        'promotion_id',
         'spanish',
         'english',
-        'begin_at',
-        'expire_at',
         'active',
     ];
 
@@ -36,10 +35,11 @@ class Promotion extends Model
       +-----------------+
      */
 
-    public function gifts(): HasMany
-    {
-        return $this->hasMany(Gift::class);
-    }
+     public function promotion():BelongsTo
+     {
+        return $this->belongsTo(Promotion::class);
+     }
+
 
 
     /*+-----------------+
@@ -48,24 +48,19 @@ class Promotion extends Model
      */
 
     public function can_be_delete(){
-        if($this->gifts()->count()) return false;
         return true;
     }
-
-
 
     /*+-------------------+
       | Búsquedas         |
       +-------------------+
     */
 
-    public function scopePromotion($query,$valor)
+    public function scopeGift($query,$valor)
     {
         if ( trim($valor) != "") {
             $query->where('spanish','LIKE',"%$valor%")
-                  ->orwhere('english','LIKE',"%$valor%")
-                  ->orwhere('short_spanish','LIKE',"%$valor%")
-                  ->orwhere('short_english','LIKE',"%$valor%");
+                  ->orwhere('english','LIKE',"%$valor%");
          }
     }
 

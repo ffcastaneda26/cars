@@ -67,6 +67,7 @@ class Promotions extends Component
 
     public function store()
     {
+
         $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|max:25|unique:promotions,spanish,{$this->main_record->id}"
                                                                      : 'required|min:5|max:25|unique:promotions,spanish';
         $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:25|unique:promotions,english,{$this->main_record->id}"

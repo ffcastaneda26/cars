@@ -44,6 +44,13 @@
     </li>
 
 
+    {{-- Regalos --}}
+    <li>
+        <a href="{{route('gifts')}}" class="waves-effect">
+            <i class="mdi mdi-gift"></i>
+            <span>{{__('Gifts')}}</span>
+        </a>
+    </li>
 
 
 

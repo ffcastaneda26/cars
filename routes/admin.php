@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Livewire\Gifts;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Statuses;
@@ -29,6 +29,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('role',Roles::class)->name('role');                      // Roles
     Route::get('statuses', Statuses::class)->name('statuses');          // Estados de registros
     Route::get('languages', Languages::class)->name('languages');       // Idiomas
-    Route::get('promotions',Promotions::class)->name('promotions');      // Promociones
+    Route::get('promotions',Promotions::class)->name('promotions');     // Promociones
+    Route::get('gifts',Gifts::class)->name('gifts');                    // Regalos
 });
 
