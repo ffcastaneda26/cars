@@ -18,7 +18,7 @@
         {{-- Nombre --}}
             <div class="flex-flex-column">
                 <input type="text"
-                        wire:model="name"
+                        wire:model="main_record.name"
                         required
                         placeholder="{{__('Role')}}"
                         class="form-control mb-2"
@@ -29,19 +29,19 @@
 
             {{-- English --}}
             <div class="flex-flex-column">
-                <input type="text" wire:model="english" required placeholder="{{__("English")}}"
+                <input type="text" wire:model="main_record.english" required placeholder="{{__("English")}}"
                     class="form-control mb-2">
                 </div>
 
             {{-- Español --}}
             <div class="flex-flex-column">
-                <input type="text" wire:model="spanish" required placeholder="{{__("Spanish")}}"
+                <input type="text" wire:model="main_record.spanish" required placeholder="{{__("Spanish")}}"
                 class="form-control mb-2">
             </div>
 
             {{-- Acceso Total --}}
             <div class="flex-flex-column">
-                <input type="checkbox" wire:model="full_access"
+                <input type="checkbox" wire:model="main_record.full_access"
                 class="form-check-input">
             </div>
 

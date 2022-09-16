@@ -118,7 +118,8 @@ trait CrudTrait {
 
         $action_message = $this->record_id ? __('Updated')  : __('Created');
         $action_message .= ' ' . __('Successfully!!');
-        $this->show_alert('success',$action_message);
+        $message.= ' ' . $action_message;
+        $this->show_alert('success',$message);
         $this->closeModal();
         $this->resetInputFields();
         $this->open = true;
