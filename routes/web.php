@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+/* Cambio de Lenguaje */
+Route::get('language/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'es'])) {
+        abort(404);
+    }
+    session()->put('locale', $locale);
+    App::setLocale(session()->get('locale'));
+    return back();
+})->name('changelanguage');
