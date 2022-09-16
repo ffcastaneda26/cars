@@ -6,13 +6,8 @@
             <label class="input-group-text mb-2">{{ __('Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
             <label class="input-group-text mb-2">{{ __('Role') }}</label>
-            @if($is_client)
-                <label class="input-group-text mb-2">{{__("Membership")}}</label>
-                <label class="input-group-text mb-2">{{__("Expire")}}</label>
-            @else
-                <label class="input-group-text mb-2">{{ __('Password') }}</label>
-                <label class="input-group-text mb-2">{{ __('Confirm') }}</label>
-            @endif
+            <label class="input-group-text mb-2">{{ __('Password') }}</label>
+            <label class="input-group-text mb-2">{{ __('Confirm') }}</label>
             @if(isset($record->id))
                 <label class="input-group-text mb-2">{{ __('Active?') }}</label>
             @endif
@@ -45,9 +40,7 @@
 
             <div class="flex-flex-column">
                 <select wire:model="role_id"
-                        wire:change="read_role"
                         class="form-select form-select-md  rounded w-auto mb-2"
-                        @if(!$show_roles) disabled @endif
                 >
                     <option>{{ __('Select Role') }}</option>
 
@@ -64,61 +57,21 @@
 
             </div>
 
-            @if($is_client)
-            {{-- Membresía --}}
-                <div class="flex-flex-column">
-                    <select wire:model="membership_id"
-                            class="form-select form-select-md  rounded w-auto mb-2"
-                            @if(!$show_roles) disabled @endif
-                    >
-                        <option>{{ __('Select Membership') }}</option>
 
-                        @foreach ($memberships as $membership)
-                            <option value="{{ $membership->id }}">
-                                @if (App::isLocale('en'))
-                                    {{ $membership->english }}
-                                @else
-                                    {{ $membership->spanish }}
-                                @endif
-                            </option>
-                        @endforeach
-                    </select>
-
-                </div>
-
-                {{-- Expira --}}
-                <div class="flex flex-column">
-                    @if(isset($record->id))
-                    <input type="text"
-                        required
-                        min=<?php $hoy=date("Y-m-d"); echo $hoy;?>
-                        wire:model="expire_at"
-                        class="form-control col-md-2 mb-2"
-                    >
-                    @else
-                    <input type="date"
-                        required
-                        min=<?php $hoy=date("Y-m-d"); echo $hoy;?>
-                        wire:model="expire_at"
-                        class="form-control col-md-2 mb-2"
-                    >
-                    @endif
-                </div>
-            @else
 
             {{-- Contraseña --}}
-                <div class="flex-flex-column">
-                    <input type="password" wire:model="password" maxlength="50" placeholder="{{ __('Password') }}"
-                        class="form-control mb-2">
-                </div>
-
-
-                {{-- Confrimar Contraseña --}}
-                <div class="flex-flex-column">
-                    <input type="password" wire:model="password_confirmation" maxlength="50" placeholder="{{ __('Confirm') }}"
+            <div class="flex-flex-column">
+                <input type="password" wire:model="password" maxlength="50" placeholder="{{ __('Password') }}"
                     class="form-control mb-2">
-                </div>
-            @endif
+            </div>
+
+
+            {{-- Confrimar Contraseña --}}
+            <div class="flex-flex-column">
+                <input type="password" wire:model="password_confirmation" maxlength="50" placeholder="{{ __('Confirm') }}"
+                class="form-control mb-2">
+            </div>
+
 
             {{-- ¿Activo? --}}
 
