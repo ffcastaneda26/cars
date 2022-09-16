@@ -7,6 +7,7 @@ use App\Http\Livewire\Statuses;
 use App\Http\Livewire\Languages;
 use App\Http\Livewire\Permissions;
 use App\Http\Livewire\Promotions;
+use App\Http\Livewire\Questions;
 use App\Http\Livewire\TypesQuestion;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -33,6 +34,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('promotions',Promotions::class)->name('promotions');             // Promociones
     Route::get('gifts',Gifts::class)->name('gifts');                            // Regalos
     Route::get('types-question',TypesQuestion::class)->name('types-question');  // Tipos de Pregunta
-
+    Route::get('questions',Questions::class)->name('questions');                // Preguntas
 });
 

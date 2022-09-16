@@ -190,6 +190,8 @@ return [
         'two_factor_recovery_codes'=>'Doble Factor Recuperación',
         'two_factor_secret'=>'Doble Factor Secreta',
         'zipcode'=>'Zona Postal',
+        'type_question_id' => 'Tipo de Pregunta',
+        'promotion_id' => 'Promoción',
    	]
 
 ];
