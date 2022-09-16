@@ -1,58 +1,161 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+@include('layouts.home.head')
+<style>
+    .modal {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+</style>
+<body class="font-sans antialiased" data-sidebar="dark">
+    <!-- Loader -->
+    @include('layouts.home.loader')
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-        <link href="/admiria/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <!-- Icons Css -->
-        <link href="/admiria/assets/css/icons.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Wrapper -->
+    <div id="layout-wrapper">
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white">
+                <div class="d-flex">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
 
-        <!-- App Css-->
-        <link href="/admiria/assets/css/app.min.css" rel="stylesheet" type="text/css">
-        <!-- Custom Css-->
-        <link href="/admiria/assets/css/custom.css" rel="stylesheet" type="text/css">
-        <link href="/admiria/assets/css/font.css" rel="stylesheet" type="text/css">
+        <!-- ===== Etiqueta header -->
+        @include('layouts.home.header_div')
 
-        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+        <!-- ========== Left Sidebar Start ========== -->
+        @auth
+        {{-- TODO: Cambiar a si es administrador --}}
+            {{-- @if(!Auth::user()->isClient()) --}}
+                @include('layouts.home.left_sidebar')
+            {{-- @endif --}}
+        @endauth
 
-        <!-- Styles -->
-        @livewireStyles
+        <!-- Contenido Principal -->
+        @include('layouts.home.main_content')
 
-        <!-- Scripts -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        <!--Pie de página -->
+        @include('layouts.home.footer')
+    </div>
 
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    @livewireScripts
+    {{-- @stack('js') --}}
+    <!-- JAVASCRIPT -->
+    @include('layouts.home.javascript_files')
+    @yield('scripts')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        window.addEventListener('alert', ({
+            detail: {
+                type,
+                message
+            }
+        }) => {
+            Toast.fire({
+                icon: type,
+                title: message
+            })
+        })
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+        // Aviso de cambio de contraseña
+        window.addEventListener('password_changed', () => {
+            Swal.fire({
+                title: "{{ __('Congratulations!!!') }}",
+                text: "{{ __('Your password has been changed') }}",
+                })
+        })
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+        function confirm_modal(id) {
+            var record = id;
+            Swal.fire({
+                title: "{{ __('Are you sure?') }}",
+                text: "{{ __('You wo not be able to revert this!') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "{{ __('Yes, delete it!') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.livewire.emit('destroy', record);
+                    Swal.fire(
+                        "{{ __('Deleted!') }}",
+                        "{{ __('Your record has been deleted.') }}",
+                        'success'
+                    )
+                }
+            })
+        }
 
-        @stack('modals')
+        function confirm_cancel_pause_modal(id) {
+            var record = id;
+            Swal.fire({
+                title: "{{__('Cancellation Request Warning')}}",
+                text: "{{ __('This action cannot be undone. If you would like to continue working on this project select Pause instead of Cancel') }}",
+                icon: 'warning',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "{{__('Yes, Cancel Project')}}",
+                denyButtonText: "{{__('Pause Project')}}",
+                cancelButtonText: "{{__('Do Nothing')}}",
+                confirmButtonColor: '#3085d6',
 
-        @livewireScripts
-    </body>
+                customClass: {
+                    actions: 'my-actions',
+                    cancelButton: 'order-1 right-gap',
+                    confirmButton: 'order-2',
+                    denyButton: 'order-3',
+                }
+                }).then((result) => {
+                if (result.isConfirmed) {
+                        window.livewire.emit('change_status_project', record,'cancelled');
+                        Swal.fire(
+                            "{{ __('Canceled!') }}",
+                            "{{ __('Your project has been canceled.') }}",
+                            'success'
+                        )
+                } else if (result.isDenied) {
+                    window.livewire.emit('change_status_project', record,'paused');
+                        Swal.fire(
+                            "{{ __('Paused!') }}",
+                            "{{ __('Your project has been paused.') }}",
+                            'success'
+                        )
+                }
+                })
+        }
+
+        window.addEventListener('created', event => {
+            Swal.fire({
+                title: "{{ __('Project Created Succesfuly') }}",
+                text: "{{ __('The request has been succesfully generated!') }}",
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: "{{ __('ok!') }}",
+            })
+        });
+
+    </script>
+    <!-- add before </body> -->
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    {{-- CK-Editor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+
+</body>
 </html>

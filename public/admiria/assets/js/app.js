@@ -17,7 +17,6 @@ File: Main Js File
         $("#side-menu").metisMenu();
     }
 
-    // TODO: Revisar el tamaño de la clase "vertical-colpsed" o en su caso hacer una un poco mas ancha
     function initLeftMenuCollapse() {
         $('#vertical-menu-btn').on('click', function (event) {
             event.preventDefault();
@@ -62,7 +61,7 @@ File: Main Js File
     function initHoriMenuActive() {
         $(".navbar-nav a").each(function () {
             var pageUrl = window.location.href.split(/[?#]/)[0];
-            if (this.href == pageUrl) {
+            if (this.href == pageUrl) { 
                 $(this).addClass("active");
                 $(this).parent().addClass("active");
                 $(this).parent().parent().addClass("active");
@@ -146,7 +145,7 @@ File: Main Js File
             }
         }
     }
-
+    
     function initComponents() {
 
         // Tooltip
@@ -241,6 +240,6 @@ File: Main Js File
     init();
 
 })(jQuery)
-//
-//
-//
+// 
+// 
+// 
