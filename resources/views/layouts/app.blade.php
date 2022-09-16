@@ -9,6 +9,18 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link href="/admiria/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <!-- Icons Css -->
+        <link href="/admiria/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+        <!-- App Css-->
+        <link href="/admiria/assets/css/app.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom Css-->
+        <link href="/admiria/assets/css/custom.css" rel="stylesheet" type="text/css">
+        <link href="/admiria/assets/css/font.css" rel="stylesheet" type="text/css">
+
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
 
         <!-- Styles -->
         @livewireStyles
