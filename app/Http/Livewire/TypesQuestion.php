@@ -25,7 +25,7 @@ class TypesQuestion extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'TypeQuestion.index');
+        $this->authorize('hasaccess', 'typesquestions.index');
         $this->manage_title = __('Manage') . ' ' . __('Type Question');
         $this->search_label = __('Name');
         $this->view_form = 'livewire.types_question.form';

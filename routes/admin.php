@@ -5,6 +5,7 @@ use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Statuses;
 use App\Http\Livewire\Languages;
+use App\Http\Livewire\Options;
 use App\Http\Livewire\Permissions;
 use App\Http\Livewire\Promotions;
 use App\Http\Livewire\Questions;
@@ -35,5 +36,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('gifts',Gifts::class)->name('gifts');                            // Regalos
     Route::get('types-question',TypesQuestion::class)->name('types-question');  // Tipos de Pregunta
     Route::get('questions',Questions::class)->name('questions');                // Preguntas
+    Route::get('options',Options::class)->name('options');                      // Opciones
+
 });
 

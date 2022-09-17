@@ -1,6 +1,8 @@
 {
     "Question": "Pregunta",
     "Questions": "Preguntas",
+    "Option": "Opción",
+    "Options": "Opciones",
     "Type Question": "Tipo Pregunta",
     "Types Question": "Tipos de Pregunta",
     "Zipcode does not Exists": "Zona Postal No Existe",
@@ -155,6 +157,7 @@
     "Created": "Creado",
     "Deleted": "Eliminado",
     "Are you sure?":"¿Estas seguro?",
+    "Deleted Successfully!!": "Eliminado Satisfactoriamente!!!",
     "You wo not be able to revert this!":"¡No podrás revertir esto!",
     "Yes, delete it":"Si, Eliminarlo",
     "Your record has been deleted.":"Su registro ha sido eliminado.",

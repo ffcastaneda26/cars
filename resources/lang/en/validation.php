@@ -158,6 +158,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'spanish'=>'Spanish',
+        'english'=>'English',
+        'question_id'=>'Question',
+        'promotion_id'=>'Promotion',
+
+    ],
 
 ];

@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Question extends Model
+class Option extends Model
 {
     use HasFactory;
-    protected $table = 'questions';
+    protected $table = 'options';
     public $timestamps = false;
     protected $fillable =  [
+        'question_id',
         'spanish',
-        'english',
-        'type_question_id',
+        'english'
     ];
 
 
@@ -24,14 +23,9 @@ class Question extends Model
       +-----------------+
      */
 
-     public function options():HasMany
+     public function question():BelongsTo
      {
-        return $this->hasMany(Option::class);
-     }
-
-     public function type_question():BelongsTo
-     {
-        return $this->belongsTo(TypeQuestion::class);
+        return $this->belongsTo(Question::class);
      }
 
 
@@ -42,7 +36,6 @@ class Question extends Model
      */
 
     public function can_be_delete(){
-        if($this->options()->count()) return false;
         return true;
     }
 
@@ -51,7 +44,7 @@ class Question extends Model
       +-------------------+
     */
 
-    public function scopeQuestion($query,$valor)
+    public function scopeOption($query,$valor)
     {
         if ( trim($valor) != "") {
             $query->where('spanish','LIKE',"%$valor%")
@@ -60,3 +53,4 @@ class Question extends Model
     }
 
 }
+

@@ -30,7 +30,7 @@ class Questions extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'Question.index');
+        $this->authorize('hasaccess', 'questions.index');
         $this->manage_title = __('Manage') . ' ' . __('Question');
         $this->search_label = __('Question');
         $this->view_form = 'livewire.questions.form';

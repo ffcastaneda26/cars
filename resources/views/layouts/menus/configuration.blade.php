@@ -68,5 +68,15 @@
         </a>
     </li>
 
+    {{-- Opciones --}}
+    <li>
+        <a href="{{route('options')}}" class="waves-effect">
+            <i class="mdi mdi-clipboard-list"></i>
+            <span>{{__('Options')}}</span>
+        </a>
+    </li>
+
+
+
 
 </ul>

@@ -31,7 +31,7 @@ class Gifts extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'Gift.index');
+        $this->authorize('hasaccess', 'gifts.index');
         $this->manage_title = __('Manage') . ' ' . __('Gift');
         $this->search_label = __('Name');
         $this->view_form = 'livewire.gifts.form';

@@ -192,6 +192,7 @@ return [
         'zipcode'=>'Zona Postal',
         'type_question_id' => 'Tipo de Pregunta',
         'promotion_id' => 'Promoción',
+        'question_id' => 'Pregunta',
    	]
 
 ];
