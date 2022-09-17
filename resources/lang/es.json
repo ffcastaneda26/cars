@@ -1,4 +1,10 @@
 {
+    "Gender": "Género",
+    "Female": "Femenino",
+    "Male": "Masculino",
+    "Other": "Otro",
+    "Ethnicity": "Etnia",
+    "Ethnicities": "Etnias",
     "Question": "Pregunta",
     "Questions": "Preguntas",
     "Option": "Opción",

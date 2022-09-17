@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Ethnicities;
 use App\Http\Livewire\Gifts;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
@@ -10,6 +11,7 @@ use App\Http\Livewire\Permissions;
 use App\Http\Livewire\Promotions;
 use App\Http\Livewire\Questions;
 use App\Http\Livewire\TypesQuestion;
+use App\Models\Ethnicity;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('types-question',TypesQuestion::class)->name('types-question');  // Tipos de Pregunta
     Route::get('questions',Questions::class)->name('questions');                // Preguntas
     Route::get('options',Options::class)->name('options');                      // Opciones
+    Route::get('ethnicities',Ethnicities::class)->name('ethnicites');           // Etnias
 
 });
 

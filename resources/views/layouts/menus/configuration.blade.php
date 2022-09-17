@@ -76,6 +76,13 @@
         </a>
     </li>
 
+    {{-- Etnias --}}
+    <li>
+        <a href="{{route('ethnicites')}}" class="waves-effect">
+            <i class="mdi mdi-nature-people"></i>
+            <span>{{__('Ethinicites')}}</span>
+        </a>
+    </li>
 
 
 
