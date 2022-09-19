@@ -84,6 +84,14 @@
         </a>
     </li>
 
+
+    {{-- Rangos de Edades --}}
+    <li>
+        <a href="{{route('edge-ranges')}}" class="waves-effect">
+            <i class="mdi mdi-calendar-range"></i>
+            <span>{{__('Edge Ranges')}}</span>
+        </a>
+    </li>
     {{-- Clientes --}}
     <li>
         <a href="{{route('customers')}}" class="waves-effect">
