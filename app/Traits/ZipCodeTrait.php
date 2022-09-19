@@ -13,14 +13,13 @@ trait ZipCodeTrait
 
     // Lee zona postal con variable publica
     public function read_town_state($zipcode=null) {
-        $this->town_state =Null;
-        $this->zipcode_exists = false;
-        
-        if(!$zipcode && $this->zipcode){
+        $this->reset('town_state','zipcode_exists');
+
+         if(!$zipcode && $this->zipcode){
             $zipcode= $this->zipcode;
         }
 
-        if ($this->zipcode) {
+        if ($zipcode) {
             $zipcode_record = $this->read_this_zipcode($zipcode);
             if ($zipcode_record) {
                 $this->town_state = $zipcode_record->town . ',' . $zipcode_record->state;

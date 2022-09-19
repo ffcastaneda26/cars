@@ -193,6 +193,10 @@ return [
         'type_question_id' => 'Tipo de Pregunta',
         'promotion_id' => 'Promoción',
         'question_id' => 'Pregunta',
+        "first_name" => 'Nombre',
+        "last_name"  => 'Apellido',
+        "ethnicity_id" => 'Etnia',
+        "agree_be_legal_age" => 'Aceptar mayoría de edad',
    	]
 
 ];

@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             'roles',
             'permissions',
             'statuses',
-            'type_questions'
+            'type_questions',
+            'ethnicities'
         ]);
 
         $this->call([
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             StatusSeeder::class,
             TypesQuestionSeeder::class,
+            EthnicitySeeder::class,
         ]);
 
     }

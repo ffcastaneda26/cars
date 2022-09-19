@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Customers;
 use App\Http\Livewire\Ethnicities;
 use App\Http\Livewire\Gifts;
 use App\Http\Livewire\Roles;
@@ -40,6 +41,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('questions',Questions::class)->name('questions');                // Preguntas
     Route::get('options',Options::class)->name('options');                      // Opciones
     Route::get('ethnicities',Ethnicities::class)->name('ethnicites');           // Etnias
-
+    Route::get('customers',Customers::class)->name('customers');                // Clientes
 });
 

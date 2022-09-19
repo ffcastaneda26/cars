@@ -159,11 +159,11 @@ return [
     */
 
     'attributes' => [
-        'spanish'=>'Spanish',
-        'english'=>'English',
-        'question_id'=>'Question',
-        'promotion_id'=>'Promotion',
-
+        'spanish'           =>'Spanish',
+        'english'           =>'English',
+        'question_id'       =>'Question',
+        'promotion_id'      =>'Promotion',
+       "agree_be_legal_age" => "I agree to be of legal age"
     ],
 
 ];

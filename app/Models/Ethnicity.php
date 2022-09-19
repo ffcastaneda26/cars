@@ -22,7 +22,10 @@ class Ethnicity extends Model
       +-----------------+
      */
 
-
+    public function customers():HasMany
+    {
+        return $this->hasMany(Customer::class);
+    }
 
     /*+-----------------+
       | Funciones Apoyo |
@@ -30,7 +33,7 @@ class Ethnicity extends Model
      */
 
     public function can_be_delete(){
-
+        if($this->customers()->count()) return false;
         return true;
     }
 
