@@ -6,6 +6,13 @@
         background-color: rgba(0, 0, 0, 0.7);
     }
 
+    body {
+        font-family: 'Nunito', sans-serif;
+        heigh:665px;
+        background-image: url("/images/fondo_01.png");
+        background-size: 10rem;
+    }
+
 </style>
 <body class="font-sans antialiased" data-sidebar="dark">
     <!-- Loader -->
