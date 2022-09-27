@@ -9,8 +9,7 @@
     body {
         font-family: 'Nunito', sans-serif;
         heigh:665px;
-        background-image: url("/images/fondo_01.png");
-        background-size: 10rem;
+        background-color:#FFFFFF;
     }
 
 </style>
