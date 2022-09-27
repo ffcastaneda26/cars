@@ -80,7 +80,7 @@
     <li>
         <a href="{{route('ethnicites')}}" class="waves-effect">
             <i class="mdi mdi-nature-people"></i>
-            <span>{{__('Ethinicites')}}</span>
+            <span>{{__('Ethnicities')}}</span>
         </a>
     </li>
 
