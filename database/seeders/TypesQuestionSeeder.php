@@ -15,11 +15,12 @@ class TypesQuestionSeeder extends Seeder
     public function run()
     {
 
-        $sql = "INSERT INTO 'type_questions' (id, spanish, english) VALUES
+        $sql = "INSERT INTO type_questions (id, spanish, english) VALUES
         (1, 'Falso/Verdadero', 'True/False'),
-        (2, 'Opción Múltiple', ' Multiple Choice'),
+        (2, 'Opción Múltiple', 'Multiple Choice'),
         (3, 'Abierta', 'Open'),
         (4, 'Escala', 'Scale')";
+
         DB::update ($sql);
 
 

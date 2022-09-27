@@ -10,7 +10,7 @@
         </div>
 
 
-           <div>
+           <div class="">
                 <img src="{{asset('images/logo.png')}}" alt="" class="w-auto p-2" height="60x">
            </div>
             <div class="d-flex">
