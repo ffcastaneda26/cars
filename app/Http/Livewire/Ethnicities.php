@@ -19,8 +19,8 @@ class Ethnicities extends Component
     protected $listeners = ['destroy'];
 
     protected $rules = [
-        'main_record.spanish'       => 'required|min:3|max:30|unique:ethnicities,spanish',
-        'main_record.english'       => 'required|min:3|max:30|unique:ethnicities,english',
+        'main_record.spanish'       => 'required|min:3|max:80|unique:ethnicities,spanish',
+        'main_record.english'       => 'required|min:3|max:80|unique:ethnicities,english',
     ];
 
     public function mount()
@@ -63,10 +63,10 @@ class Ethnicities extends Component
 
     public function store()
     {
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|max:30|unique:ethnicities,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:3|max:30|unique:ethnicities,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|max:30|unique:ethnicities,english,{$this->main_record->id}"
-                                                                     : 'required|min:3|max:30|unique:ethnicities,english';
+        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|max:80|unique:ethnicities,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:3|max:80|unique:ethnicities,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|max:80|unique:ethnicities,english,{$this->main_record->id}"
+                                                                     : 'required|min:3|max:80|unique:ethnicities,english';
 
         $this->validate();
         $this->main_record->save();

@@ -76,6 +76,15 @@
         </a>
     </li>
 
+    {{-- Preguntas x Promoción --}}
+    <li>
+        <a href="{{route('promotion-questions')}}" class="waves-effect">
+            <i class="mdi mdi-beaker-question-outline"></i>
+            <span>{{__('Questions by Promotion')}}</span>
+        </a>
+    </li
+
+
     {{-- Etnias --}}
     <li>
         <a href="{{route('ethnicites')}}" class="waves-effect">
@@ -99,6 +108,7 @@
             <span>{{__('Customers')}}</span>
         </a>
     </li>
+
 
 
 </ul>

@@ -28,7 +28,8 @@ class Questionx extends Model
 
     public function promotions(): BelongsToMany
     {
-        return $this->belongsToMany(Promotion::class);
+        return $this->belongsToMany(Promotion::class,'promotion_question');
+
     }
 
 
@@ -43,6 +44,13 @@ class Questionx extends Model
      }
 
 
+    // ¿Pregunta ligada a la promoción?
+    public function islinkedPromotion($promotion_id)
+    {
+        return $this->belongsToMany(Promotion::class,'promotion_question')
+                    ->where('promotion_id', $promotion_id);
+
+    }
 
 
     /*+-----------------+
@@ -67,5 +75,7 @@ class Questionx extends Model
                   ->orwhere('english','LIKE',"%$valor%");
          }
     }
+
+
 
 }

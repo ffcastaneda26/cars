@@ -10,6 +10,7 @@ use App\Http\Livewire\Statuses;
 use App\Http\Livewire\Languages;
 use App\Http\Livewire\Options;
 use App\Http\Livewire\Permissions;
+use App\Http\Livewire\PromotionQuestions;
 use App\Http\Livewire\Promotions;
 use App\Http\Livewire\Questions;
 use App\Http\Livewire\TypesQuestion;
@@ -43,5 +44,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('ethnicities',Ethnicities::class)->name('ethnicites');           // Etnias
     Route::get('edge-ranges',EdgeRanges::class)->name('edge-ranges');           // Rangos de edades
     Route::get('customers',Customers::class)->name('customers');                // Clientes
+    Route::get('promotion-questions',PromotionQuestions::class)->name('promotion-questions'); // Preguntas x Promoción;
 });
 

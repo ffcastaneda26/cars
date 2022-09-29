@@ -1,4 +1,5 @@
 <tr>
+
     @if(App::isLocale('en'))
         <td>{{ $record->question->english }}</td>
         <td>{{ $record->english }}</td>

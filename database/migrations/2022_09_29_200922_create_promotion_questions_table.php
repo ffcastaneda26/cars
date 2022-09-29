@@ -15,7 +15,7 @@ class CreatePromotionQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('promotion_questions', function (Blueprint $table) {
+        Schema::create('promotion_question', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Promotion::class)->comment('Promoción');
             $table->foreignIdFor(Questionx::class)->comment('Pregunta');
@@ -29,6 +29,6 @@ class CreatePromotionQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promotion_questions');
+        Schema::dropIfExists('promotion_question');
     }
 }

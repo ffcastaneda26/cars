@@ -15,8 +15,8 @@ class CreateEthnicitiesTable extends Migration
     {
         Schema::create('ethnicities', function (Blueprint $table) {
             $table->id();
-            $table->string('spanish',30)->unique()->comment('Español');
-            $table->string('english',30)->unique()->comment('Inglés');
+            $table->string('spanish',80)->unique()->comment('Español');
+            $table->string('english',80)->unique()->comment('Inglés');
         });
     }
 

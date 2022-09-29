@@ -12,7 +12,7 @@
 
         <div class="col flex flex-col">
         {{-- Pregunta --}}
-            <select wire:model="main_record.question_id"
+            <select wire:model="main_record.questionx_id"
                     class="form-select form-select-md  rounded w-auto mb-2"
             >
                 <option>{{ __('Select') }}</option>

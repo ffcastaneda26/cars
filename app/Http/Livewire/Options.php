@@ -24,9 +24,9 @@ class Options extends Component
     public $questions=null;
 
     protected $rules = [
-        'main_record.spanish'       => 'required|min:5|max:100|unique:options,spanish',
-        'main_record.english'       => 'required|min:5|max:100|unique:options,english',
-        'main_record.question_id'   => 'required|exists:questions,id',
+        'main_record.spanish'       => 'required|max:100',
+        'main_record.english'       => 'required|max:100',
+        'main_record.questionx_id'  => 'required|exists:questions,id',
 
     ];
 
@@ -70,10 +70,6 @@ class Options extends Component
 
     public function store()
     {
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|max:100|unique:options,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:5|max:100|unique:options,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:100|unique:options,english,{$this->main_record->id}"
-                                                                     : 'required|min:5|max:100|unique:options,english';
 
         $this->validate();
         $this->main_record->save();
