@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\EdgeRange;
+
 use App\Models\Ethnicity;
+use App\Models\Gender;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
