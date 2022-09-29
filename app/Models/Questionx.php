@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Question extends Model
+class Questionx extends Model
 {
     use HasFactory;
     protected $table = 'questions';
@@ -24,6 +25,13 @@ class Question extends Model
       +-----------------+
      */
 
+
+    public function promotions(): BelongsToMany
+    {
+        return $this->belongsToMany(Promotion::class);
+    }
+
+
      public function options():HasMany
      {
         return $this->hasMany(Option::class);
@@ -33,6 +41,7 @@ class Question extends Model
      {
         return $this->belongsTo(TypeQuestion::class);
      }
+
 
 
 

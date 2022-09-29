@@ -8,7 +8,7 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Promotion;
-use App\Models\Question;
+use App\Models\Questionx;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Options extends Component
@@ -39,7 +39,7 @@ class Options extends Component
         $this->view_table = 'livewire.options.table';
         $this->view_list = 'livewire.options.list';
         $this->main_record = new Option();
-        $this->questions = Question::all();
+        $this->questions = Questionx::all();
     }
 
     /*+---------------------------------+

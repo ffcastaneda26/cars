@@ -1,12 +1,12 @@
 <?php
 
-
+use App\Models\Promotion;
 use App\Models\Questionx;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOptionsTable extends Migration
+class CreatePromotionQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,10 @@ class CreateOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('options', function (Blueprint $table) {
+        Schema::create('promotion_questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Promotion::class)->comment('Promoción');
             $table->foreignIdFor(Questionx::class)->comment('Pregunta');
-            $table->string('spanish',100)->nullable()->comment('Español');
-            $table->string('english',100)->nullable()->comment('Inglés');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('options');
+        Schema::dropIfExists('promotion_questions');
     }
 }

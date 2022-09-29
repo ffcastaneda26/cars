@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Promotion extends Model
@@ -36,11 +37,16 @@ class Promotion extends Model
       +-----------------+
      */
 
+
     public function gifts(): HasMany
     {
         return $this->hasMany(Gift::class);
     }
 
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Questionx::class);
+    }
 
     /*+-----------------+
       | Funciones Apoyo |

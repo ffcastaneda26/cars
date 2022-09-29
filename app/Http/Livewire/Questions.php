@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Question;
 use Livewire\Component;
 use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Questionx;
 use App\Models\TypeQuestion;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -36,7 +36,7 @@ class Questions extends Component
         $this->view_form = 'livewire.questions.form';
         $this->view_table = 'livewire.questions.table';
         $this->view_list = 'livewire.questions.list';
-        $this->main_record = new Question();
+        $this->main_record = new Questionx();
         $this->types_questions = TypeQuestion::all();
     }
 
@@ -51,13 +51,13 @@ class Questions extends Component
         $this->create_button_label .= ' ' .   __('Question');
 
         return view('livewire.index', [
-            'records' => Question::Question($this->search)->paginate($this->pagination),
+            'records' => Questionx::Question($this->search)->paginate($this->pagination),
         ]);
     }
 
     public function resetInputFields()
     {
-        $this->main_record = new Question();
+        $this->main_record = new Questionx();
         $this->resetErrorBag();
     }
 
@@ -84,7 +84,7 @@ class Questions extends Component
     +------------------------------+
     */
 
-    public function edit(Question $record)
+    public function edit(Questionx $record)
     {
         $this->main_record  = $record;
         $this->record_id    = $record->id;
@@ -96,7 +96,7 @@ class Questions extends Component
       | Elimina Registro             |
       +------------------------------+
     */
-    public function destroy(Question $record)
+    public function destroy(Questionx $record)
     {
         $this->delete_record($record, __('Question') . ' ' . __('Deleted Successfully!!'));
     }
