@@ -25,7 +25,7 @@ class CreateCustomersTable extends Migration
             $table->unsignedInteger('zipcode')->nullable()->comment('Zona postal');
             $table->enum('gender',['Female','Male','Other'])->default('Male')->comment('Género');
             $table->foreignIdFor(Ethnicity::class)->nullable()->default(null)->comment('Etnia');
-            $table->foreignIdFor(EdgeRange::class)->nullable()->default(null)->comment('Etnia');
+            $table->tinyInteger('age')->nullable()->default(null)->comment('edad en años');
             $table->date('birthday')->nullable()->default(null)->comment('Fecha nacimiento');
             $table->boolean('agree_be_legal_age')->default(0)->comment('¿Acepta ser mayor de edad?');
             $table->timestamps();

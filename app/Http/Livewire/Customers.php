@@ -36,6 +36,7 @@ class Customers extends Component
         'main_record.gender'            => 'required|in:Female,Male,Other',
         'main_record.ethnicity_id'      => 'required|exists:ethnicities,id',
         'main_record.birthday'          => 'nullable',
+        'main_record.age'               => 'required|digits:2|min:18|max:99',
         'main_record.agree_be_legal_age'=> 'required'
     ];
 

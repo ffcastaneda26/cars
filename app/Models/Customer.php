@@ -19,6 +19,8 @@ class Customer extends Model
         'address',
         'zipcode',
         'gender',
+        'ethnicity_id',
+        'age',
         'birthday',
         'agree_be_legal_age',
     ];

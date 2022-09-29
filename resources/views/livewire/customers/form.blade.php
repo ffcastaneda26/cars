@@ -1,33 +1,40 @@
 <div class="container">
+    <div class="text-danger">
+        <x-jet-validation-errors></x-jet-validation-errors>
+    </div>
     <div class="row align-items-start">
         <div class="col-md-4 flex flex-col">
             <label class="input-group-text mb-2">{{__("First Name")}}</label>
-            @error('main_record.first_name')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.first_name')<div class="mb-2"><br></div>@enderror --}}
 
             <label class="input-group-text mb-2">{{__("Last Name")}}</label>
-            @error('main_record.last_name')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.last_name')<div class="mb-2"><br></div>@enderror --}}
 
             <label class="input-group-text mb-2">{{__("Email")}}</label>
-            @error('email')<div class="mb-2"><br></div>@enderror
+            {{-- @error('email')<div class="mb-2"><br></div>@enderror --}}
 
             <label class="input-group-text mb-2">{{__("Phone")}}</label>
-            @error('main_record.phone')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.phone')<div class="mb-2"><br></div>@enderror --}}
+
             <label class="input-group-text mb-2">{{__("Address")}}</label>
-            @error('main_record.address')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.address')<div class="mb-2"><br></div>@enderror --}}
 
 
             <label class="input-group-text mb-2">{{__("Zipcode")}}</label>
-            @error('main_record.zipcode')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.zipcode')<div class="mb-2"><br></div>@enderror --}}
 
             @if($main_record->zipcode)
                 <label class="input-group-text mb-2">{{__("City")}}</label>
             @endif
 
             <label class="input-group-text mb-2">{{__("Gender")}}</label>
-            @error('main_record.gender')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.gender')<div class="mb-2"><br></div>@enderror --}}
 
             <label class="input-group-text mb-4">{{__("Ethnicity")}}</label>
-            @error('main_record.gender')<div class="mb-2"><br></div>@enderror
+            {{-- @error('main_record.ethnicity_id')<div class="mb-2"><br></div>@enderror --}}
+
+            <label class="input-group-text mb-4">{{__("Age")}}</label>
+            {{-- @error('main_record.age')<div class="mb-2"><br></div>@enderror --}}
 
         </div>
 
@@ -41,7 +48,7 @@
                         maxlength="40"
                         class="form-control mb-2"
                 >
-                <div class="mb-2">@error('main_record.first_name') <span class="text-danger">{{ $message }}</span>@enderror</div>
+                {{-- <div class="mb-2">@error('main_record.first_name') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
 
             </div>
 
@@ -54,7 +61,7 @@
                         maxlength="40"
                         class="form-control mb-2"
                 >
-                <div class="mb-2">@error('main_record.last_name') <span class="text-danger">{{ $message }}</span>@enderror</div>
+                {{-- <div class="mb-2">@error('main_record.last_name') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
 
             </div>
 
@@ -67,7 +74,7 @@
                         placeholder="{{__("Email")}}"
                         class="form-control mb-2"
                 >
-                <div class="mb-2">@error('main_record.email') <span class="text-danger">{{ $message }}</span>@enderror</div>
+                {{-- <div class="mb-2">@error('main_record.email') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
 
             </div>
 
@@ -80,7 +87,7 @@
                         placeholder="{{__("Phone")}}"
                         class="form-control mb-2"
                 >
-                <div class="mb-2">@error('main_record.phone') <span class="text-danger">{{ $message }}</span>@enderror</div>
+                {{-- <div class="mb-2">@error('main_record.phone') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
 
             </div>
 
@@ -92,7 +99,7 @@
                         placeholder="{{__("Address")}}"
                         class="form-control mb-2"
                 >
-                <div class="mb-2">@error('main_record.address') <span class="text-danger">{{ $message }}</span>@enderror</div>
+                {{-- <div class="mb-2">@error('main_record.address') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
 
             </div>
 
@@ -105,7 +112,7 @@
                         placeholder="{{__("ZipCode")}}"
                         class="form-control mb-2"
                 >
-                <div class="mb-2">@error('main_record.zipcode') <span class="text-danger">{{ $message }}</span>@enderror</div>
+                {{-- <div class="mb-2">@error('main_record.zipcode') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
 
             </div>
 
@@ -164,6 +171,17 @@
                 </select>
             </div>
 
+            {{-- Edad --}}
+            <div class="flex-flex-column mt-4 col-md-3">
+                <input type="number"
+                        wire:model="main_record.age"
+                        min="18"
+                        max="99"
+                        placeholder="{{__("Age")}}"
+                        class="form-control mb-2"
+                >
+                {{-- <div class="mb-2">@error('main_record.age') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
+            </div>
 
         </div>
     </div>
@@ -179,6 +197,6 @@
             >
         </label>
 
-        <div class="mb-2">@error('main_record.agree_be_legal_age') <span class="text-danger">{{ $message }}</span>@enderror</div>
+        {{-- <div class="mb-2">@error('main_record.agree_be_legal_age') <span class="text-danger">{{ $message }}</span>@enderror</div> --}}
     </div>
 </div>

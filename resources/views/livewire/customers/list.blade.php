@@ -1,11 +1,21 @@
 <tr>
     <td>{{$record->id}}</td>
-
     <td>{{$record->fullName}}</td>
     <td>{{$record->phone}}</td>
     <td>{{$record->email}}</td>
-
     <td>{{$record->gender}}</td>
+    <td>
+        @if(App::isLocale('en'))
+            {{$record->Ethnicity->english}}
+        @else
+            {{$record->Ethnicity->spanish}}
+        @endif
+    </td>
+    <td>
+        @if($record->age)
+            {{$record->age}}
+        @endif
+    </td>
     @include('common.crud_actions')
 </tr>
 
