@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'permission_user',
             'roles',
             'permissions',
+            'genders',
             'statuses',
             'type_questions',
             'ethnicities'
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,
+            GenderSeeder::class,
             StatusSeeder::class,
             TypesQuestionSeeder::class,
             EthnicitySeeder::class,

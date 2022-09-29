@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone',10)->unique()->comment('Teléfono');
             $table->string('address',100)->nullable()->default(null)->comment('Dirección');
             $table->unsignedInteger('zipcode')->nullable()->comment('Zona postal');
-            $table->enum('gender',['Female','Male','Other'])->default('Male')->comment('Género');
+            $table->foreignIdFor(Gender::class)->nullable()->default(null)->comment('Sexo');
             $table->foreignIdFor(Ethnicity::class)->nullable()->default(null)->comment('Etnia');
             $table->tinyInteger('age')->nullable()->default(null)->comment('edad en años');
             $table->date('birthday')->nullable()->default(null)->comment('Fecha nacimiento');

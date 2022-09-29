@@ -18,7 +18,7 @@ class Customer extends Model
         'phone',
         'address',
         'zipcode',
-        'gender',
+        'gender_id',
         'ethnicity_id',
         'age',
         'birthday',

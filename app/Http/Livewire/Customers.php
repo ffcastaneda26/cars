@@ -8,9 +8,10 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Ethnicity;
-
+use App\Models\Gender;
 use App\Traits\ZipCodeTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\App;
 
 class Customers extends Component
 {
@@ -23,6 +24,7 @@ class Customers extends Component
     protected $listeners = ['destroy'];
 
     public $ethnicities=null;
+    public $genders;
     public $city_town = null;
     public $email;
 
@@ -33,7 +35,7 @@ class Customers extends Component
         'main_record.phone'             => 'required|digits:10',
         'main_record.address'           => 'required',
         'main_record.zipcode'           => 'required|digits:5|exists:zipcodes,zipcode',
-        'main_record.gender'            => 'required|in:Female,Male,Other',
+        'main_record.gender_id'         => 'required|exists:genders,id',
         'main_record.ethnicity_id'      => 'required|exists:ethnicities,id',
         'main_record.birthday'          => 'nullable',
         'main_record.age'               => 'required|digits:2|min:18|max:99',
@@ -49,7 +51,14 @@ class Customers extends Component
         $this->view_table = 'livewire.customers.table';
         $this->view_list = 'livewire.customers.list';
         $this->main_record = new Customer();
-        $this->ethnicities = Ethnicity::all();
+        if (App::isLocale('en')) {
+            $this->ethnicities= Ethnicity::orderby('english')->get();
+            $this->genders      = Gender::orderby('english')->get();
+        } else {
+            $this->ethnicities= Ethnicity::orderby('spanish')->get();
+            $this->genders      = Gender::orderby('spanish')->get();
+
+        }
 
     }
 

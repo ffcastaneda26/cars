@@ -128,31 +128,22 @@
             @endif
 
             {{-- Género --}}
-            <div class="flex-flex-column mt-2">
-                <div class="d-flex justify-content-between mb-4">
-                    <div class="ml-5">
-                        <label class="bg-primary">{{ __('Male') }}</label>
-                        <input type="radio"
-                                wire:model="main_record.gender"
-                                value="Male">
-                    </div>
-
-                    <div class="ml-5">
-                        <label style="background-color:pink">{{ __('Female') }}</label>
-                        <input type="radio"
-                                wire:model="main_record.gender"
-                            value="Female">
-                    </div>
-
-                    <div class="ml-5">
-                        <label class="bg-secondary">{{ __('Other') }}</label>
-                        <input type="radio"
-                                wire:model="main_record.gender"
-                                value="Other">
-                    </div>
-                </div>
+            <div class="flex-flex-column">
+                <select wire:model="main_record.gender_id"
+                        class="form-select form-select-md  rounded w-auto mb-2"
+                >
+                    <option>{{ __('Select') }}</option>
+                    @foreach ($genders as $gender)
+                        <option value="{{ $gender->id }}">
+                            @if (App::isLocale('en'))
+                                {{ $gender->english }}
+                            @else
+                                {{ $gender->spanish }}
+                            @endif
+                        </option>
+                    @endforeach
+                </select>
             </div>
-
             {{-- Etnia --}}
             <div class="flex-flex-column">
                 <select wire:model="main_record.ethnicity_id"

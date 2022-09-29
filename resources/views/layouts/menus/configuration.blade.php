@@ -27,13 +27,13 @@
         </a>
     </li>
 
-    {{-- Estados --}}
-    {{-- <li>
-        <a href="{{route('statuses')}}" class="waves-effect">
-            <i class="mdi mdi-list-status"></i>
-            <span>{{__('Statuses')}}</span>
+    {{-- Géneros --}}
+    <li>
+        <a href="{{route('genders')}}" class="waves-effect">
+            <i class="mdi mdi-gender-transgender"></i>
+            <span>{{__('Genders')}}</span>
         </a>
-    </li> --}}
+    </li>
 
     {{-- Promociones --}}
     <li>

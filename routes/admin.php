@@ -3,6 +3,7 @@
 use App\Http\Livewire\Customers;
 use App\Http\Livewire\EdgeRanges;
 use App\Http\Livewire\Ethnicities;
+use App\Http\Livewire\Genders;
 use App\Http\Livewire\Gifts;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
@@ -35,7 +36,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('permission',Permissions::class)->name('permission');            // Permisos
     Route::get('role',Roles::class)->name('role');                              // Roles
     Route::get('statuses', Statuses::class)->name('statuses');                  // Estados de registros
-    Route::get('languages', Languages::class)->name('languages');               // Idiomas
+    Route::get('genders',Genders::class)->name('genders');                      // Géneros
     Route::get('promotions',Promotions::class)->name('promotions');             // Promociones
     Route::get('gifts',Gifts::class)->name('gifts');                            // Regalos
     Route::get('types-question',TypesQuestion::class)->name('types-question');  // Tipos de Pregunta
