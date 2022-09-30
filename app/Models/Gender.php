@@ -35,6 +35,7 @@ class Gender extends Model
      */
 
     public function can_be_delete(){
+        if($this->customers()->count()) return false;
         return true;
     }
 

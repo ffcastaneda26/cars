@@ -42,10 +42,16 @@ class Promotion extends Model
     // ¿Promoción ligada a la pregunta?
     public function islinkedQuestion($question_id)
     {
-        return $this->belongsToMany(Question::class,'promotion_question')
-                    ->where('question_id', $question_id);
+        return $this->belongsToMany(Question::class,'promotion_question')->where('question_id', $question_id);
 
     }
+
+    // Clientes
+    public function customers(): BelongsToMany
+    {
+        return $this->belongsToMany(Customer::class);
+    }
+
 
     /*+-----------------+
       | Funciones Apoyo |
@@ -54,6 +60,10 @@ class Promotion extends Model
 
     public function can_be_delete(){
         if($this->gifts()->count()) return false;
+        if($this->questions()->count()) return false;
+        if($this->customers()->count()) return false;
+
+
         return true;
     }
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Customer extends Model
 {
@@ -39,6 +40,12 @@ class Customer extends Model
       +-----------------+
      */
 
+    // Promociones
+    public function promotions(): BelongsToMany
+    {
+        return $this->belongsToMany(Promotion::class);
+    }
+
      public function Ethnicity():BelongsTo
      {
         return $this->belongsTo(Ethnicity::class);
@@ -49,12 +56,15 @@ class Customer extends Model
         return $this->belongsTo(Zipcode::class,'zipcode','zipcode');
     }
 
+
+
    /*+-----------------+
      | Funciones Apoyo |
      +-----------------+
     */
 
    public function can_be_delete(){
+        if($this->promotions()->count()) return false;
        return true;
    }
 
