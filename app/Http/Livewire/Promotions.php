@@ -21,11 +21,12 @@ class Promotions extends Component
     public $active;
 
     protected $rules = [
-        'main_record.spanish'   => 'required|min:5|max:25|unique:promotions,spanish',
-        'main_record.english'   => 'required|min:5|max:25|unique:promotions,english',
-        'main_record.begin_at'  => 'nullable',
-        'main_record.expire_at' => 'nullable',
-        'main_record.active'    => 'nullable'
+        'main_record.spanish'           => 'required|min:5|max:25|unique:promotions,spanish',
+        'main_record.english'           => 'required|min:5|max:25|unique:promotions,english',
+        'main_record.begin_at'          => 'nullable',
+        'main_record.expire_at'         => 'nullable',
+        'main_record.days_expire_gifts' => 'required|min:1|max:99',
+        'main_record.active'            => 'nullable'
     ];
 
     public function mount()

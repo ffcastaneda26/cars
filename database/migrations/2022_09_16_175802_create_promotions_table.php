@@ -19,6 +19,7 @@ class CreatePromotionsTable extends Migration
             $table->string('english',100)->unique()->comment('Nombre Inglés');
             $table->timestamp('begin_at')->nullable()->comment('Fecha en que inicia');
             $table->timestamp('expire_at')->nullable()->comment('Fecha en que expira');
+            $table->tinyInteger('days_expire_gifts')->nullable()->default(1)->comment('Días que espiran regalos');
             $table->boolean('active')->nullable()->default(1)->comment('¿Activo?');
         });
     }

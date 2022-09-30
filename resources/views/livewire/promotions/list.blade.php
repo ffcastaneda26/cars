@@ -11,6 +11,7 @@
         date('d',strtotime($record->expire_at))  . '-' .
         date('Y',strtotime($record->expire_at)) }}
     </td>
+    <td>{{$record->days_expire_gifts}}</td>
     <td class="text-center">
         @if($record->active)
             <label>  {{__('Yes')}}</label>
