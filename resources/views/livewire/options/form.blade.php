@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container max-w-max">
     <div class="text-danger">
         <x-jet-validation-errors></x-jet-validation-errors>
     </div>
@@ -12,16 +12,16 @@
 
         <div class="col flex flex-col">
         {{-- Pregunta --}}
-            <select wire:model="main_record.questionx_id"
+            <select wire:model="main_record.question_id"
                     class="form-select form-select-md  rounded w-auto mb-2"
             >
                 <option>{{ __('Select') }}</option>
                 @foreach ($questions as $question)
                     <option value="{{ $question->id }}">
                         @if (App::isLocale('en'))
-                            {{ $question->english }}
+                            {{ substr($question->english,0,40) }}
                         @else
-                            {{ $question->spanish }}
+                        {{ substr($question->spanish,0,40) }}
                         @endif
                     </option>
                 @endforeach

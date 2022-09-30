@@ -12,7 +12,7 @@ class Option extends Model
     protected $table = 'options';
     public $timestamps = false;
     protected $fillable =  [
-        'questionx_id',
+        'question_id',
         'spanish',
         'english'
     ];
@@ -25,7 +25,7 @@ class Option extends Model
 
      public function question():BelongsTo
      {
-        return $this->belongsTo(Questionx::class,'questionx_id','id');
+        return $this->belongsTo(Question::class,'question_id','id');
      }
 
 

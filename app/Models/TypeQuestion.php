@@ -24,7 +24,7 @@ class TypeQuestion extends Model
 
     public function questions():HasMany
     {
-       return $this->hasMany(Questionx::class);
+       return $this->hasMany(Question::class);
     }
 
 

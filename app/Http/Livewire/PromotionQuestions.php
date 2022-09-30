@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\App;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Promotion;
-use App\Models\Questionx;
+use App\Models\Question;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PromotionQuestions extends Component
@@ -57,12 +57,12 @@ class PromotionQuestions extends Component
 
         if (App::isLocale('en')) {
             return view('livewire.configuration.index', [
-                'records' => Questionx::Question($searchTerm)->Orderby('english')->paginate($this->per_page),
+                'records' => Question::Question($searchTerm)->Orderby('english')->paginate($this->per_page),
             ]);
         }
 
         return view('livewire.configuration.index', [
-            'records' => Questionx::Question($searchTerm)->Orderby('spanish')->paginate($this->per_page),
+            'records' => Question::Question($searchTerm)->Orderby('spanish')->paginate($this->per_page),
         ]);
     }
 

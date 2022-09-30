@@ -20,17 +20,6 @@ class Promotion extends Model
         'active',
     ];
 
-    // Setters
-    // public function setSpanishAttribute($value)
-    // {
-    //     $this->attributes['spanish'] =  ucwords(strtolower($value));
-    // }
-
-    // public function setEnglishAttribute($value)
-    // {
-    //     $this->attributes['english'] =  ucwords(strtolower($value));
-    // }
-
 
     /*+-----------------+
       | Relaciones      |
@@ -45,7 +34,7 @@ class Promotion extends Model
 
     public function questions(): BelongsToMany
     {
-        return $this->belongsToMany(Questionx::class,'promotion_question');
+        return $this->belongsToMany(Question::class,'promotion_question');
     }
 
 
@@ -53,7 +42,7 @@ class Promotion extends Model
     // ¿Promoción ligada a la pregunta?
     public function islinkedQuestion($question_id)
     {
-        return $this->belongsToMany(Questionx::class,'promotion_question')
+        return $this->belongsToMany(Question::class,'promotion_question')
                     ->where('question_id', $question_id);
 
     }

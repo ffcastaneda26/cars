@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Question;
 
-use App\Models\Questionx;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ class CreateOptionsTable extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Questionx::class)->comment('Pregunta');
+            $table->foreignIdFor(Question::class)->comment('Pregunta');
             $table->string('spanish',100)->nullable()->comment('Español');
             $table->string('english',100)->nullable()->comment('Inglés');
         });

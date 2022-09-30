@@ -7,9 +7,9 @@ use Livewire\Component;
 use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
-use App\Models\Promotion;
-use App\Models\Questionx;
+use App\Models\Question;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\App;
 
 class Options extends Component
 {
@@ -26,7 +26,7 @@ class Options extends Component
     protected $rules = [
         'main_record.spanish'       => 'required|max:100',
         'main_record.english'       => 'required|max:100',
-        'main_record.questionx_id'  => 'required|exists:questions,id',
+        'main_record.question_id'    => 'required|exists:questions,id',
 
     ];
 
@@ -39,7 +39,12 @@ class Options extends Component
         $this->view_table = 'livewire.options.table';
         $this->view_list = 'livewire.options.list';
         $this->main_record = new Option();
-        $this->questions = Questionx::all();
+        if (App::isLocale('en')) {
+            $this->questions = Question::orderby('english')->get();
+        } else {
+            $this->questions = Question::orderby('spanish')->get();
+        }
+
     }
 
     /*+---------------------------------+

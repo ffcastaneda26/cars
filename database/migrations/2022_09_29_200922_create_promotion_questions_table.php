@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Promotion;
-use App\Models\Questionx;
+use App\Models\Question;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +18,8 @@ class CreatePromotionQuestionsTable extends Migration
         Schema::create('promotion_question', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Promotion::class)->comment('Promoción');
-            $table->foreignIdFor(Questionx::class)->comment('Pregunta');
+            $table->foreignIdFor(Question::class)->comment('Pregunta');
+
         });
     }
 
