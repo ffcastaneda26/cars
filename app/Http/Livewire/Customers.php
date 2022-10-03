@@ -47,7 +47,7 @@ class Customers extends Component
         $this->authorize('hasaccess', 'customers.index');
         $this->manage_title = __('Manage') . ' ' . __('Customer');
         $this->search_label = __('Name');
-        $this->view_form = 'livewire.customers.form';
+        $this->view_form = 'livewire.customers.form_index';
         $this->view_table = 'livewire.customers.table';
         $this->view_list = 'livewire.customers.list';
         $this->main_record = new Customer();
@@ -72,7 +72,7 @@ class Customers extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') : __('Create');
         $this->create_button_label .= ' ' .   __('Customer');
 
-        return view('livewire.index', [
+        return view('livewire.customers.index', [
             'records' => Customer::Customer($this->search)->paginate($this->pagination),
         ]);
     }
