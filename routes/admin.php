@@ -24,7 +24,7 @@ Route::get('storage-link',function(){
 
     if(Auth::user()->isAdmin()){
         if(file_exists(public_path('storage'))){
-            return public_path('storage') . 'Ya esiste';
+            return public_path('storage') . 'Ya existe...';
         }
         return 'antes del calla';
         Artisan::call('storage:link');

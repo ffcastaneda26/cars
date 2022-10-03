@@ -21,8 +21,8 @@
                                     maxlength="40" class="form-control mb-2">
                             </div>
                             <div class="mb-3">
-                                <label class="text-uppercase" for="email">{{ __('Email') }}</label>
-                                <input type="email" wire:model="email" maxlength="100"
+                                <label class="text-uppercase">{{ __('Email') }}</label>
+                                <input type="email" wire:model="main_record.email" maxlength="100"
                                     class="form-control mb-2">
                             </div>
                             <div class="mb-3">
@@ -38,7 +38,9 @@
                             <div class="mb-3">
                                 <label class="text-uppercase" for="zipcode">{{ __('Zipcode') }}</label>
                                 <input type="text" wire:model="main_record.zipcode" wire:change="read_zipcode"
-                                    minlenght="3" maxlength="10" class="form-control mb-2">
+                                    maxlength="5"
+                                    onkeypress="return only_numbers(event, this)"
+                                    class="form-control mb-2">
                             </div>
                             <div class="mb-3">
                                 <label class="text-uppercase" for="city">{{ __('City') }}</label>

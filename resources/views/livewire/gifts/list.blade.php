@@ -15,9 +15,9 @@
     </td>
     <td>
         @if($record->files()->count())
-            <img class="mt-4 avatar-sm"
-                src="{{ asset($record->files->first->file_path) }}" alt="Image"
-            >
+            @foreach( $record->files as $file)
+                <img src="{{ url($file->file_path) }}" class="rounded" alt="image" width="200">
+            @endforeach
         @endif
     </td>
     @include('common.crud_actions')

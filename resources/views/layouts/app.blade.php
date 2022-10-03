@@ -48,7 +48,7 @@
 
     @livewireScripts
     {{-- @stack('js') --}}
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT2 -->
     @include('layouts.home.javascript_files')
     @yield('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
