@@ -8,19 +8,24 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Promotion;
+use App\Traits\FilesTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\WithFileUploads;
 
 class Gifts extends Component
 {
     use AuthorizesRequests;
     use WithPagination;
+    use WithFileUploads;
     use CrudTrait;
     use UserTrait;
+    use FilesTrait;
 
     protected $listeners = ['destroy'];
 
     public $active;
     public $promotions=null;
+    public $image_path=null;
 
     protected $rules = [
         'main_record.spanish'       => 'required|min:5|max:25|unique:gifts,spanish',
@@ -78,6 +83,14 @@ class Gifts extends Component
         $this->validate();
         $this->main_record->active = $this->active ? 1 : 0;
         $this->main_record->save();
+
+        if($this->image_path){
+            $this->validate([
+                'image_path'    => 'image|max:2048',
+            ]);
+            $this->store_file($this->image_path,'gifts',$this->main_record->id,Gift::class);
+
+        }
 
         $this->close_store('Gift');
     }

@@ -67,4 +67,26 @@
             </div>
         </div>
     </div>
+
+            {{-- Logotipo  --}}
+        <div class="row align-items-start">
+
+            <div class="col-lg-10  col-md-8 mb-4">
+                <label class="fs-5">{{ __('Image') }}</label>
+                <input type="file" wire:model="image_path" class="form-control">
+            </div>
+            <div class="col-lg-8">
+                @if (isset($image_path) && isset($image))
+                    Preview:
+                    <img src="{{ $image_path->temporaryUrl() }}" class="avatar-md">
+                @endif
+                @if ($main_record->files()->count())
+                    <img src="{{ asset('storage/gifts/' . $main_record->files->first()) }}"
+                        class="mt-4 avatar-sm"
+                        alt="Image"
+                    >
+                @endif
+            </div>
+        </div>
+
 </div>
