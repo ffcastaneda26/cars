@@ -16,11 +16,14 @@ trait FilesTrait {
 
     // Guarda Archivo
     public function store_file($file_path,$directory,$fileable_id,$fileable_type){
-        if(!empty($file_path)) return false;
+
+        if(empty($file_path)) return false;
 
         $name   = time() . '_' . $file_path->extension();                               // Nombre único
         $url    = $file_path->storeAs('public/'.$directory,$name);                      // Guarda físicamente archivo
+
         return $this->store_polimorphic_file($name,$url,$fileable_id,$fileable_type);   // Guarda relación polimórfica
+
     }
 
     // Elimina Archivo
@@ -56,6 +59,7 @@ trait FilesTrait {
 
     // Graba relación polimórfica
     private function store_polimorphic_file($name,$file_path,$fileable_id,$fileable_type){
+
         return File::create([
             'name'             => $name,
             'file_path'        => $file_path,

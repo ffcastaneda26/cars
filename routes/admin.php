@@ -21,10 +21,12 @@ use App\Http\Livewire\CustomerController;
 use App\Http\Livewire\PromotionQuestions;
 
 Route::get('storage-link',function(){
+
     if(Auth::user()->isAdmin()){
         if(file_exists(public_path('storage'))){
             return public_path('storage') . 'Ya esiste';
         }
+        return 'antes del calla';
         Artisan::call('storage:link');
     }else{
         return 'Sorry You Not Authorized To This Command';
