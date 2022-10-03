@@ -20,10 +20,11 @@ class CreateCouponsTable extends Migration
             $table->id();
             $table->foreignIdFor(Customer::class)->nullable()->default(null)->comment('Cliente');
             $table->foreignIdFor(Gift::class)->nullable()->default(null)->comment('Regalo');
+            $table->string('code',20)->unique()->comment('Código de cupón');
             $table->timestamp('expire_at')->nullable()->comment('Fecha en que expira');
             $table->foreignIdFor(User::class)->nullable()->default(null)->comment('Usario cajero');
             $table->timestamp('used_at')->nullable()->comment('Fecha en que se cobró');
-            $table->boolean('used')->nullable()->default(1)->comment('Usado?');
+            $table->boolean('used')->nullable()->default(0)->comment('Usado?');
             $table->timestamps();
         });
     }
