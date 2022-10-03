@@ -17,6 +17,7 @@ class Promotion extends Model
         'english',
         'begin_at',
         'expire_at',
+        'expiration_type',
         'days_expire_gifts',
         'expire_at_coupons',
         'active',
