@@ -19,15 +19,19 @@ class Promotions extends Component
     protected $listeners = ['destroy'];
 
     public $active;
+    public $expiration_type;
 
     protected $rules = [
         'main_record.spanish'           => 'required|min:5|max:25|unique:promotions,spanish',
         'main_record.english'           => 'required|min:5|max:25|unique:promotions,english',
         'main_record.begin_at'          => 'nullable',
         'main_record.expire_at'         => 'nullable',
-        'main_record.days_expire_gifts' => 'required|min:1|max:99',
-        'main_record.expire_at_coupons' => 'nullable',
-        'main_record.active'            => 'nullable'
+        'main_record.expiration_type'   => 'required|in:days,date',
+        'main_record.days_expire_gifts' => 'required_unless:main_record.expiration_type,days',
+        'main_record.expire_at_coupons' => 'required_unless:main_record.expiration_type,date',
+        'main_record.active'            => 'nullable',
+        'main_record.expiration_type'   => 'nullable',
+
     ];
 
     public function mount()
@@ -74,8 +78,8 @@ class Promotions extends Component
                                                                      : 'required|min:5|max:25|unique:promotions,spanish';
         $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:25|unique:promotions,english,{$this->main_record->id}"
                                                                      : 'required|min:5|max:25|unique:promotions,english';
+                                                                     $this->validate();
 
-        $this->validate();
         $this->main_record->active = $this->active ? 1 : 0;
         $this->main_record->save();
 

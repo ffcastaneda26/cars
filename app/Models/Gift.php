@@ -15,20 +15,9 @@ class Gift extends Model
         'promotion_id',
         'spanish',
         'english',
+        'legal_legend',
         'active',
     ];
-
-    // Setters
-    public function setSpanishAttribute($value)
-    {
-        $this->attributes['spanish'] =  ucwords(strtolower($value));
-    }
-
-    public function setEnglishAttribute($value)
-    {
-        $this->attributes['english'] =  ucwords(strtolower($value));
-    }
-
 
     /*+-----------------+
       | Relaciones      |
@@ -40,6 +29,10 @@ class Gift extends Model
         return $this->belongsTo(Promotion::class);
      }
 
+       // Archivos
+    public function files(){
+        return $this->morphMany(File::class, 'fileable');
+    }
 
 
     /*+-----------------+

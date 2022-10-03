@@ -11,11 +11,16 @@
         date('d',strtotime($record->expire_at))  . '-' .
         date('Y',strtotime($record->expire_at)) }}
     </td>
+    <td>{{ $record->expiration_type }}</td>
+
+
     <td>{{$record->days_expire_gifts}}</td>
     <td>
-        {{date('M',strtotime($record->expire_at_coupons)) . '-' .
-        date('d',strtotime($record->expire_at_coupons))  . '-' .
-        date('Y',strtotime($record->expire_at_coupons)) }}
+        @if($record->expire_at_coupons)
+            {{date('M',strtotime($record->expire_at_coupons)) . '-' .
+            date('d',strtotime($record->expire_at_coupons))  . '-' .
+            date('Y',strtotime($record->expire_at_coupons)) }}
+        @endif
     </td>
 
     <td class="text-center">

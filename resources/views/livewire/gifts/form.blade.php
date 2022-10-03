@@ -54,6 +54,17 @@
 
                 </div>
             </div>
+
+        </div>
+    </div>
+
+    <div class="row align-items-start">
+        {{-- Leyenda Legal --}}
+        <div class="input-group mb-3 grid-cols-2 gap-2">
+            <span class="input-group-text">{{__("Legal Legend")}}</span>
+            <div class="flex flex-column">
+                <textarea wire:model="main_record.legal_legend" class="form-control" rows="2" cols="50"></textarea>
+            </div>
         </div>
     </div>
 </div>

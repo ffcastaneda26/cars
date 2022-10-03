@@ -14,6 +14,7 @@ class AddExpireAtCouponFieldToPromotionsTable extends Migration
     public function up()
     {
         Schema::table('promotions', function (Blueprint $table) {
+            $table->enum('expiration_type',['days','date'])->default('days')->after('expire_at')->comment('Tipo Expira: Días o Fecha');
             $table->timestamp('expire_at_coupons')->nullable()->after('days_expire_gifts')->comment('Fecha en que expira');
             //
         });
@@ -28,6 +29,7 @@ class AddExpireAtCouponFieldToPromotionsTable extends Migration
     {
         Schema::table('promotions', function (Blueprint $table) {
             $table->dropColumn('expire_at_coupons');
+            $table->dropColumn('expiration_type');
         });
     }
 }
