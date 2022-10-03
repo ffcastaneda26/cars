@@ -29,13 +29,12 @@ class CustomerController extends Component
     protected $rules = [
         'main_record.first_name'        => 'required|min:3|max:40',
         'main_record.last_name'         => 'required|min:3|max:40',
-        'main_record.email'             => 'nullable|email|max:100',
+        'main_record.email'             => 'nullable|email|max:100|unique:customers, email',
         'main_record.phone'             => 'required|digits:10',
         'main_record.address'           => 'required',
         'main_record.zipcode'           => 'required|exists:zipcodes,zipcode',
         'main_record.gender_id'         => 'required|exists:genders,id',
         'main_record.ethnicity_id'      => 'required|exists:ethnicities,id',
-        'main_record.birthday'          => 'nullable',
         'main_record.age'               => 'required|digits:2',
         'main_record.agree_be_rules'    => 'required',
         'main_record.agree_be_legal_age'=> 'required'
@@ -89,7 +88,7 @@ class CustomerController extends Component
         $this->rules['main_record.phone'] = $this->main_record->id ? "required|digits:10|unique:customers,phone,{$this->main_record->id}"
                                                                    : 'required|digits:10|unique:customers,phone';
         $this->rules['main_record.email'] = $this->main_record->id ? "nullable|email|unique:customers,email,{$this->main_record->id}"
-                                                                   : 'nullable|emailunique:customers,email';
+                                                                   : 'nullable|email|unique:customers,email';
 
         $this->validate();
 
