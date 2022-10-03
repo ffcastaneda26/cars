@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,3 +40,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
         })->name('logout.perform');
     });
 });
+
+Route::get('home',CustomerController::class)->name('home');

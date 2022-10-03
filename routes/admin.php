@@ -1,23 +1,24 @@
 <?php
 
-use App\Http\Livewire\Customers;
-use App\Http\Livewire\EdgeRanges;
-use App\Http\Livewire\Ethnicities;
-use App\Http\Livewire\Genders;
 use App\Http\Livewire\Gifts;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
-use App\Http\Livewire\Statuses;
-use App\Http\Livewire\Languages;
+use App\Http\Livewire\Genders;
 use App\Http\Livewire\Options;
-use App\Http\Livewire\Permissions;
-use App\Http\Livewire\PromotionQuestions;
-use App\Http\Livewire\Promotions;
+use App\Http\Livewire\Statuses;
+use App\Http\Livewire\Customers;
+use App\Http\Livewire\Languages;
 use App\Http\Livewire\Questions;
+use App\Http\Livewire\EdgeRanges;
+use App\Http\Livewire\Promotions;
+use App\Http\Livewire\Ethnicities;
+use App\Http\Livewire\Permissions;
 use App\Http\Livewire\TypesQuestion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\CustomerController;
+use App\Http\Livewire\PromotionQuestions;
 
 Route::get('storage-link',function(){
     if(Auth::user()->isAdmin()){
@@ -47,4 +48,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('customers',Customers::class)->name('customers');                // Clientes
     Route::get('promotion-questions',PromotionQuestions::class)->name('promotion-questions'); // Preguntas x Promoción;
 });
-

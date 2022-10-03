@@ -24,6 +24,7 @@ class Customer extends Model
         'age',
         'birthday',
         'agree_be_legal_age',
+        'agree_be_rules'
     ];
 
     // Setters
