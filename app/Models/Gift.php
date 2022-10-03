@@ -15,6 +15,7 @@ class Gift extends Model
         'promotion_id',
         'spanish',
         'english',
+        'legal_legend',
         'active',
     ];
 

@@ -26,6 +26,7 @@ class Gifts extends Component
         'main_record.spanish'       => 'required|min:5|max:25|unique:gifts,spanish',
         'main_record.english'       => 'required|min:5|max:25|unique:gifts,english',
         'main_record.promotion_id'  => 'required|exists:promotions,id',
+        'main_record.legal_legend'  => 'nullable',
         'main_record.active'        => 'nullable'
     ];
 
