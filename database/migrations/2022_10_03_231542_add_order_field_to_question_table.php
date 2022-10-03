@@ -15,7 +15,7 @@ class AddOrderFieldToQuestionTable extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->tinyInteger('order')->nullable()->default(0)->after('english')->comment('Orden ');
-        });
+          });
     }
 
     /**

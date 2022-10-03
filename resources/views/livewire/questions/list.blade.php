@@ -6,6 +6,7 @@
         <td>{{ $record->spanish }}</td>
         <td>{{ $record->type_question->spanish }}</td>
     @endif
+    <td>{{ $record->order }}</td>
 
     @include('common.crud_actions')
 </tr>

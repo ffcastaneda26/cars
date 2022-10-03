@@ -22,10 +22,12 @@ class Questions extends Component
 
     public $active;
     public $types_questions=null;
+    public $max_order;
 
     protected $rules = [
         'main_record.spanish'           => 'required|min:5|max:100',
         'main_record.english'           => 'required|min:5|max:100',
+        'main_record.order'             => 'required',
         'main_record.type_question_id'  => 'required|exists:type_questions,id',
     ];
 
@@ -43,6 +45,8 @@ class Questions extends Component
         } else {
             $this->types_questions = TypeQuestion::orderby('spanish')->get();
         }
+        $this->max_order = Question::count();
+
     }
 
     /*+---------------------------------+
@@ -54,6 +58,10 @@ class Questions extends Component
     {
         $this->create_button_label = $this->main_record->id ? __('Update') : __('Create');
         $this->create_button_label .= ' ' .   __('Question');
+
+        if(!$this->updating_record){
+            $this->max_order++;
+        }
 
         return view('livewire.index', [
             'records' => Question::Question($this->search)->paginate($this->pagination),
@@ -75,8 +83,24 @@ class Questions extends Component
     {
 
         $this->validate();
+
+        $max_order =  $this->main_record->order;
+        if($this->updating_record){
+            $records_to_reorder = Question::where('order','>=', $max_order)
+                                            ->where('id','<>',$this->main_record->id)
+                                            ->orderby('order')
+                                            ->get();
+        }else{
+            $records_to_reorder = Question::where('order','>=', $max_order)
+                                    ->orderby('order')
+                                    ->get();
+        }
+
         $this->main_record->save();
 
+        if($records_to_reorder->count()){
+            $this->reorder_records($records_to_reorder,$max_order);
+        }
         $this->close_store('Question');
     }
 
@@ -90,6 +114,8 @@ class Questions extends Component
         $this->main_record  = $record;
         $this->record_id    = $record->id;
         $this->create_button_label = __('Update') . ' ' . __('Question');
+        $this->updating_record = true;
+
         $this->openModal();
     }
 
@@ -100,6 +126,19 @@ class Questions extends Component
     public function destroy(Question $record)
     {
         $this->delete_record($record, __('Question') . ' ' . __('Deleted Successfully!!'));
+    }
+
+
+    /*+----------------------+
+      | Reasigna el Orden    |
+      +----------------------+
+    */
+    private function reorder_records($records,$start=0){
+        foreach($records as $record){
+            $start++;
+            $record->order = $start;
+            $record->save();
+        }
     }
 }
 
