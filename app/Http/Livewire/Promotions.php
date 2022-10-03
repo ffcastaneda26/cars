@@ -26,6 +26,7 @@ class Promotions extends Component
         'main_record.begin_at'          => 'nullable',
         'main_record.expire_at'         => 'nullable',
         'main_record.days_expire_gifts' => 'required|min:1|max:99',
+        'main_record.expire_at_coupons' => 'nullable',
         'main_record.active'            => 'nullable'
     ];
 

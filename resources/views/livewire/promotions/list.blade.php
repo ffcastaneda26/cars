@@ -12,6 +12,12 @@
         date('Y',strtotime($record->expire_at)) }}
     </td>
     <td>{{$record->days_expire_gifts}}</td>
+    <td>
+        {{date('M',strtotime($record->expire_at_coupons)) . '-' .
+        date('d',strtotime($record->expire_at_coupons))  . '-' .
+        date('Y',strtotime($record->expire_at_coupons)) }}
+    </td>
+
     <td class="text-center">
         @if($record->active)
             <label>  {{__('Yes')}}</label>

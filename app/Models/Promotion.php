@@ -18,6 +18,7 @@ class Promotion extends Model
         'begin_at',
         'expire_at',
         'days_expire_gifts',
+        'expire_at_coupons',
         'active',
     ];
 

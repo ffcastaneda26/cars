@@ -9,6 +9,7 @@
             <label class="input-group-text mb-2">{{__("Begin  At")}}</label>
             <label class="input-group-text mb-4">{{__("Expire At")}}</label>
             <label class="input-group-text mb-4">{{__("Days Expire Gifts")}}</label>
+            <label class="input-group-text mb-4">{{__("Expire at Coupons")}}</label>
 
             <label class="input-group-text mb-2">{{__("Active?")}}</label>
 
@@ -59,8 +60,16 @@
                 >
             </div>
 
+             {{-- Fecha Expiran los cupones --}}
+             <div class="flex-flex-column mb-4 mt-4">
+                <input type="date"
+                        wire:model="main_record.expire_at_coupons"
+                        required min=<?php $hoy = date('Y-m-d'); echo $hoy; ?>
+                >
+            </div>
+
             {{-- ¿Activo? --}}
-            <div class="flex-flex-column mt-4">
+            <div class="flex-flex-column mt-5">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" wire:model="active" class="btn-check" name="type" id="active" value="1">
                     <label class="btn btn-outline-success" for="active">{{__('Active')}}</label>
