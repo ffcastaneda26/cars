@@ -15,9 +15,8 @@
     </td>
     <td>
         @if($record->files()->count())
-            @dd($record->files->first->file_path)
             <img class="mt-4 avatar-sm"
-                src="{{ asset('storage/gifts/' . $record->files->first->file_path) }}" alt="Image"
+                src="{{ asset($record->files->first->file_path) }}" alt="Image"
             >
         @endif
     </td>
