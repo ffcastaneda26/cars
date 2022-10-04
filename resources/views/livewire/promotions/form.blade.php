@@ -43,8 +43,6 @@
             </div>
 
 
-
-
             {{-- Fecha Expira --}}
             <div class="flex-flex-column mb-4">
                 <input type="date"
@@ -59,14 +57,16 @@
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio"
                             wire:model="main_record.expiration_type"
+                            wire:change="change_expiration_type"
                             class="btn-check"
                             name="expiration_type"
                             id="days"
-                            value="1">
+                            value="days">
                     <label class="btn btn-outline-warning" for="days">{{__('Days')}}</label>
 
                     <input  type="radio"
                             wire:model="main_record.expiration_type"
+                            wire:change="change_expiration_type"
                             class="btn-check"
                             name="expiration_type"
                             id="date"
@@ -83,7 +83,8 @@
                 <input type="number"
                         wire:model="main_record.days_expire_gifts"
                         min="1"
-                        max="99"
+                        max="999"
+                        placeholder="{{__("Days")}}"
                         class="form-control mb-2"
                 >
             </div>

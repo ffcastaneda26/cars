@@ -24,6 +24,12 @@ class Promotion extends Model
     ];
 
 
+    protected $casts = [
+        'begin_at' => 'datetime:Y-m-d',
+        'expire_at'         => 'datetime:Y-m-d',
+        'expire_at_coupons' => 'datetime:Y-m-d',
+    ];
+
     /*+-----------------+
       | Relaciones      |
       +-----------------+
