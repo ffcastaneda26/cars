@@ -21,7 +21,7 @@ class CreateAnswersTable extends Migration
              $table->foreignIdFor(Customer::class)->comment('Cliente');
             $table->foreignIdFor(Promotion::class)->comment('Promoción');
             $table->foreignIdFor(Option::class)->comment('Opción');
-            $table->string('value',150)->comment('Valor de la Respuesta');
+            $table->string('value',150)->nullable()->default(null)->comment('Valor de la Respuesta');
             $table->timestamps();
         });
     }
