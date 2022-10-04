@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Answer;
 use App\Models\Coupon;
 use App\Models\Gender;
+use App\Models\Option;
 use Livewire\Component;
 use App\Models\Customer;
 use App\Models\Ethnicity;
@@ -28,20 +30,21 @@ class CustomerController extends Component
     public $genders;
     public $city_town = null;
     public $email;
-    public $question_id = [];
+    public $option_id = [];
 
     protected $rules = [
-        'main_record.first_name'        => 'required|min:3|max:40',
-        'main_record.last_name'         => 'required|min:3|max:40',
-        'main_record.email'             => 'nullable|email|unique:customers, email',
-        'main_record.phone'             => 'required|digits:10|unique:customers, phone',
-        'main_record.address'           => 'required',
-        'main_record.zipcode'           => 'required|exists:zipcodes,zipcode',
-        'main_record.gender_id'         => 'required|exists:genders,id',
-        'main_record.ethnicity_id'      => 'required|exists:ethnicities,id',
-        'main_record.age'               => 'required|numeric|max:99|min:18',
-        'main_record.agree_be_rules'    => 'required',
-        'main_record.agree_be_legal_age'=> 'required',
+        'main_record.first_name'        =>  'required|min:3|max:40',
+        'main_record.last_name'         =>  'required|min:3|max:40',
+        'main_record.email'             =>  'nullable|email|unique:customers, email',
+        'main_record.phone'             =>  'required|digits:10|unique:customers, phone',
+        'main_record.address'           =>  'required',
+        'main_record.zipcode'           =>  'required|exists:zipcodes,zipcode',
+        'main_record.gender_id'         =>  'required|exists:genders,id',
+        'main_record.ethnicity_id'      =>  'required|exists:ethnicities,id',
+        'main_record.age'               =>  'required|numeric|max:99|min:18',
+        'main_record.agree_be_rules'    =>  'required',
+        'main_record.agree_be_legal_age'=>  'required',
+        'option_id'                   =>  'required|exists:options,id'
     ];
 
     public function mount()
@@ -111,8 +114,9 @@ class CustomerController extends Component
         $this->linkRecords($this->main_record);
         /* Agregamos la generacion del cupon  */
         $this->createCoupon($this->main_record);
-
+        $this->createAnswer($this->main_record);
         $this->close_store('Customer');
+        $this->resetInputFields();
     }
 
     public function linkRecords($customer) {
@@ -123,19 +127,46 @@ class CustomerController extends Component
 
     public function createCoupon($customer) {
         $promotion_id = $this->promotion->gifts->first();
+        if ($promotion_id) {
+            $record_code = null;
+            do {
+                $code_random = chr(rand(ord('a'), ord('z'))) . chr(rand(ord('a'), ord('z'))) . rand(1,9999);
+                $record_code = Coupon::where('code',$code_random);
+            } while (is_null($record_code));
 
-        $record_code = null;
-        do {
-            $code_random = chr(rand(ord('a'), ord('z'))) . chr(rand(ord('a'), ord('z'))) . rand(1,9999);
-            $record_code = Coupon::where('code',$code_random);
-        } while (is_null($record_code));
+            $this->coupon = Coupon::create([
+                'customer_id'   => $customer->id,
+                'gift_id'       => $promotion_id->id,
+                'code'          => $code_random,
+                'expire_at'     => $this->promotion->expire_at,
+            ]);
+        }
+    }
 
-        $this->coupon = Coupon::create([
-            'customer_id'   => $customer->id,
-            'gift_id'       => $promotion_id->id,
-            'code'          => $code_random,
-            'expire_at'     => $this->promotion->expire_at,
-        ]);
+    public function createAnswer($customer) {
+        $promotion_id = $this->promotion->gifts->first();
+        foreach ($this->option_id as $value) {
+            $options = Option::where('id', $value)->get();
+            if ($options) {
+                foreach ($options as $key => $option) {
+                    if (App::isLocale('en')) {
+                        $this->answer = Answer::create([
+                            'customer_id'   => $customer->id,
+                            'promotion_id'  => $promotion_id->id,
+                            'option_id'     => $options[$key],
+                            'value'         => $option->english,
+                        ]);
+                    } else {
+                        $this->answer = Answer::create([
+                            'customer_id'   => $customer->id,
+                            'promotion_id'  => $promotion_id->id,
+                            'option_id'     => $options[$key],
+                            'value'         => $option->spanish,
+                        ]);
+                    }
+                }
+            }
+        }
     }
 
     /** Lee Zipcode */

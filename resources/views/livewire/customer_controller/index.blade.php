@@ -98,7 +98,7 @@
                                             <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
                                         @endif
                                     </div>
-                                    <select wire:model="question_id.{{ $loop->index }}" class="form-select">
+                                    <select wire:model="option_id.{{ $loop->index }}" class="form-select">
                                         <option>{{ __('Select') }}</option>
                                         @foreach ($question->options as $option)
                                             <option value="{{ $option->id }}">
@@ -110,6 +110,7 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('option_id') <span class="text-danger">{{ $message }}</span>@enderror
                                 @endforeach
                             @endif
                             {{-- Acepta las reglas? --}}

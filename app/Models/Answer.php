@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Answer extends Model
 {
     use HasFactory;
-    protected $table = 'statuses';
+    protected $table = 'answers';
     public $timestamps = false;
     protected $fillable =  [
         'customer_id',
