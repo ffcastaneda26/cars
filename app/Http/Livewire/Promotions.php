@@ -22,13 +22,13 @@ class Promotions extends Component
     public $expiration_type;
 
     protected $rules = [
-        'main_record.spanish'           => 'required|min:5|max:25|unique:promotions,spanish',
-        'main_record.english'           => 'required|min:5|max:25|unique:promotions,english',
+        'main_record.spanish'           => 'required|min:5|max:100|unique:promotions,spanish',
+        'main_record.english'           => 'required|min:5|max:100|unique:promotions,english',
         'main_record.begin_at'          => 'nullable',
         'main_record.expire_at'         => 'nullable',
         'main_record.expiration_type'   => 'required|in:days,date',
-        'main_record.days_expire_gifts' => 'required_unless:main_record.expiration_type,days',
-        'main_record.expire_at_coupons' => 'required_unless:main_record.expiration_type,date',
+        'main_record.days_expire_gifts' => 'required_unless:main_record.expiration_type,date',
+        'main_record.expire_at_coupons' => 'required_unless:main_record.expiration_type,days',
         'main_record.active'            => 'nullable',
         'main_record.expiration_type'   => 'nullable',
 
@@ -74,10 +74,10 @@ class Promotions extends Component
     public function store()
     {
 
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|max:25|unique:promotions,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:5|max:25|unique:promotions,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:25|unique:promotions,english,{$this->main_record->id}"
-                                                                     : 'required|min:5|max:25|unique:promotions,english';
+        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|max:100|unique:promotions,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:5|max:100|unique:promotions,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:100|unique:promotions,english,{$this->main_record->id}"
+                                                                     : 'required|min:5|max:100|unique:promotions,english';
                                                                      $this->validate();
 
         $this->main_record->active = $this->active ? 1 : 0;

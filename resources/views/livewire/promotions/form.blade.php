@@ -22,7 +22,7 @@
             <div class="flex-flex-column">
                 <input type="text" wire:model="main_record.spanish" required placeholder="{{__("Spanish")}}"
                 class="form-control mb-2"
-                maxlength="25">
+                maxlength="100">
             </div>
 
 
@@ -30,7 +30,7 @@
             <div class="flex-flex-column">
                 <input type="text" wire:model="main_record.english" required placeholder="{{__("English")}}"
                 class="form-control mb-2"
-                maxlength="25">
+                maxlength="100">
             </div>
 
 
