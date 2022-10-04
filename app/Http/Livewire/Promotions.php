@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Promotions extends Component
@@ -27,12 +28,11 @@ class Promotions extends Component
         'main_record.begin_at'          => 'nullable',
         'main_record.expire_at'         => 'nullable',
         'main_record.expiration_type'   => 'required|in:days,date',
-        'main_record.days_expire_gifts' => 'required_unless:main_record.expiration_type,date',
-        'main_record.expire_at_coupons' => 'required_unless:main_record.expiration_type,days',
         'main_record.active'            => 'nullable',
-        'main_record.expiration_type'   => 'nullable',
-
+        'main_record.days_expire_gifts' => 'nullable',
+        'main_record.expire_at_coupons' => 'nullable',
     ];
+
 
     public function mount()
     {
@@ -78,7 +78,14 @@ class Promotions extends Component
                                                                      : 'required|min:5|max:100|unique:promotions,spanish';
         $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:100|unique:promotions,english,{$this->main_record->id}"
                                                                      : 'required|min:5|max:100|unique:promotions,english';
-                                                                     $this->validate();
+
+        if($this->main_record->expiration_type == 'days'){
+            $this->rules['main_record.days_expire_gifts'] = 'required|numeric';
+        }else{
+            $this->rules['main_record.expire_at_coupons'] = 'required|date';
+        }
+
+        $this->validate();
 
         $this->main_record->active = $this->active ? 1 : 0;
         $this->main_record->save();
@@ -93,6 +100,7 @@ class Promotions extends Component
 
     public function edit(Promotion $record)
     {
+
         $this->main_record  = $record;
         $this->record_id    = $record->id;
         $this->create_button_label = __('Update') . ' ' . __('Promotion');
@@ -106,5 +114,15 @@ class Promotions extends Component
     public function destroy(Promotion $record)
     {
         $this->delete_record($record, __('Promotion') . ' ' . __('Deleted Successfully!!'));
+    }
+
+    /** Cambio de tipo de expiración */
+    public function change_expiration_type(){
+        if($this->main_record->expiration_type == 'days'){
+            $this->main_record->expire_at_coupons = null;
+        }else{
+            $this->main_record->days_expire_gifts = null;
+        }
+
     }
 }
