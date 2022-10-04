@@ -19,11 +19,9 @@ trait FilesTrait {
 
         if(empty($file_path)) return false;
 
-        $name   = time() . '_' . $file_path->extension();                               // Nombre único
-        $url    = $file_path->storeAs('public/'.$directory,$name);                      // Guarda físicamente archivo
-
+        $name   = time() .'_'. $file_path->getClientOriginalName();                              // Nombre único
+        $url    = $file_path->storeAs($directory,$name);                      // Guarda físicamente archivo
         return $this->store_polimorphic_file($name,$url,$fileable_id,$fileable_type);   // Guarda relación polimórfica
-
     }
 
     // Elimina Archivo

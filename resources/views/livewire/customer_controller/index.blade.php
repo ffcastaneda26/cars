@@ -1,166 +1,214 @@
 <div>
-    <div id="layout-wrapper" style="background-image: url('assets/images/bg_min_completed.png');background-size:cover;">
-        <div class="account-pages">
-            <div class="row justify-content-center">
-                <div class="card"
-                    style="max-width: 25rem; background-color:#EAE9DF; border-radius: 25px; margin-top:21%">
-                    <div class="card-body">
-                        <div class="text-danger">
-                            <x-jet-validation-errors></x-jet-validation-errors>
-                        </div>
-                        <div class="p-2">
-                            <h4 class="text-center">{{ __('Complete the Form to claim your coupon:') }}</h4>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="name">{{ __('First Name') }}</label>
-                                <input type="text" wire:model="main_record.first_name" required
-                                    maxlength="40" class="form-control mb-2">
+    @if (!$show_coupon)
+        <div id="layout-wrapper" style="background-image: url('assets/images/bg_min_completed.png');background-size:cover;">
+            <div class="account-pages">
+                <div class="row justify-content-center">
+                    <div class="card"
+                        style="max-width: 25rem; background-color:#EAE9DF; border-radius: 25px; margin-top:21%">
+                        <div class="card-body">
+                            <div class="text-danger">
+                                <x-jet-validation-errors></x-jet-validation-errors>
                             </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="lastname">{{ __('Last Name') }}</label>
-                                <input type="text" wire:model="main_record.last_name" required
-                                    maxlength="40" class="form-control mb-2">
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase">{{ __('Email') }}</label>
-                                <input type="email" wire:model="main_record.email" maxlength="100"
-                                    class="form-control mb-2">
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="phone">{{ __('Phone') }}</label>
-                                <input type="text" wire:model="main_record.phone" maxlength="10"
-                                    class="form-control mb-2">
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="address">{{ __('Address') }}</label>
-                                <input type="text" wire:model="main_record.address" maxlength="100"
-                                    class="form-control mb-2">
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="zipcode">{{ __('Zipcode') }}</label>
-                                <input type="text" wire:model="main_record.zipcode" wire:change="read_zipcode"
-                                    maxlength="5"
-                                    onkeypress="return only_numbers(event, this)"
-                                    class="form-control mb-2">
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="city">{{ __('City') }}</label>
-                                {{-- City --}}
-                                @if ($main_record->zipcode)
-                                    <div class="flex-flex-column">
-                                        <input type="text" wire:model="town_state" disabled
-                                            class="form-control mb-4">
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="gender">{{ __('Gender') }}</label>
-                                <select wire:model="main_record.gender_id" class="form-select">
-                                    <option>{{ __('Select') }}</option>
-                                    @foreach ($genders as $gender)
-                                        <option value="{{ $gender->id }}">
-                                            @if (App::isLocale('en'))
-                                                {{ $gender->english }}
-                                            @else
-                                                {{ $gender->spanish }}
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="ethnicity">{{ __('Ethnicity') }}</label>
-                                <select wire:model="main_record.ethnicity_id" class="form-select">
-                                    <option>{{ __('Select') }}</option>
-                                    @foreach ($ethnicities as $ethnicity)
-                                        <option value="{{ $ethnicity->id }}">
-                                            @if (App::isLocale('en'))
-                                                {{ $ethnicity->english }}
-                                            @else
-                                                {{ $ethnicity->spanish }}
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="age">{{ __('Age') }}</label>
-                                <input type="number" wire:model="main_record.age" min="18" max="99"
-                                    class="form-control mb-2">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="text-uppercase" for="ethnicity">{{ __('Coupon') }}</label>
-                                <select wire:model="gift_id" class="form-select">
-                                    <option>{{ __('Select') }}</option>
-
-                                    @foreach ($promotion->gifts as $gift)
-                                        <option value="{{ $gift->id }}">
-                                            @if (App::isLocale('en'))
-                                                {{ $gift->english }}
-                                            @else
-                                                {{ $gift->spanish }}
-                                            @endif
-                                    @endforeach
-
-                                </select>
-                            </div>
-
-                            <label class="text-uppercase">{{ __('Questions') }}</label>
-                            @if ($promotion && $promotion->questions)
-                                @foreach ($promotion->questions->sortBy('order') as $question)
-                                    <div class="mb-1">
-                                        @if (App::isLocale('en'))
-                                            <strong>{{ $loop->index+1 }}.- {{ $question->english }}</strong>
-                                        @else
-                                            <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
-                                        @endif
-                                    </div>
-                                    <select wire:model="option_id.{{ $loop->index }}" class="form-select">
+                            <div class="p-2">
+                                <h4 class="text-center">{{ __('Complete the Form to claim your coupon:') }}</h4>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="name">{{ __('First Name') }}</label>
+                                    <input type="text" wire:model="main_record.first_name" required
+                                        maxlength="40" class="form-control mb-2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="lastname">{{ __('Last Name') }}</label>
+                                    <input type="text" wire:model="main_record.last_name" required
+                                        maxlength="40" class="form-control mb-2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase">{{ __('Email') }}</label>
+                                    <input type="email" wire:model="main_record.email" maxlength="100"
+                                        class="form-control mb-2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="phone">{{ __('Phone') }}</label>
+                                    <input type="text" wire:model="main_record.phone" maxlength="10"
+                                        class="form-control mb-2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="address">{{ __('Address') }}</label>
+                                    <input type="text" wire:model="main_record.address" maxlength="100"
+                                        class="form-control mb-2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="zipcode">{{ __('Zipcode') }}</label>
+                                    <input type="text" wire:model="main_record.zipcode" wire:change="read_zipcode"
+                                        maxlength="5"
+                                        onkeypress="return only_numbers(event, this)"
+                                        class="form-control mb-2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="city">{{ __('City') }}</label>
+                                    {{-- City --}}
+                                    @if ($main_record->zipcode)
+                                        <div class="flex-flex-column">
+                                            <input type="text" wire:model="town_state" disabled
+                                                class="form-control mb-4">
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="gender">{{ __('Gender') }}</label>
+                                    <select wire:model="main_record.gender_id" class="form-select">
                                         <option>{{ __('Select') }}</option>
-                                        @foreach ($question->options as $option)
-                                            <option value="{{ $option->id }}">
+                                        @foreach ($genders as $gender)
+                                            <option value="{{ $gender->id }}">
                                                 @if (App::isLocale('en'))
-                                                    {{ $option->english }}
+                                                    {{ $gender->english }}
                                                 @else
-                                                    {{ $option->spanish }}
+                                                    {{ $gender->spanish }}
                                                 @endif
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('option_id') <span class="text-danger">{{ $message }}</span>@enderror
-                                @endforeach
-                            @endif
-                            {{-- Acepta las reglas? --}}
-                            <div class="mb-3">
-                                <input type="checkbox" wire:model="main_record.agree_be_rules" class="checkbox"
-                                    style="font-size: 1.2rem" required>
-                                <label>
-                                    <p>{{ __('I have read and accept') }} <u><a href="/" target="_blank"
-                                            class="text-blue-500 text-underline"> {{ __(' the rules') }}</a></u></p>
-                                </label>
-                            </div>
-                            {{-- Acepta ser mayor de edad? --}}
-                            <div class="mb-3">
-                                <input type="checkbox" wire:model="main_record.agree_be_legal_age" class="checkbox"
-                                    style="font-size: 1.2rem" required>
-                                <label class="mt-2">{{ __('I am 18 years or older') }}
-                                </label>
-                            </div>
-                            @if ($main_record->agree_be_rules && $main_record->agree_be_legal_age)
-                            <div class="flex items-center justify-center mt-2">
-                                <div class="text-center">
-                                    <button class="btn" type="button" style="background-color: black; border-radius:2px;"
-                                        wire:click.prevent="store()">
-                                        <strong class="text-uppercase text-white"
-                                            style="font-size: 1.5rem">{{ __('Get Coupon') }}</strong>
-                                    </button>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="ethnicity">{{ __('Ethnicity') }}</label>
+                                    <select wire:model="main_record.ethnicity_id" class="form-select">
+                                        <option>{{ __('Select') }}</option>
+                                        @foreach ($ethnicities as $ethnicity)
+                                            <option value="{{ $ethnicity->id }}">
+                                                @if (App::isLocale('en'))
+                                                    {{ $ethnicity->english }}
+                                                @else
+                                                    {{ $ethnicity->spanish }}
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="age">{{ __('Age') }}</label>
+                                    <input type="number" wire:model="main_record.age" min="18" max="99"
+                                        class="form-control mb-2">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="text-uppercase" for="ethnicity">{{ __('Coupon') }}</label>
+                                    <select wire:model="gift_id" class="form-select">
+                                        <option>{{ __('Select') }}</option>
+
+                                        @foreach ($promotion->gifts as $gift)
+                                            <option value="{{ $gift->id }}">
+                                                @if (App::isLocale('en'))
+                                                    {{ $gift->english }}
+                                                @else
+                                                    {{ $gift->spanish }}
+                                                @endif
+                                        @endforeach
+
+                                    </select>
+                                </div>
+
+                                <label class="text-uppercase">{{ __('Questions') }}</label>
+                                @if ($promotion && $promotion->questions)
+                                    @foreach ($promotion->questions->sortBy('order') as $question)
+                                        <div class="mb-1">
+                                            @if (App::isLocale('en'))
+                                                <strong>{{ $loop->index+1 }}.- {{ $question->english }}</strong>
+                                            @else
+                                                <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
+                                            @endif
+                                        </div>
+                                        <select wire:model="option_id.{{ $loop->index }}" class="form-select">
+                                            <option>{{ __('Select') }}</option>
+                                            @foreach ($question->options as $option)
+                                                <option value="{{ $option->id }}">
+                                                    @if (App::isLocale('en'))
+                                                        {{ $option->english }}
+                                                    @else
+                                                        {{ $option->spanish }}
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('option_id') <span class="text-danger">{{ $message }}</span>@enderror
+                                    @endforeach
+                                @endif
+                                {{-- Acepta las reglas? --}}
+                                <div class="mb-3">
+                                    <input type="checkbox" wire:model="main_record.agree_be_rules" class="checkbox"
+                                        style="font-size: 1.2rem" required>
+                                    <label>
+                                        <p>{{ __('I have read and accept') }} <u><a href="/" target="_blank"
+                                                class="text-blue-500 text-underline"> {{ __(' the rules') }}</a></u></p>
+                                    </label>
+                                </div>
+                                {{-- Acepta ser mayor de edad? --}}
+                                <div class="mb-3">
+                                    <input type="checkbox" wire:model="main_record.agree_be_legal_age" class="checkbox"
+                                        style="font-size: 1.2rem" required>
+                                    <label class="mt-2">{{ __('I am 18 years or older') }}
+                                    </label>
+                                </div>
+                                @if ($main_record->agree_be_rules && $main_record->agree_be_legal_age)
+                                <div class="flex items-center justify-center mt-2">
+                                    <div class="text-center">
+                                        <button class="btn" type="button" style="background-color: black; border-radius:2px;"
+                                            wire:click.prevent="store()">
+                                            <strong class="text-uppercase text-white"
+                                                style="font-size: 1.5rem">{{ __('Get Coupon') }}</strong>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
-                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @else
+        <div id="layout-wrapper" style="background-image: url('assets/images/fondo.png');background-size:content; background-repet:no-repeat">
+            <div class="account-pages">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4">
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        {{--  @if ($coupon && $coupon->gift->id)
+                                            @foreach ($coupon->gift->files as $file)
+                                                <img width="80%" src="{{ $file->file_path }}" alt="Gift">
+                                            @endforeach
+                                        @endif  --}}
+
+                                        @if ($coupon->gift->id == 1)
+                                            <img width="80%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
+                                        @else
+                                            <img width="80%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
+                                        @endif
+                                        <span>{{ $coupon->gift->legal_legend }}</span>
+
+                                        <h1 class="fs-1 text-center bg-dark text-white mt-2">{{$coupon->customer->FullName}}</h1>
+
+                                        <h1 class="text-center bg-dark text-white">{{ $coupon->code }}</h1>
+                                    </div>
+                                    <button class="mt-4 text-center btn btn-lg btn-info text-dark">
+                                        <a href="{{route('dashboard')}}" class="text-dark">
+                                            {{__('Exit')}}
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

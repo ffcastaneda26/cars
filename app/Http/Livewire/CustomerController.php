@@ -32,6 +32,9 @@ class CustomerController extends Component
     public $email;
     public $option_id = [];
     public $gift_id = null;
+    public $coupon;
+    public $show_coupon = false;
+
     protected $rules = [
         'main_record.first_name'        =>  'required|min:3|max:40',
         'main_record.last_name'         =>  'required|min:3|max:40',
@@ -119,6 +122,7 @@ class CustomerController extends Component
         $this->createAnswer($this->main_record,$this->promotion);
         $this->close_store('Customer');
         $this->resetInputFields();
+        $this->view_coupon($this->coupon);
     }
 
     public function linkRecords($customer) {
@@ -168,9 +172,12 @@ class CustomerController extends Component
                 'option_id'     => $answer
             ]);
         }
-
     }
 
+    public function view_coupon(Coupon $coupon) {
+        $this->show_coupon = true;
+        $this->coupon = $coupon;
+    }
     /** Lee Zipcode */
     public function read_zipcode(){
         $this->read_town_state($this->main_record->zipcode);
