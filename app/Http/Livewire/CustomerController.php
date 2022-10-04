@@ -11,7 +11,6 @@ use App\Models\Customer;
 use App\Models\Ethnicity;
 use App\Models\Promotion;
 use App\Traits\UserTrait;
-use Illuminate\Support\Str;
 use App\Traits\ZipCodeTrait;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\App;
@@ -31,7 +30,7 @@ class CustomerController extends Component
     public $city_town = null;
     public $email;
     public $option_id = [];
-
+    public $gift_id = null;
     protected $rules = [
         'main_record.first_name'        =>  'required|min:3|max:40',
         'main_record.last_name'         =>  'required|min:3|max:40',
@@ -44,7 +43,8 @@ class CustomerController extends Component
         'main_record.age'               =>  'required|numeric|max:99|min:18',
         'main_record.agree_be_rules'    =>  'required',
         'main_record.agree_be_legal_age'=>  'required',
-        'option_id'                   =>  'required|exists:options,id'
+        'option_id'                     =>  'required|exists:options,id', // ! Cuál opción es la que está validando?
+        'gift_id'                       =>  'required|exists:gifts,id'
     ];
 
     public function mount()
@@ -57,7 +57,7 @@ class CustomerController extends Component
         } else {
             $this->ethnicities  = Ethnicity::orderby('spanish')->get();
             $this->genders      = Gender::orderby('spanish')->get();
-            $this->promotion   = Promotion::where('active', 1)->orderby('spanish')->first();
+            $this->promotion    = Promotion::where('active', 1)->orderby('spanish')->first();
         }
     }
 
@@ -68,6 +68,7 @@ class CustomerController extends Component
 
     public function render()
     {
+        // ! ¿Que pasa si no hay promociones activas?
         return view('livewire.customer_controller.index');
     }
 
@@ -126,12 +127,14 @@ class CustomerController extends Component
     }
 
     public function createCoupon($customer) {
+        // ¿Por qué crear el cupón con el primer regalo?
+        // El cupón lo debe elegir el "USUARIO" en el formulario
         $promotion_id = $this->promotion->gifts->first();
         if ($promotion_id) {
             $record_code = null;
             do {
                 $code_random = chr(rand(ord('a'), ord('z'))) . chr(rand(ord('a'), ord('z'))) . rand(1,9999);
-                $record_code = Coupon::where('code',$code_random);
+                $record_code = Coupon::Code($code_random);
             } while (is_null($record_code));
 
             $this->coupon = Coupon::create([

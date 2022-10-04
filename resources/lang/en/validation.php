@@ -163,7 +163,8 @@ return [
         'english'           =>'English',
         'question_id'       =>'Question',
         'promotion_id'      =>'Promotion',
-       "agree_be_legal_age" => "I agree to be of legal age"
+        "agree_be_legal_age" => "I agree to be of legal age",
+        "gift_id"            => "Coupon"
     ],
 
 ];

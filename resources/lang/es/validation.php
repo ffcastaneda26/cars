@@ -198,6 +198,7 @@ return [
         "ethnicity_id" => 'Etnia',
         "agree_be_legal_age" => 'Aceptar mayoría de edad',
         "image_path" => 'debe ser imagen',
+        "gift_id"   => 'Cupón',
    	]
 
 ];

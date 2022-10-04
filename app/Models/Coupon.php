@@ -69,6 +69,10 @@ class Coupon extends Model
         }
     }
 
+    public function scopeCode($query,$valor){
+        if($valor) $valor=trim($valor);
+        $query->where('code',$valor);
+    }
 
 
 

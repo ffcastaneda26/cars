@@ -88,6 +88,23 @@
                                     class="form-control mb-2">
                             </div>
 
+                            <div class="mb-3">
+                                <label class="text-uppercase" for="ethnicity">{{ __('Coupon') }}</label>
+                                <select wire:model="gift_id" class="form-select">
+                                    <option>{{ __('Select') }}</option>
+
+                                    @foreach ($promotion->gifts as $gift)
+                                        <option value="{{ $gift->id }}">
+                                            @if (App::isLocale('en'))
+                                                {{ $gift->english }}
+                                            @else
+                                                {{ $gift->spanish }}
+                                            @endif
+                                    @endforeach
+
+                                </select>
+                            </div>
+
                             <label class="text-uppercase">{{ __('Questions') }}</label>
                             @if ($promotion && $promotion->questions)
                                 @foreach ($promotion->questions->sortBy('order') as $question)
