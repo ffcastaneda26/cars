@@ -165,25 +165,26 @@ class CustomerController extends Component
         foreach ($this->option_id as $value) {
             $options = Option::where('id', $value)->get();
             if ($options) {
-                foreach ($options as $key => $option) {
+                foreach ($options as $option) {
                     if (App::isLocale('en')) {
                         $this->answer = Answer::create([
                             'customer_id'   => $customer->id,
                             'promotion_id'  => $promotion_id->id,
-                            'option_id'     => $options[$key],
+                            'option_id'     => $value,
                             'value'         => $option->english,
                         ]);
                     } else {
                         $this->answer = Answer::create([
                             'customer_id'   => $customer->id,
                             'promotion_id'  => $promotion_id->id,
-                            'option_id'     => $options[$key],
+                            'option_id'     => $value,
                             'value'         => $option->spanish,
                         ]);
                     }
                 }
             }
         }
+        $this->reset('option_id');
     }
 
     /** Lee Zipcode */
