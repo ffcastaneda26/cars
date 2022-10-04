@@ -135,7 +135,7 @@ class CustomerController extends Component
 
         $record_code = null;
         do {
-            $code_random = chr(rand(ord('a'), ord('z'))) . chr(rand(ord('a'), ord('z'))) . rand(1,9999);
+            $code_random = chr(rand(ord('A'), ord('Z'))) . chr(rand(ord('A'), ord('Z'))) . rand(1,9999);
             $record_code = Coupon::Code($code_random);
         } while (is_null($record_code));
 
@@ -178,6 +178,7 @@ class CustomerController extends Component
         $this->show_coupon = true;
         $this->coupon = $coupon;
     }
+
     /** Lee Zipcode */
     public function read_zipcode(){
         $this->read_town_state($this->main_record->zipcode);

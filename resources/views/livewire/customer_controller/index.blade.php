@@ -175,35 +175,46 @@
                             <div class="col-lg-4">
                             </div>
                             <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
+                                <div class="card" style="border: dashed">
+                                    <div class="card-body p-20">
                                         {{--  @if ($coupon && $coupon->gift->id)
                                             @foreach ($coupon->gift->files as $file)
                                                 <img width="80%" src="{{ $file->file_path }}" alt="Gift">
                                             @endforeach
                                         @endif  --}}
-
-                                        @if ($coupon->gift->id == 1)
-                                            <img width="80%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
-                                        @else
-                                            <img width="80%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
-                                        @endif
-                                        <span>{{ $coupon->gift->legal_legend }}</span>
-
-                                        <h1 class="fs-1 text-center bg-dark text-white mt-2">{{$coupon->customer->FullName}}</h1>
-
-                                        <h1 class="text-center bg-dark text-white">{{ $coupon->code }}</h1>
+                                        <div>
+                                            @if ($coupon->gift->id == 1)
+                                                <img width="80%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
+                                            @else
+                                                <img width="80%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
+                                            @endif
+                                        </div>
+                                        <div>
+                                            {{ $coupon->gift->legal_legend }}
+                                        </div>
+                                        <div>
+                                            <h1 class="fs-1 text-center bg-dark text-white mt-2">
+                                                {{$coupon->customer->FullName}}
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <h1 class="text-center bg-dark text-white">
+                                                {{ $coupon->code }}
+                                            </h1>
+                                        </div>
                                     </div>
-                                    <button class="mt-4 text-center btn btn-lg btn-info text-dark">
-                                        <a href="{{route('dashboard')}}" class="text-dark">
+                                    <button wire:click="$toggle('show_coupon')"
+                                        class="mt-4 text-center btn btn-lg btn-info text-dark"
+                                        >
+
                                             {{__('Exit')}}
-                                        </a>
+
                                     </button>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                             </div>
-                            
+
                         </div>
 
                     </div>
