@@ -89,7 +89,7 @@
                             </div>
 
                             <label class="text-uppercase">{{ __('Questions') }}</label>
-                            
+                            @if ($promotion && $promotion->questions)
                                 @foreach ($promotion->questions->sortBy('order') as $question)
                                     <div class="mb-1">
                                         @if (App::isLocale('en'))
@@ -111,7 +111,7 @@
                                         @endforeach
                                     </select>
                                 @endforeach
-                            
+                            @endif
                             {{-- Acepta las reglas? --}}
                             <div class="mb-3">
                                 <input type="checkbox" wire:model="main_record.agree_be_rules" class="checkbox"
