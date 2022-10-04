@@ -84,9 +84,24 @@
                             </div>
                             <div class="mb-3">
                                 <label class="text-uppercase" for="age">{{ __('Age') }}</label>
-                                <input type="numeric" wire:model="main_record.age" min="18" max="99"
+                                <input type="number" wire:model="main_record.age" min="18" max="99"
                                     class="form-control mb-2">
                             </div>
+
+                            <label class="text-uppercase">{{ __('Questions') }}</label>
+                            @foreach ($promotions as $promotion)
+                                @foreach ($promotion->questions->sortBy('order') as $question)
+                                    <div class="mb-1">
+                                        @if (App::isLocale('en'))
+                                            <strong>{{ $loop->index+1 }}.- {{ $question->english }}</strong>
+                                        @else
+                                            <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
+                                        @endif
+                                    </div>
+                                    <input type="text" wire:model="question_id.{{ $loop->index+1 }}" maxlength="100"
+                                    class="form-control mb-2">
+                                @endforeach
+                            @endforeach
                             {{-- Acepta las reglas? --}}
                             <div class="mb-3">
                                 <input type="checkbox" wire:model="main_record.agree_be_rules" class="checkbox"
@@ -103,20 +118,6 @@
                                 <label class="mt-2">{{ __('I am 18 years or older') }}
                                 </label>
                             </div>
-
-                            <label class="text-uppercase">{{ __('Questions') }}</label>
-                            @foreach ($questions as $question)
-                                <div class="mb-1">
-                                    @if (App::isLocale('en'))
-                                        <strong>{{ $loop->index+1 }}.- {{ $question->english }}</strong>
-                                    @else
-                                        <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
-                                    @endif
-                                </div>
-                                <input type="text" wire:model="question_id.{{ $loop->index+1 }}" maxlength="100"
-                                    class="form-control mb-2">
-                            @endforeach
-
                             @if ($main_record->agree_be_rules && $main_record->agree_be_legal_age)
                             <div class="flex items-center justify-center mt-2">
                                 <div class="text-center">

@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Customer;
 use App\Models\Question;
 use App\Models\Ethnicity;
+use App\Models\Promotion;
 use App\Traits\UserTrait;
 use App\Traits\ZipCodeTrait;
 use Livewire\WithPagination;
@@ -48,11 +49,11 @@ class CustomerController extends Component
         if (App::isLocale('en')) {
             $this->ethnicities  = Ethnicity::orderby('english')->get();
             $this->genders      = Gender::orderby('english')->get();
-            $this->questions    = Question::orderby('english')->get();
+            $this->promotions    = Promotion::where('active', 1)->orderby('english')->get();
         } else {
             $this->ethnicities  = Ethnicity::orderby('spanish')->get();
             $this->genders      = Gender::orderby('spanish')->get();
-            $this->questions    = Question::orderby('spanish')->get();
+            $this->promotions    = Promotion::where('active', 1)->orderby('spanish')->get();
         }
     }
 
