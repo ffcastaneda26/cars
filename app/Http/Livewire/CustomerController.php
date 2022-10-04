@@ -116,7 +116,7 @@ class CustomerController extends Component
         $this->linkRecords($this->main_record);
         /* Agregamos la generacion del cupon  */
         $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);
-        $this->createAnswer($this->main_record);
+        $this->createAnswer($this->main_record,$this->promotion);
         $this->close_store('Customer');
         $this->resetInputFields();
     }
@@ -160,31 +160,15 @@ class CustomerController extends Component
 
     }
 
-    public function createAnswer($customer) {
-        $promotion_id = $this->promotion->gifts->first();
-        foreach ($this->option_id as $value) {
-            $options = Option::where('id', $value)->get();
-            if ($options) {
-                foreach ($options as $option) {
-                    if (App::isLocale('en')) {
-                        $this->answer = Answer::create([
-                            'customer_id'   => $customer->id,
-                            'promotion_id'  => $promotion_id->id,
-                            'option_id'     => $value,
-                            'value'         => $option->english,
-                        ]);
-                    } else {
-                        $this->answer = Answer::create([
-                            'customer_id'   => $customer->id,
-                            'promotion_id'  => $promotion_id->id,
-                            'option_id'     => $value,
-                            'value'         => $option->spanish,
-                        ]);
-                    }
-                }
-            }
+    public function createAnswer(Customer $customer,Promotion $promotion) {
+        foreach($this->option_id as $answer){
+            Answer::create([
+                'customer_id'   => $customer->id,
+                'promotion_id'  => $promotion->id,
+                'option_id'     => $answer
+            ]);
         }
-        $this->reset('option_id');
+
     }
 
     /** Lee Zipcode */
