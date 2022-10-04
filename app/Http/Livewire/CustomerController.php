@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Customer;
-use Livewire\Component;
-use App\Traits\UserTrait;
-use Livewire\WithPagination;
-use App\Http\Livewire\Traits\CrudTrait;
-use App\Models\Ethnicity;
 use App\Models\Gender;
+use Livewire\Component;
+use App\Models\Customer;
+use App\Models\Question;
+use App\Models\Ethnicity;
+use App\Traits\UserTrait;
 use App\Traits\ZipCodeTrait;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\App;
+use App\Http\Livewire\Traits\CrudTrait;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CustomerController extends Component
 {
@@ -21,37 +22,38 @@ class CustomerController extends Component
     use UserTrait;
     use ZipCodeTrait;
 
-    public $ethnicities=null;
+    public $ethnicities =null;
     public $genders;
     public $city_town = null;
     public $email;
+    public $question_id = [];
 
     protected $rules = [
         'main_record.first_name'        => 'required|min:3|max:40',
         'main_record.last_name'         => 'required|min:3|max:40',
         'main_record.email'             => 'nullable|email|max:100|unique:customers, email',
-        'main_record.phone'             => 'required|digits:10',
+        'main_record.phone'             => 'required|digits:10|unique:customers, phone',
         'main_record.address'           => 'required',
         'main_record.zipcode'           => 'required|exists:zipcodes,zipcode',
         'main_record.gender_id'         => 'required|exists:genders,id',
         'main_record.ethnicity_id'      => 'required|exists:ethnicities,id',
-        'main_record.age'               => 'required|digits:2',
+        'main_record.age'               => 'required|numeric|max:99|min:18',
         'main_record.agree_be_rules'    => 'required',
-        'main_record.agree_be_legal_age'=> 'required'
+        'main_record.agree_be_legal_age'=> 'required',
     ];
 
     public function mount()
     {
         $this->main_record = new Customer();
         if (App::isLocale('en')) {
-            $this->ethnicities= Ethnicity::orderby('english')->get();
+            $this->ethnicities  = Ethnicity::orderby('english')->get();
             $this->genders      = Gender::orderby('english')->get();
+            $this->questions    = Question::orderby('english')->get();
         } else {
-            $this->ethnicities= Ethnicity::orderby('spanish')->get();
+            $this->ethnicities  = Ethnicity::orderby('spanish')->get();
             $this->genders      = Gender::orderby('spanish')->get();
-
+            $this->questions    = Question::orderby('spanish')->get();
         }
-
     }
 
 /*+---------------------------------+
