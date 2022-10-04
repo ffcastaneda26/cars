@@ -1,5 +1,5 @@
 <div>
-    <div id="layout-wrapper" style="background-image: url('assets/images/bg_completed.png');background-size:cover;">
+    <div id="layout-wrapper" style="background-image: url('assets/images/bg_min_completed.png');background-size:cover;">
         <div class="account-pages">
             <div class="row justify-content-center">
                 <div class="card"
@@ -89,7 +89,7 @@
                             </div>
 
                             <label class="text-uppercase">{{ __('Questions') }}</label>
-                            @foreach ($promotions as $promotion)
+                            
                                 @foreach ($promotion->questions->sortBy('order') as $question)
                                     <div class="mb-1">
                                         @if (App::isLocale('en'))
@@ -98,10 +98,20 @@
                                             <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
                                         @endif
                                     </div>
-                                    <input type="text" wire:model="question_id.{{ $loop->index+1 }}" maxlength="100"
-                                    class="form-control mb-2">
+                                    <select wire:model="question_id.{{ $loop->index }}" class="form-select">
+                                        <option>{{ __('Select') }}</option>
+                                        @foreach ($question->options as $option)
+                                            <option value="{{ $option->id }}">
+                                                @if (App::isLocale('en'))
+                                                    {{ $option->english }}
+                                                @else
+                                                    {{ $option->spanish }}
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 @endforeach
-                            @endforeach
+                            
                             {{-- Acepta las reglas? --}}
                             <div class="mb-3">
                                 <input type="checkbox" wire:model="main_record.agree_be_rules" class="checkbox"

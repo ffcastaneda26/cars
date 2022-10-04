@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Coupon extends Model
 {
     use HasFactory;
-    protected $table = 'statuses';
+    protected $table = 'coupons';
     public $timestamps = false;
     protected $fillable =  [
         'customer_id',
