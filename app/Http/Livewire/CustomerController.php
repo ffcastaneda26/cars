@@ -15,6 +15,7 @@ use App\Traits\ZipCodeTrait;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\App;
 use App\Http\Livewire\Traits\CrudTrait;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CustomerController extends Component
@@ -114,7 +115,7 @@ class CustomerController extends Component
         /* Ligamos con customer_promotions */
         $this->linkRecords($this->main_record);
         /* Agregamos la generacion del cupon  */
-        $this->createCoupon($this->main_record);
+        $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);
         $this->createAnswer($this->main_record);
         $this->close_store('Customer');
         $this->resetInputFields();
@@ -126,24 +127,37 @@ class CustomerController extends Component
         $this->main_record->promotions()->attach($customer);
     }
 
-    public function createCoupon($customer) {
-        // ¿Por qué crear el cupón con el primer regalo?
-        // El cupón lo debe elegir el "USUARIO" en el formulario
-        $promotion_id = $this->promotion->gifts->first();
-        if ($promotion_id) {
-            $record_code = null;
-            do {
-                $code_random = chr(rand(ord('a'), ord('z'))) . chr(rand(ord('a'), ord('z'))) . rand(1,9999);
-                $record_code = Coupon::Code($code_random);
-            } while (is_null($record_code));
+    public function createCoupon(Customer $customer,$gift_id) {
 
-            $this->coupon = Coupon::create([
-                'customer_id'   => $customer->id,
-                'gift_id'       => $promotion_id->id,
-                'code'          => $code_random,
-                'expire_at'     => $this->promotion->expire_at,
-            ]);
+        $record_code = null;
+        do {
+            $code_random = chr(rand(ord('a'), ord('z'))) . chr(rand(ord('a'), ord('z'))) . rand(1,9999);
+            $record_code = Coupon::Code($code_random);
+        } while (is_null($record_code));
+
+        if($this->promotion->expiration_type == 'days'){
+            // TODO: Validar que calcule bien la fecha
+            if($this->promotion->days_expire_gifts){
+                $expire_coupon = new Carbon();
+                $expire_coupon->addDays($this->promotion->days_expire_gifts);
+            }else{
+                $expire_coupon = $this->promotion->expire_at;
+            }
+        }else{
+            if($this->promotion->expire_at_coupons){
+                $expire_coupon = $this->promotion->expire_at_coupons;
+            }else{
+                $expire_coupon = $this->promotion->expire_at;
+            }
         }
+
+        return Coupon::create([
+            'customer_id'   => $customer->id,
+            'gift_id'       => $gift_id,
+            'code'          => $code_random,
+            'expire_at'     => $expire_coupon,
+        ]);
+
     }
 
     public function createAnswer($customer) {
