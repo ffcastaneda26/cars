@@ -115,7 +115,7 @@
                                     @endif
                                 </div>
                                 <select wire:model="option_id.{{ $loop->index }}" class="form-select">
-                                    <option>{{ __('Select') }}</option>
+                                    <option value="">{{ __('Select') }}</option>
                                     @foreach ($question->options as $option)
                                         <option value="{{ $option->id }}">
                                             @if (App::isLocale('en'))
@@ -129,6 +129,13 @@
                             @endforeach
                             @error("option_id") <span class="text-danger">Please you must answer all the questions</span>@enderror
                         @endif
+                        @if($question_error_message)
+                            <div class="text-danger text-center">
+                                <h5>{{ $question_error_message}}</h5>
+                            </div>
+                        @endif
+
+
                         {{-- Acepta las reglas? --}}
                         <div class="mt-1">
                             <input type="checkbox" wire:model="main_record.agree_be_rules" class="checkbox"
@@ -145,16 +152,18 @@
                             <label class="mt-2 m-2">{{ __('I am 18 years or older') }}
                             </label>
                         </div>
+
                         @if ($main_record->agree_be_rules && $main_record->agree_be_legal_age)
-                        <div class="flex items-center justify-center mt-2">
-                            <div class="text-center">
-                                <button class="btn" type="button" style="background-color: black; border-radius:2px;"
-                                    wire:click.prevent="store()">
-                                    <strong class="text-uppercase text-white"
-                                        style="font-size: 1.5rem">{{ __('Get Coupon') }}</strong>
-                                </button>
+                            <div class="flex items-center justify-center mt-2">
+                                <div class="text-center">
+                                    <button class="btn" type="button" style="background-color: black; border-radius:2px;"
+                                        wire:click.prevent="store()"
+                                        >
+                                        <strong class="text-uppercase text-white"
+                                            style="font-size: 1.5rem">{{ __('Get Coupon') }}</strong>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
                         @endif
                     </div>
                 </div>

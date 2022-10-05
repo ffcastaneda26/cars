@@ -8,7 +8,7 @@
                     <div class="col-lg-4">
                     </div>
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card text-uppercase">
                             <div class="card-body" style="border: dashed; margin:12px">
                                 {{--  @if ($coupon && $coupon->gift->id)
                                     @foreach ($coupon->gift->files as $file)
@@ -17,16 +17,16 @@
                                 @endif  --}}
                                 <div class="mx-auto justify-content-center" style="text-align: center;">
                                     @if ($coupon->gift->id == 1)
-                                        <img width="80%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
+                                        <img width="100%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
                                     @else
-                                        <img width="80%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
+                                        <img width="100%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
                                     @endif
                                 </div>
-                                <div>
-                                    <h1 class="fs-1 text-center bg-dark text-white mt-2">
-                                        EXPIRES: {{ date("D M d", strtotime($coupon->expire_at)) }}
+                                {{-- <div> --}}
+                                    <h1 class="fs-1 text-center bg-dark text-white mt-2 text-uppercase">
+                                       {{__('EXPIRES')}}: {{ date("M-d-Y", strtotime($coupon->expire_at)) }}
                                     </h1>
-                                </div>
+                                {{-- </div> --}}
                                 <div>
                                     {{ $coupon->gift->legal_legend }}
                                 </div>
@@ -41,14 +41,14 @@
                                     </h1>
                                 </div>
                             </div>
-                            <button wire:click="$toggle('show_coupon')"
-                                class="mt-4 text-center btn btn-lg btn-info text-dark"
-                            >
-                                {{__('Exit')}}
-                            </button>
                         </div>
+
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mt-4">
+                        <button wire:click="$toggle('show_coupon')"
+                                class="mt-4 text-center btn btn-lg btn-info text-dark">
+                            {{__('Exit')}}
+                        </button>
                     </div>
                 </div>
             </div>

@@ -34,6 +34,7 @@ class CustomerController extends Component
     public $gift_id = null;
     public $coupon;
     public $show_coupon = false;
+    public $question_error_message = null;
 
     protected $rules = [
         'main_record.first_name'        =>  'required|min:3|max:40',
@@ -47,8 +48,6 @@ class CustomerController extends Component
         'main_record.age'               =>  'required|numeric|max:99|min:18',
         'main_record.agree_be_rules'    =>  'required',
         'main_record.agree_be_legal_age'=>  'required',
-        'option_id'                     =>  'required|array|min:3',
-        'option_id.*'                   =>  'required|integer|exists:options,id',
         'gift_id'                       =>  'required|exists:gifts,id'
     ];
 
@@ -99,6 +98,16 @@ class CustomerController extends Component
                                                                 : 'required|digits:10|unique:customers,phone';
         $this->rules['main_record.email'] = $this->main_record->id ? "nullable|email|unique:customers,email,{$this->main_record->id}"
                                                                 : 'nullable|email|unique:customers,email';
+
+        $this->question_error_message = null;
+
+        foreach($this->option_id as $option_id){
+            if($option_id == "Select" || $option_id == "" || strlen($option_id) < 1){
+                $this->question_error_message = __('Please answer all questions');
+                break;
+            }
+        }
+
         $this->validate();
         // Traemos Correo
         if($this->main_record->email) {
@@ -114,15 +123,16 @@ class CustomerController extends Component
             }
         }
 
-        $this->main_record->save();
-        /* Ligamos con customer_promotions */
-        $this->linkRecords($this->main_record);
-        /* Agregamos la generacion del cupon  */
-        $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);
-        $this->createAnswer($this->main_record,$this->promotion);
-        $this->close_store('Customer');
-        $this->view_coupon($this->coupon);
-        $this->resetInputFields();
+        if(!$this->question_error_message){
+            $this->main_record->save();                                                     // Se graba Participante
+            $this->linkRecords($this->main_record);                                         // Particpante-Promoción
+                 $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);    // Se crea el cupón
+            $this->createAnswer($this->main_record,$this->promotion);                       // Grabar respuestas
+            $this->close_store('Customer');                                                 // Aviso que se creó
+            $this->view_coupon($this->coupon);                                              // A presentar cupón
+            $this->resetInputFields();                                                      // Restablecer variables
+        }
+
     }
 
     public function linkRecords($customer) {
