@@ -47,9 +47,11 @@ class CustomerController extends Component
         'main_record.age'               =>  'required|numeric|max:99|min:18',
         'main_record.agree_be_rules'    =>  'required',
         'main_record.agree_be_legal_age'=>  'required',
-        'option_id'                     =>  'required|exists:options,id', // ! Cuál opción es la que está validando?
+        'option_id'                     =>  'required|array|min:3',
+        'option_id.*'                   =>  'required|integer|exists:options,id',
         'gift_id'                       =>  'required|exists:gifts,id'
     ];
+
 
     public function mount()
     {
@@ -79,7 +81,7 @@ class CustomerController extends Component
     public function resetInputFields()
     {
         $this->main_record = new Customer();
-        $this->reset('email');
+        $this->reset('email', 'option_id', 'gift_id');
         $this->resetErrorBag();
     }
 
@@ -90,7 +92,6 @@ class CustomerController extends Component
 
     public function store()
     {
-
         if($this->main_record->zipcode){
             $this->read_town_state($this->main_record->zipcode);
         }
@@ -99,7 +100,6 @@ class CustomerController extends Component
         $this->rules['main_record.email'] = $this->main_record->id ? "nullable|email|unique:customers,email,{$this->main_record->id}"
                                                                 : 'nullable|email|unique:customers,email';
         $this->validate();
-
         // Traemos Correo
         if($this->main_record->email) {
             $customer_record = Customer::where('email',$this->main_record->email)->first();
@@ -121,8 +121,8 @@ class CustomerController extends Component
         $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);
         $this->createAnswer($this->main_record,$this->promotion);
         $this->close_store('Customer');
-        $this->resetInputFields();
         $this->view_coupon($this->coupon);
+        $this->resetInputFields();
     }
 
     public function linkRecords($customer) {
