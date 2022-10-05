@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Option extends Model
 {
@@ -14,7 +15,8 @@ class Option extends Model
     protected $fillable =  [
         'question_id',
         'spanish',
-        'english'
+        'english',
+        'dependent_question_id'
     ];
 
 
@@ -28,6 +30,10 @@ class Option extends Model
         return $this->belongsTo(Question::class,'question_id','id');
      }
 
+     public function dependent_question(): HasOne
+     {
+        return $this->hasOne(Question::class,'id','dependent_question_id');
+     }
 
 
     /*+-----------------+

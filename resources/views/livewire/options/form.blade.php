@@ -7,7 +7,7 @@
             <label class="input-group-text mb-2">{{__("Question")}}</label>
             <label class="input-group-text mb-2">{{__("Spanish")}}</label>
             <label class="input-group-text mb-2">{{__("English")}}</label>
-
+            <label class="input-group-text mb-2">{{__("Dep Question")}}</label>
         </div>
 
         <div class="col flex flex-col">
@@ -41,6 +41,22 @@
                 class="form-control mb-2"
                 maxlength="100">
             </div>
+
+        {{-- Pregunta Dependiente --}}
+            <select wire:model="main_record.dependent_question_id"
+                    class="form-select form-select-md  rounded w-auto mb-2"
+            >
+                <option>{{ __('Select') }}</option>
+                @foreach ($questions as $question)
+                    <option value="{{ $question->id }}">
+                        @if (App::isLocale('en'))
+                            {{ substr($question->english,0,40) }}
+                        @else
+                        {{ substr($question->spanish,0,40) }}
+                        @endif
+                    </option>
+                @endforeach
+            </select>
 
         </div>
     </div>

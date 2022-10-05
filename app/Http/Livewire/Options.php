@@ -27,7 +27,7 @@ class Options extends Component
         'main_record.spanish'       => 'required|max:100',
         'main_record.english'       => 'required|max:100',
         'main_record.question_id'    => 'required|exists:questions,id',
-
+        'main_record.dependent_question_id'    => 'nullable|exists:questions,id',
     ];
 
     public function mount()
