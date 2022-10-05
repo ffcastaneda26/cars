@@ -78,13 +78,6 @@
             })
         })
 
-        // Aviso de cambio de contraseña
-        window.addEventListener('password_changed', () => {
-            Swal.fire({
-                title: "{{ __('Congratulations!!!') }}",
-                text: "{{ __('Your password has been changed') }}",
-                })
-        })
 
         function confirm_modal(id) {
             var record = id;
