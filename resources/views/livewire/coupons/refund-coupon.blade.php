@@ -1,14 +1,11 @@
 
  {{-- @include('livewire.coupon-controller-form') --}}
- <div id="layout-wrapper">
+ <div>
     <div class="account-pages">
-        <div class="row justify-content-center">
-            <div style="margin-top:20%">
-                <p></p>
-            </div>
+        <div class="row justify-content-center" style="background: rgb(170, 168, 168);">
             <div class="col-lg-4">
                 {{-- Código de Cupón --}}
-                <div class="card">
+                <div class="card" style="margin-top:15%">
                     <div class="card-body">
                         <div class="p-2">
                             <h4 class="text-center">{{ __('Type Coupon Code') }}</h4>
