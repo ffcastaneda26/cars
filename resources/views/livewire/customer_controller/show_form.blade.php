@@ -1,8 +1,10 @@
-<div id="layout-wrapper" style="background-image: url('assets/images/bg_min_completed.png');background-size:cover;">
+<div id="layout-wrapper">
     <div class="account-pages">
         <div class="row justify-content-center">
-            <div class="card"
-                style="max-width: 25rem; background-color:#EAE9DF; border-radius: 25px; margin-top:21%">
+            <div style="margin-top:20%">
+                <p></p>
+            </div>
+            <div class="card">
                 <div class="card-body">
                     <div class="text-danger">
                         <x-jet-validation-errors></x-jet-validation-errors>

@@ -11,6 +11,10 @@
         heigh:665px;
         background-color:#FFFFFF;
     }
+    #layout-wrapper {
+        background-size:cover;
+        background-image: url('assets/images/bg_min_completed.png');
+    }
 
 </style>
 <body class="font-sans antialiased" data-sidebar="dark">

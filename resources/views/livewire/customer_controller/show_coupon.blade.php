@@ -1,5 +1,5 @@
-<div id="layout-wrapper" style="background-image: url('assets/images/fondo.png');background-size:content; background-repet:no-repeat">
-    <div class="account-pages">
+<div id="layout-wrapper">
+    <div class="account-pages" style="background-image: url('assets/images/fondo.png');background-size:cover; background-repet:no-repeat">
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row">
@@ -17,14 +17,14 @@
                                 @endif  --}}
                                 <div class="mx-auto justify-content-center" style="text-align: center;">
                                     @if ($coupon->gift->id == 1)
-                                        <img width="100%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
+                                        <img width="90%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
                                     @else
-                                        <img width="100%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
+                                        <img width="90%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
                                     @endif
                                 </div>
                                 {{-- <div> --}}
-                                    <h1 class="fs-1 text-center bg-dark text-white mt-2 text-uppercase">
-                                       {{__('EXPIRES')}}: {{ date("M-d-Y", strtotime($coupon->expire_at)) }}
+                                    <h1 class="fs-3 text-center bg-dark text-white mt-2 text-uppercase">
+                                        {{__('EXPIRES')}}: {{ date("M-d-Y", strtotime($coupon->expire_at)) }}
                                     </h1>
                                 {{-- </div> --}}
                                 <div>
@@ -42,13 +42,14 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div>
+                            <button wire:click="$toggle('show_coupon')"
+                            class="mt-4 text-center btn btn-lg btn-info text-dark">
+                            {{__('Exit')}}
+                            </button>
+                        </div>
                     </div>
                     <div class="col-lg-4 mt-4">
-                        <button wire:click="$toggle('show_coupon')"
-                                class="mt-4 text-center btn btn-lg btn-info text-dark">
-                            {{__('Exit')}}
-                        </button>
                     </div>
                 </div>
             </div>
