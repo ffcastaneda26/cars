@@ -4,13 +4,13 @@
             <div style="margin-top:20%">
                 <p></p>
             </div>
-            <div class="card">
+            <div class="card" style="background-color:#EAE9DF;  border-radius: 25px;">
                 <div class="card-body">
                     <div class="text-danger">
                         <x-jet-validation-errors></x-jet-validation-errors>
                     </div>
                     <div class="p-2">
-                        <h4 class="text-center">{{ __('Complete the Form to claim your coupon:') }}</h4>
+                        <h5>{{ __('Complete the form to claim your coupon:') }}</h5>
                         <div class="mb-3">
                             <label class="text-uppercase" for="name">{{ __('First Name') }}</label>
                             <input type="text" wire:model="main_record.first_name" required

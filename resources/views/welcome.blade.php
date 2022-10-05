@@ -32,9 +32,10 @@
             }
             .card {
                 max-width: 20rem;
-                background-color:#EAE9DF;
-                border-radius: 25px;
                 margin-top: 35%;
+            }
+            .margen {
+                margin-top: 40%;
             }
             @media only screen and (min-width: 500px) {
                 #layout-wrapper {
@@ -42,8 +43,6 @@
                 }
                 .card {
                     max-width: 25rem;
-                    background-color:#EAE9DF;
-                    border-radius: 25px;
                     margin-top: 1px;
                 }
             }

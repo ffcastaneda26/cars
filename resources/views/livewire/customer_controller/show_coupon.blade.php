@@ -1,57 +1,45 @@
 <div id="layout-wrapper">
-    <div class="account-pages" style="background-image: url('assets/images/fondo.png');background-size:cover; background-repet:no-repeat">
-        <div class="page-content">
-            <div class="container-fluid">
-                <div class="row">
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4">
+    <div class="account-pages" style="background-image: url('assets/images/bg_show_cupon.png');background-size:cover; background-repet:no-repeat">
+        <div class="row justify-content-center">
+            <div class="margen">
+                <p></p>
+            </div>
+            <div class="card text-uppercase">
+                <div class="card-body" style="border: dashed; margin:12px;">
+                    {{--  @if ($coupon && $coupon->gift->id)
+                        @foreach ($coupon->gift->files as $file)
+                            <img width="80%" src="{{ $file->file_path }}" alt="Gift">
+                        @endforeach
+                    @endif  --}}
+                    <div class="mx-auto justify-content-center" style="text-align: center;">
+                        @if ($coupon->gift->id == 1)
+                            <img src="{{ asset('assets/images/kidscoupon.png') }}" class="img-fluid" alt="Gift">
+                        @else
+                            <img src="{{ asset('assets/images/cupon.png') }}" class="img-fluid" alt="Gift">
+                        @endif
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card text-uppercase">
-                            <div class="card-body" style="border: dashed; margin:12px">
-                                {{--  @if ($coupon && $coupon->gift->id)
-                                    @foreach ($coupon->gift->files as $file)
-                                        <img width="80%" src="{{ $file->file_path }}" alt="Gift">
-                                    @endforeach
-                                @endif  --}}
-                                <div class="mx-auto justify-content-center" style="text-align: center;">
-                                    @if ($coupon->gift->id == 1)
-                                        <img width="90%" src="{{ asset('assets/images/kidscoupon.png') }}" alt="Gift">
-                                    @else
-                                        <img width="90%" src="{{ asset('assets/images/cupon.png') }}" alt="Gift">
-                                    @endif
-                                </div>
-                                {{-- <div> --}}
-                                    <h1 class="fs-3 text-center bg-dark text-white mt-2 text-uppercase">
-                                        {{__('EXPIRES')}}: {{ date("M-d-Y", strtotime($coupon->expire_at)) }}
-                                    </h1>
-                                {{-- </div> --}}
-                                <div>
-                                    {{ $coupon->gift->legal_legend }}
-                                </div>
-                                <div>
-                                    <h1 class="fs-1 text-center bg-dark text-white mt-2">
-                                        {{$coupon->customer->FullName}}
-                                    </h1>
-                                </div>
-                                <div>
-                                    <h1 class="text-center bg-dark text-white">
-                                        COUPON CODE: {{ $coupon->code }}
-                                    </h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <button wire:click="$toggle('show_coupon')"
-                            class="mt-4 text-center btn btn-lg btn-info text-dark">
-                            {{__('Exit')}}
-                            </button>
-                        </div>
+                    {{-- <div> --}}
+                        <h1 class="fs-3 text-center text-white mt-1 text-uppercase" style="background: black">
+                            {{__('EXPIRES')}}: {{ date("M-d-Y", strtotime($coupon->expire_at)) }}
+                        </h1>
+                    {{-- </div> --}}
+                    <div>
+                        <p class="text-justify">{{ $coupon->gift->legal_legend }}</p>
                     </div>
-                    <div class="col-lg-4 mt-4">
+                    <div>
+                        <h2 class="fs-1 text-center text-white mt-2" style="background: black">
+                            {{$coupon->customer->FullName}}
+                        </h2>
+                    </div>
+                    <div>
+                        <h2 class="fs-3 text-center text-white" style="background: black">
+                            {{__('COUPON CODE')}}: {{ $coupon->code }}
+                        </h2>
                     </div>
                 </div>
+            </div>
+            <div class="mx-auto justify-content-center" style="text-align: center;">
+                <img class="img-fluid" src="{{ asset('assets/images/moon.png') }}" alt="Gift">
             </div>
         </div>
     </div>
