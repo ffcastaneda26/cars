@@ -1,13 +1,14 @@
 {
+
     "Dep Question": "Dependiente",
     "Refunded!": "Reembolsado",
     "Yes, Refund it!": "Si, Reembólsalo",
     "Refund Coupon": "Reembolsar Cupón",
     "Coupon has been refunded": "Cupón ha sido reembolsado",
     "You can refund it": "Usted puede reembolsarlo",
-    "Coupon has already been refunded": "Coupon has already been refunded",
+    "Coupon has already been refunded": "Cupón ya ha sido reembolsado",
     "Coupon Does Not Exists": "Cupón No Existe",
-    "Type Coupon Code:": "Introduzca Código de Cupón",
+    "Type Coupon Code": "Introduzca Código de Cupón",
     "Refund": "Reembolso",
     "Coupon Code": "Código de Cupón",
     "EXPIRES": "VENCE EL",

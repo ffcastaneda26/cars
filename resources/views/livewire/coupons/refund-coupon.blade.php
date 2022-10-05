@@ -8,7 +8,7 @@
                 <div class="card" style="margin-top:15%">
                     <div class="card-body">
                         <div class="p-2">
-                            <h4 class="text-center">{{ __('Type Coupon Code') }}</h4>
+                            <h3 class="text-center">{{ __('Type Coupon Code') }}</h3>
                             <div class="mb-3">
                                 <input type="text"
                                     wire:model="coupon_code"
