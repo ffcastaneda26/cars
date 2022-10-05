@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Coupon extends Model
 {
@@ -55,6 +56,12 @@ class Coupon extends Model
         return $this->used;
     }
 
+    public function mark_as_used(){
+        $this->user_id    = Auth::user()->id;
+        $this->used_at    = now();
+        $this->used       = true;
+        $this->save();
+    }
 
     /*+-------------------+
       | Búsquedas         |

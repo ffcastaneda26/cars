@@ -16,8 +16,7 @@
     <td>
         @if($record->files()->count())
             @foreach( $record->files as $file)
-            {{$file}}
-                //<img src="{{ $file }}" class="rounded" alt="image" width="200">
+                <img src="{{asset($file->file_path)}}" class="rounded" alt="image" width="200">
             @endforeach
         @endif
     </td>

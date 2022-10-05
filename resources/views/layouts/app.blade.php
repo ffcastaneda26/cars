@@ -113,53 +113,29 @@
             })
         }
 
-        function confirm_cancel_pause_modal(id) {
+        function confirm_refund(id) {
             var record = id;
             Swal.fire({
-                title: "{{__('Cancellation Request Warning')}}",
-                text: "{{ __('This action cannot be undone. If you would like to continue working on this project select Pause instead of Cancel') }}",
+                title: "{{ __('Are you sure?') }}",
+                text: "{{ __('You wo not be able to revert this!') }}",
                 icon: 'warning',
-                showDenyButton: true,
                 showCancelButton: true,
-                confirmButtonText: "{{__('Yes, Cancel Project')}}",
-                denyButtonText: "{{__('Pause Project')}}",
-                cancelButtonText: "{{__('Do Nothing')}}",
-                confirmButtonColor: '#3085d6',
-
-                customClass: {
-                    actions: 'my-actions',
-                    cancelButton: 'order-1 right-gap',
-                    confirmButton: 'order-2',
-                    denyButton: 'order-3',
-                }
-                }).then((result) => {
+                confirmButtonColor: '##7FFFD4',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "{{ __('Yes, Refund it!') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
                 if (result.isConfirmed) {
-                        window.livewire.emit('change_status_project', record,'cancelled');
-                        Swal.fire(
-                            "{{ __('Canceled!') }}",
-                            "{{ __('Your project has been canceled.') }}",
-                            'success'
-                        )
-                } else if (result.isDenied) {
-                    window.livewire.emit('change_status_project', record,'paused');
-                        Swal.fire(
-                            "{{ __('Paused!') }}",
-                            "{{ __('Your project has been paused.') }}",
-                            'success'
-                        )
+                    window.livewire.emit('refund', record);
+                    Swal.fire(
+                        "{{ __('Refunded!') }}",
+                        "{{ __('Coupon has been refunded') }}",
+                        'success'
+                    )
                 }
-                })
+            })
         }
 
-        window.addEventListener('created', event => {
-            Swal.fire({
-                title: "{{ __('Project Created Succesfuly') }}",
-                text: "{{ __('The request has been succesfully generated!') }}",
-                icon: 'success',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: "{{ __('ok!') }}",
-            })
-        });
 
     </script>
     <!-- add before </body> -->

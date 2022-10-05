@@ -126,7 +126,7 @@ class CustomerController extends Component
         if(!$this->question_error_message){
             $this->main_record->save();                                                     // Se graba Participante
             $this->linkRecords($this->main_record);                                         // Particpante-Promoción
-                 $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);    // Se crea el cupón
+            $this->coupon = $this->createCoupon($this->main_record,$this->gift_id);         // Se crea el cupón
             $this->createAnswer($this->main_record,$this->promotion);                       // Grabar respuestas
             $this->close_store('Customer');                                                 // Aviso que se creó
             $this->view_coupon($this->coupon);                                              // A presentar cupón
@@ -145,7 +145,7 @@ class CustomerController extends Component
 
         $record_code = null;
         do {
-            $code_random = chr(rand(ord('A'), ord('Z'))) . chr(rand(ord('A'), ord('Z'))) . rand(1,9999);
+            $code_random = chr(rand(ord('A'), ord('Z'))) . chr(rand(ord('A'), ord('Z'))) . str_pad(rand(1,9999),4,"0",STR_PAD_LEFT);
             $record_code = Coupon::Code($code_random);
         } while (is_null($record_code));
 

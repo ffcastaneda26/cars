@@ -20,9 +20,11 @@
         @endif
 
         {{-- Detalle de registros --}}
-        <div class="table-responsive bg-white">
-            @include('common.crud_table')
-        </div>
+        @if($view_table)
+            <div class="table-responsive bg-white">
+                @include('common.crud_table')
+            </div>
+        @endif
 
         {{-- Formulario Crear o Editar --}}
         @if($isOpen && isset($view_form))
