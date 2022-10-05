@@ -11,3 +11,6 @@ WHERE qu.id = op.question_id
   AND op.id = an.option_id
   AND cu.id = an.customer_id
   AND pr.id = an.promotion_id
+
+-- Agregar un campo  a una tabla
+ALTER TABLE `options` ADD `dependent_question_id` BIGINT(20) UNSIGNED NULL COMMENT 'Pregunta dependiente' AFTER `english`;
