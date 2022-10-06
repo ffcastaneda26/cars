@@ -70,7 +70,6 @@
 
             {{-- Logotipo  --}}
         <div class="row align-items-start">
-
             <div class="col-lg-10  col-md-8 mb-4">
                 <label class="fs-5">{{ __('Image') }}</label>
                 <input type="file" wire:model="file_path" class="form-control">
@@ -80,15 +79,6 @@
                     Preview:
                     <img src="{{ $file_path->temporaryUrl() }}" class="avatar-md">
                 @endif
-                @if ($main_record->files()->count())
-                    @foreach ($main_record->files as $file)
-                    <img src="{{$file->file_path}}"
-                    class="avatar-sm"
-                    alt="Image"
-                    >
-                    @endforeach
-                @endif
             </div>
         </div>
-
 </div>

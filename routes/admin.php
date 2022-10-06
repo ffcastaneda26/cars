@@ -26,8 +26,8 @@ Route::get('storage-link',function(){
         if(file_exists(public_path('storage'))){
             return public_path('storage') . 'Ya existe...';
         }
-        return 'antes del calla';
         Artisan::call('storage:link');
+        return 'Has creado tu enlace Simbolico';
     }else{
         return 'Sorry You Not Authorized To This Command';
     }
