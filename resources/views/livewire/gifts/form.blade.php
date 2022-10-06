@@ -73,18 +73,20 @@
 
             <div class="col-lg-10  col-md-8 mb-4">
                 <label class="fs-5">{{ __('Image') }}</label>
-                <input type="file" wire:model="image_path" class="form-control">
+                <input type="file" wire:model="file_path" class="form-control">
             </div>
             <div class="col-lg-8">
-                @if (isset($image_path) && isset($image))
+                @if (isset($file_path))
                     Preview:
-                    <img src="{{ $image_path->temporaryUrl() }}" class="avatar-md">
+                    <img src="{{ $file_path->temporaryUrl() }}" class="avatar-md">
                 @endif
                 @if ($main_record->files()->count())
-                    <img src="{{ asset('storage/gifts/' . $main_record->files->first()) }}"
-                        class="mt-4 avatar-sm"
-                        alt="Image"
+                    @foreach ($main_record->files as $file)
+                    <img src="{{$file->file_path}}"
+                    class="avatar-sm"
+                    alt="Image"
                     >
+                    @endforeach
                 @endif
             </div>
         </div>

@@ -105,7 +105,6 @@
 
                             </select>
                         </div>
-
                         <label class="text-uppercase">{{ __('Questions') }}</label>
                         @php
                             $dependent_question_index = 0;
@@ -135,41 +134,36 @@
                                             @endif
                                         </option>
                                     @endforeach
-
                                 </select>
-
-                                 {{-- Si la opción tiene pregunta dependiente --}}
-
-
                             @endforeach
 
-                        @if($option_record && $option_record->dependent_question )
-                            <label for="">
-                                @if (App::isLocale('en'))
-                                    {{$option_record->dependent_question->english }}
-                                @else
-                                    {{$option_record->dependent_question->spanish }}
-                                @endif
-                            </label>
-                            <select wire:model="dependent_options_ids.{{ $dependent_question_index }}"
-                                class="form-select">
-                                <option value="">{{ __('Select') }}</option>
-
-                                @foreach($option_record->dependent_question->options as $dependent_option)
-                                    <option value="{{ $dependent_option->id }}">
+                            {{-- Si la opción tiene pregunta dependiente --}}
+                            @if($option_record && $option_record->dependent_question )
+                                <div wire:ignore>
+                                    <label for="">
                                         @if (App::isLocale('en'))
-                                            {{ $dependent_option->english }}
+                                            {{$option_record->dependent_question->english }}
                                         @else
-                                            {{ $dependent_option->spanish }}
+                                            {{$option_record->dependent_question->spanish }}
                                         @endif
-                                    </option>
-                                @endforeach
-                            </select>
+                                    </label>
+                                    <select wire:model="dependent_options_ids.{{ $dependent_question_index }}"
+                                        class="form-select">
+                                        <option value="">{{ __('Select') }}</option>
 
-                        @endif
+                                        @foreach($option_record->dependent_question->options as $dependent_option)
+                                            <option value="{{ $dependent_option->id }}">
+                                                @if (App::isLocale('en'))
+                                                    {{ $dependent_option->english }}
+                                                @else
+                                                    {{ $dependent_option->spanish }}
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
                             @error("option_id") <span class="text-danger">{{__('Please answer all questions')}}</span>@enderror
-
-
                         @endif
 
                         @if($question_error_message)
@@ -177,7 +171,6 @@
                                 <h5>{{ $question_error_message}}</h5>
                             </div>
                         @endif
-
 
                         {{-- Acepta las reglas? --}}
                         <div class="mt-1">
@@ -209,7 +202,6 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>

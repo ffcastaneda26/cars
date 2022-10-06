@@ -25,7 +25,7 @@ class Gifts extends Component
 
     public $active;
     public $promotions=null;
-    public $image_path=null;
+    public $file_path;
 
     protected $rules = [
         'main_record.spanish'       => 'required|min:5|max:25|unique:gifts,spanish',
@@ -84,11 +84,11 @@ class Gifts extends Component
         $this->main_record->active = $this->active ? 1 : 0;
         $this->main_record->save();
 
-        if($this->image_path){
+        if($this->file_path){
             $this->validate([
-                'image_path'    => 'image|max:2048',
+                'file_path'    => 'image|max:2048',
             ]);
-            $this->store_file($this->image_path,'gifts',$this->main_record->id,Gift::class);
+            $this->store_file($this->file_path,'gifts',$this->main_record->id,Gift::class);
 
         }
 

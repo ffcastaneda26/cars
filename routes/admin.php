@@ -33,6 +33,10 @@ Route::get('storage-link',function(){
     }
 })->middleware(['auth','admin']);
 
+Route::get('optimize',function(){
+    Artisan::call('optimize');
+    return 'Ya limpiaste todo';
+});
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('users',Users::class)->name('users');                            // Usuarios

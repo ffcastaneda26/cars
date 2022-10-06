@@ -13,10 +13,10 @@
             <label class="text-danger">{{__('No')}}</label>
         @endif
     </td>
-    <td>
+    <td class="text-center">
         @if($record->files()->count())
             @foreach( $record->files as $file)
-                <img src="{{asset($file->file_path)}}" class="rounded" alt="image" width="200">
+                <img src="{{url($file->file_path)}}" class="avatar-lg" alt="image">
             @endforeach
         @endif
     </td>
