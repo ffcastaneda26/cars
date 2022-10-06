@@ -107,7 +107,11 @@
                         </div>
 
                         <label class="text-uppercase">{{ __('Questions') }}</label>
+                        @php
+                            $dependent_question_index = 0;
+                        @endphp
                         @if ($promotion && $promotion->questions)
+                        {{-- Preguntas de la promoción --}}
                             @foreach ($promotion->questions->sortBy('order') as $question)
                                 <div class="mb-1">
                                     @if (App::isLocale('en'))
@@ -116,7 +120,11 @@
                                         <strong>{{ $loop->index+1 }}.- {{ $question->spanish }}</strong>
                                     @endif
                                 </div>
-                                <select wire:model="option_id.{{ $loop->index }}" class="form-select">
+
+                                {{-- Opciones de la pregunta --}}
+                                <select wire:model="option_id.{{ $loop->index }}"
+                                        wire:change="read_option()"
+                                        class="form-select">
                                     <option value="">{{ __('Select') }}</option>
                                     @foreach ($question->options as $option)
                                         <option value="{{ $option->id }}">
@@ -127,10 +135,43 @@
                                             @endif
                                         </option>
                                     @endforeach
+
                                 </select>
+
+                                 {{-- Si la opción tiene pregunta dependiente --}}
+
+
                             @endforeach
-                            @error("option_id") <span class="text-danger">Please you must answer all the questions</span>@enderror
+
+                        @if($option_record && $option_record->dependent_question )
+                            <label for="">
+                                @if (App::isLocale('en'))
+                                    {{$option_record->dependent_question->english }}
+                                @else
+                                    {{$option_record->dependent_question->spanish }}
+                                @endif
+                            </label>
+                            <select wire:model="dependent_options_ids.{{ $dependent_question_index }}"
+                                class="form-select">
+                                <option value="">{{ __('Select') }}</option>
+
+                                @foreach($option_record->dependent_question->options as $dependent_option)
+                                    <option value="{{ $dependent_option->id }}">
+                                        @if (App::isLocale('en'))
+                                            {{ $dependent_option->english }}
+                                        @else
+                                            {{ $dependent_option->spanish }}
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </select>
+
                         @endif
+                            @error("option_id") <span class="text-danger">{{__('Please answer all questions')}}</span>@enderror
+
+
+                        @endif
+
                         @if($question_error_message)
                             <div class="text-danger text-center">
                                 <h5>{{ $question_error_message}}</h5>
@@ -147,6 +188,7 @@
                                         class="text-blue-500 text-underline"> {{ __(' the rules') }}</a></u></p>
                             </label>
                         </div>
+
                         {{-- Acepta ser mayor de edad? --}}
                         <div>
                             <input type="checkbox" wire:model="main_record.agree_be_legal_age" class="checkbox"
@@ -167,6 +209,7 @@
                                 </div>
                             </div>
                         @endif
+
                     </div>
                 </div>
             </div>

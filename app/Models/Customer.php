@@ -83,4 +83,9 @@ class Customer extends Model
                  ->orwhere('phone','LIKE',"%$valor%");
         }
    }
+
+   Public function scopeEmail($query,$valor){
+        $valor = trim($valor);
+        $query->where('email',$valor);
+   }
 }

@@ -31,10 +31,13 @@ class CustomerController extends Component
     public $city_town = null;
     public $email;
     public $option_id = [];
+    public $dependent_options_ids=[];
     public $gift_id = null;
     public $coupon;
     public $show_coupon = false;
     public $question_error_message = null;
+    public $option_record   = null;
+
 
     protected $rules = [
         'main_record.first_name'        =>  'required|min:3|max:40',
@@ -110,18 +113,18 @@ class CustomerController extends Component
 
         $this->validate();
         // Traemos Correo
-        if($this->main_record->email) {
-            $customer_record = Customer::where('email',$this->main_record->email)->first();
-            if($customer_record){ // Encontró un registro con ese correo
-                if($this->record_id ){ // Está editando
-                    if($customer_record->email != $this->main_record->email){
-                        $this->validator->errors()->add('email', 'Email has already been taken.');
-                    }
-                }else{
-                    $this->validator->errors()->add('email', 'Email has already been taken.');
-                }
-            }
-        }
+        // if($this->main_record->email) {
+        //     $customer_record = Customer::where('email',$this->main_record->email)->get();
+        //     if($customer_record){ // Encontró un registro con ese correo
+        //         if($this->record_id ){ // Está editando
+        //             if($customer_record->email != $this->main_record->email){
+        //                 $this->validator->errors()->add('email', 'Email has already been taken.');
+        //             }
+        //         }else{
+        //             $this->validator->errors()->add('email', 'Email has already been taken.');
+        //         }
+        //     }
+        // }
 
         if(!$this->question_error_message){
             $this->main_record->save();                                                     // Se graba Participante
@@ -175,7 +178,17 @@ class CustomerController extends Component
     }
 
     public function createAnswer(Customer $customer,Promotion $promotion) {
+        // Respuetas a preguntas diretas
         foreach($this->option_id as $answer){
+            Answer::create([
+                'customer_id'   => $customer->id,
+                'promotion_id'  => $promotion->id,
+                'option_id'     => $answer
+            ]);
+        }
+
+        // Respuestas a preguntas dependientes
+        foreach($this->dependent_options_ids as $answer){
             Answer::create([
                 'customer_id'   => $customer->id,
                 'promotion_id'  => $promotion->id,
@@ -192,5 +205,16 @@ class CustomerController extends Component
     /** Lee Zipcode */
     public function read_zipcode(){
         $this->read_town_state($this->main_record->zipcode);
+    }
+
+    /** Lee opción */
+    public function read_option(){
+        if(count($this->option_id )){
+            foreach($this->option_id as $option_id){
+                if($option_id != "Select" || $option_id != "" || strlen($option_id) ){
+                    $this->option_record = Option::where('id',$option_id)->first();
+                }
+            }
+        }
     }
 }
