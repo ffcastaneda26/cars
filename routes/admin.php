@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Companies;
 use App\Http\Livewire\Gifts;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
@@ -43,5 +44,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('permission',Permissions::class)->name('permission');            // Permisos
     Route::get('role',Roles::class)->name('role');                              // Roles
     Route::get('statuses', Statuses::class)->name('statuses');                  // Estados de registros
+    Route::get('companies',Companies::class)->name('companies');                // Empresas
 
 });

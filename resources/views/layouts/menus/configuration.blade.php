@@ -27,7 +27,12 @@
         </a>
     </li>
 
-
+    <li>
+        <a href="{{route('companies')}}" class="waves-effect">
+            <i class="fas fa-building"></i>
+            <span>{{__('Companies')}}</span>
+        </a>
+    </li>
 
 
 

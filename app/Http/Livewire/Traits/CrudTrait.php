@@ -8,7 +8,6 @@ trait CrudTrait {
 
 
     protected $paginationTheme = 'bootstrap';
-    public $go_dashboard = false;
     public $image_path;
     public $updating_record = false;
     public $main_record;
@@ -37,7 +36,6 @@ trait CrudTrait {
     public $permission_edit;
     public $permission_delete;
     public $permission_view;
-
 
     // Vistas
     public $view_search = 'common.crud_search';
@@ -102,7 +100,6 @@ trait CrudTrait {
         $this->isOpen = false;
         $this->isOpen2 = false;
         $this->confirm_delete = false;
-        $this->go_dashboard = true;
         $this->resetInputFields();
     }
 

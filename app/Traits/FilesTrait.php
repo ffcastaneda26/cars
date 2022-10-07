@@ -14,10 +14,28 @@ use App\Models\File;
 trait FilesTrait {
     public $files = [];
 
+    public function store_main_record_file($file,$directory,$delete_file=false){
+
+        if(!empty($file)){ // Traemos una imagen
+
+            if($delete_file){
+                if($file !=null && file_exists('storage/'. $directory. '/'. $file)){
+                    unlink('storage/'.$directory.'/' .$file);
+                }
+            }
+
+            $file_name = uniqid() . '.' . $file->extension(); // Nombre de archivo único
+            return $file->storeAs($directory,$file_name);
+        }
+    }
+
     // Guarda Archivo
     public function store_file($file_path,$directory,$fileable_id,$fileable_type){
 
         if(empty($file_path)) return false;
+
+
+
 
         $name   = time() .'_'. $file_path->getClientOriginalName();  // Nombre único
         $url = $file_path->store($directory,'public');                       // Guarda físicamente archivo
