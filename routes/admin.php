@@ -43,14 +43,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('permission',Permissions::class)->name('permission');            // Permisos
     Route::get('role',Roles::class)->name('role');                              // Roles
     Route::get('statuses', Statuses::class)->name('statuses');                  // Estados de registros
-    Route::get('genders',Genders::class)->name('genders');                      // Géneros
-    Route::get('promotions',Promotions::class)->name('promotions');             // Promociones
-    Route::get('gifts',Gifts::class)->name('gifts');                            // Regalos
-    Route::get('types-question',TypesQuestion::class)->name('types-question');  // Tipos de Pregunta
-    Route::get('questions',Questions::class)->name('questions');                // Preguntas
-    Route::get('options',Options::class)->name('options');                      // Opciones
-    Route::get('ethnicities',Ethnicities::class)->name('ethnicites');           // Etnias
-    Route::get('edge-ranges',EdgeRanges::class)->name('edge-ranges');           // Rangos de edades
-    Route::get('customers',Customers::class)->name('customers');                // Clientes
-    Route::get('promotion-questions',PromotionQuestions::class)->name('promotion-questions'); // Preguntas x Promoción;
+
 });

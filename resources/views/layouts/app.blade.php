@@ -102,28 +102,6 @@
             })
         }
 
-        function confirm_refund(id) {
-            var record = id;
-            Swal.fire({
-                title: "{{ __('Are you sure?') }}",
-                text: "{{ __('You wo not be able to revert this!') }}",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '##7FFFD4',
-                cancelButtonColor: '#d33',
-                confirmButtonText: "{{ __('Yes, Refund it!') }}",
-                cancelButtonText: "{{ __('Cancel') }}",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.livewire.emit('refund', record);
-                    Swal.fire(
-                        "{{ __('Refunded!') }}",
-                        "{{ __('Coupon has been refunded') }}",
-                        'success'
-                    )
-                }
-            })
-        }
 
 
     </script>
