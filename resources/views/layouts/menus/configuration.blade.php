@@ -34,6 +34,12 @@
         </a>
     </li>
 
+    <li>
+        <a href="{{route('teams')}}" class="waves-effect">
+            <i class="mdi mdi-microsoft-teams"></i>
+            <span>{{__('Teams')}}</span>
+        </a>
+    </li>
 
 
 </ul>

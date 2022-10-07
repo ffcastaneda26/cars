@@ -15,6 +15,7 @@ trait FilesTrait {
     public $files = [];
 
     public function store_main_record_file($file,$directory,$delete_file=false){
+        dd('intento grabar' , $file);
 
         if(!empty($file)){ // Traemos una imagen
 
