@@ -15,19 +15,14 @@ trait FilesTrait {
     public $files = [];
 
     public function store_main_record_file($file,$directory,$delete_file=false){
- 
+        if(empty($file)) return false;
 
-        if(!empty($file)){ // Traemos una imagen
-
-            if($delete_file){
-                if($file !=null && file_exists('storage/'. $directory. '/'. $file)){
-                    unlink('storage/'.$directory.'/' .$file);
-                }
-            }
-
-            $file_name = uniqid() . '.' . $file->extension(); // Nombre de archivo único
-            return $file->storeAs($directory,$file_name);
+        if($delete_file){
+            $this->delete_file($file,$directory);
         }
+
+        $file_name = uniqid() . '.' . $file->extension(); // Nombre de archivo único
+        return $file->storeAs($directory,$file_name);
     }
 
     // Guarda Archivo
