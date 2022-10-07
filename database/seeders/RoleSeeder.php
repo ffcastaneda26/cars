@@ -16,15 +16,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        // DB::statement('SET FOREIGN_KEY_CHECKS = 0;'); // Desactivamos la revisión de claves foráneas
-        // DB::table('roles')->truncate();
-        // DB::statement('SET FOREIGN_KEY_CHECKS = 1;'); // Desactivamos la revisión de claves foráneas
-
-
         $sql= "INSERT INTO roles (name,english,spanish,full_access) VALUES
                 ('admin', 'General Admin','Administrador General',1),
-                ('manager', 'Manager', 'Gerente', 0),
-                ('cashier', 'Cashier', 'Cajero', 0)";
+                ('manager', 'Manager', 'Gerente', 0)";
 
         DB::update ($sql);
         // Administrador
@@ -37,9 +31,5 @@ class RoleSeeder extends Seeder
         $role = Role::where('name','manager')->first();
         $user->roles()->attach($role);
 
-        // Cajero
-        $user = User::findOrFail(3);
-        $role = Role::where('name','cashier')->first();
-        $user->roles()->attach($role);
     }
 }

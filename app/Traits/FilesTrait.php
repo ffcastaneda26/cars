@@ -25,8 +25,7 @@ trait FilesTrait {
     }
 
     // Elimina Archivo
-   public function delete_file($file_path,$directory)
-   {
+    public function delete_file($file_path,$directory){
         if(!empty($file_path)) return false;
         $tmpImg = $file_path;
         if($tmpImg !=null && file_exists('storage/'.$directory.'/' .$tmpImg)){
@@ -38,7 +37,7 @@ trait FilesTrait {
     }
 
     // Guarda varios archivos
-    public function store_files($files, $directory, $fileable_id, $fileable_type) {
+    public function store_files($files, $directory, $fileable_id, $fileable_type){
 
         if(!$files || !count($files)) return false;
 

@@ -86,9 +86,6 @@ trait UserTrait {
         return $this->is('Manager');
     }
 
-    public function isCashier(){
-        return $this->is('cashier');
-    }
 
 
 }

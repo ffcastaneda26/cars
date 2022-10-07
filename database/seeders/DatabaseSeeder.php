@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             'permission_user',
             'roles',
             'permissions',
-            'genders',
             'statuses',
         ]);
 

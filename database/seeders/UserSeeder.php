@@ -32,14 +32,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
 
-        User::create([
-			'name' => 'Cajero General',
-			'email' => 'cashier@cissi.com',
-            'email_verified_at' => now(),
-            'active' => 1,
-            'password' => Hash::make('password')
-        ]);
-
 
     }
 }
