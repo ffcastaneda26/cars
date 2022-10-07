@@ -4,7 +4,8 @@
   +-------------------------------------------------------------------------------------------------|
   | Fecha       | Author  |   Descripción                                                           |
   +-------------+---------+-------------------------------------------------------------------------+
-  | 26-ago-22   | FCO     | Creación
+  | 26-ago-22   | FCO     | Creación                                                                |
+  | 07-Oct-22   | MANN    | Modificacion de Guardado de Archivos metodo StoreAs agregando 'public'  |
   +-------------+---------+-------------------------------------------------------------------------+
  */
 namespace App\Traits;
@@ -20,19 +21,15 @@ trait FilesTrait {
         if($delete_file){
             $this->delete_file($file,$directory);
         }
-
-        $file_name = uniqid() . '.' . $file->extension(); // Nombre de archivo único
-        return $file->storeAs($directory,$file_name);
+        $name   = $file->getClientOriginalName();
+        $file_name = uniqid() ."_".$name; // Nombre de archivo único
+        return $file->storeAs($directory,$file_name, 'public');
     }
 
     // Guarda Archivo
     public function store_file($file_path,$directory,$fileable_id,$fileable_type){
 
         if(empty($file_path)) return false;
-
-
-
-
         $name   = time() .'_'. $file_path->getClientOriginalName();  // Nombre único
         $url = $file_path->store($directory,'public');                       // Guarda físicamente archivo
         return $this->store_polimorphic_file($name, $url, $fileable_id, $fileable_type);   // Guarda relación polimórfica
@@ -70,7 +67,6 @@ trait FilesTrait {
 
     // Graba relación polimórfica
     private function store_polimorphic_file($name,$file_path,$fileable_id,$fileable_type){
-
         return File::create([
             'name'             => $name,
             'file_path'        => $file_path,
@@ -78,5 +74,4 @@ trait FilesTrait {
             'fileable_type'    => $fileable_type
         ]);
     }
-
 }

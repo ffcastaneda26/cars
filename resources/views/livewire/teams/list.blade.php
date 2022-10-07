@@ -6,7 +6,7 @@
 
     <td class="text-center">
         @if($record->logotipo)
-            <img class="rounded" width="50px" height="50px" src="{{asset('storage/public/' . $record->logotipo)}}" alt="{{__('Image')}}">
+            <img class="avatar-sm" src="{{url($record->logotipo)}}" alt="{{__('Image')}}">
         @endif
     </td>
     <td class="text-center">
