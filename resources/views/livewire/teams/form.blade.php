@@ -42,9 +42,9 @@
                 >
             </div>
 
-            {{-- ¿Activo? --}}
+            {{-- Pedir Marcador en partidos? --}}
 
-            <div class="flex-flex-column">
+            <div class="flex-flex-column mb-2">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" wire:model="request_score" class="btn-check" name="type" id="score_yes" value="1">
                     <label class="btn btn-outline-info" for="score_yes">{{__('Yes')}}</label>

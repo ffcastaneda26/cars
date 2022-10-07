@@ -107,6 +107,7 @@ class Teams extends Component
         $this->main_record  = $record;
         $this->record_id    = $record->id;
         $this->active       = $record->active;
+        $this->request_score= $record->request_score;
         $this->openModal();
     }
 
