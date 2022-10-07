@@ -85,8 +85,7 @@ class Teams extends Component
             $this->validate([
                 'file_path'    => 'image|max:2048',
             ]);
-            $logotipo = $this->store_main_record_file($this->file_path,'teams',true);
-            $this->main_record->logotipo = $logotipo;
+            $this->main_record->logotipo = $this->store_main_record_file($this->file_path,'teams',true);
         }
 
         $this->main_record->save();
