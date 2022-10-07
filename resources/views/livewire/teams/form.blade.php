@@ -7,6 +7,7 @@
             <label class="input-group-text mb-2">{{__("Name")}}</label>
             <label class="input-group-text mb-2">{{__("Alias")}}</label>
             <label class="input-group-text mb-2">{{__("Short")}}</label>
+            <label class="input-group-text mb-2">{{__("Request Score")}}</label>
             <label class="input-group-text mt-2">{{ __('Active?') }}</label>
         </div>
 
@@ -40,6 +41,19 @@
                         class="form-control mb-2"
                 >
             </div>
+
+            {{-- ¿Activo? --}}
+
+            <div class="flex-flex-column">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" wire:model="request_score" class="btn-check" name="type" id="score_yes" value="1">
+                    <label class="btn btn-outline-info" for="score_yes">{{__('Yes')}}</label>
+
+                    <input type="radio" wire:model="request_score" class="btn-check ml-4" name="type" id="score_no" value="0">
+                    <label class="btn btn-outline-warning" for="score_no">{{__('No')}}</label>
+                </div>
+            </div>
+
 
             {{-- ¿Activo? --}}
 

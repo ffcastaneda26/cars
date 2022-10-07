@@ -19,7 +19,8 @@ class CreateTeamsTable extends Migration
             $table->string('alias',20)->nullable()->default(null)->comment('Alias');
             $table->string('short',6)->nullable()->default(null)->comment('Corto');
             $table->string('logotipo',191)->nullable()->default(null)->comment('Logotipo');
-            $table->boolean('active')->default(1)->comment('¿Activo?');
+            $table->boolean('request_score')->nullable()->default(0)->comment('Pedir marcador en partidos');
+            $table->boolean('active')->nullable()->default(1)->comment('¿Activo?');
         });
     }
 

@@ -26,15 +26,18 @@ class Teams extends Component
     protected $listeners = ['destroy'];
 
     protected $rules = [
-        'main_record.name'      => 'required|min:3|max:50',
-        'main_record.alias'     => 'nullable|min:3|max:20',
-        'main_record.short'     => 'required|min:3|max:6',
-        'main_record.active'    => 'nullable',
-        'main_record.logotipo'  => 'nullable'
+        'main_record.name'          => 'required|min:3|max:50',
+        'main_record.alias'         => 'nullable|min:3|max:20',
+        'main_record.short'         => 'required|min:3|max:6',
+        'main_record.request_score' => 'nullable',
+        'main_record.active'        => 'nullable',
+        'main_record.logotipo'      => 'nullable'
     ];
 
 
     public $active;
+    public $request_score;
+
     public $file_path;
 
     public function mount()
@@ -80,6 +83,7 @@ class Teams extends Component
     {
         $this->validate();
         $this->main_record->active = $this->active ? 1 : 0;
+        $this->main_record->request_score = $this->request_score ? 1 : 0;
 
         if($this->file_path){
             $this->validate([
