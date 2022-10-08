@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Livewire\CustomerController;
 use App\Http\Livewire\PromotionQuestions;
+use App\Http\Livewire\Rounds;
 use App\Http\Livewire\Teams;
 
 Route::get('storage-link',function(){
@@ -47,4 +48,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('statuses', Statuses::class)->name('statuses');                  // Estados de registros
     Route::get('companies',Companies::class)->name('companies');                // Empresas
     Route::get('teams',Teams::class)->name('teams');                            // Equipos
+    Route::get('rounds',Rounds::class)->name('rounds');                         // Rondas (Jornadas)
 });

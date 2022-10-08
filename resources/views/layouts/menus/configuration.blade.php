@@ -42,4 +42,11 @@
     </li>
 
 
+    <li>
+        <a href="{{route('rounds')}}" class="waves-effect">
+            <i class="mdi mdi-calendar-month"></i>
+            <span>{{__('Rounds')}}</span>
+        </a>
+    </li>
+
 </ul>
