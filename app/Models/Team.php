@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
 {
@@ -24,7 +25,15 @@ class Team extends Model
       +-----------------+
      */
 
+    public function LocalGames(): HasMany
+    {
+        return $this->hasMany(Game::class,'local_team_id');
+    }
 
+    public function VisitGames(): HasMany
+    {
+        return $this->hasMany(Game::class,'visit_team_id');
+    }
 
     /*+-----------------+
       | Funciones Apoyo |
@@ -32,6 +41,8 @@ class Team extends Model
      */
 
     public function can_be_delete(){
+        if($this->LocalGames()->count()) return false;
+        if($this->VisitGames()->count()) return false;
         return true;
     }
 

@@ -49,4 +49,18 @@
         </a>
     </li>
 
+    <li>
+        <a href="{{route('games')}}" class="waves-effect">
+            <button class="icon subtle" 
+                style="--button-padding:var(--spacing-xl) var(--spacing-sm) var(--spacing-md) var(--spacing-sm); --button-background:var(--white); --button-hover-background:var(--fa-yellow); --button-color:var(--fa-md-gravy); --button-hover-color:var(--fa-navy); width: 100%; height: 100%; --button-font-weight:var(--font-weight-normal); --button-margin-bottom:0;">
+                <i class="fa-regular fa-futbol fa-fw" style="color: var(--fa-navy);"></i>
+                 <span class="icon-name">{{__('Games')}}</span>
+            </button>
+        {{-- <i class="fa-regular fa-futbol fa-fw"></i>
+        <span>{{__('Games')}}</span> --}}
+
+
+        </a>
+    </li>
+
 </ul>

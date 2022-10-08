@@ -2,25 +2,30 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Round extends Model
+class Game extends Model
 {
     use HasFactory;
-    protected $table = 'rounds';
+    protected $table = 'games';
     public $timestamps = false;
     protected $fillable =  [
-        'from',
-        'to',
-        'active',
+        'round_id',
+        'local_team_id',
+        'local_score',
+        'visit_team_id',
+        'visit_score',
+        'date',
+        'hour',
+        'minute',
+        'points_winner',
+        'extra_points_winner'
     ];
 
     protected $casts = [
-        'from' => 'datetime:Y-m-d',
-        'to' => 'datetime:Y-m-d',
+        'Date' => 'datetime:Y-m-d'
     ];
 
     /*+-----------------+
@@ -28,18 +33,29 @@ class Round extends Model
       +-----------------+
      */
 
-    public function games(): HasMany
-    {
-        return $this->hasMany(Game::class);
-    }
+     public function Round():BelongsTo
+     {
+        return $this->belongsTo(Round::class);
+     }
 
+     public function LocalTeam():BelongsTo
+     {
+        return $this->belongsTo(Team::class,'local_team_id');
+     }
+
+
+     public function VisitTeam():BelongsTo
+     {
+        return $this->belongsTo(Team::class,'visit_team_id');
+     }
+
+     
     /*+-----------------+
       | Funciones Apoyo |
       +-----------------+
      */
 
     public function can_be_delete(){
-        if($this->games()->count()) return false;
         return true;
     }
 
