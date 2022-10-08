@@ -228,6 +228,12 @@ return [
         'youtube'=>'Youtube',
         'zipcode'=>'Zona Postal',
         'code' => 'Código',
+        'agree_be_legal_age' => 'Aceptar Las Reglas',
+        'agree_be_rules' => 'Aceptar mayoría de edad',
+        'first_name' => 'Nombre',
+        'last_name'  => 'Apelido'
+
+      
 	]
 
 ];

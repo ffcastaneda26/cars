@@ -18,11 +18,16 @@ trait CrudTrait {
     public $isOpen2 = false;
     public $isOpenDelete = 0;
     public $allow_create=true;
+    public $allow_save=true;
+
+    
     public $allow_navigate = true;
     public $member_expired = false;
+
     public $message;
     private $pagination = 10; //paginación de tabla
     public $per_page = 10;
+
 
     public $member_auth_user;
     public $confirm_delete =false;

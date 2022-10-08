@@ -7,10 +7,14 @@
                 {{__("Cancel")}}
             </button>
         </span>
+
         <span class="mx-2">
-            <button wire:click.prevent="store()" type="button"
-                class="btn btn-success">
-                {{__("Save")}}
+            <button type="button"
+                    wire:click.prevent="store()" 
+                    @if(!$allow_save) disabled @endif
+                    class="btn btn-success">
+                {{__("Save") }}
+               
             </button>
         </span>
   

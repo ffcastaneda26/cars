@@ -1,26 +1,16 @@
 <?php
 
 use App\Http\Livewire\Companies;
-use App\Http\Livewire\Gifts;
+use App\Http\Livewire\competidors;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
-use App\Http\Livewire\Genders;
-use App\Http\Livewire\Options;
 use App\Http\Livewire\Statuses;
-use App\Http\Livewire\Customers;
-use App\Http\Livewire\Languages;
-use App\Http\Livewire\Questions;
-use App\Http\Livewire\EdgeRanges;
-use App\Http\Livewire\Promotions;
-use App\Http\Livewire\Ethnicities;
 use App\Http\Livewire\Permissions;
-use App\Http\Livewire\TypesQuestion;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Livewire\CustomerController;
 use App\Http\Livewire\Games;
-use App\Http\Livewire\PromotionQuestions;
 use App\Http\Livewire\Rounds;
 use App\Http\Livewire\Teams;
 
@@ -51,5 +41,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('teams',Teams::class)->name('teams');                            // Equipos
     Route::get('rounds',Rounds::class)->name('rounds');                         // Rondas (Jornadas)
     Route::get('games',Games::class)->name('games');                            // Juegos (Partidos)
+    Route::get('competidors',competidors::class)->name('competidors');          // Competidores (Participantes)
+
 
 });
