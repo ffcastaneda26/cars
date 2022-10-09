@@ -6,10 +6,12 @@
         <div class="col-md-4 flex flex-col">
             <label class="input-group-text mb-2">{{__("Round")}}</label>
             <label class="input-group-text mb-2">{{__("Date")}}</label>
-            <label class="input-group-text mb-2">{{__("Hour")}}</label>
-            <label class="input-group-text mb-2">{{__("Visita")}}</label>
+            {{-- <label class="input-group-text mb-2">{{__("Hour")}}</label> --}}
+            {{-- <label class="input-group-text mb-2">{{__("Visita")}}</label> --}}
             <label class="input-group-text mb-2">{{__("Local")}}</label>
             <label class="input-group-text mb-2">{{__("Visit")}}</label>
+            <label class="input-group-text mb-2">{{__("Request Score")}}</label>
+
         </div>
 
         <div class="col flex flex-col">
@@ -37,8 +39,8 @@
 
             {{-- Fecha --}}
             <div class="flex-flex-column mb-2">
-                <div class="col-lg-6">
-                    <input type="date" 
+                <div class="w-auto">
+                    <input type="datetime-local" 
                             required min=<?php $hoy = date('Y-m-d'); echo $hoy; ?>
                             wire:model="main_record.date" 
                             required placeholder="{{ __('Date') }}"
@@ -48,11 +50,11 @@
             </div>
                 
             {{-- Hora --}}
-            <div class="flex-flex-column mb-2">
+            {{-- <div class="flex-flex-column mb-2">
                 <div class="col-md-3 flex flex-col alig-items-center">
                     <div class="col-md-3 flex flex-col alig-items-center">
                         <input type="number" 
-                                wire:model="main_record.hour" 
+                                wire:model="hour" 
                                 min="0" 
                                 max="23" 
                                 required
@@ -60,14 +62,14 @@
                         >
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- Minutos --}}
-            <div class="flex-flex-column mb-2">
+            {{-- <div class="flex-flex-column mb-2">
                 <div class="col-md-3 flex flex-col alig-items-center">
                     <div class="col-md-3 flex flex-col alig-items-center">
                         <input type="number" 
-                                wire:model="main_record.minute" 
+                                wire:model="minute" 
                                 min="0" 
                                 max="59" 
                                 required
@@ -75,7 +77,7 @@
                         >
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- Local --}}
             <div class="flex-flex-column mb-2">
@@ -99,6 +101,19 @@
                     @endforeach
                 </select>
             </div>
+            {{-- Pedir Marcador en partidos? --}}
+
+            <div class="flex-flex-column mb-2">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" wire:model="request_score" class="btn-check" name="type" id="score_yes" value="1">
+                    <label class="btn btn-outline-info" for="score_yes">{{__('Yes')}}</label>
+
+                    <input type="radio" wire:model="request_score" class="btn-check ml-4" name="type" id="score_no" value="0">
+                    <label class="btn btn-outline-warning" for="score_no">{{__('No')}}</label>
+                </div>
+            </div>
+
+
         </div>
     </div>
 

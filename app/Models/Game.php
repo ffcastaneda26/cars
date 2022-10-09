@@ -13,11 +13,12 @@ class Game extends Model
     public $timestamps = false;
     protected $fillable =  [
         'round_id',
+        'date',
         'local_team_id',
         'local_score',
         'visit_team_id',
         'visit_score',
-        'date',
+        'request_score',
         'points_winner',
         'extra_points_winner'
     ];

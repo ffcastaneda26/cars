@@ -26,14 +26,14 @@ class Games extends Component
     protected $rules = [
         'main_record.round_id'              => 'required|exists:rounds,id',
         'main_record.date'                  => 'required|date',
-        'main_record.hour'                  => 'required|min:0|max:23',
-        'main_record.minute'                => 'required|min:0|max:59',
         'main_record.local_team_id'         => 'required|different:main_record.visit_team_id|exists:teams,id',
         'main_record.visit_team_id'         => 'required|different:main_record.local_team_id|exists:teams,id',
         'main_record.local_score'           => 'nullable|min:0|max:99',
         'main_record.visit_score'           => 'nullable|min:0|max:99',
+        'main_record.request_score'         => 'nullable',
         'main_record.points_winner'         => 'nullable',
         'main_record.extra_points_winner'   => 'nullable',
+
     ];
 
     public $teams           = null;
@@ -41,6 +41,10 @@ class Games extends Component
     public $round           = null;
     public $round_id        = null;
     public $show_round      = false;
+    public $request_score   = false;
+    // public $hour;
+    // public $minute;
+
 
     public function mount()
     {
@@ -85,6 +89,9 @@ class Games extends Component
     public function store()
     {
         $this->validate();
+        $this->main_record->request_score = $this->request_score ? 1 : 0;
+
+
         $this->main_record->save();
         $this->close_store('Game');
     }
@@ -98,6 +105,8 @@ class Games extends Component
     {
         $this->main_record  = $record;
         $this->record_id    = $record->id;
+        $this->request_score= $record->request_score;
+
         $this->openModal();
     }
 

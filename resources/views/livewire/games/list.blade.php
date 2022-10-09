@@ -8,6 +8,13 @@
     </td>
     <td class="text-left">{{$record->LocalTeam->name}}</td>
     <td class="text-left">{{$record->VisitTeam->name}}</td>
+    <td class="text-center">
+        @if($record->request_score)
+            <label>  {{__('Yes')}}</label>
+        @else
+            <label class="text-danger">{{__('No')}}</label>
+        @endif
+    </td>
     @include('common.crud_actions')
 </tr>
 
