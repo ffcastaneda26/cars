@@ -6,17 +6,24 @@
             <thead>
                 <tr class="bg-dark text-white text-center">
                     <th>@lang("Date")</th>
-                    <th>@lang("Local Team")</th>
                     <th>@lang("Local")</th>
-                    <th>@lang("Tie")</th>
+                    <th>@lang("L")</th>
+                    @if(App::isLocale('en'))
+                        <th>@lang("T")</th>
+                    @else
+                        <th>@lang("E")</th>
+
+                    @endif
+
+                    <th>@lang("V")</th>
                     <th>@lang("Visit")</th>
-                    <th>@lang("Visit Team")</th>
 
                 </tr>
             </thead>
 
             {{-- Formulario --}}
             <form wire:submit.prevent="store">
+
                 @foreach ($games as $game )
                     <tr>
                         <td>

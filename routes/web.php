@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Livewire\Picks;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +36,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
     });
 });
 
+Route::get('picks/{competidor?}',Picks::class)->name('picks');

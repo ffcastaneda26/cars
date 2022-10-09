@@ -23,6 +23,7 @@ class CreateGamesTable extends Migration
             $table->foreignId('visit_team_id')->constrained('teams')->comment('Visita');
             $table->tinyInteger('visit_score')->nullable()->default(0)->comment('Goles Local');
             $table->boolean('request_score')->nullable()->default(0)->comment('Pedir marcador en partidos');
+            $table->tinyInteger('result')->nullable()->default(null)->comment('Resultado');
             $table->tinyInteger('points_winner')->nullable()->default(1)->comment('Puntos Ganador');
             $table->tinyInteger('extra_points_winner')->nullable()->default(0)->comment('Puntos Extra al ganador');
         });

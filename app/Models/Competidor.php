@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Competidor extends Model
 {
@@ -41,6 +42,10 @@ class Competidor extends Model
       +-----------------+
      */
 
+     public function Picks():HasMany
+     {
+        return $this->hasMany(Pick::class);
+     }
 
 
     public function zipcodex():BelongsTo
