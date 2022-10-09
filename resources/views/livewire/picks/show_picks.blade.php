@@ -7,12 +7,12 @@
                 <thead>
                     <tr class="bg-dark text-white text-center">
                         <th>@lang("Date")</th>
-                        <th>@lang("Local")</th>
+                        <th colspan="2">@lang("Local")</th>
                         <th>@lang("L")</th>
                         <th>@lang("T")</th>
                         <th>@lang("V")</th>
-                        <th>@lang("Result")</th>
-                        <th>@lang("Visit")</th>
+                        <th>@lang("Gess?")</th>
+                        <th colspan="2">@lang("Visit")</th>
                     </tr>
                 </thead>
             </div>
@@ -23,9 +23,9 @@
                     <tr>
                         <td>
                             @if(App::isLocale('en'))
-                                {{ date('M d Y', strtotime($record->date)) }}
+                                {{ date('M d Y', strtotime($record->game->date)) }}
                             @else
-                                {{ date('d M Y', strtotime($record->date))    }}
+                                {{ date('d M Y', strtotime($record->game->date))    }}
                             @endif
                         </td>
                         <td class="text-left">
@@ -33,6 +33,9 @@
                             {{-- <img class="avatar-sm" src="{{url('storage/'.$record->LocalTeam->logotipo)}}" alt="{{ $record->LocalTeam->short}}"> --}}
                             
                             <span class="text-left">{{$record->Game->LocalTeam->name}}</span>
+                        </td>
+                        <td>
+                            {{ $record->game->local_score}}
                         </td>
                         @if($record->Game->LocalTeam->request_score|| $record->Game->VisitTeam->request_score || $record->Game->request_score)
                             <td align="center"><label>{{$record->local_score}}</label></td>
@@ -74,7 +77,9 @@
                                 <img width="24px" height="24px" src="{{asset('/images/failed.jfif')}}" alt="">
                             @endif
                         </td>  
-
+                        <td>
+                            {{ $record->game->visit_score}}
+                        </td>
                         <td class="text-left">
                             <img width="32px" height="32px" src="{{asset('/images/'. $record->Game->VisitTeam->name . '.jfif')}}" alt="">
                             <span class="text-left">
