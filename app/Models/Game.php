@@ -59,10 +59,6 @@ class Game extends Model
         return true;
     }
 
-    public function isActive(){
-        return $this->active;
-    }
-
 
     /*+-------------------+
       | Búsquedas         |
