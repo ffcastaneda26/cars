@@ -6,17 +6,19 @@
             <!-- Botón contraer barra lateral -->
             @include('layouts.home.button_show_hide_lateral_menu')
 
-           @yield('main_title')
         </div>
+        <div class="d-flex">
+            @yield('main_title')
 
-            <div class="d-flex">
-                <!-- Cambio de idioma -->
-                @include('layouts.home.change_language')
+        </div>
+        <div class="d-flex">
+            <!-- Cambio de idioma -->
+            @include('layouts.home.change_language')
 
-                {{--  Profile / Logout  --}}
-                @include('layouts.home.profile_logout')
+            {{--  Profile / Logout  --}}
+            @include('layouts.home.profile_logout')
 
-            </div>
+        </div>
 
     </div>
 </header>

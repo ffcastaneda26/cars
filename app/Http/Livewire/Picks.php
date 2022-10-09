@@ -9,15 +9,20 @@ use Livewire\Component;
 
 class Picks extends Component
 {
-    public $games;
-    public $winners = [];
-    public $local_scores = [];
-    public $visit_scores = [];
+    public $games       = null;
+    public $winners     = [];
+    public $local_scores= [];
+    public $visit_scores= [];
     public $picks_saved = false;
+    public $competidor  = null;
 
     
-    public function mount()
+    public function mount(Competidor $competidor=null)
     {
+        if($competidor){
+            $this->competidor = $competidor;
+        }
+        
         $this->games = Game::orderby('date')->get();
     }
     public function render()

@@ -9,5 +9,8 @@ Route::get('/', function () {
     return 'Bienvenido a Pruebas';
 });
 
-Route::get('pronosticos',Picks::class)->name('pronosticos');
+Route::get('pronosticos/{competidor?}',Picks::class)->name('pronosticos');
+
+          // Editar Tarea
+
 
