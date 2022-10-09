@@ -23,8 +23,6 @@ class CreateCompetidorsTable extends Migration
             $table->unsignedInteger('zipcode')->nullable()->comment('Zona postal');
             $table->tinyInteger('age')->nullable()->default(null)->comment('edad en años');
             $table->date('birthday')->nullable()->default(null)->comment('Fecha nacimiento');
-            $table->boolean('agree_be_rules')->comment('¿Acepta reglas?');
-            $table->boolean('agree_be_legal_age')->comment('¿Acepta ser mayor de edad?');
             $table->timestamps();
             // Llave foránea
             $table->foreign('zipcode')->references('zipcode')->on('zipcodes');

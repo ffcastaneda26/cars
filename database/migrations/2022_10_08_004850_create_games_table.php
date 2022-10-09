@@ -17,9 +17,7 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Round::class)->default(1)->comment('Round ');
-            $table->date('date')->nullable()->comment('Fecha');
-            $table->tinyInteger('hour')->nullable()->comment('Hora');
-            $table->tinyInteger('minute')->nullable()->comment('Minuto');
+            $table->timestamp('date')->nullable()->comment('Fecha');
             $table->foreignId('local_team_id')->constrained('teams')->comment('Local');
             $table->tinyInteger('local_score')->nullable()->default(0)->comment('Goles Local');
             $table->foreignId('visit_team_id')->constrained('teams')->comment('Visita');

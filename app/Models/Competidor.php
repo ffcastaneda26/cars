@@ -20,8 +20,6 @@ class Competidor extends Model
         'zipcode',
         'age',
         'birthday',
-        'agree_be_rules',
-        'agree_be_legal_age',
     ];
 
     protected $casts = [

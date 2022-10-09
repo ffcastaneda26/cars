@@ -16,6 +16,7 @@ class Team extends Model
         'alias',
         'short',
         'logotipo',
+        'request_score',
         'active',
     ];
 

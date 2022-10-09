@@ -18,15 +18,13 @@ class Game extends Model
         'visit_team_id',
         'visit_score',
         'date',
-        'hour',
-        'minute',
         'points_winner',
         'extra_points_winner'
     ];
 
-    protected $casts = [
-        'Date' => 'datetime:Y-m-d'
-    ];
+    // protected $casts = [
+    //     'Date' => 'datetime:Y-m-d'
+    // ];
 
     /*+-----------------+
       | Relaciones      |
