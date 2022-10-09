@@ -35,7 +35,7 @@
                         
                         <span class="text-left">{{$game->LocalTeam->name}}</span>
                     </td>
-                    @if($game->LocalTeam->request_score || $game->VisitTeam->request_score)
+                    @if($game->LocalTeam->request_score || $game->VisitTeam->request_score || $game->request_score)
                         <td align="center">
                             <input type="number" 
                                     wire:model="local_scores.{{ $game->id }}"
