@@ -12,6 +12,13 @@
         background-color:#FFFFFF;
     }
 
+    .equipo_ganador{
+        background-color: green;
+    }
+
+    .equipo_perdedor{
+        background-color: red;
+    }
 </style>
 <body class="font-sans antialiased" data-sidebar="dark">
     <!-- Loader -->

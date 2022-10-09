@@ -47,6 +47,7 @@ class Competidor extends Model
         return $this->hasMany(Pick::class);
      }
 
+     
 
     public function zipcodex():BelongsTo
     {

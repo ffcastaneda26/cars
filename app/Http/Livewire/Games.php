@@ -71,7 +71,7 @@ class Games extends Component
                                                             : __('Create') . ' ' . __('Game');
 
         return view('livewire.index', [
-            'records' => Game::paginate($this->pagination),
+            'records' => Game::orderby('date')->paginate($this->pagination),
         ]);
     }
 

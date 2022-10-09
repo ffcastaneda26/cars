@@ -7,7 +7,14 @@
         @endif
     </td>
     <td class="text-left">{{$record->LocalTeam->name}}</td>
+    
+    <td>
+        <img width="32px" height="32px" src="{{asset('/images/'. $record->LocalTeam->name . '.jfif')}}" alt=""></td>
+        <td><img width="32px" height="32px" src="{{asset('/images/'. $record->VisitTeam->name . '.jfif')}}" alt=""></td>
+
     <td class="text-left">{{$record->VisitTeam->name}}</td>
+   
+
     <td class="text-center">
         @if($record->request_score)
             <label>  {{__('Yes')}}</label>
