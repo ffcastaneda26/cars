@@ -35,6 +35,7 @@ class CodesCompany extends Component
     {
         $this->authorize('hasaccess', 'codes.index');
         $this->manage_title = __('Manage') . ' ' . __('Create Codes');
+        $this->view_search  = null;
         $this->view_form    = 'livewire.companies.codes.form';
         $this->view_table   = 'livewire.companies.codes.table';
         $this->view_list    = 'livewire.companies.codes.list';
@@ -51,6 +52,8 @@ class CodesCompany extends Component
     {
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Codes Company')
         : __('Create') . ' ' . __('Codes Company');
+
+
         return view('livewire.index', [
             'records' => ProcessCodeCompany::orderby('company_id')->paginate($this->pagination),
         ]);
