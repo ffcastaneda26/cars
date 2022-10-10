@@ -1,7 +1,7 @@
 <div>
     @section('main_title')
         <h2>{{$competidor->full_name}}</h2>
-       
+
     @endsection
         <table class="table table-hover mb-0">
             <div style="position: fixed;">
@@ -18,9 +18,9 @@
                 </thead>
             </div>
 
-           
+
                 @foreach ($records as $record )
-                    {{-- @dd('Pronosticó: ' . $record->winner . ' Resultado=' . $record->game->result)  --}}
+
                         <tr>
                             <td>
                                 @if(App::isLocale('en'))
@@ -35,63 +35,61 @@
                                 @if($record->Game->local_score > $record->Game->visit_score)
                                     <span class="text-left" style="background-color: greenyellow">
                             @elseif ($record->Game->local_score < $record->Game->visit_score)
-                                    <span class="text-left" style="background-color: rgb(251, 103, 11)">
+                                <span class="text-left" style="background-color: rgb(255, 0, 0)">
                             @else
-                                    <span class="text-left">
+                                <span class="text-left">
                             @endif
-
-
                                 <span class="text-left">{{$record->Game->LocalTeam->name}}</span>
-
-                                {{-- <span :class=" 'text-left' 
-                                            { 'equipo_ganador' : $record->game->local_score > $record->game->visit_score, 
-                                            'equipo_perdedor': $record->game->local_score < $record->game->visit_score, 
-                                    }">{{$record->Game->LocalTeam->name}}
-                                </span> --}}
                             </td>
+
                             <td>
                                 {{ $record->game->local_score}}
                             </td>
+
+                            {{-- Tipo de control: Botón de radio o etiqueta --}}
                             @if($record->Game->LocalTeam->request_score|| $record->Game->VisitTeam->request_score || $record->Game->request_score)
                                 <td align="center"><label>{{$record->local_score}}</label></td>
                                 <td></td>
                                 <td align="center"><label>{{$record->visit_score}}</label></td>
                             @else
                                 <td  class="text-center">
-                                    <input type="radio" 
-                                            disabled 
-                                            class="form-check-input" 
+                                    <input type="radio"
+                                            disabled
+                                            class="form-check-input"
                                             @if($record->winner == 1) checked @endif
-                                    
+
                                         >
                                 </td>
                                 <td  class="text-center">
-                                    <input type="radio" 
-                                            disabled 
-                                            class="form-check-input" 
+                                    <input type="radio"
+                                            disabled
+                                            class="form-check-input"
                                             @if($record->winner == 0) checked @endif
                                         >
                                 </td>
-                            
+
                                 <td  class="text-center">
-                                    <input type="radio" 
-                                            disabled 
-                                            class="form-check-input" 
+                                    <input type="radio"
+                                            disabled
+                                            class="form-check-input"
                                             @if($record->winner == 2) checked @endif
                                         >
                                 </td>
-                            
-    
+
+
                             @endif
 
                             {{-- ¿Acertó o falló? --}}
                             <td class="text-center">
-                                @if($record->winner == $record->Game->result)
-                                    <img width="24px" height="24px" src="{{asset('/images/success.jfif')}}" alt="">
-                                @else
-                                    <img width="24px" height="24px" src="{{asset('/images/failed.jfif')}}" alt="">
+                                @if($record->Game->local_score || $record->Game->visit_score)
+                                    @if($record->winner == $record->Game->result)
+                                        <img width="24px" height="24px" src="{{asset('/images/success.jfif')}}" alt="">
+                                    @else
+                                        <img width="24px" height="24px" src="{{asset('/images/failed.jfif')}}" alt="">
+                                    @endif
                                 @endif
-                            </td>  
+                            </td>
+
                             <td>
                                 {{ $record->game->visit_score}}
                             </td>
@@ -106,9 +104,9 @@
                                 @endif
                                     {{$record->Game->VisitTeam->name}}
                                 </span>
-                            </td>   
+                            </td>
 
-    
+
                         </tr>
                 @endforeach
         </table>

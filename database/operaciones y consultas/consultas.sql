@@ -24,6 +24,17 @@ WHERE tl.id = ga.local_team_id
   AND co.id = pic.competidor_id
 ORDER BY ga.date
 
+-- Actualiza resultados al azar
+UPDATE games SET local_score = ROUND((RAND() * (4))+0) WHERE id < 4;
+UPDATE games SET visit_score = ROUND((RAND() * (4))+0) WHERE id < 4;
+UPDATE games SET result = 0 WHERE local_score = visit_score;
+UPDATE games SET result = 1 WHERE local_score > visit_score;
+UPDATE games SET result = 2 WHERE local_score > visit_score;
+
+
+-- Pone nulos campos de juegos
+UPDATE games
+SET local_score=NULL,visit_score=NULL,request_score=NULL,result=NULL,points_winner=NULL,extra_points_winner=null
 
 
 
@@ -33,3 +44,4 @@ FROM teams
 ALTER TABLE `options` ADD `dependent_question_id` BIGINT(20) UNSIGNED NULL COMMENT 'Pregunta dependiente' AFTER `english`;
  -- Obener un aleatorio
  SELECT ROUND((RAND() * (20))+0)  as resultado
+

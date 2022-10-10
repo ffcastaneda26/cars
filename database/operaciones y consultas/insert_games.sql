@@ -1,6 +1,6 @@
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-21 04:00:00',30,2);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-20 10:00:00',28,7);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-21 07:00:00',13,19);
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-21 10:00:00',28,7);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-21 10:00:00',30,2);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-21 13:00:00',16,21);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-22 04:00:00',1,6);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-22 07:00:00',27,14);
@@ -18,7 +18,7 @@ INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-25 04:00:00
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-25 07:00:00',28,30);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-25 10:00:00',2,7);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-25 13:00:00',13,16);
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-26 00:00:00',14,26);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-26 04:00:00',14,26);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-26 07:00:00',25,6);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-26 10:00:00',12,27);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-11-26 13:00:00',1,24);
@@ -42,8 +42,8 @@ INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 09:00:00
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 09:00:00',23,22);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 13:00:00',10,17);
 INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 13:00:00',29,15);
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-02 09:00:00',31,11);
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-02 09:00:00',18,3);
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-02 13:00:00',32,20);
-INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-02 13:00:00',5,9);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 09:00:00',31,11);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 09:00:00',18,3);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 13:00:00',32,20);
+INSERT INTO games(date,local_team_id,visit_team_id) VALUES ('2022-12-01 13:00:00',5,9);
 COMMIT;
