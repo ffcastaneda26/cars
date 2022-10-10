@@ -6,7 +6,8 @@
 
     <td class="text-center">
         @if($record->logotipo)
-            <img class="avatar-sm" src="{{url('storage/'.$record->logotipo)}}" alt="{{__('Image')}}">
+            {{-- <img  src="{{url('storage/'.$record->logotipo)}}" alt="{{__('Image')}}"> --}}
+            <img class="avatar-sm" src="{{asset('/images/'. $record->name . '.jfif')}}" alt=""></td>
         @endif
     </td>
     <td class="text-center">
