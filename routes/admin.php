@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Livewire\Companies;
-use App\Http\Livewire\competidors;
+use App\Http\Livewire\Competidors;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Statuses;
@@ -41,7 +41,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('teams',Teams::class)->name('teams');                            // Equipos
     Route::get('rounds',Rounds::class)->name('rounds');                         // Rondas (Jornadas)
     Route::get('games',Games::class)->name('games');                            // Juegos (Partidos)
-    Route::get('competidors',competidors::class)->name('competidors');          // Competidores (Participantes)
-
-
+    Route::get('competidors',Competidors::class)->name('competidors');          // Competidores (Participantes)
 });

@@ -11,7 +11,7 @@ use App\Traits\ZipCodeTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\App;
 
-class competidors extends Component
+class Competidors extends Component
 {
     use AuthorizesRequests;
     use WithPagination;

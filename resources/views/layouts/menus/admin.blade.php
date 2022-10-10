@@ -62,5 +62,4 @@
             <span>{{__('Competidors')}}</span>
         </a>
     </li>
-
 </ul>

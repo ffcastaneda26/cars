@@ -23,7 +23,7 @@
                                     </li>
                                     @auth
                                         @if(Auth::user()->isAdmin())
-                                            <li>@include('layouts.menus.configuration')</li>
+                                            <li>@include('layouts.menus.admin')</li>
                                         @else
                                             <li>@include('layouts.menus.operation')</li>
                                         @endif
