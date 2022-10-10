@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Picks;
+use App\Models\Competidor;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,6 +12,7 @@ Route::get('/', function () {
 
 Route::get('pronosticos/{competidor?}',Picks::class)->name('pronosticos');
 
-          // Editar Tarea
-
+Route::get('aciertos/{competidor}',function(Competidor $competidor){
+    dd($competidor->Hits());
+});
 

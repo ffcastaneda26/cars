@@ -20,24 +20,24 @@ class Picks extends Component
     public $competidor  = null;
     public $view_show   = null;
     public $route       = null;
-    
+
     public function mount(Request $request,Competidor $competidor)
     {
-        $this->route = $request->fullUrl();   
-
+        $this->route = $request->fullUrl();
         $this->competidor = $competidor;
         if($this->competidor->picks->count()){
-            $this->view_show = 'livewire.picks.show_picks';    
+            $this->view_show = 'livewire.picks.show_picks';
         }else{
-            $this->view_show = 'livewire.picks.create_picks';    
+            $this->view_show = 'livewire.picks.create_picks';
         }
         $this->games = Game::orderby('date')->get();
-    } 
+    }
 
 
-    
+
     public function render()
     {
+        
         if($this->competidor->picks->count()){
             return view('livewire.picks.index',['records' => $this->competidor->picks()->orderby('game_id')->get() ]);
         }
@@ -74,9 +74,9 @@ class Picks extends Component
             }
 
             $this->create_pick($this->competidor->id,$game,$pronostico,$local_score,$this->visit_scores[$game]);
-          
+
         }
-       
+
         Redirect::away('/picks/' . $this->competidor->id);
       }
 

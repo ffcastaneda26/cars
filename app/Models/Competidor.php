@@ -47,7 +47,15 @@ class Competidor extends Model
         return $this->hasMany(Pick::class);
      }
 
-     
+     public function Hits()
+     {
+        return $this->Picks()->whereHas('Game',function($query){
+            $query->whereNotNull('local_score')
+                  ->whereNotNull('visit_score')
+                  ->where('result',$this->winner);
+        })->count();
+     }
+
 
     public function zipcodex():BelongsTo
     {

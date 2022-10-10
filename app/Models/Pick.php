@@ -23,7 +23,7 @@ class Pick extends Model
         'dif_total_score',
         'dif_local_score',
         'dif_visit_score',
-        
+
     ];
 
     protected $casts = [
@@ -39,15 +39,15 @@ class Pick extends Model
     {
         return $this->belongsTo(Competidor::class);
     }
-    
+
     public function Game(): BelongsTo
     {
         return $this->belongsTo(Game::class);
     }
-    
 
 
-     
+
+
     /*+-----------------+
       | Funciones Apoyo |
       +-----------------+

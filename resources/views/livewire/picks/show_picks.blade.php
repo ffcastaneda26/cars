@@ -1,8 +1,6 @@
 <div>
-    @section('main_title')
-        <h2>{{$competidor->full_name}}</h2>
+    <h3 class="text-center">{{ __('Total Hits')}} = {{$competidor->Hits()}}</h3>
 
-    @endsection
         <table class="table table-hover mb-0">
             <div style="position: fixed;">
                 <thead>
