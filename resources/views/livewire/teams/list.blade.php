@@ -2,12 +2,9 @@
     <td>{{ $record->name }}</td>
     <td>{{ $record->alias }}</td>
     <td>{{ $record->short }}</td>
-
-
     <td class="text-center">
         @if($record->logotipo)
-            {{-- <img  src="{{url('storage/'.$record->logotipo)}}" alt="{{__('Image')}}"> --}}
-            <img class="avatar-sm" src="{{asset('/images/'. $record->name . '.jfif')}}" alt=""></td>
+            <img  class="avatar-sm" src="{{url('storage/'.$record->logotipo)}}" alt="{{__('Image')}}">
         @endif
     </td>
     <td class="text-center">
