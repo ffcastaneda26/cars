@@ -231,9 +231,11 @@ return [
         'agree_be_legal_age' => 'Aceptar Las Reglas',
         'agree_be_rules' => 'Aceptar mayoría de edad',
         'first_name' => 'Nombre',
-        'last_name'  => 'Apelido'
+        'last_name'  => 'Apelido',
+        'company_id'    => 'Empresa',
+        'total_codes'    => "Total de Códigos"
 
-      
+
 	]
 
 ];

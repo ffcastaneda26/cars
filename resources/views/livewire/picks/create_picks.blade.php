@@ -44,7 +44,7 @@
                                 <input type="number"
                                         wire:model="local_scores.{{ $game->id }}"
                                         min="0"
-                                        max="9"
+                                        max="99"
                                         required
                                 >
                             </td>
@@ -53,7 +53,7 @@
                                 <input type="number"
                                         wire:model="visit_scores.{{ $game->id }}"
                                         min="0"
-                                        max="9"
+                                        max="99"
                                         required
                                 >
 

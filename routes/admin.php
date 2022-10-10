@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Livewire\CodesCompany;
 use App\Http\Livewire\Companies;
 use App\Http\Livewire\Competidors;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Statuses;
 use App\Http\Livewire\Permissions;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Livewire\Games;
 use App\Http\Livewire\Rounds;
 use App\Http\Livewire\Teams;
+
 
 Route::get('storage-link',function(){
 
@@ -38,6 +39,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('role',Roles::class)->name('role');                              // Roles
     Route::get('statuses', Statuses::class)->name('statuses');                  // Estados de registros
     Route::get('companies',Companies::class)->name('companies');                // Empresas
+    Route::get('codes-company',CodesCompany::class)->name('codes-company');     // Códigos x Empresa
     Route::get('teams',Teams::class)->name('teams');                            // Equipos
     Route::get('rounds',Rounds::class)->name('rounds');                         // Rondas (Jornadas)
     Route::get('games',Games::class)->name('games');                            // Juegos (Partidos)

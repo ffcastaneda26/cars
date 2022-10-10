@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
 {
@@ -27,7 +28,10 @@ class Company extends Model
       +-----------------+
      */
 
-
+    public function ProcessesCode():HasMany
+    {
+        return $this->hasMany(ProcessCodeCompany::class);
+    }
 
     /*+-----------------+
       | Funciones Apoyo |
@@ -35,6 +39,7 @@ class Company extends Model
      */
 
     public function can_be_delete(){
+        if($this->ProcessesCode()->count()) return false;
         return true;
     }
 

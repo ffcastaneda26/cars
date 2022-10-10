@@ -27,12 +27,25 @@
         </a>
     </li>
 
+    {{-- Empresas --}}
+
     <li>
         <a href="{{route('companies')}}" class="waves-effect">
-            <i class="fas fa-building"></i>
+            <i class="mdi-office-building-outline"></i>
             <span>{{__('Companies')}}</span>
         </a>
     </li>
+
+
+    {{-- Códigos de Empresa --}}
+
+    <li>
+        <a href="{{route('codes-company')}}" class="waves-effect">
+            <i class="mdi mdi-barcode"></i>
+            <span>{{__('Codes Company')}}</span>
+        </a>
+    </li>
+
 
     <li>
         <a href="{{route('teams')}}" class="waves-effect">

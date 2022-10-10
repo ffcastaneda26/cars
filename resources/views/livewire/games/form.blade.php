@@ -19,7 +19,7 @@
         {{-- Round --}}
             <div class="flex-flex-column mb-2">
                 <div class="col-lg-4">
-                    <select  wire:model="main_record.round_id" 
+                    <select  wire:model="main_record.round_id"
                             class="form-select mb-2"
 
                         >
@@ -31,7 +31,7 @@
                                 value="{{ $round_select->id }}">{{ $round_select->id }}
                             </option>
                         @endforeach
-        
+
                     </select>
                 </div>
 
@@ -40,48 +40,18 @@
             {{-- Fecha --}}
             <div class="flex-flex-column mb-2">
                 <div class="w-auto">
-                    <input type="datetime-local" 
+                    <input type="datetime-local"
                             required min=<?php $hoy = date('Y-m-d'); echo $hoy; ?>
-                            wire:model="main_record.date" 
+                            wire:model="main_record.date"
                             required placeholder="{{ __('Date') }}"
                             class="form-control mb-2"
                     >
                 </div>
             </div>
-                
-            {{-- Hora --}}
-            {{-- <div class="flex-flex-column mb-2">
-                <div class="col-md-3 flex flex-col alig-items-center">
-                    <div class="col-md-3 flex flex-col alig-items-center">
-                        <input type="number" 
-                                wire:model="hour" 
-                                min="0" 
-                                max="23" 
-                                required
-                                class="form-control-sm mb-2"
-                        >
-                    </div>
-                </div>
-            </div> --}}
-
-            {{-- Minutos --}}
-            {{-- <div class="flex-flex-column mb-2">
-                <div class="col-md-3 flex flex-col alig-items-center">
-                    <div class="col-md-3 flex flex-col alig-items-center">
-                        <input type="number" 
-                                wire:model="minute" 
-                                min="0" 
-                                max="59" 
-                                required
-                                class="form-control-sm mb-2"
-                        >
-                    </div>
-                </div>
-            </div> --}}
 
             {{-- Local --}}
             <div class="flex-flex-column mb-2">
-                <select wire:model="main_record.local_team_id"  
+                <select wire:model="main_record.local_team_id"
                         class="form-select form-select-md  rounded w-auto mb-2">
                     <option value="" selected>{{__("Local")}}</option>
                     @foreach($teams as $team_local)
@@ -93,7 +63,7 @@
             {{-- Visita --}}
             <div class="flex-flex-column mb-2">
 
-                <select wire:model="main_record.visit_team_id"  
+                <select wire:model="main_record.visit_team_id"
                         class="form-select form-select-md  rounded w-auto mb-2">
                     <option value="" selected>{{__("Visit")}}</option>
                     @foreach($teams as $team_visit)
