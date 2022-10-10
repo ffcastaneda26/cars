@@ -17,6 +17,7 @@ class Company extends Model
         'phone',
         'zipcode',
         'logotipo',
+        'code',
         'active',
     ];
 
@@ -49,7 +50,6 @@ class Company extends Model
 
     public function scopeCompany($query,$valor)
     {
-
         if ( trim($valor) != "") {
             $query->where('name','LIKE',"%$valor%")
                   ->orwhere('phone','LIKE',"%$valor%")
@@ -57,5 +57,10 @@ class Company extends Model
          }
     }
 
+    public function scopeCode($query,$valor)
+    {
+        $valor = trim($valor);
+        $query->where('code',$valor);
+    }
 
 }

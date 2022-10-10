@@ -12,6 +12,7 @@
             @if($main_record->zipcode)
                 <label class="input-group-text mb-2">{{__("City")}}</label>
             @endif
+            <label class="input-group-text mt-4">{{ __('Code') }}</label>
             <label class="input-group-text mt-4">{{ __('Active?') }}</label>
         </div>
 
@@ -61,13 +62,15 @@
 
             {{-- Zipcode --}}
             <div class="flex-flex-column">
-                <input type="text"
-                        wire:model="main_record.zipcode"
-                        wire:change="read_zipcode"
-                        maxlength="5"
-                        onkeypress="return only_numbers(event, this)"
-                        class="form-control mb-2"
-                >
+                <div class="col-lg-4">
+                    <input type="text"
+                            wire:model="main_record.zipcode"
+                            wire:change="read_zipcode"
+                            maxlength="5"
+                            onkeypress="return only_numbers(event, this)"
+                            class="form-control mb-2"
+                    >
+                </div>
             </div>
 
 
@@ -82,6 +85,17 @@
                 </div>
             @endif
 
+            {{-- Código --}}
+            <div class="flex-flex-column">
+                <div class="col-lg-3">
+                    <input type="text"
+                            wire:model="main_record.code"
+                            maxlength="3"
+                            minlength="3"
+                            class="form-control mb-4"
+                    >
+                </div>
+            </div>
             {{-- ¿Activo? --}}
 
             <div class="flex-flex-column">
@@ -94,28 +108,27 @@
                 </div>
             </div>
 
-
-
         </div>
     </div>
 
-            {{-- Logotipo  --}}
-            <div class="row align-items-start">
-                <div class="col-lg-10  col-md-8 mb-4">
-                    <label class="fs-5">{{ __('Logo') }}</label>
-                    <input type="file" wire:model="file_path" class="form-control">
-                </div>
-                <div class="col-lg-8">
-                    @if (isset($file_path))
-                        Preview:
-                        <img src="{{ $file_path->temporaryUrl() }}" class="avatar-md">
-                    @endif
-                    {{-- @if ($main_record->logotipo()->count())
-                        <img src="{{ asset($main_record->logotipo) }}"
-                            class="mt-1 avatar-lg"
-                            alt="Logo"
-                        >
-                    @endif --}}
-                </div>
-        </div>
+    {{-- Logotipo  --}}
+    <div class="row align-items-start">
+            <div class="col-lg-10  col-md-8 mb-4">
+                <label class="fs-4">{{ __('Logo') }}</label>
+                <input type="file" wire:model="file_path" class="form-control">
+            </div>
+            <div class="col-lg-8">
+                @if (isset($file_path))
+                    Preview:
+                    <img src="{{ $file_path->temporaryUrl() }}" class="avatar-md">
+                @endif
+                {{-- @if ($main_record->logotipo()->count())
+                    <img src="{{ asset($main_record->logotipo) }}"
+                        class="mt-1 avatar-lg"
+                        alt="Logo"
+                    >
+                @endif --}}
+            </div>
+    </div>
+
 </div>

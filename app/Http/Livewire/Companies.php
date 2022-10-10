@@ -32,7 +32,9 @@ class Companies extends Component
         'main_record.address'   => 'required',
         'main_record.zipcode'   => 'required|digits:5|exists:zipcodes,zipcode',
         'main_record.active'    => 'nullable',
-        'main_record.logotipo'  => 'nullable'
+        'main_record.logotipo'  => 'nullable',
+        'main_record.code'      => 'required|unique:companies.code'
+
     ];
 
     public $active;
@@ -80,9 +82,9 @@ class Companies extends Component
     public function store()
     {
 
-        if($this->main_record->zipcode){
-            $this->read_town_state($this->main_record->zipcode);
-        }
+        $this->rules['main_record.code'] = $this->main_record->id ? "required|size:3|unique:companies,code,{$this->main_record->id}"
+                                                                  : 'required|size:3|unique:companies,code';
+
         $this->validate();
         $this->main_record->active = $this->active ? 1 : 0;
 
@@ -90,8 +92,8 @@ class Companies extends Component
             $this->validate([
                 'file_path'    => 'image|max:2048',
             ]);
-            $logotipo = $this->store_main_record_file($this->file_path,'companies',true);
 
+            $logotipo = $this->store_main_record_file($this->file_path,'companies',true);
             $this->main_record->logotipo = $logotipo;
         }
 
