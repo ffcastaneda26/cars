@@ -22,9 +22,9 @@
                         <tr>
                             <td>
                                 @if(App::isLocale('en'))
-                                    {{ date('M d Y', strtotime($record->game->date)) }}
+                                    {{ date('M d', strtotime($record->game->date)) }}
                                 @else
-                                    {{ date('d M Y', strtotime($record->game->date))    }}
+                                    {{ date('d M', strtotime($record->game->date))    }}
                                 @endif
                             </td>
                             <td class="text-left">

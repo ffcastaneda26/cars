@@ -28,20 +28,20 @@
                     <tr>
                         <td>
                             @if(App::isLocale('en'))
-                                {{ date('M d Y', strtotime($game->date)) .' '. date('g:i a', strtotime($game->date))}}
+                                {{ date('M d', strtotime($game->date)) }}
                             @else
-                                {{ date('d M Y', strtotime($game->date)) .' '. date('g:i a', strtotime($game->date))}}
+                                {{ date('d M', strtotime($game->date)) }}
                             @endif
                         </td>
                         <td class="text-left">
                             <img width="32px" height="32px" src="{{asset('/images/'. $game->LocalTeam->name . '.jfif')}}" alt="">
                             {{-- <img class="avatar-sm" src="{{url('storage/'.$game->LocalTeam->logotipo)}}" alt="{{ $game->LocalTeam->short}}"> --}}
-                            
+
                             <span class="text-left">{{$game->LocalTeam->name}}</span>
                         </td>
                         @if($game->LocalTeam->request_score || $game->VisitTeam->request_score || $game->request_score)
                             <td align="center">
-                                <input type="number" 
+                                <input type="number"
                                         wire:model="local_scores.{{ $game->id }}"
                                         min="0"
                                         max="9"
@@ -50,7 +50,7 @@
                             </td>
                             <td></td>
                             <td align="center">
-                                <input type="number" 
+                                <input type="number"
                                         wire:model="visit_scores.{{ $game->id }}"
                                         min="0"
                                         max="9"
@@ -58,7 +58,7 @@
                                 >
 
                         @else
-                                        
+
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="1" name="winners-{{$game->id}}"></td>
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="0" name="winners-{{$game->id}}"></td>
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="2" name="winners-{{$game->id}}"></td>
@@ -68,13 +68,13 @@
                             <span class="text-left">
                                 {{$game->VisitTeam->name}}
                             </span>
-                        </td>   
+                        </td>
 
                     </tr>
                 @endforeach
 
                 @if(!$picks_saved)
-                    <div class="float-end">    
+                    <div class="float-end">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Save your Picks')}}
                         </button>
