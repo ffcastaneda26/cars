@@ -128,4 +128,15 @@ class CodesCompany extends Component
     public function fill_combos(){
         $this->companies = Company::orderby('name')->get();
     }
+
+    /*+---------------------+
+      | Exportar Códigos    |
+      +---------------------+
+    */
+
+    public function export_codes(ProcessCodeCompany $record)
+    {
+        dd($record->codes);
+    }
+
 }
