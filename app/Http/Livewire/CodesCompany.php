@@ -2,15 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ProcessCodeCompany;
+use App\Models\Code;
+use App\Models\Company;
 use Livewire\Component;
 use App\Traits\UserTrait;
 use Livewire\WithPagination;
-use App\Http\Livewire\Traits\CrudTrait;
-use App\Models\Code;
-use App\Models\Company;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+use App\Models\ProcessCodeCompany;
+use App\Exports\CodesCompanyExport;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\Traits\CrudTrait;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CodesCompany extends Component
 {
@@ -136,7 +139,8 @@ class CodesCompany extends Component
 
     public function export_codes(ProcessCodeCompany $record)
     {
-        dd($record->codes);
+        return Excel::download(New CodesCompanyExport($record),'codes_company.xlsx');
+
     }
 
 }
