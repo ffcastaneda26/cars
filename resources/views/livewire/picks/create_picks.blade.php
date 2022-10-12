@@ -34,9 +34,8 @@
                             @endif
                         </td>
                         <td class="text-left">
-                            <img width="32px" height="32px" src="{{asset('/images/'. $game->LocalTeam->name . '.jfif')}}" alt="">
-                            {{-- <img class="avatar-sm" src="{{url('storage/'.$game->LocalTeam->logotipo)}}" alt="{{ $game->LocalTeam->short}}"> --}}
-
+                            {{-- <img width="32px" height="32px" src="{{asset('/images/'. $game->LocalTeam->name . '.jfif')}}" alt=""> --}}
+                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->LocalTeam->logotipo)}}" alt="{{__('Image')}}">
                             <span class="text-left">{{$game->LocalTeam->name}}</span>
                         </td>
                         @if($game->LocalTeam->request_score || $game->VisitTeam->request_score || $game->request_score)
@@ -64,7 +63,8 @@
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="2" name="winners-{{$game->id}}"></td>
                         @endif
                             <td class="text-left">
-                            <img width="32px" height="32px" src="{{asset('/images/'. $game->VisitTeam->name . '.jfif')}}" alt="">
+                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->VisitTeam->logotipo)}}" alt="{{__('Image')}}">
+                            {{-- <img width="32px" height="32px" src="{{asset('/images/'. $game->VisitTeam->name . '.jfif')}}" alt=""> --}}
                             <span class="text-left">
                                 {{$game->VisitTeam->name}}
                             </span>

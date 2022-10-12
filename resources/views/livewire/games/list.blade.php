@@ -7,13 +7,18 @@
         @endif
     </td>
     <td class="text-left">{{$record->LocalTeam->name}}</td>
-    
+
     <td>
-        <img width="32px" height="32px" src="{{asset('/images/'. $record->LocalTeam->name . '.jfif')}}" alt=""></td>
-        <td><img width="32px" height="32px" src="{{asset('/images/'. $record->VisitTeam->name . '.jfif')}}" alt=""></td>
+        {{-- <img width="32px" height="32px" src="{{asset('/images/'. $record->LocalTeam->name . '.jfif')}}" alt=""></td> --}}
+        <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->LocalTeam->logotipo)}}" alt="{{__('Image')}}">
+
+        {{-- <td><img width="32px" height="32px" src="{{asset('/images/'. $record->VisitTeam->name . '.jfif')}}" alt=""></td> --}}
+        <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->VisitTeam->logotipo)}}" alt="{{__('Image')}}">
+
+
 
     <td class="text-left">{{$record->VisitTeam->name}}</td>
-   
+
 
     <td class="text-center">
         @if($record->request_score)
