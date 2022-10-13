@@ -43,8 +43,8 @@
                     @endauth
                 </div>
             @endif
-
-            <img src="{{asset('images/logo_qatar.jpg')}}" width="50%" alt="">
+            
+            <img src="{{asset('images/logo_qatar.png')}}" width="45%" alt="">
 
 
     </body>

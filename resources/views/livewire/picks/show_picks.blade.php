@@ -28,16 +28,17 @@
                                 @endif
                             </td>
                             <td class="text-left">
-                                <img width="32px" height="32px" src="{{asset('/images/'. $record->Game->LocalTeam->name . '.jfif')}}" alt="">
-                                {{-- <img class="avatar-sm" src="{{url('storage/'.$record->LocalTeam->logotipo)}}" alt="{{ $record->LocalTeam->short}}"> --}}
+                              
                                 @if($record->Game->local_score > $record->Game->visit_score)
                                     <span class="text-left" style="background-color: greenyellow">
-                            @elseif ($record->Game->local_score < $record->Game->visit_score)
-                                <span class="text-left" style="background-color: rgb(255, 0, 0)">
-                            @else
-                                <span class="text-left">
-                            @endif
+                                @elseif ($record->Game->local_score < $record->Game->visit_score)
+                                    <span class="text-left" style="background-color: rgb(255, 0, 0)">
+                                @else
+                                    <span class="text-left">
+                                @endif
                                 <span class="text-left">{{$record->Game->LocalTeam->name}}</span>
+                                <img  width="24px" height="24px" class="avatar-sm rounded-circle" src="{{url('storage/'.$game->LocalTeam->logotipo)}}" alt="{{__('Image')}}">
+
                             </td>
 
                             <td>
@@ -92,14 +93,15 @@
                                 {{ $record->game->visit_score}}
                             </td>
                             <td class="text-left">
-                                <img width="32px" height="32px" src="{{asset('/images/'. $record->Game->VisitTeam->name . '.jfif')}}" alt="">
-                                @if($record->Game->local_score < $record->Game->visit_score)
-                                        <span class="text-left" style="background-color: greenyellow">
-                                @elseif ($record->Game->local_score > $record->Game->visit_score)
-                                        <span class="text-left" style="background-color: rgb(255, 0, 0)">
-                                @else
-                                        <span class="text-left">
-                                @endif
+                                    <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->VisitTeam->logotipo)}}" alt="{{__('Image')}}">
+                             
+                                    @if($record->Game->local_score < $record->Game->visit_score)
+                                            <span class="text-left" style="background-color: greenyellow">
+                                    @elseif ($record->Game->local_score > $record->Game->visit_score)
+                                            <span class="text-left" style="background-color: rgb(255, 0, 0)">
+                                    @else
+                                            <span class="text-left">
+                                    @endif
                                     {{$record->Game->VisitTeam->name}}
                                 </span>
                             </td>

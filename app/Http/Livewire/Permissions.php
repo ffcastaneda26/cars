@@ -65,17 +65,18 @@ class Permissions extends Component
 
     public function store()
     {
-        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:100|unique:Permissions,name,{$this->main_record->id}"
-                                                                    : 'required|min:5|max:100|unique:Permissions,name';
-        $this->rules['main_record.slug'] = $this->main_record->id ? "required|min:5|max:100|unique:Permissions,slug,{$this->main_record->id}"
-                                                                    : 'required|min:5|max:100|unique:Permissions,slug';
+        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:100|unique:permissions,name,{$this->main_record->id}"
+                                                                    : 'required|min:5|max:100|unique:permissions,name';
+        $this->rules['main_record.slug'] = $this->main_record->id ? "required|min:5|max:100|unique:permissions,slug,{$this->main_record->id}"
+                                                                    : 'required|min:5|max:100|unique:permissions,slug';
 
-       $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5unique:Permissions,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:5|unique:Permissions,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|unique:Permissions,english,{$this->main_record->id}"
-                                                                     : 'required|min:5|unique:Permissions,english';
+       $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5unique:permissions,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:5|unique:permissions,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|unique:permissions,english,{$this->main_record->id}"
+                                                                     : 'required|min:5|unique:permissions,english';
 
         $this->validate();
+        $this->main_record->save();
         $this->close_store('Permission');
     }
 

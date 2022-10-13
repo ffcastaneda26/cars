@@ -6,7 +6,7 @@
             <thead>
                 <tr class="bg-dark text-white text-center">
                     <th>@lang("Date")</th>
-                    <th>@lang("Local")</th>
+                    <th colspan="2">@lang("Local")</th>
                     <th>@lang("L")</th>
                     @if(App::isLocale('en'))
                         <th>@lang("T")</th>
@@ -33,10 +33,14 @@
                                 {{ date('d M', strtotime($game->date)) }}
                             @endif
                         </td>
+                       
                         <td class="text-left">
-                            {{-- <img width="32px" height="32px" src="{{asset('/images/'. $game->LocalTeam->name . '.jfif')}}" alt=""> --}}
-                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->LocalTeam->logotipo)}}" alt="{{__('Image')}}">
-                            <span class="text-left">{{$game->LocalTeam->name}}</span>
+                            {{$game->LocalTeam->name}}
+                        </td>
+                        <td>
+                           
+                                <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->LocalTeam->logotipo)}}" alt="{{__('Image')}}">
+                           
                         </td>
                         @if($game->LocalTeam->request_score || $game->VisitTeam->request_score || $game->request_score)
                             <td align="center">
@@ -55,19 +59,14 @@
                                         max="99"
                                         required
                                 >
-
                         @else
-
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="1" name="winners-{{$game->id}}"></td>
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="0" name="winners-{{$game->id}}"></td>
                             <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="2" name="winners-{{$game->id}}"></td>
                         @endif
                             <td class="text-left">
-                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->VisitTeam->logotipo)}}" alt="{{__('Image')}}">
-                            {{-- <img width="32px" height="32px" src="{{asset('/images/'. $game->VisitTeam->name . '.jfif')}}" alt=""> --}}
-                            <span class="text-left">
-                                {{$game->VisitTeam->name}}
-                            </span>
+                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->VisitTeam->logotipo)}}" alt="{{__('Image')}}">
+                            <span class="text-left"> {{$game->VisitTeam->name}}</span>
                         </td>
 
                     </tr>
