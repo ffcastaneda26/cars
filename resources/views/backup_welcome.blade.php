@@ -43,13 +43,8 @@
                     @endauth
                 </div>
             @endif
-            <button>
-                <a href="{{route('register-competidors')}}" class="waves-effect">
-                    <img src="{{asset('images/logo_qatar.png')}}" width="45%" alt="">
-                    HAGA CLIC PARA INGRESAR 
-                </a>
-            </button>
-
+            
+            
 
     </body>
 

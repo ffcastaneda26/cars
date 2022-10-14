@@ -18,6 +18,8 @@ class CreateCodesTable extends Migration
             $table->id();
             $table->foreignIdFor(ProcessCodeCompany::class)->comment('Proceso Generación Código');
             $table->string('code',8)->unique()->comment('Código');
+            $table->foreignIdFor(Competidor::class)->nullable()->default(null)->comment('Competidor');
+            $table->timestamps();
         });
     }
 
