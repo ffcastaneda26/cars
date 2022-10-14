@@ -1,13 +1,17 @@
 <div>
-    <h1>{{__('Quiniela Mundialista')}}</h1>
-           <div class="container">
-            <div class="card">
-                <div class="card-body">
-                    <h2 CLASS="card-title">{{__('Type Your Code')}}</h2>
+Las variables siguientes son de tipo bool y dependiendo de la que esté verdadera es lo que hay que presentar
+$can_continue = Se pone TRUE cuando el código sea verdadero
+$read_competidor_data = Cuando esté encendida soliitar los datos del competidor en un formulario:
+(a) Nombre
+(b) Correo
+(c) Teléfono
+(*) Que acepta que es mayor de edad (No lo grabamos en base de datos)
 
-                </div>
-            </div>
-           </div>
+$read_picks =  Mostrar formulario para leer el pronóstico de todos los partidos (ver: livewire.picks.create_picks.blade.php)
+    
+Me interesa ahorita los formularios 
+
+<h1>{{__('Quiniela Mundialista')}}</h1>
 
            <div>
             <div class="account-pages">
