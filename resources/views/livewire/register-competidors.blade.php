@@ -129,14 +129,15 @@
                                         {{__("Cancel")}}
                                     </button>
                                 </span>
-
-                                <span class="mx-2">
-                                    <button type="button"
-                                            wire:click.prevent="store()"
-                                            class="btn btn-success">
-                                        {{__("Save") }}
-                                    </button>
-                                </span>
+                                @if ($agree_be_legal_age)
+                                    <span class="mx-2">
+                                        <button type="button"
+                                                wire:click.prevent="store()"
+                                                class="btn btn-success">
+                                            {{__("Save") }}
+                                        </button>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     @endif
