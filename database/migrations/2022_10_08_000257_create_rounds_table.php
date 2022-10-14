@@ -15,8 +15,8 @@ class CreateRoundsTable extends Migration
     {
         Schema::create('rounds', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('from')->comment('Fecha Inicio');
-            $table->timestamp('to')->comment('Fecha Final');
+            $table->timestamp('from')->nullable()->comment('Fecha Inicio');
+            $table->timestamp('to')->nullable()->comment('Fecha Final');
             $table->boolean('active')->nullable()->default(0)->comment('Es la joranada activa?');
         });
     }

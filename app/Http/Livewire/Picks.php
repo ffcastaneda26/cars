@@ -37,12 +37,10 @@ class Picks extends Component
 
     public function render()
     {
-        
         if($this->competidor->picks->count()){
             return view('livewire.picks.index',['records' => $this->competidor->picks()->orderby('game_id')->get() ]);
         }
-
-       return view('livewire.picks.index');
+        return view('livewire.picks.index');
     }
 
     /*+-------------------------+

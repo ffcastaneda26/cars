@@ -40,13 +40,10 @@ class Pick extends Model
         return $this->belongsTo(Competidor::class);
     }
 
-    public function Game(): BelongsTo
+    public function game(): BelongsTo
     {
         return $this->belongsTo(Game::class);
     }
-
-
-
 
     /*+-----------------+
       | Funciones Apoyo |
@@ -56,13 +53,8 @@ class Pick extends Model
     public function can_be_delete(){
         return true;
     }
-
-
-
     /*+-------------------+
       | Búsquedas         |
       +-------------------+
     */
-
-
 }

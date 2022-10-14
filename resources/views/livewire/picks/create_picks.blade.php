@@ -4,26 +4,24 @@
     @endsection
         <table class="table table-hover mb-0">
             <thead>
-                <tr class="bg-dark text-white text-center">
+                <tr class="bg-dark text-white">
                     <th>@lang("Date")</th>
-                    <th colspan="2">@lang("Local")</th>
+                    <th>@lang("Local")</th>
+                    <th>@lang("Image")</th>
                     <th>@lang("L")</th>
                     @if(App::isLocale('en'))
                         <th>@lang("T")</th>
                     @else
                         <th>@lang("E")</th>
-
                     @endif
-
                     <th>@lang("V")</th>
                     <th>@lang("Visit")</th>
-
+                    <th>@lang("Image")</th>
                 </tr>
             </thead>
 
             {{-- Formulario --}}
             <form wire:submit.prevent="store">
-
                 @foreach ($games as $game )
                     <tr>
                         <td>
@@ -33,45 +31,43 @@
                                 {{ date('d M', strtotime($game->date)) }}
                             @endif
                         </td>
-                       
                         <td class="text-left">
                             {{$game->LocalTeam->name}}
                         </td>
                         <td>
-                           
-                                <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->LocalTeam->logotipo)}}" alt="{{__('Image')}}">
-                           
+                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->LocalTeam->logotipo)}}" alt="{{$game->LocalTeam->name}}">
                         </td>
                         @if($game->LocalTeam->request_score || $game->VisitTeam->request_score || $game->request_score)
-                            <td align="center">
+                            <td>
                                 <input type="number"
-                                        wire:model="local_scores.{{ $game->id }}"
-                                        min="0"
-                                        max="99"
-                                        required
+                                    wire:model="local_scores.{{ $game->id }}"
+                                    min="0"
+                                    max="99"
+                                    required
                                 >
                             </td>
                             <td></td>
-                            <td align="center">
+                            <td>
                                 <input type="number"
-                                        wire:model="visit_scores.{{ $game->id }}"
-                                        min="0"
-                                        max="99"
-                                        required
+                                    wire:model="visit_scores.{{ $game->id }}"
+                                    min="0"
+                                    max="99"
+                                    required
                                 >
                         @else
-                            <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="1" name="winners-{{$game->id}}"></td>
-                            <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="0" name="winners-{{$game->id}}"></td>
-                            <td  class="text-center"><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="2" name="winners-{{$game->id}}"></td>
+                            <td><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="1" name="winners-{{$game->id}}"></td>
+                            <td><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="0" name="winners-{{$game->id}}"></td>
+                            <td><input required class="form-check-input" type="radio" wire:model="winners.{{ $game->id }}" value="2" name="winners-{{$game->id}}"></td>
                         @endif
+                            <td>
+                                <span class="text-left"> {{$game->VisitTeam->name}}</span>
+                            </td>
                             <td class="text-left">
-                            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->VisitTeam->logotipo)}}" alt="{{__('Image')}}">
-                            <span class="text-left"> {{$game->VisitTeam->name}}</span>
-                        </td>
+                                <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$game->VisitTeam->logotipo)}}" alt="{{$game->VisitTeam->name}}">
+                            </td>
 
                     </tr>
                 @endforeach
-
                 @if(!$picks_saved)
                     <div class="float-end">
                         <button type="submit" class="btn btn-primary">
