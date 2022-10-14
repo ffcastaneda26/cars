@@ -1,15 +1,20 @@
 <div>
-Las variables siguientes son de tipo bool y dependiendo de la que esté verdadera es lo que hay que presentar
-$can_continue = Se pone TRUE cuando el código sea verdadero
-$read_competidor_data = Cuando esté encendida soliitar los datos del competidor en un formulario:
-(a) Nombre
-(b) Correo
-(c) Teléfono
-(*) Que acepta que es mayor de edad (No lo grabamos en base de datos)
+<u>
+   <li>Las variables siguientes son de tipo bool y dependiendo de la que esté verdadera es lo que hay que presentar</li> 
+   <li>$can_continue = Se pone TRUE cuando el código sea verdadero</li> 
+   <li>$read_competidor_data = Cuando esté encendida soliitar los datos del competidor en un formulario:
+<ul>
 
-$read_picks =  Mostrar formulario para leer el pronóstico de todos los partidos (ver: livewire.picks.create_picks.blade.php)
-    
-Me interesa ahorita los formularios 
+<li>(a) Nombre</li> 
+        <li>(b) Correo</li> 
+            <li>(c) Teléfono</li> 
+                <li>(*) Que acepta que es mayor de edad (No lo grabamos en base de datos)</li> 
+</ul>
+</li> 
+
+<li>$read_picks =  Mostrar formulario para leer el pronóstico de todos los partidos (ver: livewire.picks.create_picks.blade.php)</li> 
+<li>Me interesa ahorita los formularios </li> 
+</u>
 
 <h1>{{__('Quiniela Mundialista')}}</h1>
 
