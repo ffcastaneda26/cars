@@ -73,7 +73,7 @@ class RegisterCompetidors extends Component
                 $this->request_competidor_picks = false;
             }
         } else {
-            $this->error_message = __('Coupon Does Not Exists');
+            $this->error_message = __('Code Does Not Exists');
         }
     }
 
