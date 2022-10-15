@@ -15,7 +15,9 @@
             </thead>
         </div>
         @foreach ($records as $record)
+
             <tr>
+                {{-- Fecha Juego --}}
                 <td>
                     @if (App::isLocale('en'))
                         {{ date('M d', strtotime($record->game->date)) }}
@@ -23,6 +25,8 @@
                         {{ date('d M', strtotime($record->game->date)) }}
                     @endif
                 </td>
+          
+                {{-- Local --}}
                 <td class="text-left">
                     @if ($record->game->local_score > $record->game->visit_score)
                         <span class="text-left" style="background-color: greenyellow">
@@ -35,9 +39,13 @@
                     <img width="24px" height="24px" class="avatar-sm rounded-circle"
                         src="{{ url('storage/' . $record->game->LocalTeam->logotipo) }}" alt="{{ $record->game->LocalTeam->name }}">
                 </td>
+              
+
                 <td>
                     {{ $record->game->local_score }}
                 </td>
+              
+              
                 {{-- Tipo de control: Botón de radio o etiqueta --}}
                 @if ($record->game->LocalTeam->request_score ||
                     $record->game->VisitTeam->request_score ||

@@ -10,10 +10,11 @@ class Code extends Model
 {
     use HasFactory;
     protected $table = 'codes_company';
-    public $timestamps = false;
+
     protected $fillable =  [
         'process_code_company_id',
-        'code'
+        'code',
+        'competidor_id'
     ];
 
 
@@ -36,6 +37,10 @@ class Code extends Model
 
     public function can_be_delete(){
             return true;
+    }
+
+    public function isUsed(){
+        return $this->competidor_id;
     }
 
 

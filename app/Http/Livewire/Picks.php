@@ -31,6 +31,7 @@ class Picks extends Component
             $this->view_show = 'livewire.picks.create_picks';
         }
         $this->games = Game::orderby('date')->get();
+
     }
 
 
@@ -38,7 +39,9 @@ class Picks extends Component
     public function render()
     {
         if($this->competidor->picks->count()){
-            return view('livewire.picks.index',['records' => $this->competidor->picks()->orderby('game_id')->get() ]);
+            return view('livewire.picks.index',
+                        ['records' => $this->competidor->picks()->orderby('game_id')->get() ]
+                    );
         }
         return view('livewire.picks.index');
     }
@@ -52,12 +55,12 @@ class Picks extends Component
     public function store()
     {
 
-        /** Pronósticos sin Marcador */
+        /** Pronósticos de partidos que no pide marcador */
         foreach ($this->winners as $game => $pronostico){
             $this->create_pick($this->competidor->id,$game,$pronostico);
         }
 
-        /** Pronosticos con Marcador */
+        /** Pronosticos de partidos que pide marcador */
         foreach ($this->local_scores as $game => $local_score){
             if( $local_score == $this->visit_scores[$game] ){
                 $pronostico = 0;

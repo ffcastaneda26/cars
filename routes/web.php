@@ -2,7 +2,6 @@
 
 use App\Http\Livewire\Picks;
 use App\Http\Livewire\RegisterCompetidors;
-use App\Http\Livewire\RegistrerCompetidors;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

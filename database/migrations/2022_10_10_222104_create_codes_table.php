@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Competidor;
 use App\Models\ProcessCodeCompany;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

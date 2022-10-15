@@ -16,7 +16,9 @@
             @include('layouts.home.change_language')
 
             {{--  Profile / Logout  --}}
-            @include('layouts.home.profile_logout')
+            @auth
+                @include('layouts.home.profile_logout')
+            @endauth
 
         </div>
 
