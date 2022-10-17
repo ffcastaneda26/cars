@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',191);
             $table->string('email',191)->unique();
-            $table->string('nickname',8)->unique();
+            $table->string('nickname',15)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

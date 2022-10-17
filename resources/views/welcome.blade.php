@@ -6,7 +6,8 @@
 
         <title> {{ config('app.name', 'Laravel') }}</title>
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('images/qatar.png')}}">
+        <link rel="shortcut icon" href="{{asset('images/favicon.jfif')}}">
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
