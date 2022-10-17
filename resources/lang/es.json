@@ -1,4 +1,6 @@
 {
+    "Sport": "Deporte",
+    "Sports": "Deportes",
     "Nickname": "Nickname",
     "Welcome": "Bienvenido",
     "Multi Pools": "Multi Quinielas",
@@ -153,5 +155,7 @@
     "Your record has been deleted.":"Su registro ha sido eliminado.",
     "You have not Admin access":"Usted no tiene acceso como Administrador",
     "You have no Manager access": "Usted no tiene acceso como Administrador",
-    "You have not Cashier access": "Usted no tiene acceso de Cajero"
+    "You have not Cashier access": "Usted no tiene acceso de Cajero",
+    "Deleted Successfully!!": "Eliminado Satisfactoriamente",
+    "Preview": "Vista Previa"
 }

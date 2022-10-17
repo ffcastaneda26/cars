@@ -27,22 +27,12 @@
         </a>
     </li>
 
-    {{-- Empresas --}}
+    {{-- Deportes --}}
 
     <li>
-        <a href="{{route('companies')}}" class="waves-effect">
-            <i class="mdi-office-building-outline"></i>
-            <span>{{__('Companies')}}</span>
-        </a>
-    </li>
-
-
-    {{-- Códigos de Empresa --}}
-
-    <li>
-        <a href="{{route('codes-company')}}" class="waves-effect">
-            <i class="mdi mdi-barcode"></i>
-            <span>{{__('Codes Company')}}</span>
+        <a href="{{route('sports')}}" class="waves-effect">
+            <i class="mdi mdi-football"></i>
+            <span>{{__('Sports')}}</span>
         </a>
     </li>
 
@@ -69,10 +59,5 @@
         </a>
     </li>
 
-    <li>
-        <a href="{{route('competidors')}}" class="waves-effect">
-            <i class="mdi mdi-account-group"></i>
-            <span>{{__('Competidors')}}</span>
-        </a>
-    </li>
+
 </ul>

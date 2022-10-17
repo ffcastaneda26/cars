@@ -22,15 +22,13 @@ class DatabaseSeeder extends Seeder
             'role_user',
             'permission_user',
             'roles',
-            'permissions',
-            'statuses',
+            'permissions'
         ]);
 
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,
-            StatusSeeder::class,
         ]);
 
     }

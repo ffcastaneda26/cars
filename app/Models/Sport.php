@@ -20,25 +20,16 @@ class Sport extends Model
         'logotipo'
     ];
 
-    // Setters
-    public function setSpanishAttribute($value)
-    {
-        $this->attributes['spanish'] =  ucwords(strtolower($value));
-    }
-
-    public function setEnglishAttribute($value)
-    {
-        $this->attributes['english'] =  ucwords(strtolower($value));
-    }
 
     /*+-----------------+
       | Relaciones      |
       +-----------------+
      */
 
-    public function tournaments(): HasMany
+    public function tournaments()
     {
         $this->hasMany(Tournament::class);
+
     }
 
     /*+-----------------+
