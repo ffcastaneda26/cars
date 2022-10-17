@@ -23,17 +23,16 @@ class CreatePicksTable extends Migration
             $table->tinyInteger('winner')->nullable()->default(0)->comment('Ganador: 1=Locao 2=Visita 0=Empate');
             $table->tinyInteger('local_score')->nullable()->default(0)->comment('Puntos Local');
             $table->tinyInteger('visit_score')->nullable()->default(0)->comment('Puntos Visita');
-            $table->boolean('guess_game')->nullable()->default(0)->comment('¿Acertó juego?');
+            $table->boolean('guess_game')->nullable()->default(0)->comment('¿Acertó juego Local-Empate-Visita?');
             $table->boolean('guess_local_score')->nullable()->default(0)->comment('¿Acertó marcador Local?');
             $table->boolean('guess_visit_score')->nullable()->default(0)->comment('¿Acertó marcador visita');
+            $table->boolean('guess_both_scores')->nullable()->default(0)->comment('¿Acertó ambos marcadores');
             $table->tinyInteger('dif_winner_score')->nullable()->default(0)->comment('Diferencia Score Ganador');
             $table->tinyInteger('dif_total_score')->nullable()->default(0)->comment('Diferencia Score Total');
             $table->tinyInteger('dif_local_score')->nullable()->default(0)->comment('Diferencia Score Local');
             $table->tinyInteger('dif_visit_score')->nullable()->default(0)->comment('Diferencia Score Visita');
-            $table->boolean('guess_last_game')->nullable()->default(0)->comment('Acertó último partido?');
-            $table->boolean('guess_local')->nullable()->default(0)->comment('Acertó local?');
-            $table->boolean('guess_visit')->nullable()->default(0)->comment('Acertó Visita?');
-            $table->tinyInteger('extra_poings')->nullable()->default(0)->comment('Puntos extra');
+            $table->boolean('guess_tie_breaker_game')->nullable()->default(0)->comment('Acertó partido desempate?');
+            $table->tinyInteger('extra_points')->nullable()->default(0)->comment('Puntos extra');
             $table->timestamps();
         });
     }

@@ -23,7 +23,8 @@ class CreateGamesTable extends Migration
             $table->foreignId('visit_team_id')->constrained('teams')->comment('Visita');
             $table->tinyInteger('visit_score')->nullable()->default(null)->comment('Goles Local');
             $table->boolean('request_score')->nullable()->default(null)->comment('Pedir marcador en partidos');
-            $table->tinyInteger('result')->nullable()->default(null)->comment('Resultado');
+            $table->tinyInteger('winner')->nullable()->default(null)->comment('Ganador: 0= Empate 1=Local 2= Visita');
+            $table->boolean('tie_breaker')->nullable()->default(0)->comment('¿Es partido de desempate?');
             $table->tinyInteger('points_winner')->nullable()->default(null)->comment('Puntos Ganador');
             $table->tinyInteger('extra_points_winner')->nullable()->default(null)->comment('Puntos Extra al ganador');
         });

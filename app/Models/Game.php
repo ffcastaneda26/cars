@@ -19,13 +19,16 @@ class Game extends Model
         'visit_team_id',
         'visit_score',
         'request_score',
+        'winner',
+        'tie_breaker',
         'points_winner',
         'extra_points_winner'
+
     ];
 
-    // protected $casts = [
-    //     'Date' => 'datetime:Y-m-d'
-    // ];
+    protected $casts = [
+        'Date' => 'datetime:Y-m-d'
+    ];
 
     /*+-----------------+
       | Relaciones      |
@@ -48,7 +51,7 @@ class Game extends Model
         return $this->belongsTo(Team::class,'visit_team_id');
      }
 
-     
+
     /*+-----------------+
       | Funciones Apoyo |
       +-----------------+
@@ -64,20 +67,7 @@ class Game extends Model
       +-------------------+
     */
 
-    public function scopeActiveRound($query)
-    {
-        $query->filter(function($item) {
-            if (Carbon::now()->between($item->from, $item->to)) {
-              return $item;
-            }
-          });
-    }
 
-    public function scopeRound($query,$from,$to)
-    {
-        $query->where('from','>=',$from)
-              ->where('to','<=',$to);
-    }
 
 
 }

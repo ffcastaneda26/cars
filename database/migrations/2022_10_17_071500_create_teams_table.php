@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Sport;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Sport::class)->comment('Deporte ');
             $table->string('name',50)->comment('Equipo');
             $table->string('alias',20)->nullable()->default(null)->comment('Alias');
             $table->string('short',6)->nullable()->default(null)->comment('Corto');

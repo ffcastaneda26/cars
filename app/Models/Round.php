@@ -13,8 +13,8 @@ class Round extends Model
     protected $table = 'rounds';
     public $timestamps = false;
     protected $fillable =  [
-        'from',
-        'to',
+        'date_from',
+        'date_to',
         'active',
     ];
 
@@ -55,9 +55,9 @@ class Round extends Model
 
     public function scopeActiveRound($query)
     {
-        $query->filter(function($item) {
-            if (Carbon::now()->between($item->from, $item->to)) {
-              return $item;
+        $query->filter(function($round) {
+            if (Carbon::now()->between($round->from, $round->to)) {
+              return $round;
             }
           });
     }

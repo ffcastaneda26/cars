@@ -11,7 +11,7 @@ class Pick extends Model
     use HasFactory;
     protected $table = 'picks';
     protected $fillable =  [
-        'competidor_id',
+        'user_id',
         'game_id',
         'winner',
         'local_score',
@@ -19,11 +19,13 @@ class Pick extends Model
         'guess_game',
         'guess_local_score',
         'guess_visit_score',
+        'guess_both_scores',
         'dif_winner_score',
         'dif_total_score',
         'dif_local_score',
         'dif_visit_score',
-
+        'guess_tie_breaker_game',
+        'extra_points'
     ];
 
     protected $casts = [

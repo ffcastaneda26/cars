@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model
@@ -12,6 +13,7 @@ class Team extends Model
     protected $table = 'teams';
     public $timestamps = false;
     protected $fillable =  [
+        'sport_id',
         'name',
         'alias',
         'short',
@@ -25,6 +27,11 @@ class Team extends Model
       | Relaciones      |
       +-----------------+
      */
+
+    public function Sport(): BelongsTo
+    {
+        $this->belongsTo(Sport::class);
+    }
 
     public function LocalGames(): HasMany
     {
