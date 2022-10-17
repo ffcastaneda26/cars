@@ -37,5 +37,3 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
     });
 });
 
-Route::get('picks/{competidor?}',Picks::class)->name('picks');
-Route::get('register-competidors',RegisterCompetidors::class)->name('register-competidors');

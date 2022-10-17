@@ -2,6 +2,7 @@
 
 use App\Models\Competidor;
 use App\Models\Game;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ class CreatePicksTable extends Migration
     {
         Schema::create('picks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Competidor::class)->comment('Competidor');
+            $table->foreignIdFor(User::class)->comment('Competidor');
             $table->foreignIdFor(Game::class)->comment('Juego');
             $table->tinyInteger('winner')->nullable()->default(0)->comment('Ganador: 1=Locao 2=Visita 0=Empate');
             $table->tinyInteger('local_score')->nullable()->default(0)->comment('Puntos Local');

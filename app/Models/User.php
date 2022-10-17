@@ -29,6 +29,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'nickname',
         'password',
         'active'
     ];
@@ -70,9 +71,11 @@ class User extends Authenticatable
 
     public function scopeUser($query,$valor)
     {
-        if ( trim($valor) != "") {
+        if($valor) $valor = trim($valor);
+        if ( $valor != "") {
             $query->where('name','LIKE',"%$valor%")
-                  ->orwhere('email','LIKE',"%$valor%");
+                  ->orwhere('email','LIKE',"%$valor%")
+                  ->orwhere('nickname','LIKE',"%$valor%");
          }
     }
 }

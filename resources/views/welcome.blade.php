@@ -43,12 +43,16 @@
                     @endauth
                 </div>
             @endif
-            <button>
-                <a href="{{route('register-competidors')}}" class="waves-effect">
-                    <img src="{{asset('images/logo_qatar.png')}}" width="45%" alt="">
-                    HAGA CLIC PARA INGRESAR 
-                </a>
-            </button>
+
+
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                   <p><h1 class="text-center">{{__('Welcome!!!')}}</h1></p>
+                   <p><h2 class="text-center">{{__('Multi Pools')}}</h2></p>
+                </div>
+            </div>
+        </div>
 
 
     </body>
