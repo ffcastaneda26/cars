@@ -6,7 +6,6 @@
         <th>{{__('All Picks?')}}</th>
         <th>{{__('Mins Before')}}</th>
         <th>{{__('Avai User Reg')}}</th>
-        <th>{{__('Picks Reg')}}</th>
         <th>{{__('Pick Avai')}}</th>
         <th>{{__('Logotipo')}}</th>
         <th colspan="2" class="text-center">{{__("Actions")}}</th>
