@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\FacebookLoginController;
 use App\Http\Livewire\Picks;
 use App\Http\Livewire\Tournaments;
 use Illuminate\Support\Facades\App;
@@ -37,4 +38,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
         })->name('logout.perform');
     });
 });
+
+Route::get('/login/facebook',[FacebookLoginController::class,'login'])->name('login.facebook');
+Route::get('/facebook/auth/callback',[FacebookLoginController::class,'callback'])->name('login.callback');
 

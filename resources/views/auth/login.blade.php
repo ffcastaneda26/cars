@@ -39,9 +39,17 @@
                     </a>
                 @endif
 
+
                 <x-jet-button class="ml-4">
                     {{ __('Log in') }}
                 </x-jet-button>
+
+                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login.facebook') }}">
+                    {{ __('Login With Facebook') }}
+                </a> --}}
+
+
+
             </div>
         </form>
     </x-jet-authentication-card>
