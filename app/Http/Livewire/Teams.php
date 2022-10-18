@@ -8,7 +8,7 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Traits\FilesTrait;
-use App\Traits\ZipCodeTrait;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
 
@@ -17,10 +17,8 @@ class Teams extends Component
     use AuthorizesRequests;
     use WithPagination;
     use WithFileUploads;
-
     use CrudTrait;
     use UserTrait;
-    use ZipCodeTrait;
     use FilesTrait;
 
     protected $listeners = ['destroy'];
@@ -38,7 +36,6 @@ class Teams extends Component
     public $active;
     public $request_score;
 
-    public $file_path;
 
     public function mount()
     {

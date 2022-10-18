@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Tournament extends Model
 {
     use HasFactory;
-    protected $table = 'sports';
+    protected $table = 'tournaments';
     public $timestamps = false;
     protected $fillable =  [
         'sport_id',
@@ -21,6 +21,7 @@ class Tournament extends Model
         'create_picks_at_available',
         'logotipo'
     ];
+
 
 
     /*+-----------------+
@@ -50,10 +51,7 @@ class Tournament extends Model
     public function scopeName($query,$valor)
     {
         if ( trim($valor) != "") {
-            $query->where('spanish','LIKE',"%$valor%")
-                  ->orwhere('english','LIKE',"%$valor%")
-                  ->orwhere('short_spanish','LIKE',"%$valor%")
-                  ->orwhere('short_english','LIKE',"%$valor%");
+            $query->where('name','LIKE',"%$valor%");
          }
     }
 

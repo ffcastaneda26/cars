@@ -12,6 +12,7 @@ class Sport extends Model
     protected $table = 'sports';
     public $timestamps = false;
     protected $fillable =  [
+        'sport_id',
         'english',
         'short_english',
         'spanish',
@@ -26,10 +27,9 @@ class Sport extends Model
       +-----------------+
      */
 
-    public function tournaments()
+    public function tournaments(): HasMany
     {
-        $this->hasMany(Tournament::class);
-
+        return $this->hasMany(Tournament::class);
     }
 
     /*+-----------------+
@@ -38,6 +38,7 @@ class Sport extends Model
      */
 
     public function can_be_delete(){
+        if($this->tournaments()->count()) return false;
         return true;
     }
 

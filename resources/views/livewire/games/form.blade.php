@@ -11,6 +11,8 @@
             <label class="input-group-text mb-2">{{__("Local")}}</label>
             <label class="input-group-text mb-2">{{__("Visit")}}</label>
             <label class="input-group-text mb-2">{{__("Request Score")}}</label>
+            <label class="input-group-text mb-2">{{__("Local Score")}}</label>
+            <label class="input-group-text mb-2">{{__("Visit Score")}}</label>
 
         </div>
 
@@ -83,8 +85,28 @@
                 </div>
             </div>
 
+            {{-- Marcador Local --}}
+            <div class="flex-flex-column mb-2">
+                <input type="number"
+                    wire:model="main_record.local_score"
+                    min="0"
+                    max="99"
+                >
+            </div>
+
+
+            {{-- Marcador Visita --}}
+            <div class="flex-flex-column mb-2">
+                <input type="number"
+                    wire:model="main_record.visit_score"
+                    min="0"
+                    max="99"
+                >
+            </div>
 
         </div>
+
+
     </div>
 
 </div>

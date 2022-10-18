@@ -36,6 +36,13 @@
         </a>
     </li>
 
+    {{-- Torneos --}}
+    <li>
+        <a href="{{route('tournaments')}}" class="waves-effect">
+            <i class="mdi mdi-tournament"></i>
+            <span>{{__('Tournaments')}}</span>
+        </a>
+    </li>
 
     <li>
         <a href="{{route('teams')}}" class="waves-effect">

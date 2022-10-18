@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Livewire\Picks;
-use App\Http\Livewire\RegisterCompetidors;
+use App\Http\Livewire\Tournaments;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\RegisterCompetidors;
 
 Route::get('/', function () {
     return view('welcome');

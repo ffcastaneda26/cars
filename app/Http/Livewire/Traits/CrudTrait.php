@@ -20,7 +20,8 @@ trait CrudTrait {
     public $allow_create=true;
     public $allow_save=true;
 
-    
+
+
     public $allow_navigate = true;
     public $member_expired = false;
 
