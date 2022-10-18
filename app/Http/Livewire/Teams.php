@@ -35,6 +35,8 @@ class Teams extends Component
 
     public $active;
     public $request_score;
+    public $file_path;
+
 
 
     public function mount()
@@ -66,7 +68,7 @@ class Teams extends Component
 
     public function resetInputFields()
     {
-        $this->reset('file_path');
+        $this->reset('file_path','request_score','active');
         $this->main_record = new Team();
         $this->resetErrorBag();
     }
@@ -84,7 +86,7 @@ class Teams extends Component
 
         if($this->file_path){
             $this->validate([
-                'file_path'    => 'image|max:2048',
+                'file_path'    => 'image|max:1024',
             ]);
             $this->main_record->logotipo = $this->store_main_record_file($this->file_path,'teams',true);
         }

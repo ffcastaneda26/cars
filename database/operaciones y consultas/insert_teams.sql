@@ -1,36 +1,33 @@
-INSERT INTO teams (name) VALUES ('Argentina');
-INSERT INTO teams (name) VALUES ('Países Bajos');
-INSERT INTO teams (name) VALUES ('Uruguay');
-INSERT INTO teams (name) VALUES ('Bélgica');
-INSERT INTO teams (name) VALUES ('Serbia');
-INSERT INTO teams (name) VALUES ('Arabia Saudí');
-INSERT INTO teams (name) VALUES ('Ecuador');
-INSERT INTO teams (name) VALUES ('Croacia');
-INSERT INTO teams (name) VALUES ('Suiza');
-INSERT INTO teams (name) VALUES ('Japón');
-INSERT INTO teams (name) VALUES ('Portugal');
-INSERT INTO teams (name) VALUES ('Francia');
-INSERT INTO teams (name) VALUES ('Inglaterra');
-INSERT INTO teams (name) VALUES ('Túnez');
-INSERT INTO teams (name) VALUES ('Alemania');
-INSERT INTO teams (name) VALUES ('Estados Unidos');
-INSERT INTO teams (name) VALUES ('España');
-INSERT INTO teams (name) VALUES ('Ghana');
-INSERT INTO teams (name) VALUES ('Irán');
-INSERT INTO teams (name) VALUES ('Brasil');
-INSERT INTO teams (name) VALUES ('Gales');
-INSERT INTO teams (name) VALUES ('Marruecos');
-INSERT INTO teams (name) VALUES ('Canadá');
-INSERT INTO teams (name) VALUES ('México');
-INSERT INTO teams (name) VALUES ('Polonia');
-INSERT INTO teams (name) VALUES ('Australia');
-INSERT INTO teams (name) VALUES ('Dinamarca');
-INSERT INTO teams (name) VALUES ('Qatar');
-INSERT INTO teams (name) VALUES ('Costa Rica');
-INSERT INTO teams (name) VALUES ('Senegal');
-INSERT INTO teams (name) VALUES ('Corea del Sur');
-INSERT INTO teams (name) VALUES ('Camerún');
-
-
-UPDATE teams SET short = SUBSTR(NAME,1,6),alias=NAME;
-COMMIT;
+INSERT INTO `teams` (`sport_id`, `name`, `alias`, `short`, `logotipo`, `request_score`, `active`) VALUES
+	(1, 'Argentina', 'Argentina', 'Argent', NULL, 0, 1),
+	(1, 'Países Bajos', 'Países Bajos', 'Países', NULL, 0, 1),
+	(1, 'Uruguay', 'Uruguay', 'Urugua', NULL, 0, 1),
+	(1, 'Bélgica', 'Bélgica', 'Bélgic', NULL, 0, 1),
+	(1, 'Serbia', 'Serbia', 'Serbia', NULL, 0, 1),
+	(1, 'Arabia Saudí', 'Arabia Saudí', 'Arabia', NULL, 0, 1),
+	(1, 'Ecuador', 'Ecuador', 'Ecuado', NULL, 0, 1),
+	(1, 'Croacia', 'Croacia', 'Croaci', NULL, 0, 1),
+	(1, 'Suiza', 'Suiza', 'Suiza', NULL, 0, 1),
+	(1, 'Japón', 'Japón', 'Japón', NULL, 0, 1),
+	(1, 'Portugal', 'Portugal', 'Portug', NULL, 0, 1),
+	(1, 'Francia', 'Francia', 'Franci', NULL, 0, 1),
+	(1, 'Inglaterra', 'Inglaterra', 'Inglat', NULL, 0, 1),
+	(1, 'Túnez', 'Túnez', 'Túnez', NULL, 0, 1),
+	(1, 'Alemania', 'Alemania', 'Aleman', NULL, 0, 1),
+	(1, 'Estados Unidos', 'Estados Unidos', 'Estado', NULL, 1, 1),
+	(1, 'España', 'España', 'España', NULL, 0, 1),
+	(1, 'Ghana', 'Ghana', 'Ghana', NULL, 0, 1),
+	(1, 'Irán', 'Irán', 'Irán', NULL, 0, 1),
+	(1, 'Brasil', 'Brasil', 'Brasil', NULL, 0, 1),
+	(1, 'Gales', 'Gales', 'Gales', NULL, 0, 1),
+	(1, 'Marruecos', 'Marruecos', 'Marrue', NULL, 0, 1),
+	(1, 'Canadá', 'Canadá', 'Canadá', NULL, 0, 1),
+	(1, 'México', 'México', 'México', NULL, 1, 1),
+	(1, 'Polonia', 'Polonia', 'Poloni', NULL, 0, 1),
+	(1, 'Australia', 'Australia', 'Austra', NULL, 0, 1),
+	(1, 'Dinamarca', 'Dinamarca', 'Dinama', NULL, 0, 1),
+	(1, 'Qatar', 'Qatar', 'Qatar', NULL, 0, 1),
+	(1, 'Costa Rica', 'Costa Rica', 'Costa ', NULL, 0, 1),
+	(1, 'Senegal', 'Senegal', 'Senega', NULL, 0, 1),
+	(3, 'Corea del Sur', 'Corea del Sur', 'Corea ', NULL, 0, 1),
+	(1, 'Camerún', 'Camerún', 'Camerú', NULL, 0, 1);
