@@ -1,5 +1,5 @@
 TRUNCATE rounds;
-INSERT INTO `rounds` (`from`, `to`, `active`) VALUES
+INSERT INTO `rounds` (`date_from`, `date_to`, `active`) VALUES
 ('2022-11-20 00:00:01', '2022-11-20 23:59:59', 0),
 ('2022-11-21 00:00:01', '2022-11-20 23:59:59', 0),
 ('2022-11-22 00:00:01', '2022-11-20 23:59:59', 0),

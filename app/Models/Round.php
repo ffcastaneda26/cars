@@ -19,8 +19,8 @@ class Round extends Model
     ];
 
     protected $casts = [
-        'from' => 'datetime:Y-m-d',
-        'to' => 'datetime:Y-m-d',
+        'date_from' => 'datetime:Y-m-d',
+        'date_to' => 'datetime:Y-m-d',
     ];
 
     /*+-----------------+
@@ -48,18 +48,27 @@ class Round extends Model
     }
 
 
+    public function readActiveRoundx(){
+
+        // $this->now()->diffInSeconds($this->date_from) < 1);
+
+
+
+        // SELECT * FROM rounds WHERE date(now()) between date_from AND date_to OR date(now()) <= date_to ORDER BY date_from LIMIT 1
+    }
+
     /*+-------------------+
       | Búsquedas         |
       +-------------------+
     */
 
-    public function scopeActiveRound($query)
+
+
+    public function scopeActiveRound($query )
     {
-        $query->filter(function($round) {
-            if (Carbon::now()->between($round->from, $round->to)) {
-              return $round;
-            }
-          });
+
+        $query->whereBetween('date_from',[now()->startOfDay(),now()->endOfDay()]);
+
     }
 
     public function scopeRound($query,$from,$to)
