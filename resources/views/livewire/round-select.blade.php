@@ -17,14 +17,14 @@
                     {{-- Botones de Radio --}}
                     <div class="row">
                         @foreach($rounds as $round)
+
                             <div class="col-sm">
                                 <input type='radio'
-                                        wire:model="select_round"
+                                        wire:model="round_selected"
                                         name='brjornada'
                                         id='brjornada'
                                         value="{{$round->id}}"
                                         wire:click='select_games'
-                                        @if($round->id == 1) checked @endif
                                 >
                             </div>
                         @endforeach
@@ -32,6 +32,13 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+
+    {{-- Juegos de la jornada seleccionada --}}
+    <div class="container">
+        <div class="card">
+            <header class="card-header">Juegos de la jornada:  {{ $round_selected}}</header>
         </div>
     </div>
 </div>
