@@ -23,7 +23,7 @@ class CreateTournamentsTable extends Migration
             $table->integer('minutes_before_to_edit')->nullable()->default(5)->comment('Minutos antes inicio partido para pronosticos');
             $table->boolean('available_user_at_register')->nullable()->default(0)->comment('Habilitar usuario cuando se registre?');
             $table->boolean('create_picks_at_available')->nullable()->default(0)->comment('Crear pronósticos al habilitar');
-            $table->string('logotipo',191)->comment('Logotipo');
+            $table->string('logotipo',191)->nullable()->comment('Logotipo');
         });
     }
 
