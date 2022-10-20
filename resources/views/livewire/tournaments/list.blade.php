@@ -45,11 +45,8 @@
     </td>
 
 
-    <td class="text-center">
-        @if($record->logotipo)
-            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->logotipo)}}" alt="{{__('Image')}}">
-        @endif
-    </td>
+    @include('livewire.commons.list_logotipo_field')
+
     @include('livewire.commons.list_active_field')
 
 

@@ -2,11 +2,8 @@
     <td>{{ $record->name }}</td>
     <td>{{ $record->alias }}</td>
     <td>{{ $record->short }}</td>
-    <td class="text-center">
-        @if($record->logotipo)
-            <img  class="avatar-sm rounded-circle" src="{{url('storage/'.$record->logotipo)}}" alt="{{__('Image')}}">
-        @endif
-    </td>
+    @include('livewire.commons.list_logotipo_field')
+
     <td class="text-center">
         @if($record->request_score)
             <label>  {{__('Yes')}}</label>
