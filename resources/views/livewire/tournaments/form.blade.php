@@ -11,6 +11,8 @@
             <label class="input-group-text mb-2">{{__("Mins Before")}}</label>
             <label class="input-group-text mt-2">{{ __('Avai User Reg?') }}</label>
             <label class="input-group-text mt-2">{{ __('Pick Avai') }}</label>
+            <label class="input-group-text mt-2">{{ __('Active?') }}</label>
+
         </div>
 
         <div class="col flex flex-col">
@@ -92,9 +94,6 @@
                 </div>
             </div>
 
-
-
-
             {{-- Crear pronósticos al habilitar usuario --}}
             <div class="flex-flex-column mb-2">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -105,6 +104,8 @@
                 </div>
             </div>
 
+            {{-- Activo --}}
+            @include('livewire.commons.input_active_field')
 
         </div>
     </div>

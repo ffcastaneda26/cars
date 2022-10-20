@@ -19,7 +19,8 @@ class Tournament extends Model
         'minutes_before_to_edit',
         'available_user_at_register',
         'create_picks_at_available',
-        'logotipo'
+        'logotipo',
+        'active'
     ];
 
 

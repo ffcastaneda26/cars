@@ -7,13 +7,7 @@
         {{ date('l F d Y', strtotime($record->to)) }}
     </td>
 
-    <td class="text-center">
-        @if($record->active)
-            <label>  {{__('Yes')}}</label>
-        @else
-            <label class="text-danger">{{__('No')}}</label>
-        @endif
-    </td>
+    @include('livewire.commons.list_active_field')
     @include('common.crud_actions')
 </tr>
 

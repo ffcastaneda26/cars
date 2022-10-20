@@ -41,6 +41,8 @@ class Tournaments extends Component
     public $require_all_picks           = false;
     public $available_user_at_register  = false;
     public $create_picks_at_available   = false;
+    public $active                      = false;
+
     public $file_path;
 
 
@@ -87,10 +89,12 @@ class Tournaments extends Component
     public function store()
     {
         $this->validate();
-        $this->main_record->allow_ties = $this->allow_ties ? 1 : 0;
-        $this->main_record->require_all_picks = $this->require_all_picks ? 1 : 0;
-        $this->main_record->available_user_at_register = $this->available_user_at_register ? 1 : 0;
-        $this->main_record->create_picks_at_available = $this->create_picks_at_available ? 1 : 0;
+        $this->main_record->allow_ties                  = $this->allow_ties ? 1 : 0;
+        $this->main_record->require_all_picks           = $this->require_all_picks ? 1 : 0;
+        $this->main_record->available_user_at_register  = $this->available_user_at_register ? 1 : 0;
+        $this->main_record->create_picks_at_available   = $this->create_picks_at_available ? 1 : 0;
+        $this->main_record->active                      = $this->active ? 1 : 0;
+
         if($this->file_path){
             $this->validate([
                 'file_path'    => 'image|max:2048',
@@ -115,6 +119,8 @@ class Tournaments extends Component
         $this->require_all_picks            = $record->require_all_picks;
         $this->available_user_at_register   = $record->available_user_at_register;
         $this->create_picks_at_available    = $record->create_picks_at_available;
+        $this->active                       = $record->active;
+
         $this->openModal();
     }
 
