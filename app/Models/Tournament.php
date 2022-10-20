@@ -56,5 +56,11 @@ class Tournament extends Model
          }
     }
 
+    // Solo activos
+    public function scopeActive($query,$active=true)
+    {
+        $query->where('active',$active);
+    }
+
 }
 
