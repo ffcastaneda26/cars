@@ -41,6 +41,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
 });
 
 Route::get('/login/facebook',[FacebookLoginController::class,'login'])->name('login.facebook');
-Route::get('/facebook/auth/callback',[FacebookLoginController::class,'callback'])->name('login.callback');
+Route::get('/facebook/auth/callback',[FacebookLoginController::class,'loginWithFacebook'])->name('login.callback');
 
 Route::get('round-select',RoundSelect::class)->name('round-select');
+
