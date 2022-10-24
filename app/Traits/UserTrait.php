@@ -2,8 +2,10 @@
 
 namespace App\Traits;
 
+use App\Models\Company;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Auth;
 
 trait UserTrait {
@@ -34,6 +36,13 @@ trait UserTrait {
 
 	public function roles_by_name() {
 		return $this->belongsToMany(Role::class)->withTimesTamps()->orderby('role');
+	}
+
+
+	/** Empresas (Companies)  */
+	public function companies(): BelongsToMany
+    {
+		return $this->belongsToMany(Company::class)->withTimesTamps();
 	}
 
 
@@ -86,6 +95,14 @@ trait UserTrait {
         return $this->is('Manager');
     }
 
+    public function isSupport(){
+        return $this->is('support');
+    }
+
+    public function isAgent(){
+        return $this->is('agent');
+
+    }
 
 
 }

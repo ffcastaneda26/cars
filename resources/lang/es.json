@@ -124,5 +124,10 @@
     "You have no Manager access": "Usted no tiene acceso como Administrador",
     "You have not Cashier access": "Usted no tiene acceso de Cajero",
     "Deleted Successfully!!": "Eliminado Satisfactoriamente",
-    "Preview": "Vista Previa"
+    "Preview": "Vista Previa",
+    "Support": "Soporte",
+    "You have not Support access": "No tiene acceso como soporte",
+    "You have not Agent access": "No tiene acceso como agete"
+
+
 }

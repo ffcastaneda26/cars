@@ -18,7 +18,9 @@ class RoleSeeder extends Seeder
     {
         $sql= "INSERT INTO roles (name,english,spanish,full_access) VALUES
                 ('admin', 'General Admin','Administrador General',1),
-                ('manager', 'Manager', 'Gerente', 0)";
+                ('manager', 'Manager','Gerente Cuenta',0),
+                ('support', 'Support','Soporte',0),
+                ('agent', 'Agent', 'Agente', 0)";
 
         DB::update ($sql);
         // Administrador
