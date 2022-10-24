@@ -27,44 +27,6 @@
         </a>
     </li>
 
-    {{-- Deportes --}}
-
-    <li>
-        <a href="{{route('sports')}}" class="waves-effect">
-            <i class="mdi mdi-football"></i>
-            <span>{{__('Sports')}}</span>
-        </a>
-    </li>
-
-    {{-- Torneos --}}
-    <li>
-        <a href="{{route('tournaments')}}" class="waves-effect">
-            <i class="mdi mdi-tournament"></i>
-            <span>{{__('Tournaments')}}</span>
-        </a>
-    </li>
-
-    <li>
-        <a href="{{route('teams')}}" class="waves-effect">
-            <i class="mdi mdi-microsoft-teams"></i>
-            <span>{{__('Teams')}}</span>
-        </a>
-    </li>
-
-
-    <li>
-        <a href="{{route('rounds')}}" class="waves-effect">
-            <i class="mdi mdi-calendar-month"></i>
-            <span>{{__('Rounds')}}</span>
-        </a>
-    </li>
-
-    <li>
-        <a href="{{route('games')}}" class="waves-effect">
-            <i class="mdi mdi-soccer-field"></i>
-            <span>{{__('Games')}}</span>
-        </a>
-    </li>
 
 
 </ul>

@@ -35,9 +35,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('users',Users::class)->name('users');                            // Usuarios
     Route::get('permission',Permissions::class)->name('permission');            // Permisos
     Route::get('role',Roles::class)->name('role');                              // Roles
-    Route::get('sports',Sports::class)->name('sports');                         // Deportes;
-    Route::get('tournaments',Tournaments::class)->name('tournaments');
-    Route::get('teams',Teams::class)->name('teams');                            // Equipos;
-    Route::get('rounds',Rounds::class)->name('rounds');                         // Jornadas (rondas)
-    Route::get('games',Games::class)->name('games');                            // Juegos (games)
 });

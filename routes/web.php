@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\FacebookLoginController;
-use App\Http\Livewire\Picks;
-use App\Http\Livewire\Tournaments;
+
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\RegisterCompetidors;
-use App\Http\Livewire\RoundSelect;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +41,3 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
 
 Route::get('/login/facebook',[FacebookLoginController::class,'login'])->name('login.facebook');
 Route::get('/facebook/auth/callback',[FacebookLoginController::class,'loginWithFacebook'])->name('login.callback');
-
-Route::get('round-select',RoundSelect::class)->name('round-select');
-

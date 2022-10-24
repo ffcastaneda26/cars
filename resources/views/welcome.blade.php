@@ -6,7 +6,7 @@
 
         <title> {{ config('app.name', 'Laravel') }}</title>
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('images/favicon.jfif')}}">
+        <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
 
         <!-- Fonts -->
@@ -19,10 +19,6 @@
 
         <style>
              body {
-                /* font-family: 'Nunito', sans-serif;
-                heigh:665px;
-                background-image: url("/images/fondo_01.png");
-                background-size: 10rem; */
                 font-family: 'Nunito', sans-serif;
                 heigh:665px;
                 background-color:#FFFFFF;
@@ -30,6 +26,7 @@
         </style>
     </head>
     <body class="antialiased">
+
         <div class="relative flex items-top justify-center min-h-screen  dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -44,17 +41,18 @@
                     @endauth
                 </div>
             @endif
+            <div class="fixed top-0  px-6 py-4 sm:block">
+                @include('layouts.home.change_language')
+            </div>
 
-
-        <div class="container">
-            <div class="card">
-                <div class="card-body">
-                   <p><h1 class="text-center">{{__('Welcome!!!')}}</h1></p>
-                   <p><h2 class="text-center">{{__('Multi Pools')}}</h2></p>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                    <p><h1 class="text-center">{{__('Welcome!!!')}}</h1></p>
+                    </div>
                 </div>
             </div>
         </div>
-
 
     </body>
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTieBreaksTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTieBreaksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tie_breaks', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('spanish',100)->unique();
-            $table->string('short_spanish',20)->unique();
-            $table->string('english',100)->unique();
-            $table->string('short_english',20)->unique();
+            $table->string('spanish',25)->unique();
+            $table->string('short_spanish',6)->unique();
+            $table->string('english',25)->unique();
+            $table->string('short_english',6)->unique();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateTieBreaksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tie_breaks');
+        Schema::dropIfExists('statuses');
     }
 }
