@@ -24,7 +24,7 @@ class CreateCompaniesTable extends Migration
             $table->decimal('lattitude', 11,8)->nullable()->comment('Latitud');
             $table->string('logotipo',191)->nullable()->default(null)->comment('Logotipo');
             $table->boolean('active')->default(1)->comment('¿Activa?');
-            $table->string('google_address')->comment('Dirección  regresada por google');
+            $table->string('google_address')->nullable()->comment('Dirección  regresada por google');
             $table->foreign('zipcode')->references('zipcode')->on('zipcodes');
             $table->timestamps();
         });
