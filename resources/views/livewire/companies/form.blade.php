@@ -1,15 +1,15 @@
 <div class="container">
     <x-jet-validation-errors></x-jet-validation-errors>
     <div class="row align-items-start">
-        <div class="col-md-5 flex flex-col">
+        <div class="col-md-3 flex flex-col">
             <label class="input-group-text mb-2">{{ __('Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
             <label class="input-group-text mb-2">{{ __('Phone') }}</label>
             <label class="input-group-text mb-2">{{ __('Address') }}</label>
             <label class="input-group-text mb-2">{{ __('Zipcode') }}</label>
             <label class="input-group-text mb-2">{{ __('Town') }}</label>
-            <label class="input-group-text mb-2">{{ __('Latitude') }}</label>
-            <label class="input-group-text mb-2">{{ __('Longitude') }}</label>
+            {{-- <label class="input-group-text mb-2">{{ __('Latitude') }}</label>
+            <label class="input-group-text mb-2">{{ __('Longitude') }}</label> --}}
             <label class="input-group-text mb-2">{{ __('Active') }}</label>
         </div>
 
@@ -73,23 +73,23 @@
                     >
                 </div>
                 {{-- Latitud --}}
-                <div class="flex-flex-column">
+                {{-- <div class="flex-flex-column">
                     <input type="text" wire:model="main_record.latitude"
                             maxlength="11"
                             placeholder="{{__("Latitude")}}"
                             name="latitude"
                             class="form-control mb-2">
-                </div>
+                </div> --}}
 
                 {{-- Longitud --}}
-                <div class="flex-flex-column">
+                {{-- <div class="flex-flex-column">
                     <input type="text"
                             wire:model="main_record.longitude"
                             maxlength="11"
                             name="longitude"
                             placeholder="{{__("Longitude")}}"
                             class="form-control mb-2">
-                </div>
+                </div> --}}
 
                 <div class="flex-flex-column mt-2 mb-2">
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
