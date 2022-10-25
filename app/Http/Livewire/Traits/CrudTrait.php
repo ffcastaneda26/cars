@@ -164,19 +164,19 @@ trait CrudTrait {
     // Guarda la imagen
     public function store_image($directory_file){
 
-         if(!empty($this->image_path)){ // Traemos una imagen
+         if(!empty($this->logotipo)){ // Traemos una imagen
 
             if($this->updating_record)
             { // Se está actualizando
-                $tmpImg = $this->main_record->image_path;
+                $tmpImg = $this->main_record->logotipo;
                 if($tmpImg !=null && file_exists('storage/'. $directory_file. '/'.$tmpImg)){
                     unlink('storage/'.$directory_file.'/' .$tmpImg);
                 }
             }
 
-            $image_file_name = uniqid() . '.' . $this->image_path->extension(); // Nombre de archivo único
-            $this->image_path->storeAs('public/'.$directory_file,$image_file_name);
-            $this->main_record->image_path = $image_file_name;
+            $image_file_name = uniqid() . '.' . $this->logotipo->extension(); // Nombre de archivo único
+            $this->logotipo->storeAs('public/'.$directory_file,$image_file_name);
+            $this->main_record->logotipo = $image_file_name;
             $this->main_record->save();
         }
     }

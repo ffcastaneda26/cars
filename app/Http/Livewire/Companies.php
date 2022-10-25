@@ -3,16 +3,19 @@
 namespace App\Http\Livewire;
 
 use App\Models\Company;
+use App\Models\Zipcode;
 use Livewire\Component;
 use App\Traits\UserTrait;
 use App\Models\Permission;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Http\Livewire\Traits\CrudTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Companies extends Component
 {
     use AuthorizesRequests;
+    use WithFileUploads;
     use WithPagination;
     use CrudTrait;
     use UserTrait;
@@ -22,10 +25,12 @@ class Companies extends Component
 
 
     protected $rules = [
-        'main_record.name'      => 'required|min:5|max:100|unique:companies,name',
-        'main_record.email'     => 'required|digits:10',
-        'main_record.phone'     => 'required|email|max:100',
-        'main_record.address'   => 'required|min:5',
+        'main_record.name'      => 'required|min:5|max:100',
+        'main_record.email'     => 'required|email|max:50',
+        'main_record.phone'     => 'required|digits:10',
+        'main_record.address'   => 'required|min:5|max:100',
+        'main_record.latitude'   => 'nullable',
+        'main_record.longitude'  => 'nullable',
         'main_record.active'    => 'nullable'
     ];
 
@@ -57,6 +62,7 @@ class Companies extends Component
 
     public function resetInputFields()
     {
+        $this->reset('town_state', 'zipcode', 'active', 'logotipo');
         $this->main_record = new Company();
         $this->resetErrorBag();
     }
@@ -68,10 +74,14 @@ class Companies extends Component
 
     public function store()
     {
-        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:100|unique:companies,name,{$this->main_record->id}"
-                                                                    : 'required|min:5|max:100|unique:companies,name';
         $this->validate();
+        $this->main_record->active = $this->active ? 1 : 0;
         $this->main_record->save();
+        $this->store_image('companies');
+        if ($this->zipcode) {
+            $this->main_record->zipcode = $this->zipcode;
+            $this->main_record->save();
+        }
         $this->close_store('Company');
     }
 
@@ -95,5 +105,18 @@ class Companies extends Component
     public function destroy(Company $record)
     {
         $this->delete_record($record, __('Company') . ' ' . __('Deleted') . ' ' . __('Successfully!!'));
+    }
+
+     /**
+     * Lee el zipcode para tomar población y estado
+     */
+    public function read_zipcode(){
+        $this->town_state ='';
+        $zipcode = Zipcode::where('zipcode','=',$this->zipcode)->first();
+        if($zipcode){
+            $this->town_state = $zipcode->town . ',' . $zipcode->state;
+        }else{
+            $this->town_state = __('Zipcode does not Exists');
+        }
     }
 }

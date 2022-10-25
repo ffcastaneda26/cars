@@ -7,7 +7,9 @@
             <label class="input-group-text mb-2">{{ __('Phone') }}</label>
             <label class="input-group-text mb-2">{{ __('Address') }}</label>
             <label class="input-group-text mb-2">{{ __('Zipcode') }}</label>
-            <label class="input-group-text mb-2">{{ __('Logotipo') }}</label>
+            <label class="input-group-text mb-2">{{ __('Town') }}</label>
+            <label class="input-group-text mb-2">{{ __('Latitude') }}</label>
+            <label class="input-group-text mb-2">{{ __('Longitude') }}</label>
             <label class="input-group-text mb-2">{{ __('Active') }}</label>
         </div>
 
@@ -21,7 +23,7 @@
             </div>
             {{-- Email --}}
             <div class="flex-flex-column">
-                <input type="text" wire:model="main_record.email" required maxlength="30" placeholder="{{__("Email")}}"
+                <input type="text" wire:model="main_record.email" required maxlength="50" placeholder="{{__("Email")}}"
                 class="form-control mb-2">
             </div>
 
@@ -54,16 +56,30 @@
             {{-- Estado --}}
             <div class="flex-flex-column">
                 <input type="text" wire:model="town_state"
-                    placeholder="{{__("Town")}}"
+                    placeholder="{{$town_state}}"
                     class="form-control mb-2"
-                    {{$town_state}}
+                    disabled
                 >
             </div>
+            {{-- Latitud --}}
+            <div class="flex-flex-column">
+                <input type="text" wire:model="main_record.latitude"
+                maxlength="50"
+                placeholder="{{__("Latitud")}}"
+                class="form-control mb-2">
+            </div>
 
+            {{-- Longitud --}}
+            <div class="flex-flex-column">
+                <input type="text" wire:model="main_record.longitude"
+                maxlength="50"
+                placeholder="{{__("Longitud")}}"
+                class="form-control mb-2">
+            </div>
 
             <div class="flex-flex-column mt-2 mb-2">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="checkbox" wire:model="active" class="btn-check">
+                    <input type="checkbox" wire:model="main_record.active" class="btn-check">
                     <label class="btn btn-outline-success" for="normal">Active</label>
                 </div>
             </div>

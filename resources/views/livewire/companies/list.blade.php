@@ -6,7 +6,9 @@
     <td>{{ $record->address}}</td>
     <td>{{ $record->zipcode}}</td>
     <td class="text-center">
-        <img src="{{url($record->logotipo)}}" class="avatar-lg" alt="image">
+        @if ($record->logotipo)
+            <img src="{{url($record->logotipo)}}" class="avatar-lg" alt="image">
+        @endif
     </td>
     <td class="text-center">
         <input type="checkbox" disabled
