@@ -1,7 +1,6 @@
-<a href="#" class="ml-3 waves-effect">
-    <i class="mdi mdi-projector"></i>
-    <span>{{__('No admin')}}</span>
-</a>
-
-
-
+<li>
+    <a href="{{route('users')}}" class="waves-effect">
+        <i class="mdi mdi-account-box"></i>
+        <span> {{__('Users')}} </span>
+    </a>
+</li>

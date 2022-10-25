@@ -1,15 +1,11 @@
 <?php
 
-use App\Http\Livewire\Games;
 use App\Http\Livewire\Roles;
-use App\Http\Livewire\Teams;
-use App\Http\Livewire\Users;
-use App\Http\Livewire\Rounds;
-use App\Http\Livewire\Sports;
+use App\Http\Livewire\Companies;
 use App\Http\Livewire\Permissions;
-use App\Http\Livewire\Tournaments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\RolePermissions;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -32,7 +28,8 @@ Route::get('optimize',function(){
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('users',Users::class)->name('users');                            // Usuarios
-    Route::get('permission',Permissions::class)->name('permission');            // Permisos
-    Route::get('role',Roles::class)->name('role');                              // Roles
+    Route::get('permission',Permissions::class)->name('permission');                   // Permisos
+    Route::get('role',Roles::class)->name('role');                                    // Roles
+    Route::get('companies',Companies::class)->name('companies');                     // Roles
+    Route::get('role-permission',RolePermissions::class)->name('role-permission');  // Asigar Permisos al Rol
 });

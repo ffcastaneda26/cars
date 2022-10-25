@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Auth\FacebookLoginController;
+use App\Http\Livewire\Users;
 
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\FacebookLoginController;
 
 
 Route::get('/', function () {
@@ -41,3 +42,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
 
 Route::get('/login/facebook',[FacebookLoginController::class,'login'])->name('login.facebook');
 Route::get('/facebook/auth/callback',[FacebookLoginController::class,'loginWithFacebook'])->name('login.callback');
+Route::middleware(['auth'])->group(function () {
+   /*  Route::get('role-permission',RolePermissions::class)->name('role-permission'); */
+    Route::get('users',Users::class)->name('users'); // Usuarios
+});

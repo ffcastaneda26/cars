@@ -20,14 +20,13 @@ class Company extends Model
         'longitude',
         'logotipo',
         'active',
-
     ];
 
 
-    /*+-----------------+
-      | Relaciones      |
-      +-----------------+
-     */
+    /*  +-----------------+
+        | Relaciones      |
+        +-----------------+
+    */
 
 	public function users(): BelongsToMany
     {
@@ -36,9 +35,9 @@ class Company extends Model
 
 
     /*+-----------------+
-      | Funciones Apoyo |
-      +-----------------+
-     */
+    | Funciones Apoyo |
+    +-----------------+
+    */
 
     public function can_be_delete(){
         if($this->users()->count()) return false;
@@ -51,17 +50,17 @@ class Company extends Model
 
 
     /*+-------------------+
-      | Búsquedas         |
-      +-------------------+
+        | Búsquedas         |
+        +-------------------+
     */
 
     public function scopeCompany($query,$valor)
     {
         if ( trim($valor) != "") {
             $query->where('name','LIKE',"%$valor%")
-                  ->orwhere('phone','LIKE',"%$valor%")
-                  ->orwhere('email','LIKE',"%$valor%");
-         }
+                ->orwhere('phone','LIKE',"%$valor%")
+                ->orwhere('email','LIKE',"%$valor%");
+        }
     }
 
 }

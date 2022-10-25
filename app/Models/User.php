@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use App\Traits\UserTrait;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -71,6 +72,11 @@ class User extends Authenticatable
       | Busquedas   |
       +-------------+
     */
+    // Roles
+    public function roles():BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
 
     public function scopeUser($query,$valor)
     {

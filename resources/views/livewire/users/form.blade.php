@@ -5,6 +5,7 @@
         <div class="w-auto flex flex-col">
             <label class="input-group-text mb-2">{{ __('Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
+            <label class="input-group-text mb-2">{{ __('Nickname') }}</label>
             <label class="input-group-text mb-2">{{ __('Role') }}</label>
             <label class="input-group-text mb-2">{{ __('Password') }}</label>
             <label class="input-group-text mb-2">{{ __('Confirm') }}</label>
@@ -18,9 +19,6 @@
             <div class="flex-flex-column">
                 <input type="text" wire:model="name" required placeholder="{{ __('Name') }}"
                     class="form-control mb-2" maxlength="50"
-                    @if(isset($record->id) && !$record->wolf)
-                        disabled
-                    @endif
                 >
             </div>
 
@@ -28,13 +26,15 @@
             <div class="flex-flex-column">
                 <input type="text" wire:model="email"
                 maxlength="50" placeholder="{{ __('Email') }}"
-                    class="form-control mb-2"
-            @if(isset($record->id))
-                disabled
-            @endif
-                    >
+                class="form-control mb-2"
+                >
             </div>
-
+            {{-- Sobrenombre --}}
+            <div class="flex-flex-column">
+                <input type="text" wire:model="nickname" required placeholder="{{ __('Nickname') }}"
+                class="form-control mb-2" maxlength="50"
+                >
+            </div>
 
             {{-- Rol --}}
 
@@ -54,10 +54,7 @@
                         </option>
                     @endforeach
                 </select>
-
             </div>
-
-
 
             {{-- Contraseña --}}
             <div class="flex-flex-column">

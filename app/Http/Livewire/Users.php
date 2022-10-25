@@ -22,7 +22,7 @@ class Users extends Component {
     use CrudTrait;
     use WithFileUploads;
 
-    public $name, $email, $password, $active,$password_confirmation;
+    public $name, $email, $nickname, $password, $active,$password_confirmation;
 
     public $roles=null,$role_id=null,$role=null;
     public $header;
@@ -37,7 +37,7 @@ class Users extends Component {
 
 
 	public function mount() {
-        $this->authorize('hasaccess', 'users.index');
+        //$this->authorize('hasaccess', 'users.index');
         $this->manage_title = __('Manage') . ' ' . __('Users');
         $this->header = __('Manage') . ' ' . __('Users');
 
@@ -58,7 +58,6 @@ class Users extends Component {
         $searchTerm = '%' . $this->search . '%';
 
         if(Auth::user()->IsAdmin()){
-
             return view('livewire.index', [
                 'records' => User::User($this->search)->paginate($this->pagination),
             ]);
@@ -66,7 +65,7 @@ class Users extends Component {
 
         return view('livewire.index', [
             'records' => User::whereHas('roles', function (Builder $query)  {
-                $query->whereIn('role_id', ['manager','cashier']);
+                $query->whereIn('role_id', [2,4]);
             })->User($searchTerm)
                 ->orderBy('name')
                 ->paginate($this->pagination),
@@ -76,9 +75,9 @@ class Users extends Component {
     // Lee los roles para SELECT en formulario
     private function readRoles(){
         if(Auth::user()->isAdmin()){
-            $this->roles = Role::all();
+            $this->roles = Role::where('name','!=','agent')->get();
         }else{
-            $this->roles = Role::where('name','!=','admin')->get();
+            $this->roles = Role::whereIn('id', [2,4])->get();
         }
     }
 
@@ -87,7 +86,7 @@ class Users extends Component {
 	 */
 
 	private function resetInputFields() {
-        $this->reset(['record_id','name','email','record','role_id','password','password_confirmation']);
+        $this->reset(['record_id','name','nickname','email','record','role_id','password','password_confirmation']);
 	}
 
 	/**+------------------------------------+
@@ -98,12 +97,10 @@ class Users extends Component {
 	public function store() {
 
         $this->validateUser();
-
         if ($this->record_id) {
             $user = $this->updateUser();
         } else {
             $user = $this->createUser();
-
         }
 
         $this->create_button_label = __('Create') . ' ' . __('User');
@@ -120,6 +117,7 @@ class Users extends Component {
 
         $this->validate([
             'name'                  => 'required',
+            'nickname'              => 'nullable',
             'email'                 => 'required|email|unique:users,email,' . $this->record_id,
             'role_id'               => 'required|exists:roles,id',
         ]);
@@ -130,7 +128,6 @@ class Users extends Component {
                 'password_confirmation' =>'required_with:password',
             ]);
         }
-
     }
 
     /**+----------------+
@@ -141,12 +138,12 @@ class Users extends Component {
     private function createUser(){
         $user = User::create([
 			'name'              => $this->name,
+			'nickname'          => $this->nickname,
 			'email'             => $this->email,
             'password'          => Hash::make($this->password),
         ]);
 
         $user->roles()->sync($this->role_id);
-
         $user->save();
         return $user;
     }
@@ -159,14 +156,14 @@ class Users extends Component {
     private function updateUser(){
         $user = User::findOrFail($this->record_id);
         $user->update([
-            'name'  => $this->name,
-            'active'=> $this->active ? 1 : 0,
+            'name'      => $this->name,
+            'nickname'  => $this->nickname,
+            'active'    => $this->active ? 1 : 0,
         ]);
 
         if($this->password){
             $user->password = Hash::make($this->password);
         }
-
 
         if ($this->role_id) {
             $user->roles()->sync($this->role_id);
@@ -186,6 +183,7 @@ class Users extends Component {
         $this->record   = $record;
 		$this->record_id= $record->id;
 		$this->name     = $record->name;
+		$this->nickname = $record->nickname;
 		$this->email    = $record->email;
 		$this->active   = $record->active;
         $this->role_id  = $record->roles()->first()->id;

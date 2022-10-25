@@ -10,7 +10,7 @@ class isManager
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->isManger()) {
+        if (Auth::user() &&  Auth::user()->isManager()) {
             return $next($request);
         }
         session()->flash('alert',__('You have not Account Manager access'));
