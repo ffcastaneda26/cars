@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
 
         User::create([
 			'name' => 'Manager General',
-			'email' => 'manager@cissi.com',
+			'email' => 'manager@jale.com',
             'nickname' => 'manager',
             'email_verified_at' => now(),
             'active' => 1,

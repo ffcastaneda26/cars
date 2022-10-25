@@ -22,13 +22,17 @@ class DatabaseSeeder extends Seeder
             'role_user',
             'permission_user',
             'roles',
-            'permissions'
+            'permissions',
+            'genders',
+            'statuses',
         ]);
 
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,
+            GenderSeeder::class,
+            StatusSeeder::class,
         ]);
 
     }
