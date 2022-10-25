@@ -25,6 +25,8 @@
             <span>{{__('Permissions by Role')}}</span>
         </a>
     </li>
+
+    {{-- Permisos --}}
     <li>
         <a href="{{route('permission')}}" class="waves-effect">
             <i class="mdi mdi-calendar-check"></i>
@@ -32,6 +34,22 @@
         </a>
     </li>
 
+    {{-- Estados de Registros --}}
+    <li>
+        <a href="{{route('statuses')}}" class="waves-effect">
+            <i class="mdi mdi-list-status"></i>
+            <span>{{__('Statuses')}}</span>
+        </a>
+    </li>
+
+    {{-- Géneros --}}
+    <li>
+        <a href="{{route('genders')}}" class="waves-effect">
+            <i class="mdi mdi-gender-transgender"></i>
+            <span>{{__('Genders')}}</span>
+        </a>
+    </li>
+    {{-- Empresas --}}
     <li>
         <a href="{{route('companies')}}" class="waves-effect">
             <i class="mdi mdi-account-box"></i>

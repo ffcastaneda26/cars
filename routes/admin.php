@@ -2,10 +2,12 @@
 
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Companies;
+use App\Http\Livewire\Genders;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
+use App\Http\Livewire\Statuses;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -28,8 +30,11 @@ Route::get('optimize',function(){
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('permission',Permissions::class)->name('permission');                   // Permisos
-    Route::get('role',Roles::class)->name('role');                                    // Roles
-    Route::get('companies',Companies::class)->name('companies');                     // Roles
-    Route::get('role-permission',RolePermissions::class)->name('role-permission');  // Asigar Permisos al Rol
+    Route::get('permission',Permissions::class)->name('permission');                    // Permisos
+    Route::get('role',Roles::class)->name('role');                                      // Roles
+    Route::get('role-permission',RolePermissions::class)->name('role-permission');      // Asigar Permisos al Rol
+    Route::get('statuses', Statuses::class)->name('statuses');                          // Estados de registros
+    Route::get('genders', Genders::class)->name('genders');                             // Géneros
+    Route::get('companies',Companies::class)->name('companies');                        // Empresas
+
 });

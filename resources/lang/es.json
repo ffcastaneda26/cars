@@ -1,5 +1,8 @@
 {
-
+    "Gender": "Género",
+    "Genders": "Géneros",
+    "Status": "Estado",
+    "Statuses": "Estados de Registros",
     "Nickname": "Nickname",
     "Welcome": "Bienvenido",
     "Accept you have read the rules": "Acepte que ha leído las reglas",
