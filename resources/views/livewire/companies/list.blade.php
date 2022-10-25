@@ -7,7 +7,7 @@
     <td>{{ $record->zipcode}}</td>
     <td class="text-center">
         @if ($record->logotipo)
-            <img src="{{url($record->logotipo)}}" class="avatar-lg" alt="image">
+            <img src="{{Storage::url($record->logotipo)}}" class="avatar-sm" alt="image">
         @endif
     </td>
     <td class="text-center">

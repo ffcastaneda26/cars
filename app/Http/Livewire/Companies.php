@@ -77,7 +77,10 @@ class Companies extends Component
         $this->validate();
         $this->main_record->active = $this->active ? 1 : 0;
         $this->main_record->save();
-        $this->store_image('companies');
+        $Image = $this->logotipo->Store('public/images/companies');
+        $this->main_record->logotipo = $Image;
+        $this->main_record->save();
+
         if ($this->zipcode) {
             $this->main_record->zipcode = $this->zipcode;
             $this->main_record->save();
