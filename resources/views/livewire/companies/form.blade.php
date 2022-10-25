@@ -7,7 +7,9 @@
             <label class="input-group-text mb-2">{{ __('Phone') }}</label>
             <label class="input-group-text mb-2">{{ __('Address') }}</label>
             <label class="input-group-text mb-2">{{ __('Zipcode') }}</label>
-            <label class="input-group-text mb-2">{{ __('Town') }}</label>
+            @if($main_record->zipcode)
+                <label class="input-group-text mb-2">{{__("City")}}</label>
+            @endif
             {{-- <label class="input-group-text mb-2">{{ __('Latitude') }}</label>
             <label class="input-group-text mb-2">{{ __('Longitude') }}</label> --}}
             <label class="input-group-text mb-2">{{ __('Active') }}</label>
@@ -54,24 +56,26 @@
                 </div>
 
                 {{-- Codigo postal --}}
-                <div class="flex-flex-column">
-                    <input type="text"  wire:model="zipcode"
-                    wire:change="read_zipcode()"
+            <div class="flex-flex-column">
+                <input type="text"
+                    wire:model="main_record.zipcode"
+                    wire:change="read_zipcode"
                     maxlength="5"
-                    placeholder="{{__("Zipcode")}}"
-                    name="zipcode"
+                    onkeypress="return only_numbers(event, this)"
+                    class="form-control mb-2"
+                >
+            </div>
 
-                    class="form-control mb-2">
-                </div>
-
-                {{-- Estado --}}
+            {{-- City --}}
+            @if($main_record->zipcode)
                 <div class="flex-flex-column">
-                    <input type="text" wire:model="town_state"
-                        placeholder="{{$town_state}}"
-                        class="form-control mb-2"
+                    <input type="text"
+                        wire:model="town_state"
                         disabled
+                        class="form-control mb-2"
                     >
                 </div>
+            @endif
                 {{-- Latitud --}}
                 {{-- <div class="flex-flex-column">
                     <input type="text" wire:model="main_record.latitude"
@@ -91,13 +95,13 @@
                             class="form-control mb-2">
                 </div> --}}
 
-                <div class="flex-flex-column mt-2 mb-2">
+                {{-- ¿Activo? --}}
+                <div class="flex-flex-column">
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="checkbox" wire:model="main_record.active" class="btn-check">
-                        <label class="btn btn-outline-success" for="normal">{{__('Active')}}</label>
+                        <input type="radio" wire:model="active" class="btn-check" name="type" id="active" value="1">
+                        <label class="btn btn-outline-success" for="active">{{__('Active')}}</label>
 
-
-                        <input type="radio" wire:model="active" class="btn-check" name="type" id="inactive" value="0">
+                        <input type="radio" wire:model="active" class="btn-check ml-4" name="type" id="inactive" value="0">
                         <label class="btn btn-outline-danger" for="inactive">{{__('Inactive')}}</label>
                     </div>
                 </div>
