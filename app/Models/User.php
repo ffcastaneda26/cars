@@ -30,10 +30,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'nickname',
+        'phone',
         'password',
         'oauth_id',
         'oauth_type',
+        'is_company',
         'active'
     ];
 
@@ -84,7 +85,9 @@ class User extends Authenticatable
         if ( $valor != "") {
             $query->where('name','LIKE',"%$valor%")
                   ->orwhere('email','LIKE',"%$valor%")
-                  ->orwhere('nickname','LIKE',"%$valor%");
+                  ->orwhere('phone','LIKE',"%$valor%");
          }
     }
+
+
 }

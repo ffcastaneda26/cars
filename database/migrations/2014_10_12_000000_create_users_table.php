@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',191);
             $table->string('email',191)->unique();
-            $table->string('nickname',15)->unique();
+            $table->string('phone',10)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('oauth_id')->nullable();
@@ -25,7 +25,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->boolean('active')->default(0)->comment('¿Activo?');
+            $table->boolean('is_company')->default(0)->comment('¿Es Empleador?');
+            $table->boolean('active')->default(1)->comment('¿Activo?');
             $table->timestamps();
         });
     }

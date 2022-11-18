@@ -21,18 +21,28 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'nickname' => ['required', 'string',  'max:15', 'unique:nickname'],
-            'password' => $this->passwordRules(),
+            'name'      => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone'     => ['required', 'digits:10', 'regex:/^[1-9](?!.*000)\d{9}$/','unique:users'],
+            'email'     => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
+            'is_company'=> ['required'],
+            'password'  => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
+
+
+        if(!$input['email']){
+            $input['email'] = $input['phone'];
+        }
+
         return User::create([
             'name'      => $input['name'],
+            'last_name' => $input['last_name'],
+            'phone'      => $input['phone'],
             'email'     => $input['email'],
-            'nickname'  => $input['nickname'],
-            'password'  => Hash::make($input['password']),
+            'is_company'=> $input['is_company'] ? 1 : 0,
+            'password'  => Hash::make($input['password'])
         ]);
     }
 }
