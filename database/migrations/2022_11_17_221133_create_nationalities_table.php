@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('nationalities', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('spanish',25)->unique();
+            $table->string('short_spanish',8)->unique();
+            $table->string('english',25)->unique();
+            $table->string('short_english',8)->unique();
         });
     }
 

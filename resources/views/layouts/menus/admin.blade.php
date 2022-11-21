@@ -56,4 +56,13 @@
             <span> {{__('Companies')}} </span>
             </a>
     </li>
+
+
+        {{-- Nacionalidades --}}
+        <li>
+            <a href="{{route('nationalities')}}" class="waves-effect">
+                <i class="mdi mdi-hail"></i>
+                <span> {{__('Nationalities')}} </span>
+                </a>
+        </li>
 </ul>

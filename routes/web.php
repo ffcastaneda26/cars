@@ -46,3 +46,4 @@ Route::middleware(['auth'])->group(function () {
    /*  Route::get('role-permission',RolePermissions::class)->name('role-permission'); */
     Route::get('users',Users::class)->name('users'); // Usuarios
 });
+

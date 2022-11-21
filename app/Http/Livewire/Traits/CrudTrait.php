@@ -19,7 +19,8 @@ trait CrudTrait {
     public $isOpenDelete = 0;
     public $allow_create=true;
     public $allow_save=true;
-
+    public $sort = 'id';
+    public $direction ='asc';
 
 
     public $allow_navigate = true;

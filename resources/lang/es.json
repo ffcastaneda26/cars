@@ -1,5 +1,7 @@
 {
     "Register me like": "Registrarme como",
+    "Nationalities": "Nacionalidades",
+    "Nationality": "Nacionalidad",
     "Last Name": "Apellido",
     "Employer": "Empleador",
     "Employee": "Trabajador",
@@ -94,7 +96,7 @@
     "Sign in to continue to Wolfe Dude": "Ingrese sus credenciales para continuar en Wolfe Dude",
     "Manager": "Administrador",
     "Yes, delete it!": "Si, Elimínalo!",
-    "No Records Found": "No hay resultados",
+    "No Records Found": "No se encontraron datos",
     "Name": "Nombre",
     "Phone": "Teléfono",
     "Email": "Correo Electrónico",

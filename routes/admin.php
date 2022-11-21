@@ -1,14 +1,18 @@
 <?php
 
 use App\Http\Livewire\Roles;
-use App\Http\Livewire\Companies;
 use App\Http\Livewire\Genders;
+use App\Http\Livewire\Statuses;
+
+use App\Http\Livewire\Companies;
+use App\Http\Livewire\Nationalities;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
-use App\Http\Livewire\Statuses;
 use Illuminate\Support\Facades\Artisan;
+
+
 
 
 Route::get('storage-link',function(){
@@ -36,5 +40,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('statuses', Statuses::class)->name('statuses');                          // Estados de registros
     Route::get('genders', Genders::class)->name('genders');                             // Géneros
     Route::get('companies',Companies::class)->name('companies');                        // Empresas
-
+    Route::get('nationalities',Nationalities::class)->name('nationalities');            // Nacionalidades
 });
