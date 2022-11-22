@@ -1,5 +1,7 @@
 {
+
     "Saving": "Salvando....",
+    "Code": "Código",
     "Time Types": "Tipos de Tiempo",
     "Time Type": "Tipo de Tiempo",
     "Salary Types": "Tipos de Salario",
@@ -33,6 +35,7 @@
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one." : "¿Olvidó su contraseña? No hay problema. Simplemente háganos saber su dirección de correo electrónico y le enviaremos un enlace de restablecimiento de contraseña que le permitirá elegir una nueva.",
     "Forgot your password?": "¿Olvidó su contraseña?",
     "Whoops! Something went wrong.": "¡Vaya! Algo salió mal.",
+    "Languages": "Idiomas",
     "Language": "Idioma",
     "Action":"Acción",
     "Operations": "Operaciones",

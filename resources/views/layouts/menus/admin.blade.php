@@ -83,5 +83,12 @@
             </a>
     </li>
 
+    {{-- Idiomas --}}
+    <li>
+        <a href="{{route('languages')}}" class="waves-effect">
+            <i class="fas fa-language"></i>
+            <span> {{__('Languages')}} </span>
+            </a>
+    </li>
 
 </ul>

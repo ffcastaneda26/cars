@@ -49,9 +49,8 @@ class Languages extends Component {
         $this->create_button_label =  $this->main_record->id ? __('Update') . ' ' . __('Language')
                                                              : __('Create') . ' ' . __('Language');
 
-        return view('livewire.index', [
-            'records' => Language::Name($this->search)->paginate($this->pagination),
-        ]);
+        $records = Language::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
+        return view('livewire.index',compact('records'));
 	}
 
 

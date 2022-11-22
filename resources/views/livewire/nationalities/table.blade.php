@@ -1,7 +1,7 @@
 <thead>
     <tr class="bg-dark text-white">
-        <th class="flex orderby" wire:click="order('spanish')">{{__("Spanish")}}
-            {{-- <i class="mdi mdi-sort-alphabetical-ascending float-right"></i> --}}
+        <th class="flex orderby"
+            wire:click="order('spanish')">{{__("Spanish")}}
             @if($sort == 'spanish')
                 @if($direction == 'asc')
                     <span class="float-right"><i class="fas fa-sort-alpha-up-alt"></i></span>

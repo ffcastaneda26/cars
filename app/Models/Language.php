@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Language extends Model
 {
     use HasFactory;
+
     protected $table = 'languages';
     public $timestamps = false;
 
@@ -40,7 +41,7 @@ class Language extends Model
       +-------------+
     */
 
-    public function scopeName($query,$value)
+    public function scopeComplete($query,$value)
     {
         if ( trim($value) != "") {
             $query->where('spanish','LIKE',"%$value%")
