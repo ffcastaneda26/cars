@@ -45,8 +45,8 @@
             <div class="form-group mt-2">
                 <label class="col-sm-4 control-label">{{__('Register me like') }}  </label>
                 <div class="col-sm-8">
-                    <label class="radio-inline"> <input required type="radio" name="is_company" id="employee" value="1">{{__('Employee')}}</label>
-                    <label class="radio-inline"> <input required type="radio" name="is_company" id="employer" value="0">{{__('Employer')}}</label>
+                    <label class="radio-inline"> <input required type="radio" name="is_company" id="employee" value="0">{{__('Employee')}}</label>
+                    <label class="radio-inline"> <input required type="radio" name="is_company" id="employer" value="1">{{__('Employer')}}</label>
                 </div>
             </div>
 

@@ -24,8 +24,10 @@
                                     @auth
                                         @if(Auth::user()->isAdmin())
                                             <li>@include('layouts.menus.admin')</li>
-                                        @else
-                                            <li>@include('layouts.menus.operation')</li>
+                                        @endif
+
+                                        @if(Auth::user()->isManager())
+                                            <li>@include('layouts.menus.manager')</li>
                                         @endif
 
                                     @endauth
