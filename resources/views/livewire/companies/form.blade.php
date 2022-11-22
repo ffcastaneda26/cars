@@ -1,7 +1,7 @@
 <div class="container">
     <x-jet-validation-errors></x-jet-validation-errors>
     <div class="row align-items-start">
-        <div class="col-md-3 flex flex-col">
+        <div class="col-md-5 flex flex-col">
             <label class="input-group-text mb-2">{{ __('Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
             <label class="input-group-text mb-2">{{ __('Phone') }}</label>

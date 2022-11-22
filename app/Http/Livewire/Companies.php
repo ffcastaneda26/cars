@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Http\Livewire\Traits\CrudTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class Companies extends Component
 {
@@ -56,9 +57,16 @@ class Companies extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Company')
                                                             : __('Create') . ' ' . __('Company');
 
-        return view('livewire.index', [
-            'records' => Company::Company($this->search)->paginate($this->pagination),
-        ]);
+
+        if(Auth::user()->isAdmin()){
+            $records = Company::Company($this->search)->paginate($this->pagination);
+        }
+
+        if(Auth::user()->isManager()){
+            $records = Auth::user()->companies()->Company($this->search)->paginate($this->pagination);
+        }
+
+        return view('livewire.index',compact('records'));
     }
 
     public function resetInputFields()
@@ -79,7 +87,7 @@ class Companies extends Component
         $this->main_record->active = $this->active ? 1 : 0;
 
         if($this->logotipo){
-            $Image = $this->logotipo->Store('public/images/companies');
+            $Image = $this->logotipo->Store('public/companies');
             $this->main_record->logotipo = $Image;
         }
         $this->main_record->save();
@@ -88,6 +96,11 @@ class Companies extends Component
             $this->main_record->zipcode = $this->zipcode;
             $this->main_record->save();
         }
+
+        if(Auth::user()->isManager()){
+            Auth::user()->companies()->attach($this->main_record);
+        };
+
         $this->close_store('Company');
     }
 

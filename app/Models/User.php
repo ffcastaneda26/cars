@@ -69,16 +69,29 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    /*+------------+
-      | Busquedas   |
-      +-------------+
+
+    /*  +-----------------+
+        | Relaciones      |
+        +-----------------+
     */
+
     // Roles
     public function roles():BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
 
+
+	public function companies(): BelongsToMany
+    {
+		return $this->belongsToMany(Company::class);
+	}
+
+
+    /*+------------+
+      | Busquedas   |
+      +-------------+
+    */
     public function scopeUser($query,$valor)
     {
         if($valor) $valor = trim($valor);
