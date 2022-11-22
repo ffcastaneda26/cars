@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             'permissions',
             'genders',
             'statuses',
+            'nationalities',
+            'salary_types'
         ]);
 
         $this->call([
@@ -33,6 +35,9 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             GenderSeeder::class,
             StatusSeeder::class,
+            NationalitySeeder::class,
+            SalaryTypeSeeder::class,
+            TimeTypesSeeder::class,
         ]);
 
     }

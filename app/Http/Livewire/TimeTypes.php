@@ -6,19 +6,17 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Traits\UserTrait;
-use App\Models\Nationality;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\TimeType;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Nationalities extends Component
+class TimeTypes extends Component
 {
     use AuthorizesRequests;
     use WithPagination;
     use CrudTrait;
     use UserTrait;
-
-
     protected $listeners = ['destroy'];
 
 
@@ -31,29 +29,30 @@ class Nationalities extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'nationality.index');
-        $this->manage_title = __('Manage') . ' ' . __('Nationalities');
-        $this->search_label = __('Nationality');
-        $this->view_form    = 'livewire.nationalities.form';
-        $this->view_table   = 'livewire.nationalities.table';
-        $this->view_list    = 'livewire.nationalities.list';
-        $this->main_record  = new Nationality();
+        $this->authorize('hasaccess', 'time_type.index');
+        $this->manage_title = __('Manage') . ' ' . __('Time Types');
+        $this->search_label = __('Time Type');
+        $this->view_form    = 'livewire.time_types.form';
+        $this->view_table   = 'livewire.time_types.table';
+        $this->view_list    = 'livewire.time_types.list';
+        $this->main_record  = new TimeType();
 
     }
 
     public function render()
     {
-        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Nationality')
-                                                            : __('Create') . ' ' . __('Nationality');
+        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Time Type')
+                                                            : __('Create') . ' ' . __('Time Type');
 
-        $records = Nationality::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
+        $records = TimeType::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
         return view('livewire.index',compact('records'));
     }
 
 
+
     public function resetInputFields()
     {
-        $this->main_record = new Nationality();
+        $this->main_record = new TimeType();
         $this->resetErrorBag();
     }
 
@@ -74,7 +73,7 @@ class Nationalities extends Component
                                                                            : 'required|min:3|max:8|unique:statuses,short_english';
 
         $this->validate();
-        $this->close_store('Nationalitiy');
+        $this->close_store('Time Type');
     }
 
     /*+------------------------------+
@@ -82,11 +81,11 @@ class Nationalities extends Component
     +------------------------------+
     */
 
-    public function edit(Nationality $record)
+    public function edit(TimeType $record)
     {
         $this->main_record  = $record;
         $this->record_id    = $record->id;
-        $this->create_button_label = __('Update') . ' ' . __('Nationality');
+        $this->create_button_label = __('Update') . ' ' . __('Time Type');
         $this->openModal();
     }
 
@@ -94,10 +93,11 @@ class Nationalities extends Component
     | Elimina Registro             |
     +------------------------------+
     */
-    public function destroy(Nationality $record)
+    public function destroy(TimeType $record)
     {
-        $this->delete_record($record, __('Nationality') . ' ' . __('Deleted Successfully!!'));
+        $this->delete_record($record, __('Time Type') . ' ' . __('Deleted Successfully!!'));
        $this->reset('search');
+
     }
 
 }

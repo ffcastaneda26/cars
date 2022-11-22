@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nationality extends Model
+class SalaryType extends Model
 {
     use HasFactory;
-    protected $table = 'nationalities';
+    protected $table = 'salary_types';
     public $timestamps = false;
     protected $fillable =  [
         'english',
@@ -26,7 +26,6 @@ class Nationality extends Model
     //         set: fn ($value) => ucwords(strtolower($value)),
     //     );
     // }
-
 
 
     /*+-----------------+

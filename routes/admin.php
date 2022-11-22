@@ -10,6 +10,8 @@ use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
+use App\Http\Livewire\SalaryTypes;
+use App\Http\Livewire\TimeTypes;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -41,4 +43,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('genders', Genders::class)->name('genders');                             // Géneros
     Route::get('companies',Companies::class)->name('companies');                        // Empresas
     Route::get('nationalities',Nationalities::class)->name('nationalities');            // Nacionalidades
+    Route::get('salary-types',SalaryTypes::class)->name('salary-types');                // Tipos de Salario
+    Route::get('time-types',TimeTypes::class)->name('time-types');                      // Tipos de Tiempo
+
+
 });

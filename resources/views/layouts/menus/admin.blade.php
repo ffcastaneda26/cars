@@ -58,11 +58,30 @@
     </li>
 
 
-        {{-- Nacionalidades --}}
-        <li>
-            <a href="{{route('nationalities')}}" class="waves-effect">
-                <i class="mdi mdi-hail"></i>
-                <span> {{__('Nationalities')}} </span>
-                </a>
-        </li>
+    {{-- Nacionalidades --}}
+    <li>
+        <a href="{{route('nationalities')}}" class="waves-effect">
+            <i class="mdi mdi-hail"></i>
+            <span> {{__('Nationalities')}} </span>
+            </a>
+    </li>
+
+    {{-- Tipos de Salario --}}
+    <li>
+        <a href="{{route('salary-types')}}" class="waves-effect">
+            <i class="mdi mdi-cash-usd-outline"></i>
+            <span> {{__('Salary Types')}} </span>
+            </a>
+    </li>
+
+
+    {{-- Tipos de Tiempo --}}
+    <li>
+        <a href="{{route('time-types')}}" class="waves-effect">
+            <i class="mdi mdi-timer-sand"></i>
+            <span> {{__('Time Types')}} </span>
+            </a>
+    </li>
+
+
 </ul>

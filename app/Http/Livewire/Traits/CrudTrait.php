@@ -190,4 +190,18 @@ trait CrudTrait {
             unlink('storage/'.$directory_file.'/' .$tmpImg);
         }
     }
+
+    // Ordernar por algun campo
+    public function order($orderby){
+        if($this->sort == $orderby){
+            if($this->direction == 'asc'){
+                $this->direction = 'desc';
+            }else{
+                $this->direction = 'asc';
+            }
+        }else{
+            $this->sort = $orderby;
+            $this->direction = 'asc';
+        }
+    }
 }

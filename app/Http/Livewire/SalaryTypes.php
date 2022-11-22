@@ -6,18 +6,17 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Traits\UserTrait;
-use App\Models\Nationality;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\SalaryType;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Nationalities extends Component
+class SalaryTypes extends Component
 {
     use AuthorizesRequests;
     use WithPagination;
     use CrudTrait;
     use UserTrait;
-
 
     protected $listeners = ['destroy'];
 
@@ -31,29 +30,30 @@ class Nationalities extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'nationality.index');
-        $this->manage_title = __('Manage') . ' ' . __('Nationalities');
-        $this->search_label = __('Nationality');
-        $this->view_form    = 'livewire.nationalities.form';
-        $this->view_table   = 'livewire.nationalities.table';
-        $this->view_list    = 'livewire.nationalities.list';
-        $this->main_record  = new Nationality();
+        $this->authorize('hasaccess', 'salary_type.index');
+        $this->manage_title = __('Manage') . ' ' . __('Salary Types');
+        $this->search_label = __('Salary Type');
+        $this->view_form    = 'livewire.salary_types.form';
+        $this->view_table   = 'livewire.salary_types.table';
+        $this->view_list    = 'livewire.salary_types.list';
+        $this->main_record  = new SalaryType();
 
     }
 
     public function render()
     {
-        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Nationality')
-                                                            : __('Create') . ' ' . __('Nationality');
+        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Salary Type')
+                                                            : __('Create') . ' ' . __('Salary Type');
 
-        $records = Nationality::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
+        $records = SalaryType::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
         return view('livewire.index',compact('records'));
     }
 
 
+
     public function resetInputFields()
     {
-        $this->main_record = new Nationality();
+        $this->main_record = new SalaryType();
         $this->resetErrorBag();
     }
 
@@ -74,7 +74,7 @@ class Nationalities extends Component
                                                                            : 'required|min:3|max:8|unique:statuses,short_english';
 
         $this->validate();
-        $this->close_store('Nationalitiy');
+        $this->close_store('Salary Type');
     }
 
     /*+------------------------------+
@@ -82,11 +82,11 @@ class Nationalities extends Component
     +------------------------------+
     */
 
-    public function edit(Nationality $record)
+    public function edit(SalaryType $record)
     {
         $this->main_record  = $record;
         $this->record_id    = $record->id;
-        $this->create_button_label = __('Update') . ' ' . __('Nationality');
+        $this->create_button_label = __('Update') . ' ' . __('Salary Type');
         $this->openModal();
     }
 
@@ -94,10 +94,11 @@ class Nationalities extends Component
     | Elimina Registro             |
     +------------------------------+
     */
-    public function destroy(Nationality $record)
+    public function destroy(SalaryType $record)
     {
-        $this->delete_record($record, __('Nationality') . ' ' . __('Deleted Successfully!!'));
+        $this->delete_record($record, __('Salary Type') . ' ' . __('Deleted Successfully!!'));
        $this->reset('search');
+
     }
 
 }

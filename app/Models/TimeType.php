@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nationality extends Model
+class TimeType extends Model
 {
     use HasFactory;
-    protected $table = 'nationalities';
+    protected $table = 'time_types';
     public $timestamps = false;
     protected $fillable =  [
         'english',
@@ -18,7 +18,6 @@ class Nationality extends Model
         'short_spanish',
     ];
 
-
     // TODO:: De ser necesario crear mutators con tipo :attribute
     // protected function english(): Attribute
     // {
@@ -26,7 +25,6 @@ class Nationality extends Model
     //         set: fn ($value) => ucwords(strtolower($value)),
     //     );
     // }
-
 
 
     /*+-----------------+
@@ -93,3 +91,4 @@ class Nationality extends Model
          }
     }
 }
+
