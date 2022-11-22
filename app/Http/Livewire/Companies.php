@@ -63,6 +63,7 @@ class Companies extends Component
         }
 
         if(Auth::user()->isManager()){
+
             $records = Auth::user()->companies()->Company($this->search)->paginate($this->pagination);
         }
 
@@ -98,7 +99,7 @@ class Companies extends Component
         }
 
         if(Auth::user()->isManager()){
-            Auth::user()->companies()->attach($this->main_record);
+            Auth::user()->companies()->sync($this->main_record);
         };
 
         $this->close_store('Company');

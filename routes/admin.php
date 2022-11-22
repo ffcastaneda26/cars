@@ -5,6 +5,7 @@ use App\Http\Livewire\Genders;
 use App\Http\Livewire\Statuses;
 
 use App\Http\Livewire\Companies;
+use App\Http\Livewire\Languages;
 use App\Http\Livewire\Nationalities;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('nationalities',Nationalities::class)->name('nationalities');            // Nacionalidades
     Route::get('salary-types',SalaryTypes::class)->name('salary-types');                // Tipos de Salario
     Route::get('time-types',TimeTypes::class)->name('time-types');                      // Tipos de Tiempo
+    Route::get('languages',Languages::class)->name('languages');                        // Idiomas
 
 
 });
