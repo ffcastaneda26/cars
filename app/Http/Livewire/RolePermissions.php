@@ -22,7 +22,7 @@ class RolePermissions extends Component
     public $roles,$role,$role_id;
 
     public function mount() {
-        //$this->authorize('hasaccess', 'role-permissions.index');
+        $this->authorize('hasaccess', 'role-permissions.index');
         $this->manage_title = "Assign Permissions To Role";
         $this->search_label = "Search Permission";
         $this->read_roles();

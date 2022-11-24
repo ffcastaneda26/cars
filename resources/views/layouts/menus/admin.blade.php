@@ -99,4 +99,21 @@
             <span> {{__('Industries')}} </span>
             </a>
     </li>
+
+    {{-- Puestos --}}
+    <li>
+        <a href="{{route('positions')}}" class="waves-effect">
+            <i class="mdi mdi-alpha-p-circle-outline"></i>
+            <span> {{__('Positions')}} </span>
+            </a>
+    </li>
+
+
+    {{-- Escolaridad --}}
+    <li>
+        <a href="{{route('grades')}}" class="waves-effect">
+            <i class="mdi mdi-school"></i>
+            <span> {{__('Grades')}} </span>
+            </a>
+    </li>
 </ul>

@@ -25,7 +25,7 @@ class Genders extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'Gender.index');
+        $this->authorize('hasaccess', 'gender.index');
         $this->manage_title = __('Manage') . ' ' . __('Genders');
         $this->search_label = __('Gender');
         $this->view_form    = 'livewire.genders.form';

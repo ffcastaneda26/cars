@@ -31,7 +31,7 @@ class Industries extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'Industry.index');
+        $this->authorize('hasaccess', 'industry.index');
         $this->manage_title = __('Manage') . ' ' . __('Industries');
         $this->search_label = __('Industry');
         $this->view_form    = 'livewire.industries.form';
@@ -74,7 +74,7 @@ class Industries extends Component
                                                                            : 'required|min:3|max:8|unique:industries,short_english';
 
         $this->validate();
-        $this->close_store('Nationalitiy');
+        $this->close_store('Industry');
     }
 
     /*+------------------------------+

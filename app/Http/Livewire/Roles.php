@@ -28,7 +28,7 @@ class Roles extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'status.index');
+        $this->authorize('hasaccess', 'role.index');
         $this->manage_title = __('Manage') . ' ' . __('Roles');
         $this->search_label = __('Role');
         $this->view_form = 'livewire.roles.form';

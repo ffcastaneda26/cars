@@ -28,7 +28,7 @@ class Permissions extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'status.index');
+        $this->authorize('hasaccess', 'permission.index');
         $this->manage_title = __('Manage') . ' ' . __('Permissions');
         $this->search_label = __('Permission');
         $this->view_form = 'livewire.permissions.form';
