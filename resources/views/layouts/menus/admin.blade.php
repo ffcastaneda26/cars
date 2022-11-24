@@ -91,4 +91,12 @@
             </a>
     </li>
 
+
+    {{-- Industrias --}}
+    <li>
+        <a href="{{route('industries')}}" class="waves-effect">
+            <i class="mdi mdi-factory"></i>
+            <span> {{__('Industries')}} </span>
+            </a>
+    </li>
 </ul>
