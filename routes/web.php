@@ -47,3 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users',Users::class)->name('users'); // Usuarios
 });
 
+
+Route::get('figma-test',function(){
+    return view('figma.square-history');
+});

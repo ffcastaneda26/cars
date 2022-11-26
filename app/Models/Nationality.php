@@ -19,22 +19,12 @@ class Nationality extends Model
     ];
 
 
-    // TODO:: De ser necesario crear mutators con tipo :attribute
-    // protected function english(): Attribute
-    // {
-    //     return Attribute::make(
-    //         set: fn ($value) => ucwords(strtolower($value)),
-    //     );
-    // }
-
-
-
     /*+-----------------+
       | Relaciones      |
       +-----------------+
      */
 
-
+    
 
 
     /*+-----------------+

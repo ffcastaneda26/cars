@@ -1,8 +1,8 @@
 
 <div class="container">
-    <div class="bg-danger">
+
         <x-jet-validation-errors></x-jet-validation-errors>
-    </div>
+
 
     <div class="row align-items-start">
       <div class="col-md-4 flex flex-col">

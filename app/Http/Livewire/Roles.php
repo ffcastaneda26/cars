@@ -65,9 +65,9 @@ class Roles extends Component
 
     public function store()
     {
-        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:50|unique:roles,name,{$this->main_record->id}"
+        $this->rules['main_record.name']    = $this->main_record->id ? "required|min:5|max:50|unique:roles,name,{$this->main_record->id}"
                                                                     : 'required|min:5|max:50|unique:roles,name';
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5unique:roles,spanish,{$this->main_record->id}"
+        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|unique:roles,spanish,{$this->main_record->id}"
                                                                      : 'required|min:5|unique:roles,spanish';
         $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|unique:roles,english,{$this->main_record->id}"
                                                                      : 'required|min:5|unique:roles,english';

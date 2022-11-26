@@ -116,6 +116,10 @@ class Companies extends Component
         $this->record_id    = $record->id;
         $this->active       = $record->active;
         $this->read_town_state($this->main_record->zipcode);
+
+
+
+
         $this->create_button_label = __('Update') . ' ' . __('Company');
         $this->openModal();
     }

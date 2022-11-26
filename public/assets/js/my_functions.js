@@ -49,11 +49,11 @@ function validate_string(e,current_value){
     var key = window.Event ? e.which : e.keyCode;
     var caracter = String.fromCharCode(key);
     var tempValue = current_value.value+caracter;
-    
+
     if (key == 8 || key == 13 || key == 26 || key== 27) {
         return true;
-    } 
-    
+    }
+
     var expreg = /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9 ]+$/u;
     if (expreg.test(tempValue) === true) {
         return true;
@@ -67,11 +67,11 @@ function validate_string_and_point(e,current_value){
     var key = window.Event ? e.which : e.keyCode;
     var caracter = String.fromCharCode(key);
     var tempValue = current_value.value+caracter;
-    
+
     if (key == 8 || key == 13 || key == 26 || key== 27) {
         return true;
-    } 
-    
+    }
+
     var expreg = /^[A-Za-z0-9 . ]+$/u;
     if (expreg.test(tempValue) === true) {
         return true;
@@ -83,6 +83,33 @@ function only_numbers(e,value){
     var key = window.Event ? e.which : e.keyCode;
     return ((key == 8 || key == 13 || key == 26 || key==27 )) || (key >= 48 && key <= 57)
 }
+
+function isFloat(evt,input){
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value+chark;
+    if(key >= 48 && key <= 57){
+        if(filter(tempValue)=== false){
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+          if(key == 8 || key == 13 || key == 0) {
+              return true;
+          }else if(key == 46){
+                if(filter(tempValue)=== false){
+                    return false;
+                }else{
+                    return true;
+                }
+          }else{
+              return false;
+          }
+    }
+}
+
 
 window.livewire.on('fileChoosen', () => {
     let inputField = document.getElementById('logo'||'image')

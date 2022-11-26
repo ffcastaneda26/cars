@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TimeType extends Model
 {
@@ -18,20 +19,16 @@ class TimeType extends Model
         'short_spanish',
     ];
 
-    // TODO:: De ser necesario crear mutators con tipo :attribute
-    // protected function english(): Attribute
-    // {
-    //     return Attribute::make(
-    //         set: fn ($value) => ucwords(strtolower($value)),
-    //     );
-    // }
 
 
     /*+-----------------+
       | Relaciones      |
       +-----------------+
      */
-
+    public function jobs():HasMany
+    {
+        return $this->hasMany(Job::class);
+    }
 
 
 

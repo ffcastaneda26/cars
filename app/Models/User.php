@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -86,6 +87,13 @@ class User extends Authenticatable
     {
 		return $this->belongsToMany(Company::class);
 	}
+
+
+      public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class,'created_by_id');
+    }
+
 
 
     /*+------------+

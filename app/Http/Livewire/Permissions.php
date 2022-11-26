@@ -19,10 +19,10 @@ class Permissions extends Component
     protected $listeners = ['destroy'];
 
     protected $rules = [
-        'main_record.name'          => 'required|min:5|max:100|unique:permissions,name',
-        'main_record.slug'          => 'required|min:5|max:100|unique:permissions,slug',
-        'main_record.spanish'       => 'required|min:5|unique:permissions,spanish',
-        'main_record.english'       => 'required|min:5|unique:permissions,english',
+        'main_record.name'          => 'required|min:3|max:100|unique:permissions,name',
+        'main_record.slug'          => 'required|min:3|max:100|unique:permissions,slug',
+        'main_record.spanish'       => 'required|min:3|unique:permissions,spanish',
+        'main_record.english'       => 'required|min:3|unique:permissions,english',
     ];
 
 
@@ -65,15 +65,15 @@ class Permissions extends Component
 
     public function store()
     {
-        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:100|unique:permissions,name,{$this->main_record->id}"
-                                                                    : 'required|min:5|max:100|unique:permissions,name';
-        $this->rules['main_record.slug'] = $this->main_record->id ? "required|min:5|max:100|unique:permissions,slug,{$this->main_record->id}"
-                                                                    : 'required|min:5|max:100|unique:permissions,slug';
+        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:3|max:100|unique:permissions,name,{$this->main_record->id}"
+                                                                    : 'required|min:3|max:100|unique:permissions,name';
+        $this->rules['main_record.slug'] = $this->main_record->id ? "required|min:3|max:100|unique:permissions,slug,{$this->main_record->id}"
+                                                                    : 'required|min:3|max:100|unique:permissions,slug';
 
-       $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5unique:permissions,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:5|unique:permissions,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|unique:permissions,english,{$this->main_record->id}"
-                                                                     : 'required|min:5|unique:permissions,english';
+       $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|unique:permissions,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:3|unique:permissions,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|unique:permissions,english,{$this->main_record->id}"
+                                                                     : 'required|min:3|unique:permissions,english';
 
         $this->validate();
         $this->main_record->save();

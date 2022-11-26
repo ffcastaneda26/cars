@@ -1,0 +1,57 @@
+.redondeado {
+    border-radius: 5px;
+  }
+
+  .confondo {
+    background-color: #def;
+  }
+
+  .sinborde {
+    border: 0;
+  }
+
+  .sinbordefondo {
+    background-color: #eee;
+    border: 0;
+  }
+
+  .outlinenone {
+    outline: none;
+    background-color: #dfe;
+    border: 0;
+  }
+
+  .redondeadonorelieve {
+    border-radius: 5px;
+    border: 1px solid #39c;
+  }
+
+  .css-exfa3v {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 24px;
+    padding: 4px;
+    border-radius: 9999rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(118, 118, 118);
+    color: rgb(45, 45, 45);
+    background-color: rgb(243, 242, 241);
+    transition: box-shadow 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, border-color 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, background-color 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+css-kyg8or {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+}
+
+css-kyg8or {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+}

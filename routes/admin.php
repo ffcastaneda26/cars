@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use App\Http\Livewire\SalaryTypes;
+use App\Http\Livewire\TimeHires;
 use App\Http\Livewire\TimeTypes;
+use App\Models\TimesHire;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -51,4 +53,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('industries',Industries::class)->name('industries');                     // Industrias
     Route::get('positions',Positions::class)->name('positions');                        // Puestos
     Route::get('grades',Grades::class)->name('grades');                                 // Escolaridades
+    Route::get('time-hires',TimeHires::class)->name('time-hires');                      // Tiempos para contratar
+
 });

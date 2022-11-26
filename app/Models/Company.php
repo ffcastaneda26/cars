@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
 {
@@ -23,10 +24,15 @@ class Company extends Model
     ];
 
 
-    /*  +-----------------+
-        | Relaciones      |
-        +-----------------+
+    /*+-----------------+
+      | Relaciones      |
+      +-----------------+
     */
+
+    public function jobs():HasMany
+    {
+        return $this->hasMany(Job::class);
+    }
 
 	public function users(): BelongsToMany
     {

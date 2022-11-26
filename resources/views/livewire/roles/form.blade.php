@@ -1,8 +1,8 @@
 
 <div class="container">
-    <div class="bg-danger">
+
         <x-jet-validation-errors></x-jet-validation-errors>
-    </div>
+
 
     <div class="row align-items-start">
       <div class="col-md-4 flex flex-col">
@@ -29,19 +29,26 @@
 
             {{-- English --}}
             <div class="flex-flex-column">
-                <input type="text" wire:model="main_record.english" required placeholder="{{__("English")}}"
-                    class="form-control mb-2">
+                <input type="text"
+                        wire:model="main_record.english"
+                        required
+                        placeholder="{{__("English")}}"
+                        class="form-control mb-2">
                 </div>
 
             {{-- Español --}}
             <div class="flex-flex-column">
-                <input type="text" wire:model="main_record.spanish" required placeholder="{{__("Spanish")}}"
-                class="form-control mb-2">
+                <input type="text"
+                        wire:model="main_record.spanish"
+                        required
+                        placeholder="{{__("Spanish")}}"
+                        class="form-control mb-2">
             </div>
 
             {{-- Acceso Total --}}
             <div class="flex-flex-column">
-                <input type="checkbox" wire:model="main_record.full_access"
+                <input type="checkbox"
+                        wire:model="main_record.full_access"
                 class="form-check-input">
             </div>
 

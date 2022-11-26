@@ -116,4 +116,14 @@
             <span> {{__('Grades')}} </span>
             </a>
     </li>
+
+    {{-- Tiempos para contratar --}}
+    <li>
+        <a href="{{route('time-hires')}}" class="waves-effect">
+            <i class="mdi mdi-account-convert"></i>
+            <span> {{__('Tiempos para Contratar')}} </span>
+            </a>
+    </li>
+
+
 </ul>

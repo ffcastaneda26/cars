@@ -28,7 +28,7 @@ class Permission extends Model
 		return $this->belongsToMany(User::class);
 	}
 
-	public function hasRoles() {
+	public function hasRole() {
 		return $this->roles->count();
 	}
 
