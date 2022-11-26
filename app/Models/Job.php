@@ -30,7 +30,7 @@ class Job extends Model
         'complete_address',
         'years_experience',
         'mandatory_experience',
-        'time_to_hire',
+        'times_hire_id',
         'quantity_jobs',
         'remote',
         'show_address',

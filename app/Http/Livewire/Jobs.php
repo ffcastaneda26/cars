@@ -9,6 +9,7 @@ use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Job;
 use App\Models\Position;
 use App\Models\SalaryType;
+use App\Models\TimesHire;
 use App\Models\TimeType;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,7 @@ class Jobs extends Component
     public $positions   = null;
     public $salary_types= null;
     public $time_types  = null;
+    public $time_hires  = null;
 
     // De la tabla
     public $mandatory_experience;
@@ -57,7 +59,7 @@ class Jobs extends Component
         'main_record.complete_address'              =>'nullable',
         'main_record.years_experience'              =>'nullable|numeric',
         'main_record.mandatory_experience'          =>'nullable',
-        'main_record.time_to_hire'                  =>'nullable|numeric|min:0',
+        'main_record.times_hire_id'                 =>'nullable|exists:times_to_hire',
         'main_record.quantity_jobs'                 =>'nullable|numeric|min:0',
         'main_record.remote'                        =>'nullable',
         'main_record.show_address'                  =>'nullable',
@@ -185,6 +187,7 @@ class Jobs extends Component
         $this->positions    = Position::all();
         $this->salary_types = SalaryType::all();
         $this->time_types   = TimeType::all();
+        $this->time_hires   = TimesHire::all();
     }
 
 }

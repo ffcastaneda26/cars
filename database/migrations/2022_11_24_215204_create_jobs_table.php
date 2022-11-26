@@ -3,6 +3,7 @@
 use App\Models\Company;
 use App\Models\Position;
 use App\Models\SalaryType;
+use App\Models\TimesHire;
 use App\Models\TimeType;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
