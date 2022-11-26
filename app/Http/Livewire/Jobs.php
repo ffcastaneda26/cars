@@ -99,7 +99,7 @@ class Jobs extends Component
     {
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Job')
                                                             : __('Create') . ' ' . __('Job');
-        $this->create();
+        // $this->create();
         return view('livewire.index', [
             'records' => Job::Name($this->search)->paginate($this->pagination),
         ]);
