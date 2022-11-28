@@ -15,12 +15,12 @@ class TimeTypesSeeder extends Seeder
      */
     public function run()
     {
-        $sql= "INSERT INTO time_types (english,short_english,spanish,short_spanish) VALUES
-        ('Full Time','FullTime','Tiempo Completo','TiemComp'),
-        ('Half Time','HalfTime','Medio Tiempo','MediTiem'),
-        ('On Time','OnTime','Por Tiempo','PorTiem'),
-        ('Temporary','Tempor','Temporal','Temporal'),
-        ('Occasional','Occasio','Eventual','Eventual')";
+        $sql= "INSERT INTO time_types (english, short_english, spanish, short_spanish) VALUES
+        ('Full Time','FulTim','Tiempo Completo','TieCom'),
+        ('Half Time','HalTim','Medio Tiempo','MedTie'),
+        ('On Time','OnTi','Por Tiempo','PorTie'),
+        ('Temporary','Tempo','Temporal','Temp'),
+        ('Occasional','Occas','Eventual','Even')";
 
         DB::update ($sql);
     }

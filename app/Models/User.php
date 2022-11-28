@@ -32,6 +32,7 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'nickname',
         'password',
         'oauth_id',
         'oauth_type',
