@@ -7,6 +7,7 @@ use App\Http\Livewire\Statuses;
 use App\Http\Livewire\Companies;
 use App\Http\Livewire\Grades;
 use App\Http\Livewire\Industries;
+use App\Http\Livewire\JobTypes;
 use App\Http\Livewire\Languages;
 use App\Http\Livewire\Nationalities;
 use App\Http\Livewire\Permissions;
@@ -49,6 +50,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('nationalities',Nationalities::class)->name('nationalities');            // Nacionalidades
     Route::get('salary-types',SalaryTypes::class)->name('salary-types');                // Tipos de Salario
     Route::get('time-types',TimeTypes::class)->name('time-types');                      // Tipos de Tiempo
+    Route::get('job-types',JobTypes::class)->name('job-types');                          // Tipos de empleo
+
     Route::get('languages',Languages::class)->name('languages');                        // Idiomas
     Route::get('industries',Industries::class)->name('industries');                     // Industrias
     Route::get('positions',Positions::class)->name('positions');                        // Puestos

@@ -83,6 +83,15 @@
             </a>
     </li>
 
+    {{-- Tipos de eMPLEO --}}
+    <li>
+        <a href="{{route('job-types')}}" class="waves-effect">
+            <i class="mdi mdi-timer-sand"></i>
+            <span> {{__('Job Types')}} </span>
+            </a>
+    </li>
+
+
     {{-- Idiomas --}}
     <li>
         <a href="{{route('languages')}}" class="waves-effect">
