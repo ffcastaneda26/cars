@@ -26,10 +26,12 @@ class DatabaseSeeder extends Seeder
             'genders',
             'statuses',
             'nationalities',
-            'salary_types',
             'industries',
+            'job_types',
+            'salary_types',
             'positions',
             'grades',
+            'times_to_hire',
         ]);
 
         $this->call([
@@ -40,10 +42,11 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             NationalitySeeder::class,
             SalaryTypeSeeder::class,
-            TimeTypesSeeder::class,
+            JobTypeSeeder::class,
             IndustrySeeder::class,
             PositionSeeder::class,
             GradeSeeder::class,
+            TimesHireSeeder::class,
         ]);
 
     }
