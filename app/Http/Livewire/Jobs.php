@@ -28,6 +28,8 @@ class Jobs extends Component
     public $salary_types= null;
     public $job_types  = null;
     public $time_hires  = null;
+    // Control
+    public $form_number_show;
 
     // De la tabla
     public $mandatory_experience;
@@ -39,6 +41,7 @@ class Jobs extends Component
     public $mandatory_english;
     public $complies_legal_requirements;
     public $active;
+
 
     protected $rules = [
         'main_record.company_id'                    =>'required|exists:companies',

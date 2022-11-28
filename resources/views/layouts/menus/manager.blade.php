@@ -7,11 +7,13 @@
     </li>
 
     {{-- Vacantes --}}
-
-    <li>
-        <a href="{{route('my-jobs')}}" class="waves-effect">
-            <i class="mdi mdi-alpha-j-circle"></i>
-            <span> {{__('Jobs')}} </span>
-        </a>
-    </li>
+    {{-- TODO: Habilitar menú de "jobs" solo si el usuario tiene empresa asociada --}}
+    @if(Auth::user()->has('companies'))
+        <li>
+            <a href="{{route('my-jobs')}}" class="waves-effect">
+                <i class="mdi mdi-alpha-j-circle"></i>
+                <span> {{__('Jobs')}} </span>
+            </a>
+        </li>
+    @endif
 
