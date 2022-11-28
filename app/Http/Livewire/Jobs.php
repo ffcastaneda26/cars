@@ -10,7 +10,7 @@ use App\Models\Job;
 use App\Models\Position;
 use App\Models\SalaryType;
 use App\Models\TimesHire;
-use App\Models\TimeType;
+use App\Models\JobType;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +26,7 @@ class Jobs extends Component
     // Listas de valores
     public $positions   = null;
     public $salary_types= null;
-    public $time_types  = null;
+    public $job_types  = null;
     public $time_hires  = null;
 
     // De la tabla
@@ -45,7 +45,7 @@ class Jobs extends Component
         'main_record.name'                          =>'required|min:5',
         'main_record.position_id'                   =>'required|exists:positions',
         'main_record.salary_type_id'                =>'required|exists:salary_types',
-        'main_record.time_type_id'                  =>'required|exists:time_types',
+        'main_record.job_type_id'                  =>'required|exists:job_types',
         'main_record.show_salary_by'                =>'nullable|regex:/^(\d{1}\.)?(\d+\.?)+(,\d{2})?$',
         'main_record.min_salary'                    =>'nullable|regex:/^(\d{1}\.)?(\d+\.?)+(,\d{2})?$',
         'main_record.max_salary'                    =>'nullable|regex:/^(\d{1}\.)?(\d+\.?)+(,\d{2})?$',
@@ -186,7 +186,7 @@ class Jobs extends Component
     {
         $this->positions    = Position::all();
         $this->salary_types = SalaryType::all();
-        $this->time_types   = TimeType::all();
+        $this->job_types   = JobType::all();
         $this->time_hires   = TimesHire::all();
     }
 

@@ -10,6 +10,7 @@ Enum JobShiftEnum: string
     case EVENING = 'evening';
     case NIGTH   = 'night';
     case MIXED   = 'mixed';
+    case VARIED  = 'varied';
 
 }
 

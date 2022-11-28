@@ -5,6 +5,8 @@
             <label class="input-group-text mb-2">{{ __('Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Position') }}</label>
             <label class="input-group-text mb-2">{{ __('Job Type') }}</label>
+            <label class="input-group-text mb-2">{{ __('Shift') }}</label>
+
             <label class="input-group-text mb-2">{{ __('Show Salary By') }}</label>
             <label class="input-group-text mb-2">{{ __('Minimum') }}</label>
             <label class="input-group-text mb-2">{{ __('Maximum') }}</label>
@@ -44,13 +46,27 @@
 
                 {{-- Tipo de trabajo --}}
                 <div class="flex-flex-column">
-                    <select class="form-select mb-2" wire:model="main_record.time_type_id">
+                    <select class="form-select mb-2" wire:model="main_record.job_type_id">
                         <option value="">{{ __('Job Type') }}</option>
-                        @foreach ($time_types as $time_type_select)
-                            <option value="{{ $time_type_select->id }}">
-                                {{ App::isLocale('en') ? $time_type_select->english :  $time_type_select->spanish }}
+                        @foreach ($job_types as $job_type_select)
+                            <option value="{{ $job_type_select->id }}">
+                                {{ App::isLocale('en') ? $job_type_select->english :  $job_type_select->spanish }}
                             </option>
                         @endforeach
+                    </select>
+                </div>
+
+                {{-- Turno --}}
+                <div class="flex-flex-column">
+                    <select class="form-select mb-2" wire:model="main_record.shift">
+                        <option value="">{{ __('Shift') }}</option>
+                        <option value="morning">{{ __('Morning') }}</option>
+                        <option value="evening">{{ __('Evening') }}</option>
+                        <option value="night">{{ __('Night') }}</option>
+                        <option value="mixed">{{ __('Mixed') }}</option>
+                        <option value="varied">{{ __('Varied') }}</option>
+
+
                     </select>
                 </div>
 

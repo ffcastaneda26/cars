@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Company;
+use App\Models\JobType;
 use App\Models\Position;
 use App\Models\SalaryType;
 use App\Models\TimesHire;
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->string('name')->comment('Nombre de la vacante');
             $table->foreignIdFor(Position::class)->comment('Puesto');
             $table->foreignIdFor(SalaryType::class)->comment('Tipo de Salario');
-            $table->foreignIdFor(TimeType::class)->comment('Tipo de horario');
+            $table->foreignIdFor(JobType::class)->comment('Tipo de empleo');
             $table->enum('show_salary_by',['range','initial','maximum','exactly'])->nullable()->default('exactly')->comment('Mostrar salario x');
             $table->float('min_salary',9,2)->nullable()->default(0)->comment('Salario Mínimo según tipo de salario');
             $table->float('max_salary',9,2)->nullable()->default(0)->comment('Salario Máximo según tipo de salario');

@@ -16,7 +16,7 @@ class Job extends Model
         'name',
         'position_id',
         'salary_type_id',
-        'time_type_id',
+        'job_type_id',
         'show_salary_by',
         'min_salary',
         'max_salary',
@@ -39,12 +39,12 @@ class Job extends Model
         'notify_each_application',
         'mandatory_english',
         'complies_legal_requirements',
-        'active',
         'description',
         'benefits',
         'covid_precautions',
         'created_by_id',
         'posted_on',
+        'active',
     ];
 
     protected $casts = [
