@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
             'statuses',
             'nationalities',
             'salary_types',
-            'industries',
             'positions',
             'grades',
         ]);
@@ -41,7 +40,6 @@ class DatabaseSeeder extends Seeder
             NationalitySeeder::class,
             SalaryTypeSeeder::class,
             TimeTypesSeeder::class,
-            Industries::class,
             Positions::class,
             Grades::class,
         ]);
