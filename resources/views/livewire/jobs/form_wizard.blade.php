@@ -12,19 +12,19 @@
                         <div class="stepwizard-row setup-panel">
                             <div class="stepwizard-step">
                                 <a href="#step-1" type="button" class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-primary' }}">1</a>
-                                <p>Step 1</p>
+                                <p>{{__('Step')}} 1</p>
                             </div>
                             <div class="stepwizard-step">
                                 <a href="#step-2" type="button" class="btn btn-circle {{ $currentStep != 2 ? 'btn-default' : 'btn-primary' }}">2</a>
-                                <p>Step 2</p>
+                                <p>{{__('Step')}} 2</p>
                             </div>
                             <div class="stepwizard-step">
                                 <a href="#step-3" type="button" class="btn btn-circle {{ $currentStep != 3 ? 'btn-default' : 'btn-primary' }}">3</a>
-                                <p>Step 3</p>
+                                <p>{{__('Step')}} 3</p>
                             </div>
                             <div class="stepwizard-step">
                                 <a href="#step-4" type="button" class="btn btn-circle {{ $currentStep != 4 ? 'btn-default' : 'btn-primary' }}" disabled="disabled">4</a>
-                                <p>Step 3</p>
+                                <p>{{__('Step')}} 4</p>
                             </div>
                         </div>
                     </div>
@@ -32,10 +32,9 @@
                     <div class="row setup-content {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
                         <div class="col-xs-12">
                             <div class="col-md-4">
-                                <h3> Step 1</h3>
-
+                                <h3></h3>
                                 <div class="form-group">
-                                    <label for="title">Name</label>
+                                    <label for="title">{{__('Name')}}</label>
                                     <input type="text" wire:model="name"
                                     maxlength="150"
                                     name="name"
@@ -44,7 +43,7 @@
                                     @error('name') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="description">Position</label>
+                                    <label for="description">{{__('Position')}}</label>
                                     <select class="form-select mb-2" wire:model="position_id">
                                         <option value="">{{ __('Position') }}</option>
                                         @foreach ($positions as $position_select)
@@ -57,7 +56,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="description">Job Type</label>
+                                    <label for="description">{{__('Job Type')}}</label>
                                     <select class="form-select mb-2" wire:model="job_type_id">
                                         <option value="">{{ __('Job Type') }}</option>
                                         @foreach ($job_types as $job_type_select)
@@ -70,7 +69,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="description">Salary Type</label>
+                                    <label for="description">{{__('Salary Type')}}</label>
                                     <select class="form-select mb-2" wire:model="salary_type_id">
                                         <option value="">{{ __('Job Type') }}</option>
                                         @foreach ($salary_types as $salary_type_select)
@@ -113,7 +112,7 @@
                     <div class="row setup-content {{ $currentStep != 2 ? 'displayNone' : '' }}" id="step-2">
                         <div class="col-xs-12">
                             <div class="col-md-4">
-                                <h3> Step 2</h3>
+                                <h3></h3>
                                 <div class="form-group">
                                     <label for="description">{{ __('Show Salary By') }}</label><br/>
                                     <select class="form-select mb-2" wire:model="show_salary_by">
@@ -203,8 +202,7 @@
                     <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
                         <div class="col-md-12">
                             <div class="col-md-6">
-                                <h3> Step 3</h3>
-
+                                <h3></h3>
                                 <div class="form-group">
                                     <label for="title">{{__('Address')}}</label>
                                     <input type="text" wire:model="address"
@@ -443,8 +441,7 @@
                     <div class=" row setup-content {{ $currentStep !=4 ? 'displayNone' : ''}}" id="step-4">
                         <div class="col-md-12">
                             <div class="col-md-6">
-                                <h3>Step 4</h3>
-
+                                <h3></h3>
                                 <div class="form-group">
                                     <label for="title">{{__('Description')}}</label>
                                     <textarea type="textarea"
@@ -527,19 +524,19 @@
 
                     <table class="table">
                         <tr>
-                            <td>Product Name:</td>
+                            <td>{{__('Name')}}:</td>
                             <td><strong>{{$name}}</strong></td>
                         </tr>
                         <tr>
-                            <td>Address:</td>
+                            <td>{{__('Address')}}:</td>
                             <td><strong>{{$address}}</strong></td>
                         </tr>
                         <tr>
-                            <td>Active:</td>
+                            <td>{{__('Active')}}:</td>
                             <td><strong>{{$status ? 'Active' : 'DeActive'}}</strong></td>
                         </tr>
                         <tr>
-                            <td>Description:</td>
+                            <td>{{__('Description')}}:</td>
                             <td><strong>{{$description}}</strong></td>
                         </tr>
                     </table>
