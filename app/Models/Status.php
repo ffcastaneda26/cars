@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
@@ -14,20 +14,8 @@ class Status extends Model
         'english',
         'short_english',
         'spanish',
-        'short_spanish',
+        'short_spanish'
     ];
-
-    // Setters
-    public function setSpanishAttribute($value)
-    {
-        $this->attributes['spanish'] =  ucwords(strtolower($value));
-    }
-
-    public function setEnglishAttribute($value)
-    {
-        $this->attributes['english'] =  ucwords(strtolower($value));
-    }
-
 
     /*+-----------------+
       | Relaciones      |
@@ -36,60 +24,29 @@ class Status extends Model
 
 
 
-
     /*+-----------------+
       | Funciones Apoyo |
       +-----------------+
-     */
+    */
+
+
 
     public function can_be_delete(){
+
         return true;
     }
 
-
-
-    /*+-------------------+
-      | Búsquedas         |
-      +-------------------+
-    */
-
-    public function scopeStatus($query,$valor)
+    public function scopeEnglish($query,$valor)
     {
-
         if ( trim($valor) != "") {
-            $query->where('spanish','LIKE',"%$valor%")
-                  ->orwhere('english','LIKE',"%$valor%")
-                  ->orwhere('short_spanish','LIKE',"%$valor%")
-                  ->orwhere('short_english','LIKE',"%$valor%");
+            $query->where('english','LIKE',"%$valor%");
          }
     }
 
     public function scopeSpanish($query,$valor)
     {
         if ( trim($valor) != "") {
-            $query->where('spanish','LIKE',"%$valor%")
-                  ->orwhere('short_spanish','LIKE',"%$valor%");
-         }
-    }
-    public function scopeEnglish($query,$valor)
-    {
-        if ( trim($valor) != "") {
-            $query->where('english','LIKE',"%$valor%")
-                  ->orwhere('short_english','LIKE',"%$valor%");
-         }
-    }
-
-    public function scopeOnlyEnglish($query,$value){
-        if ( trim($value) != "") {
-            $value = trim($value);
-            $query->where('english',$value);
-         }
-    }
-
-    public function scopeOnlySpanish($query,$value){
-        if ( trim($value) != "") {
-            $value = trim($value);
-            $query->where('spanish',$value);
+            $query->where('spanish','LIKE',"%$valor%");
          }
     }
 }

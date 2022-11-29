@@ -15,9 +15,9 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50)->unique()->coment('Role Name');
-            $table->string('english')->unique()->coment('English');
-			$table->string('spanish')->unique()->coment('Spanish');
+            $table->string('name',50)->coment('Role Name');
+            $table->text('english')->nullable()->coment('English Description');
+			$table->text('spanish')->nullable()->coment('Spanish Description');
 			$table->boolean('full_access')->default(0)->coment('Full Access?');
         });
     }

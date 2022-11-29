@@ -7,7 +7,6 @@ use App\Traits\UserTrait;
 use App\Models\Permission;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
@@ -26,8 +25,7 @@ class Role extends Model
         $this->attributes['name'] =  strtolower($value);
     }
 
-	public function users():BelongsToMany
-    {
+	public function users() {
 		return $this->belongsToMany(User::class);
 	}
 
@@ -48,6 +46,16 @@ class Role extends Model
         return $this->hasMany(AllowRoles::class);
     }
 
+    // Roles Permitidos
+    public function allowed_roles(){
+        return $this->hasMany(AllowRoles::class,'allow_role_id');
+    }
+
+    // ¿El rol que se recibe como parámetro ya lo tiene el rol asignado?
+	public function hasAllowRole($role_id){
+        return $this->roles()->where('allow_role_id',intval($role_id))->count();
+	}
+
 	// ¿Puede ser borrado?
 	public function can_be_delete(){
 		if($this->permissions()->count()){ return false;}
@@ -62,13 +70,12 @@ class Role extends Model
 
     public function scopeName($query,$valor)
     {
-        $valor = strtolower(trim($valor));
-        if( $valor != "") {
-            $query->where('name',$valor);
+        if ( trim($valor) != "") {
+            $query->where('name','LIKE',"%$valor%");
          }
     }
 
-    public function scopeRole($query,$valor){
+    public function scopeSearchRole($query,$valor){
         if ( trim($valor) != "") {
             $query->where('spanish','LIKE',"%$valor%")
                   ->orwhere('english','LIKE',"%$valor%")
@@ -90,5 +97,4 @@ class Role extends Model
             $query->where('english','LIKE',"%$valor%");
          }
     }
-
 }

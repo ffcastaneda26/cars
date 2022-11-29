@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Zipcode extends Model
 {
-    public $timestamps = false;
+    public $timestamps = false; 
 	protected $table = 'zipcodes';
 	protected $fillable =  [
         'zipcode',
@@ -32,9 +32,14 @@ class Zipcode extends Model
         return $this->hasMany(Company::class,'zipcode','zipcode');
     }
 
+   //  Zipcode <---subsidiaries (Una zona postal tiene muchas sucursales)
+    public function subsidiaries(){
+        return $this->hasMany(Subsidiary::class,'zipcode','zipcode');
+    }
+
    //  Zipcode <---customers (Una zona postal tiene muchas customers)
-    public function users(){
-        return $this->hasMany(User::class,'zipcode','zipcode');
+    public function customers(){
+        return $this->hasMany(Customer::class,'zipcode','zipcode');
     }
 
     /*+---------------------------------+
@@ -45,21 +50,21 @@ class Zipcode extends Model
     public function scopeZipcode($query,$valor)
     {
         if ( trim($valor) != "") {
-           $query->where('zipcode','LIKE',"%$valor%");
+           $query->where('zipcode','LIKE',"%$valor%");   
         }
     }
     // Town
     public function scopeTown($query,$valor)
     {
         if ( trim($valor) != "") {
-           $query->where('town','LIKE',"%$valor%");
+           $query->where('town','LIKE',"%$valor%");   
         }
     }
 
     public function scopeState($query,$valor)
     {
         if ( trim($valor) != "") {
-           $query->where('state','LIKE',"%$valor%");
+           $query->where('state','LIKE',"%$valor%");   
         }
     }
   /*+---------+
@@ -73,7 +78,8 @@ class Zipcode extends Model
 
     public function can_be_delete(){
         if($this->companies()->count()){ return false;}
-        if($this->users()->count()){ return false;}
+        if($this->subsidiaries()->count()){ return false;}
+        if($this->customers()->count()){ return false;}
         return true;
     }
 }
