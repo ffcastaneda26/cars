@@ -6,7 +6,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Traits\UserTrait;
-use App\Models\trim;
+use App\Models\Trim;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
