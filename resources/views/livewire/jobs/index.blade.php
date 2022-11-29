@@ -4,9 +4,11 @@
 
     <div class="d-flex flex-row align-items-start col-md-8 gap-2 mb-2">
         {{--  Boton para crear Registro  --}}
-        @if($allow_create)
-            @include('common.crud_create_button')
-        @endif
+            @if($allow_create)
+                <button wire:click="$set('open_wizard', 'true')" class="btn btn-info">
+                    {{__($create_button_label)}}
+                </button>
+            @endif
 
         {{-- ¿Que formulario debo mostrar?
         En caso de que  este agreando o editando:
@@ -31,16 +33,13 @@
     @if($confirm_delete)
         @include('common.confirm_delete')
     @endif
-
-    {{-- Detalle de registros --}}
-    @if($view_table)
+    @if($view_table && !$open_wizard)
         <div class="table-responsive bg-white">
             @include('common.crud_table')
         </div>
     @endif
-
     {{-- Formulario Crear o Editar --}}
-    @if($isOpen && isset($view_form))
-        @include('common.crud_modal_form')
+    @if($open_wizard)
+        @include('livewire.jobs.form_wizard')
     @endif
 </div>
