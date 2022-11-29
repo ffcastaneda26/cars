@@ -4,10 +4,11 @@
             <!-- LOGO -->
             @include('layouts.home.logo')
             <!-- Botón contraer barra lateral -->
+            
             @include('layouts.home.button_show_hide_lateral_menu')
 
         </div>
-        
+
         <div class="d-flex">
             @yield('main_title')
 

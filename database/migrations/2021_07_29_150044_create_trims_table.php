@@ -15,7 +15,8 @@ class CreateTrimsTable extends Migration
     {
         Schema::create('trims', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50)->unique()->comment('Tipo de motor');
+            $table->string('spanish',25)->unique();
+            $table->string('english',25)->unique();
         });
     }
 

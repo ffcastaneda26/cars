@@ -15,7 +15,8 @@ class CreateDrivetrainsTable extends Migration
     {
         Schema::create('drivetrains', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50)->unique()->comment('Tipo de tracción');
+            $table->string('spanish',25)->unique();
+            $table->string('english',25)->unique();
         });
     }
 

@@ -16,9 +16,9 @@ class CreateStatusesTable extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
             $table->string('spanish',15)->unique();
-            $table->string('short_spanish',5)->unique();
+            $table->string('short_spanish',6)->unique();
             $table->string('english',15)->unique();
-            $table->string('short_english',5)->unique();
+            $table->string('short_english',6)->unique();
         });
     }
 

@@ -18,13 +18,7 @@
             <span> {{__('Roles')}} </span>
         </a>
     </li>
-    {{-- Permisos x Rol --}}
-    <li>
-        <a href="{{route('role-permission')}}" class="waves-effect">
-            <i class="mdi mdi-account-check-outline"></i>
-            <span>{{__('Permissions by Role')}}</span>
-        </a>
-    </li>
+
 
     {{-- Permisos --}}
     <li>
@@ -34,97 +28,79 @@
         </a>
     </li>
 
-    {{-- Estados de Registros --}}
-    <li>
-        <a href="{{route('statuses')}}" class="waves-effect">
-            <i class="mdi mdi-list-status"></i>
-            <span>{{__('Statuses')}}</span>
-        </a>
-    </li>
 
-    {{-- Géneros --}}
+    {{-- Permisos x Rol --}}
     <li>
-        <a href="{{route('genders')}}" class="waves-effect">
-            <i class="mdi mdi-gender-transgender"></i>
-            <span>{{__('Genders')}}</span>
-        </a>
-    </li>
-    {{-- Empresas --}}
-    <li>
-        <a href="{{route('companies')}}" class="waves-effect">
-            <i class="mdi mdi-office-building"></i>
-            <span> {{__('Companies')}} </span>
+        <a href="{{route('role-permission')}}" class="waves-effect">
+            <i class="mdi mdi-account-check-outline"></i>
+            <span>{{__('Permissions Role')}}</span>
         </a>
     </li>
 
 
-    {{-- Nacionalidades --}}
+    {{-- Marcas --}}
     <li>
-        <a href="{{route('nationalities')}}" class="waves-effect">
-            <i class="mdi mdi-hail"></i>
-            <span> {{__('Nationalities')}} </span>
+        <a href="{{route('makes')}}" class="waves-effect">
+            <i class="mdi  mdi-car-estate"></i>
+            <span> {{__('Makes')}} </span>
             </a>
     </li>
 
-    {{-- Tipos de Salario --}}
+    {{-- Colores --}}
     <li>
-        <a href="{{route('salary-types')}}" class="waves-effect">
-            <i class="mdi mdi-cash-usd-outline"></i>
-            <span> {{__('Salary Types')}} </span>
-            </a>
-    </li>
-
-
-    {{-- Tipos de eMPLEO --}}
-    <li>
-        <a href="{{route('job-types')}}" class="waves-effect">
-            <i class="mdi mdi-timer-sand"></i>
-            <span> {{__('Job Types')}} </span>
+        <a href="{{route('colors')}}" class="waves-effect">
+            <i class="mdi  mdi-palette-outline"></i>
+            <span> {{__('Colors')}} </span>
             </a>
     </li>
 
 
-    {{-- Idiomas --}}
+    {{-- Transmisiones --}}
     <li>
-        <a href="{{route('languages')}}" class="waves-effect">
-            <i class="fas fa-language"></i>
-            <span> {{__('Languages')}} </span>
+        <a href="{{route('drivetrains')}}" class="waves-effect">
+            <i class="mdi mdi-car-shift-pattern"></i>
+            <span> {{__('Drivetrains')}} </span>
             </a>
     </li>
 
 
-    {{-- Industrias --}}
+    {{-- Combustibles --}}
     <li>
-        <a href="{{route('industries')}}" class="waves-effect">
-            <i class="mdi mdi-factory"></i>
-            <span> {{__('Industries')}} </span>
-            </a>
-    </li>
-
-    {{-- Puestos --}}
-    <li>
-        <a href="{{route('positions')}}" class="waves-effect">
-            <i class="mdi mdi-alpha-p-circle-outline"></i>
-            <span> {{__('Positions')}} </span>
+        <a href="{{route('fuels')}}" class="waves-effect">
+            <i class="mdi mdi-gas-station"></i>
+            <span> {{__('Fuels')}} </span>
             </a>
     </li>
 
 
-    {{-- Escolaridad --}}
+
+    {{-- Estilos --}}
     <li>
-        <a href="{{route('grades')}}" class="waves-effect">
-            <i class="mdi mdi-school"></i>
-            <span> {{__('Grades')}} </span>
+        <a href="{{route('styles')}}" class="waves-effect">
+            <i class="mdi mdi-format-line-style"></i>
+            <span> {{__('Styles')}} </span>
             </a>
     </li>
 
-    {{-- Tiempos para contratar --}}
+    {{-- Adornos --}}
     <li>
-        <a href="{{route('time-hires')}}" class="waves-effect">
-            <i class="mdi mdi-account-convert"></i>
-            <span> {{__('Tiempos para Contratar')}} </span>
+        <a href="{{route('trims')}}" class="waves-effect">
+            <i class="mdi mdi-alpha-t-box-outline"></i>
+            <span> {{__('Trims')}} </span>
             </a>
     </li>
+
+    {{-- Redes Sociales --}}
+    <li>
+        <a href="{{route('social-networks')}}" class="waves-effect">
+            <i class="mdi mdi-facebook"></i>
+            <i class="mdi mdi-instagram"></i>
+            <i class="mdi mdi-youtube"></i>
+            <span> {{__('Social Networks')}} </span>
+
+        </a>
+    </li>
+
 
 
 </ul>

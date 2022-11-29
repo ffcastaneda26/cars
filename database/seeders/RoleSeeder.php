@@ -16,11 +16,19 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;'); // Desactivamos la revisión de claves foráneas
+        DB::table('roles')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;'); // Desactivamos la revisión de claves foráneas
+
+
+
         $sql= "INSERT INTO roles (name,english,spanish,full_access) VALUES
-                ('admin', 'General Admin','Administrador General',1),
-                ('manager', 'Manager','Gerente Cuenta',0),
-                ('support', 'Support','Soporte',0),
-                ('agent', 'Agent', 'Agente', 0)";
+            ('admin', 'General Admin','Administrador General',1),
+            ('manager', 'Manager','Gerente Cuenta',0),
+            ('support', 'Support','Soporte',0),
+            ('agent', 'Agent', 'Agente', 0)";
+
 
         DB::update ($sql);
         // Administrador
@@ -31,6 +39,27 @@ class RoleSeeder extends Seeder
         // Manager
         $user = User::findOrFail(2);
         $role = Role::where('name','manager')->first();
+        $user->roles()->attach($role);
+
+        // Distribuidor
+        $user = User::findOrFail(3);
+        $role = Role::where('name','dealer')->first();
+        $user->roles()->attach($role);
+
+        // Soporte
+        $user = User::findOrFail(4);
+        $role = Role::where('name','support')->first();
+        $user->roles()->attach($role);
+
+
+        // Agente
+        $user = User::findOrFail(4);
+        $role = Role::where('name','agent')->first();
+        $user->roles()->attach($role);
+
+        // Geberal
+        $user = User::findOrFail(5);
+        $role = Role::where('name','general')->first();
         $user->roles()->attach($role);
 
     }

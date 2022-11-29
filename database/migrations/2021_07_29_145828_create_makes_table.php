@@ -16,7 +16,7 @@ class CreateMakesTable extends Migration
         Schema::create('makes', function (Blueprint $table) {
             $table->id();
             $table->string('name',200)->unique()->comment('Marca del vehículo');
-            $table->string('image_path')->nullable()->default(null)->comment('Logo');
+            $table->string('logotipo')->nullable()->default(null)->comment('Logo');
         });
     }
 

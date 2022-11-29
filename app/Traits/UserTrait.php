@@ -92,7 +92,7 @@ trait UserTrait {
     }
 
     public function isManager(){
-        return $this->is('Manager');
+        return $this->is('manager');
     }
 
     public function isSupport(){

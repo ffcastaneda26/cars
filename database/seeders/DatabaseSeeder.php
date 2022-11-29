@@ -23,30 +23,15 @@ class DatabaseSeeder extends Seeder
             'permission_user',
             'roles',
             'permissions',
-            'genders',
             'statuses',
-            'nationalities',
-            'industries',
-            'job_types',
-            'salary_types',
-            'positions',
-            'grades',
-            'times_to_hire',
         ]);
 
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
             PermissionSeeder::class,
-            GenderSeeder::class,
             StatusSeeder::class,
-            NationalitySeeder::class,
-            SalaryTypeSeeder::class,
-            JobTypeSeeder::class,
-            IndustrySeeder::class,
-            PositionSeeder::class,
-            GradeSeeder::class,
-            TimesHireSeeder::class,
+            DealerSeeder::class,
         ]);
 
     }

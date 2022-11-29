@@ -21,6 +21,5 @@ class StatusSeeder extends Seeder
         ('Cancelado','Cancel','Canceled','Cancel')";
 
         DB::update ($sql);
-
     }
 }

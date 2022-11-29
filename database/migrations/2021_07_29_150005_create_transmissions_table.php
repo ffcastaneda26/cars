@@ -15,7 +15,8 @@ class CreateTransmissionsTable extends Migration
     {
         Schema::create('transmissions', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50)->unique()->comment('Transmisión');
+            $table->string('spanish',50)->unique()->comment('Español');
+            $table->string('english',50)->unique()->comment('Inglés');
         });
     }
 

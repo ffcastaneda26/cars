@@ -10,35 +10,72 @@ class Drivetrain extends Model
     use HasFactory;
     protected $table = 'drivetrains';
     public $timestamps = false;
-    protected $fillable = [
-        'name',
+    protected $fillable =  [
+        'english',
+        'spanish',
     ];
 
-    /**+-----------------------------+
-     * | Relaciones entre tablas     |
-	 * +-----------------------------+
+
+    /*+-----------------+
+      | Relaciones      |
+      +-----------------+
      */
 
-    // Vehículos
-    public function vehicles() {
-		return $this->hasMany(Vehicle::class);
-	}
 
 
-    /** Funciones de Apoyo */
+
+    /*+-----------------+
+      | Funciones Apoyo |
+      +-----------------+
+     */
 
     public function can_be_delete(){
         return true;
     }
 
-    /**+----------------------------------------+
-     * | Búsquedas x diferentes criterios       |
-     * +----------------------------------------+
+
+
+    /*+-------------------+
+      | Búsquedas         |
+      +-------------------+
     */
 
-    public function scopeName($query, $valor) {
-        if (trim($valor) != "") {
-            $query->where('name', 'LIKE', "%$valor%");
-        }
+    public function scopeComplete($query,$valor)
+    {
+
+        if ( trim($valor) != "") {
+            $query->where('spanish','LIKE',"%$valor%")
+                  ->orwhere('english','LIKE',"%$valor%");
+         }
+    }
+
+    public function scopeSpanish($query,$valor)
+    {
+        if ( trim($valor) != "") {
+            $query->where('spanish','LIKE',"%$valor%")
+                  ->orwhere('short_spanish','LIKE',"%$valor%");
+         }
+    }
+    public function scopeEnglish($query,$valor)
+    {
+        if ( trim($valor) != "") {
+            $query->where('english','LIKE',"%$valor%")
+                  ->orwhere('short_english','LIKE',"%$valor%");
+         }
+    }
+
+    public function scopeOnlyEnglish($query,$value){
+        if ( trim($value) != "") {
+            $value = trim($value);
+            $query->where('english',$value);
+         }
+    }
+
+    public function scopeOnlySpanish($query,$value){
+        if ( trim($value) != "") {
+            $value = trim($value);
+            $query->where('spanish',$value);
+         }
     }
 }
+
