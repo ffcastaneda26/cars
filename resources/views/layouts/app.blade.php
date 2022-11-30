@@ -15,7 +15,9 @@
 
 <body class="font-sans antialiased" data-sidebar="dark">
     <!-- Loader -->
-    @include('layouts.home.loader')
+    @if(env('APP_SHOW_LOADER',false))
+        @include('layouts.home.loader')
+    @endif
 
     <!-- Wrapper -->
     <div id="layout-wrapper">
@@ -33,9 +35,9 @@
 
         <!-- ========== Left Sidebar Start ========== -->
         @auth
-            @if(Auth::user()->isAdmin())
-                @include('layouts.home.left_sidebar')
-            @endif
+            @include(env('APP_MAIN_MENU','navigation_menu'))
+
+
         @endauth
 
         <!-- Contenido Principal -->

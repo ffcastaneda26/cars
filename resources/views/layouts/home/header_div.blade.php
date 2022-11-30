@@ -4,7 +4,7 @@
             <!-- LOGO -->
             @include('layouts.home.logo')
             <!-- Botón contraer barra lateral -->
-            
+
             @include('layouts.home.button_show_hide_lateral_menu')
 
         </div>
@@ -15,8 +15,10 @@
         </div>
         <div class="d-flex">
             <!-- Cambio de idioma -->
-            @include('layouts.home.change_language')
-
+            @if(env('APP_MULTI_LANGUAGE',false))
+                @include('layouts.home.change_language')
+            @endif
+            
             {{--  Profile / Logout  --}}
             @auth
                 @include('layouts.home.profile_logout')

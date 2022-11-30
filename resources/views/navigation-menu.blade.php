@@ -6,8 +6,10 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                        <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
+
+
                 </div>
 
                 <!-- Navigation Links -->
@@ -16,6 +18,21 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                
+                    <x-jet-nav-link href="{{ route('makes') }}" :active="request()->routeIs('makes')">
+                        {{ __('Makes') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('colors') }}" :active="request()->routeIs('colors')">
+                        {{ __('Colors') }}
+                    </x-jet-nav-link>
+                @auth
+
+
+
+
+
+                @endauth
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

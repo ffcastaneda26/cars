@@ -40,7 +40,6 @@
                 </div>
                 <div class="col-lg-8">
                     @if (isset($logotipo))
-                        Preview:
                         <img src="{{ $logotipo->temporaryUrl() }}" class="avatar-md">
                     @endif
                 </div>
