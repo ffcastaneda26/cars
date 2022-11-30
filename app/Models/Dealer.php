@@ -12,17 +12,22 @@ class Dealer extends Model
     protected $table = 'dealers';
     protected $fillable = [
         'name',
-        'address',
-        'phone',
         'email',
         'website',
         'zipcode',
-        'expire_at',
-        'image_path',
+        'address',
+        'phone',
+        'logotipo',
         'latitude',
         'longitude',
         'position',
-        'active',
+        'complete_address',
+        'expire_at',
+        'active'
+    ];
+
+    protected $casts = [
+        'expire_at' => 'datetime:Y-m-d',
     ];
 
     /**+-----------------------------+

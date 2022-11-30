@@ -101,6 +101,14 @@
         </a>
     </li>
 
+    {{-- Distribuidores --}}
+    <li>
+        <a href="{{route('dealers')}}" class="waves-effect">
+            <i class="mdi mdi-car-arrow-right"></i>
+            <span> {{__('Dealers')}} </span>
+        </a>
+    </li>
+
 
 
 </ul>

@@ -6,6 +6,7 @@ use App\Http\Livewire\Genders;
 use App\Http\Livewire\Statuses;
 
 use App\Http\Livewire\Companies;
+use App\Http\Livewire\Dealers;
 use App\Http\Livewire\DriveTrains;
 use App\Http\Livewire\Fuels;
 use App\Http\Livewire\Grades;
@@ -58,8 +59,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('fuels',Fuels::class)->name('fuels');                                // Combustibles
     Route::get('makes',Makes::class)->name('makes');                                // Marcas (Fabricantes)
     Route::get('styles',Styles::class)->name('styles');                             // Estilos
-    Route::get('trims',Trims::class)->name('trims');                                 // Adronos (accesorios)
-
-    Route::get('social-networks',SocialNetworks::class)->name('social-networks');  // Redes Sociales
+    Route::get('trims',Trims::class)->name('trims');                                // Adronos (accesorios)
+    Route::get('social-networks',SocialNetworks::class)->name('social-networks');   // Redes Sociales
+    Route::get('dealers',Dealers::class)->name('dealers');                          // Distribuidores
 
 });

@@ -10,23 +10,21 @@
             @if($main_record->zipcode)
                 <label class="input-group-text mb-2">{{__("City")}}</label>
             @endif
+            <label class="input-group-text mb-2">{{ __('Website') }}</label>
+            <label class="input-group-text mb-2">{{ __('Expire At') }}</label>
             <label class="input-group-text mb-2">{{ __('Active') }}</label>
         </div>
 
             <div class="col flex flex-col">
                 <form>
-                    @include('livewire.commons.main_record_input_name_field')
-
+                      @include('livewire.commons.main_record_input_name_field')
                     @include('livewire.commons.main_record_input_email_field')
-
                     @include('livewire.commons.main_record_input_phone_field')
-
                     @include('livewire.commons.main_record_input_address_field')
-
                     @include('livewire.commons.input_zipcode_field')
-
                     @include('livewire.commons.label_town_state')
-
+                    @include('livewire.commons.main_record_input_website_field')
+                    @include('livewire.commons.main_record_input_expire_at_field')
                     @include('livewire.commons.input_active_field')
                 </form>
             </div>

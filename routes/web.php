@@ -51,3 +51,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('figma-test',function(){
     return view('figma.square-history');
 });
+
+Route::get('figma-inicio',function(){
+    return view('figma.inicio');
+});
+
