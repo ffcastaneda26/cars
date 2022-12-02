@@ -17,16 +17,6 @@
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Last Name') }}" />
-                <x-jet-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="name" />
-            </div>
-
-
-            <div>
-                <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                <x-jet-input id="phone" maxlength="10" minlength="10" class="block mt-1 w-full" type="text" name="phone" :value="old('nickname')" required autofocus autocomplete="name" />
-            </div>
 
             <div class="mt-2">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
@@ -43,16 +33,6 @@
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
-
-            <div class="form-group mt-2">
-                <label class="col-sm-4 control-label">{{__('Register me like') }}  </label>
-                <div class="col-sm-8">
-                    <label class="radio-inline"> <input required type="radio" name="is_company" id="employee" value="0">{{__('Employee')}}</label>
-                    <label class="radio-inline"> <input required type="radio" name="is_company" id="employer" value="1">{{__('Employer')}}</label>
-                </div>
-            </div>
-
-
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-2">

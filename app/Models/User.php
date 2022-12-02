@@ -9,6 +9,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -33,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'two_factor_recovery_codes', 'two_factor_secret', 'active', 'zipcode'];
+    protected $hidden = ['password', 'remember_token', 'two_factor_recovery_codes', 'two_factor_secret'];
 
     /**
      * The attributes that should be cast to native types.
@@ -51,20 +52,41 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = ['profile_photo_url'];
 
-    // Setters
-    public function setNameAttribute($value)
+
+    protected function Name(): Attribute
     {
-        $this->attributes['name'] = ucwords(strtolower($value));
+        return Attribute::make(
+            set: fn ($value) => ucwords(strtolower($value)),
+        );
     }
 
-    public function setEmailAttribute($value)
+    protected function Email(): Attribute
     {
-        $this->attributes['email'] = strtolower($value);
+        return Attribute::make(
+            set: fn ($value) =>strtolower($value),
+        );
     }
-        /*+-----------------+
-        | De Apoyo          |
-        +-------------------+
-        */
+
+
+    /*+-------------+
+      | Relaciones  |
+      +-------------+
+    */
+
+    public function dealers() {
+		return $this->belongsToMany(Dealer::class);
+	}
+
+    /*+-------------+
+      | De Apoyo    |
+      +-------------+
+    */
+
+
+    public function can_be_delete(){
+
+        return true;
+    }
 
     public function isActive()
     {

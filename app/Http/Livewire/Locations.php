@@ -26,7 +26,7 @@ class Locations extends Component
 
 
     protected $rules = [
-        'main_record.Location_id'         => 'required|exists:Locations,id',
+        'main_record.Location_id'       => 'required|exists:Locations,id',
         'main_record.name'              => 'required|min:5|max:150',
         'main_record.email'             => 'required|email|max:100',
         'main_record.phone'             => 'required|digits:10',

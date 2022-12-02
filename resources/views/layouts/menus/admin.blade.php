@@ -38,55 +38,11 @@
     </li>
 
 
-    {{-- Marcas --}}
-    <li>
-        <a href="{{route('makes')}}" class="waves-effect">
-            <i class="mdi  mdi-car-estate"></i>
-            <span> {{__('Makes')}} </span>
-            </a>
-    </li>
-
     {{-- Colores --}}
     <li>
         <a href="{{route('colors')}}" class="waves-effect">
             <i class="mdi  mdi-palette-outline"></i>
             <span> {{__('Colors')}} </span>
-            </a>
-    </li>
-
-
-    {{-- Transmisiones --}}
-    <li>
-        <a href="{{route('drivetrains')}}" class="waves-effect">
-            <i class="mdi mdi-car-shift-pattern"></i>
-            <span> {{__('Drivetrains')}} </span>
-            </a>
-    </li>
-
-
-    {{-- Combustibles --}}
-    <li>
-        <a href="{{route('fuels')}}" class="waves-effect">
-            <i class="mdi mdi-gas-station"></i>
-            <span> {{__('Fuels')}} </span>
-            </a>
-    </li>
-
-
-
-    {{-- Estilos --}}
-    <li>
-        <a href="{{route('styles')}}" class="waves-effect">
-            <i class="mdi mdi-format-line-style"></i>
-            <span> {{__('Styles')}} </span>
-            </a>
-    </li>
-
-    {{-- Adornos --}}
-    <li>
-        <a href="{{route('trims')}}" class="waves-effect">
-            <i class="mdi mdi-alpha-t-box-outline"></i>
-            <span> {{__('Trims')}} </span>
             </a>
     </li>
 

@@ -147,15 +147,11 @@ return [
 
 	'attributes' => [
         'active'=>'Activo',
-        'active_projects'=>'Proyectos Activos',
         'address'=>'Dirección',
         'color'=>'Color',
         'country'=>'País',
         'country_id'=>'País',
-        'county'=>'Condado',
-        'created_at'=>'Creado el ',
         'date'=>'Fecha',
-        'minute'   => 'Minuto',
         'deleted_at'=>'Borrado el',
         'description'=>'Descripción',
         'email'=>'Correo Electrónico',
@@ -212,12 +208,9 @@ return [
         'website'=>'Website',
         'youtube'=>'Youtube',
         'zipcode'=>'Zona Postal',
-        'code' => 'Código',
         'agree_be_legal_age' => 'Aceptar Las Reglas',
         'agree_be_rules' => 'Aceptar mayoría de edad',
-        'first_name' => 'Nombre',
-        'last_name'  => 'Apelido',
-        'company_id'    => 'Empresa',
+        'dealer_id' => 'Distribuidor'
 	]
 
 ];

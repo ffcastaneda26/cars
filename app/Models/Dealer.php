@@ -31,13 +31,17 @@ class Dealer extends Model
         'expire_at' => 'datetime:Y-m-d',
     ];
 
-    /**+----------------+
-     * | Relaciones     |
-	 * +----------------+
-     */
+    /*+-------------+
+      | Relaciones  |
+      +-------------+
+    */
+
+     // Usuarios
+    public function users() {
+		return $this->belongsToMany(Dealer::class);
+	}
 
     // Sucursales (Localidades)
-
     public function locations() {
 		return $this->hasMany(Location::class);
 	}

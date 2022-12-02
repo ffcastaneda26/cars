@@ -13,6 +13,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Dealer;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -22,19 +23,21 @@ class Users extends Component {
     use CrudTrait;
     use WithFileUploads;
 
-    public $name, $email, $nickname, $password, $active,$password_confirmation;
+    public $name, $email, $password, $active,$password_confirmation;
 
     public $roles=null,$role_id=null,$role=null;
+    public $dealers=null,$dealer_id=null;
     public $header;
+    public $show_dealers = false;
 
     /* Inicio de Paginacion y listener */
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['destroy'];
 
-        /*+-----------------------+
-        | Inicializa Componante   |
-        +-------------------------+*/
-
+    /*+-----------------------+
+      | Inicializa Componente |
+      +-----------------------+
+    */
 
 	public function mount() {
         //$this->authorize('hasaccess', 'users.index');
@@ -46,7 +49,9 @@ class Users extends Component {
         $this->view_table   = 'livewire.users.table';
         $this->view_list    = 'livewire.users.list';
         $this->readRoles();
+        $this->readDealers();
 
+        $this->show_dealers = Auth::user()->isAdmin();
     }
 
 	/**
@@ -58,6 +63,7 @@ class Users extends Component {
         $searchTerm = '%' . $this->search . '%';
 
         if(Auth::user()->IsAdmin()){
+            $this->show_dealers = $this->role_id == 2;
             return view('livewire.index', [
                 'records' => User::User($this->search)->paginate($this->pagination),
             ]);
@@ -72,25 +78,30 @@ class Users extends Component {
         ]);
 	}
 
+
+
     // Lee los roles para SELECT en formulario
+
     private function readRoles(){
-        if(Auth::user()->isAdmin()){
-            $this->roles = Role::where('name','!=','agent')->get();
-        }else{
-            $this->roles = Role::whereIn('id', [2,4])->get();
-        }
+        $this->roles = Auth::user()->isAdmin() ? Role::AdminRoles()->get() : Role::ManagerRoles()->get();
     }
+
+    // Lee los dealers
+    private function readDealers(){
+        $this->dealers = Auth::user()->isAdmin() ? Dealer::orderby('name')->get() : null;
+    }
+
 
 	/**
 	 * Inicializa variables de registro
 	 */
 
 	private function resetInputFields() {
-        $this->reset(['record_id','name','nickname','email','record','role_id','password','password_confirmation']);
+        $this->reset(['record_id','name','email','record','role_id','password','password_confirmation','dealer_id']);
 	}
 
 	/**+------------------------------------+
-	 * | Valida - Crea - Actuzliza Usuario  |
+	 * | Valida - Crea - Actuaaliza Usuario |
 	 * +------------------------------------+
 	 */
 
@@ -117,7 +128,6 @@ class Users extends Component {
 
         $this->validate([
             'name'                  => 'required',
-            'nickname'              => 'nullable',
             'email'                 => 'required|email|unique:users,email,' . $this->record_id,
             'role_id'               => 'required|exists:roles,id',
         ]);
@@ -128,6 +138,14 @@ class Users extends Component {
                 'password_confirmation' =>'required_with:password',
             ]);
         }
+
+
+        if($this->role_id == 2){
+            $this->validate([
+                'dealer_id' => 'required|exists:roles,id',
+            ]);
+        }
+
     }
 
     /**+----------------+
@@ -138,12 +156,17 @@ class Users extends Component {
     private function createUser(){
         $user = User::create([
 			'name'              => $this->name,
-			'nickname'          => $this->nickname,
 			'email'             => $this->email,
             'password'          => Hash::make($this->password),
+            'email_verified_at' => now()
         ]);
 
         $user->roles()->sync($this->role_id);
+
+        if($this->role_id == 2 && $this->dealer_id){
+            $user->dealers()->sync($this->dealer_id);
+        }
+
         $user->save();
         return $user;
     }
@@ -157,7 +180,6 @@ class Users extends Component {
         $user = User::findOrFail($this->record_id);
         $user->update([
             'name'      => $this->name,
-            'nickname'  => $this->nickname,
             'active'    => $this->active ? 1 : 0,
         ]);
 
@@ -168,8 +190,14 @@ class Users extends Component {
         if ($this->role_id) {
             $user->roles()->sync($this->role_id);
         }
+
+        if($this->role_id == 2 && $this->dealer_id){
+            $user->dealers()->sync($this->dealer_id);
+        }
+
         $user->save();
     }
+
 
 
 	/**
@@ -183,7 +211,6 @@ class Users extends Component {
         $this->record   = $record;
 		$this->record_id= $record->id;
 		$this->name     = $record->name;
-		$this->nickname = $record->nickname;
 		$this->email    = $record->email;
 		$this->active   = $record->active;
         $this->role_id  = $record->roles()->first()->id;

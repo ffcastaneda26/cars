@@ -97,4 +97,12 @@ class Role extends Model
             $query->where('english','LIKE',"%$valor%");
          }
     }
+
+    public function scopeAdminRoles($query){
+        $query->where('name','!=','agent');
+    }
+
+    public function scopeManagerRoles($query){
+        $query->where('name','manager')->orwhere('name','agent');
+    }
 }

@@ -23,37 +23,18 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'name'      => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'phone'     => ['required', 'digits:10', 'regex:/^[1-9](?!.*000)\d{9}$/','unique:users'],
             'email'     => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
-            'is_company'=> ['required'],
             'password'  => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
 
-
-        if(!$input['email']){
-            $input['email'] = $input['phone'];
-        }
-
-
-        $user = User::create([
+       return User::create([
             'name'      => $input['name'],
-            'last_name' => $input['last_name'],
-            'phone'      => $input['phone'],
             'email'     => $input['email'],
-            'is_company'=> $input['is_company'] ? 1 : 0,
             'password'  => Hash::make($input['password'])
         ]);
 
-        if($user->is_company){
-            $role = Role::English('manager')->first();
-            if($role){
-                $user->roles()->sync($role);
-            }
-        }
 
-        return $user;
     }
 }
