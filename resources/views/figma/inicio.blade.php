@@ -22,8 +22,13 @@
         <div class="v28_30"></div>
         <div class="v15_24">
             <div class="v14_18"></div>
-            <div class="v14_19"></div><span class="v15_23">Busca por marca o modelo</span><span
-                class="v15_25">Buscar</span>
+            <div class="v14_19"></div>
+                <span class="v15_23">
+                    <input type="text" name="" id="" placeholder="Busca por marca o modelo">
+                </span><span
+                class="v15_25">
+                <a href="{{url('dashboard')}}">Buscar</a>
+            </span>
             <div class="v15_22">
                 <div class="v15_21"></div>
             </div>
@@ -33,6 +38,7 @@
         <div class="v26_28"></div><span class="v32_33">Busca por tipo de vehículo</span><span class="v32_34">Buscar
             SUV’s</span><span class="v32_35">Buscar Sedan</span><span class="v32_36">Buscar Pickup</span>
         <div class="v100_131">
+
             <div class="v100_132"></div><span class="v100_133">ENG</span>
             <div class="v100_134">
                 <div class="v100_135"></div>

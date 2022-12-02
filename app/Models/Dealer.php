@@ -23,6 +23,7 @@ class Dealer extends Model
         'position',
         'complete_address',
         'expire_at',
+        'max_locations',
         'active'
     ];
 
@@ -30,39 +31,18 @@ class Dealer extends Model
         'expire_at' => 'datetime:Y-m-d',
     ];
 
-    /**+-----------------------------+
-     * | Relaciones entre tablas     |
-	 * +-----------------------------+
+    /**+----------------+
+     * | Relaciones     |
+	 * +----------------+
      */
 
-    // Inventario
+    // Sucursales (Localidades)
 
-    public function inventories() {
-		return $this->hasMany(Inventory::class);
+    public function locations() {
+		return $this->hasMany(Location::class);
 	}
 
-    // Inventario Temporal
-    public function temporary_inventories() {
-		return $this->hasMany(TemporaryInventory::class);
-	}
-
-
-    // Vehículos
-    public function vehicles() {
-		return $this->hasMany(Vehicle::class);
-	}
-
-
-    /** Funciones de Apoyo */
-
-    public function can_be_delete(){
-        if($this->inventories()->count()){ return false;}
-        if($this->temporary_inventories()->count()){ return false;}
-        if($this->vehicles()->count()){ return false;}
-        return true;
-    }
-
-    // Las redes sociales
+    // Redes Sociales
 
     public function socials(): MorphToMany
     {
@@ -70,10 +50,18 @@ class Dealer extends Model
     }
 
 
+    /** Funciones de Apoyo */
 
-    /**+----------------------------------------+
-     * | Búsquedas x diferentes criterios       |
-     * +----------------------------------------+
+    public function can_be_delete(){
+        if($this->locations()->count()){ return false;}
+        return true;
+    }
+
+
+
+    /**+------------+
+       | Búsquedas  |
+       +------------+
     */
 
     public function scopeName($query, $valor) {

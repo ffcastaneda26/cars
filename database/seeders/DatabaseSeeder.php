@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             'roles',
             'permissions',
             'statuses',
+            'dealers',
+            'locations',
         ]);
 
         $this->call([
@@ -32,6 +34,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             StatusSeeder::class,
             DealerSeeder::class,
+            LocationSeeder::class,
         ]);
 
     }

@@ -12,6 +12,7 @@
             @endif
             <label class="input-group-text mb-2">{{ __('Website') }}</label>
             <label class="input-group-text mb-2">{{ __('Expire At') }}</label>
+            <label class="input-group-text mb-2">{{ __('Max Locations') }}</label>
             <label class="input-group-text mb-2">{{ __('Active') }}</label>
         </div>
 
@@ -25,6 +26,19 @@
                     @include('livewire.commons.label_town_state')
                     @include('livewire.commons.main_record_input_website_field')
                     @include('livewire.commons.main_record_input_expire_at_field')
+                    {{-- Máximo de sucursales --}}
+                    <div class="flex-flex-column mb-2">
+                        {{-- <input type="number"
+                            wire:model="main_record.max_locations"
+                            min="0"
+                            max="9999"
+                        > --}}
+                        <x-jet-input type='number'
+                                wire:model="main_record.max_locations"
+                                min="0"
+                                max="9999"
+                        />
+                    </div>
                     @include('livewire.commons.input_active_field')
                 </form>
             </div>
