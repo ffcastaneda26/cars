@@ -22,6 +22,7 @@ class CreateDealersTable extends Migration
             $table->string('address',100)->nullable()->comment('Dirección');
             $table->string('phone',10)->nullable()->comment('Teléfono');
             $table->string('logotipo')->nullable()->default(null)->comment('Logo');
+            $table->tinyInteger('max_locations')->nullable()->default(1)->comment('Máximo de sucursales');
             $table->float('latitude',15,11)->nullable()->default(0)->comment('Latitud');
             $table->float('longitude',15,11)->nullable()->default(0)->comment('Longitud');
             $table->point('position')->nullable()->default(null)->comment('Ubicación en un mapa');
