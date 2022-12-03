@@ -1,4 +1,6 @@
 {
+    "Assign Permissions To Role": "Asignar Permisos al Rol",
+    "Show Only Linked Records": "Mostrar solo valores asingados",
     "Max Locations": "Max Sucursales",
     "Dealers": "Distribuidores",
     "Dealer": "Distribuidor",
@@ -36,6 +38,7 @@
     "Image": "Imagen",
     "Company":"Empresa",
     "Link": "Ligar",
+    "Unlink": "Desligar",
     "I agree to be of legal age": "Acepto ser mayor de edad",
     "Zipcode does not Exists": "Zona Postal No Existe",
     "Full Access": "¿Acceso Total?",

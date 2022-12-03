@@ -28,10 +28,14 @@ class Permission extends Model
 		return $this->belongsToMany(User::class);
 	}
 
-	public function hasRoles() {
-		return $this->roles->count();
+	public function hasRole($role_id){
+        foreach($this->roles as $role){
+            if($role->id == $role_id){
+                return true;
+            }
+        }
+        return false;
 	}
-
 
 	// ¿Puede ser borrado?
 	public function can_be_delete(){

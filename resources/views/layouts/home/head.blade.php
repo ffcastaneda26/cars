@@ -6,17 +6,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('images/logo_qatar.png')}}">
+    <link rel="stylesheet" href="{{asset('images/favicon.png')}}">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <!-- Bootstrap Css -->
-
     <link href="/admiria/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- Icons Css -->
     <link href="/admiria/assets/css/icons.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
     <!-- App Css-->
     <link href="/admiria/assets/css/app.min.css" rel="stylesheet" type="text/css">
     <!-- Custom Css-->

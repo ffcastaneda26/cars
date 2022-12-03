@@ -7,7 +7,6 @@ use Livewire\Component;
 use App\Traits\UserTrait;
 use App\Models\Permission;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\App;
 
 use App\Http\Livewire\Traits\CrudTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -19,52 +18,31 @@ class RolePermissions extends Component
     use CrudTrait;
     use UserTrait;
 
-    public $roles,$role,$role_id;
+    public $roles, $role, $role_id;
 
-    public function mount() {
+    public function mount()
+    {
         $this->authorize('hasaccess', 'role-permissions.index');
         $this->manage_title = "Assign Permissions To Role";
         $this->search_label = "Search Permission";
         $this->read_roles();
-	}
+    }
 
     public function render()
     {
-        if($this->only_linked){
-            if(App::isLocale('en')){
-                return view('livewire.roles.permissions', [
-                    'records' => $this->role->permissions()
-                                        ->English($this->search)
-                                        ->orderby('name')
-                                        ->paginate($this->pagination)
-                ]);
-            }else{
-                return view('livewire.roles.permissions', [
-                    'records' => $this->role->permissions()
-                                        ->Spanish($this->search)
-                                        ->orderby('spanish')
-                                        ->paginate($this->pagination)
-                ]);
-            }
+        if ($this->only_linked) {
+            $records = $this->role->permissions()->Permission($this->search)->orderby('name')->paginate($this->pagination);
+        } else {
+            $records =  Permission::Permission($this->search)->orderby('name')->paginate($this->pagination);
         }
 
-        if(App::isLocale('en')){
-            return view('livewire.roles.permissions', [
-                        'records' => Permission::English($this->search)
-                                            ->orderby('name')
-                                            ->paginate($this->pagination)
-            ]);
-        }
-        return view('livewire.roles.permissions', [
-            'records' => Permission::Spanish($this->search)
-                                ->orderby('spanish')
-                                ->paginate($this->pagination)
-        ]);
+        return view('livewire.roles.permissions', compact('records'));
 
     }
 
     // Lee Roles
-    private function read_roles(){
+    private function read_roles()
+    {
         $this->roles = Role::all();
     }
 
@@ -73,21 +51,23 @@ class RolePermissions extends Component
       +-------------------------+
     */
 
-    public function read_role(){
+    public function read_role()
+    {
         $this->role = null;
-        if($this->role_id){
+        if ($this->role_id) {
             $this->role = Role::findOrFail($this->role_id);
         }
     }
 
 
-    public function linkRecord($id){
+    public function linkRecord($id)
+    {
         $this->role->permissions()->detach($id);
         $this->role->permissions()->attach($id);
-
     }
 
-    public function unlinkRecord($id){
+    public function unlinkRecord($id)
+    {
         $this->role->permissions()->detach($id);
     }
 }
