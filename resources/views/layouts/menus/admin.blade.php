@@ -13,7 +13,7 @@
     </li>
 
     <li>
-        <a href="{{route('role')}}" class="waves-effect">
+        <a href="{{route('roles')}}" class="waves-effect">
             <i class="mdi mdi-cube-outline"></i>
             <span> {{__('Roles')}} </span>
         </a>
@@ -22,7 +22,7 @@
 
     {{-- Permisos --}}
     <li>
-        <a href="{{route('permission')}}" class="waves-effect">
+        <a href="{{route('permissions')}}" class="waves-effect">
             <i class="mdi mdi-calendar-check"></i>
             <span>{{__('Permissions')}}</span>
         </a>
@@ -36,6 +36,7 @@
             <span>{{__('Permissions Role')}}</span>
         </a>
     </li>
+
 
 
     {{-- Colores --}}

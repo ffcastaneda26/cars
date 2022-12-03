@@ -75,7 +75,7 @@ class Role extends Model
          }
     }
 
-    public function scopeSearchRole($query,$valor){
+    public function scopeRole($query,$valor){
         if ( trim($valor) != "") {
             $query->where('spanish','LIKE',"%$valor%")
                   ->orwhere('english','LIKE',"%$valor%")

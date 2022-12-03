@@ -45,6 +45,15 @@ class Permission extends Model
       +-------------+
     */
 
+
+    public function scopePermission($query,$valor){
+        if ( trim($valor) != "") {
+            $query->where('spanish','LIKE',"%$valor%")
+                  ->orwhere('english','LIKE',"%$valor%")
+                  ->orwhere('name','LIKE',"%$valor%");
+         }
+    }
+
     public function scopeName($query,$valor)
     {
         if ( trim($valor) != "") {

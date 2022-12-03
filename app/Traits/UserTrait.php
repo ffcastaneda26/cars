@@ -54,6 +54,7 @@ trait UserTrait {
 */
     public function hasPermission($permission) {
         $permission_record = Permission::where('slug',$permission)->first();
+
         if($permission_record && $this->this_permission($permission_record)->count()){
             return true;
         }

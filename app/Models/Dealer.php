@@ -38,7 +38,7 @@ class Dealer extends Model
 
      // Usuarios
     public function users() {
-		return $this->belongsToMany(Dealer::class);
+		return $this->belongsToMany(User::class);
 	}
 
     // Sucursales (Localidades)

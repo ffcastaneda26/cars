@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-
-
 use App\Models\Role;
 
 use App\Models\User;
@@ -40,7 +38,7 @@ class Users extends Component {
     */
 
 	public function mount() {
-        //$this->authorize('hasaccess', 'users.index');
+        $this->authorize('hasaccess', 'users.index');
         $this->manage_title = __('Manage') . ' ' . __('Users');
         $this->header = __('Manage') . ' ' . __('Users');
 
@@ -50,8 +48,6 @@ class Users extends Component {
         $this->view_list    = 'livewire.users.list';
         $this->readRoles();
         $this->readDealers();
-
-        $this->show_dealers = Auth::user()->isAdmin();
     }
 
 	/**
@@ -68,14 +64,10 @@ class Users extends Component {
                 'records' => User::User($this->search)->paginate($this->pagination),
             ]);
         }
+        $this->show_dealers = false;
+        $records = Auth::user()->dealers->first()->users()->User($this->search)->paginate($this->pagination);
 
-        return view('livewire.index', [
-            'records' => User::whereHas('roles', function (Builder $query)  {
-                $query->whereIn('role_id', [2,4]);
-            })->User($searchTerm)
-                ->orderBy('name')
-                ->paginate($this->pagination),
-        ]);
+        return view('livewire.index', compact('records'));
 	}
 
 
@@ -163,8 +155,12 @@ class Users extends Component {
 
         $user->roles()->sync($this->role_id);
 
-        if($this->role_id == 2 && $this->dealer_id){
+        if(Auth::user()->isAdmin() && $this->role_id == 2 && $this->dealer_id){
             $user->dealers()->sync($this->dealer_id);
+        }
+
+        if(Auth::user()->isManager()){
+            $user->dealers()->sync(Auth::user()->dealers->first());
         }
 
         $user->save();
@@ -193,6 +189,14 @@ class Users extends Component {
 
         if($this->role_id == 2 && $this->dealer_id){
             $user->dealers()->sync($this->dealer_id);
+        }
+
+        if(Auth::user()->isAdmin() && $this->role_id == 2 && $this->dealer_id){
+            $user->dealers()->sync($this->dealer_id);
+        }
+
+        if(Auth::user()->isManager()){
+            $user->dealers()->sync(Auth::user()->dealers->first());
         }
 
         $user->save();

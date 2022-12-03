@@ -3,15 +3,11 @@
 use App\Http\Livewire\Colors;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Dealers;
-use App\Http\Livewire\DriveTrains;
-use App\Http\Livewire\Fuels;
-use App\Http\Livewire\Makes;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use App\Http\Livewire\SocialNetworks;
-use App\Http\Livewire\Styles;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -34,11 +30,11 @@ Route::get('optimize',function(){
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('permission',Permissions::class)->name('permission');                    // Permisos
-    Route::get('role',Roles::class)->name('role');                                      // Roles
+    Route::get('permissions',Permissions::class)->name('permissions');                  // Permisos
+    Route::get('roles',Roles::class)->name('roles');                                    // Roles
     Route::get('role-permission',RolePermissions::class)->name('role-permission');      // Asigar Permisos al Rol
-    Route::get('colors',Colors::class)->name('colors');                             // Colores
-    Route::get('social-networks',SocialNetworks::class)->name('social-networks');   // Redes Sociales
-    Route::get('dealers',Dealers::class)->name('dealers');                          // Distribuidores
+    Route::get('colors',Colors::class)->name('colors');                                 // Colores
+    Route::get('social-networks',SocialNetworks::class)->name('social-networks');       // Redes Sociales
+    Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
 
 });
