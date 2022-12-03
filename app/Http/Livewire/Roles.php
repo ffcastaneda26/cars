@@ -25,6 +25,7 @@ class Roles extends Component
         'main_record.full_access'   => 'nullable',
     ];
 
+    public $full_access     = false;
 
     public function mount()
     {
@@ -67,12 +68,15 @@ class Roles extends Component
     {
         $this->rules['main_record.name']    = $this->main_record->id ? "required|min:5|max:50|unique:roles,name,{$this->main_record->id}"
                                                                     : 'required|min:5|max:50|unique:roles,name';
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|unique:roles,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:5|unique:roles,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|unique:roles,english,{$this->main_record->id}"
-                                                                     : 'required|min:5|unique:roles,english';
+        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|max:50|unique:roles,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:5|max:50|unique:roles,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:50|unique:roles,english,{$this->main_record->id}"
+                                                                     : 'required|min:5|max:50|unique:roles,english';
+
 
         $this->validate();
+        $this->main_record->full_access = $this->full_access ? 1 : 0;
+        $this->main_record->save();
         $this->close_store('Role');
     }
 
@@ -85,6 +89,8 @@ class Roles extends Component
     {
         $this->main_record  = $record;
         $this->record_id    = $record->id;
+        $this->full_access  = $record->full_access;
+
         $this->create_button_label = __('Update') . ' ' . __('Role');
         $this->openModal();
     }
