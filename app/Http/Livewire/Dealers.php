@@ -64,7 +64,7 @@ class Dealers extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Dealer')
                                                             : __('Create') . ' ' . __('Dealer');
 
-      $records = Dealer::Name($this->search)->paginate($this->pagination);
+      $records = Dealer::Name($this->search)->orderby($this->sort,$this->direction)->paginate($this->pagination);
       return view('livewire.index',compact('records'));
 
     }

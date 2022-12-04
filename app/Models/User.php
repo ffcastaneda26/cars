@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -73,8 +74,14 @@ class User extends Authenticatable implements MustVerifyEmail
       +-------------+
     */
 
-    public function dealers() {
+    public function dealers(): BelongsToMany
+    {
 		return $this->belongsToMany(Dealer::class);
+	}
+
+    public function locations(): BelongsToMany
+    {
+		return $this->belongsToMany(Location::class);
 	}
 
     /*+-------------+

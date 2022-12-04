@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Location;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +11,15 @@ Route::get('/', function () {
 
     return 'Bienvenido a Pruebas';
 });
+
+
+Route::get('sucursales',function(){
+    $search ='Moe';
+    $records = Auth::user()->locations()->Name($search)->get();
+    foreach($records as $record){
+        echo $record->name . '<br>';
+    }
+})->name('sucursales');
 
 Route::get('update-passwords',function(){
     $users = User::all();

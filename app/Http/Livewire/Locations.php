@@ -23,10 +23,10 @@ class Locations extends Component
 
     protected $listeners = ['destroy'];
     public $town_state, $zipcode, $active, $logotipo;
-
+    public $dealers,$dealer_id;
 
     protected $rules = [
-        'main_record.Location_id'       => 'required|exists:Locations,id',
+        'main_record.dealer_id'         => 'required|exists:dealers,id',
         'main_record.name'              => 'required|min:5|max:150',
         'main_record.email'             => 'required|email|max:100',
         'main_record.phone'             => 'required|digits:10',
@@ -51,6 +51,7 @@ class Locations extends Component
         $this->view_table   = 'livewire.locations.table';
         $this->view_list    = 'livewire.locations.list';
         $this->main_record  = new Location();
+        $this->dealers      = Auth::user()->dealers()->get();
     }
 
     /*+---------------------------------+
@@ -63,8 +64,12 @@ class Locations extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Location')
                                                             : __('Create') . ' ' . __('Location');
 
-      $records = Location::Name($this->search)->paginate($this->pagination);
-      return view('livewire.index',compact('records'));
+
+        $records = Auth::user()->locations()->Name($this->search)
+                                ->orderby($this->sort,$this->direction)
+                                ->paginate($this->pagination);
+
+        return view('livewire.index',compact('records'));
 
     }
 
@@ -96,6 +101,10 @@ class Locations extends Component
             $this->main_record->save();
         }
 
+        $this->main_record->users()->detach(Auth::user());
+        $this->main_record->users()->attach(Auth::user());
+
+
         $this->close_store('Location');
     }
 
@@ -110,7 +119,6 @@ class Locations extends Component
         $this->record_id    = $record->id;
         $this->active       = $record->active;
         $this->read_town_state($this->main_record->zipcode);
-        $this->create_button_label = __('Update') . ' ' . __('Location');
         $this->openModal();
     }
 
@@ -120,6 +128,7 @@ class Locations extends Component
     */
     public function destroy(Location $record)
     {
+        $record->users()->detach(Auth::user());
         $this->delete_record($record, __('Location') . ' ' . __('Deleted') . ' ' . __('Successfully!!'));
     }
 

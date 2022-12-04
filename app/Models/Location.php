@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Location extends Model
@@ -35,29 +38,29 @@ class Location extends Model
 	 * +-----------------------------+
      */
 
-    // Inventario
-
-    public function inventories() {
-		return $this->hasMany(Inventory::class);
-	}
-
-    // Inventario Temporal
-    public function temporary_inventories() {
-		return $this->hasMany(TemporaryInventory::class);
-	}
+    // Distribuidor
+    public function dealer(): BelongsTo
+    {
+        return $this->belongsTo(Dealer::class);
+    }
 
 
     // Vehículos
-    public function vehicles() {
+    public function vehicles(): HasMany
+    {
 		return $this->hasMany(Vehicle::class);
 	}
 
 
+     // Usuarios
+     public function users(): BelongsToMany
+     {
+		return $this->belongsToMany(User::class);
+	}
+
     /** Funciones de Apoyo */
 
     public function can_be_delete(){
-        if($this->inventories()->count()){ return false;}
-        if($this->temporary_inventories()->count()){ return false;}
         if($this->vehicles()->count()){ return false;}
         return true;
     }

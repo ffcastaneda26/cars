@@ -1,5 +1,4 @@
 <tr>
-    <td>{{ $record->id }}</td>
     <td>{{ $record->name }}</td>
     <td>{{ $record->email }}</td>
     <td>{{ $record->phone }}</td>
@@ -11,8 +10,12 @@
         @endif
     </td>
     <td class="text-center">
-        <input type="checkbox" disabled
-        @if($record->active)  checked @endif>
+        <img src="{{ $record->active ? asset('images/acertado.png') : asset('images/fallado.png')}}"
+            alt="{{ $record->active ? __('Yes') : __('No') }}"
+            height="24px"
+            width="24px"
+            class="rounded-circle"
+        >
     </td>
     @include('common.crud_actions')
 </tr>

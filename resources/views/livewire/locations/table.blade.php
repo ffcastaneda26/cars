@@ -1,8 +1,7 @@
 <thead>
     <tr class="bg-dark text-white">
-
         <th class="flex orderby"
-            wire:click="order('name')">{{__("Social Network")}}
+            wire:click="order('name')">{{__("Name")}}
             @if($sort == 'name')
                 @if($direction == 'asc')
                     <span class="float-right"><i class="fas fa-sort-alpha-up-alt"></i></span>
@@ -14,11 +13,11 @@
             @endif
         </th>
 
-        <th>{{__("Logotipo")}}</th>
-        <th>{{ __('Active') }}</th>
-
+        <th>{{__("Email")}}</th>
+        <th>{{__("Phone")}}</th>
+        <th>{{__("Address")}}</th>
+        <th>{{__("Zipcode")}}</th>
+        <th class="text-center">{{__("Active")}}</th>
         <th colspan="2" class="px-4 py-1 text-center">{{__("Actions")}}</th>
     </tr>
 </thead>
-
-

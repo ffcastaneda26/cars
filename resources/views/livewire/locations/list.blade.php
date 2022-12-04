@@ -1,13 +1,9 @@
 <tr>
     <td>{{ $record->name }}</td>
     <td>{{ $record->email }}</td>
-    <td>
-        @foreach($record->roles as $role)
-        {{ App::isLocale('en') ? $role->english :  $role->spanish }}
-    @endforeach
-    </td>
-
-
+    <td>{{ $record->phone }}</td>
+    <td>{{ $record->address}}</td>
+    <td>{{ $record->zipcode}}</td>
     <td class="text-center">
         <img src="{{ $record->active ? asset('images/acertado.png') : asset('images/fallado.png')}}"
             alt="{{ $record->active ? __('Yes') : __('No') }}"
@@ -16,7 +12,5 @@
             class="rounded-circle"
         >
     </td>
-
-
     @include('common.crud_actions')
 </tr>

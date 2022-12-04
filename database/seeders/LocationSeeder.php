@@ -16,5 +16,8 @@ class LocationSeeder extends Seeder
     public function run()
     {
         Location::factory(15)->create();
+        foreach(Location::all() as $location){
+            $location->users()->sync($location->dealer->users->first());
+        }
     }
 }
