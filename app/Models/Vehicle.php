@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vehicle extends Model
 {
@@ -12,133 +13,207 @@ class Vehicle extends Model
     protected $table = 'vehicles';
     protected $fillable = [
         'location_id',
-        'make_id',
-        'modell_id',
-        'status_id',
-        'style_id',
+        'vin',
+        'make',
+        'model',
+        'model_year',
+        'product_type',
+        'body',
+        'trim',
+        'series',
+        'drive',
+        'engine_cylinders',
+        'number_of_doors',
+        'number_of_seat_rows',
+        'number_of_seats',
+        'steeering',
+        'engine_displacement',
+        'engine_power_kw',
+        'engine_power_hp',
+        'fuel_tpe_primary',
+        'fuel_type_secondary',
+        'engine_model',
+        'transmission',
+        'transmission_full',
+        'number_of_gears',
         'color_exterior_id',
         'color_interior_id',
-        'transmission_id',
-        'drivetrain_id',
-        'trim_id',
-        'fuel_id',
         'description',
         'price',
+        'slug',
         'miles',
-        'inventory',
         'available',
         'show',
-        'vin'
-
-
+        'manufacturer',
+        'vehicle_id',
     ];
-    /**+-----------------------------+
-     * | Relaciones entre tablas     |
-	 * +-----------------------------+
+    /**+-------------+
+     * | Relaciones |
+     * +------------+
      */
 
-    public function photos(){
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+
+    public function photos()
+    {
         return $this->hasMany(Photo::class);
     }
 
-    public function dealer() {
-        return $this->belongsTo(Dealer::class);
+    public function color_exterior()
+    {
+        return $this->belongsTo(Color::class, 'color_exterior_id', 'id');
     }
 
-    public function make() {
-        return $this->belongsTo(Make::class);
+    public function color_interior()
+    {
+        return $this->belongsTo(Color::class, 'color_interior_id', 'id');
     }
 
-    public function modell() {
-        return $this->belongsTo(Modell::class);
-    }
-
-    public function status() {
-        return $this->belongsTo(Status::class);
-    }
-
-    public function style() {
-        return $this->belongsTo(Style::class);
-    }
-
-    public function color_exterior() {
-        return $this->belongsTo(Color::class,'color_exterior_id','id');
-    }
-
-    public function color_interior() {
-        return $this->belongsTo(Color::class,'color_interior_id','id');
-    }
-
-    public function transmission() {
-        return $this->belongsTo(Transmission::class);
-    }
-
-    public function drivetrain() {
-        return $this->belongsTo(Drivetrain::class);
-    }
-
-    public function trim() {
-        return $this->belongsTo(Trim::class);
-    }
-
-    public function Fuel() {
-        return $this->belongsTo(Fuel::class);
-    }
 
 
     /** Funciones de Apoyo */
 
-    public function can_be_delete(){
+    public function can_be_delete()
+    {
         return true;
     }
 
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
-    */
-
-    public function scopMake($query, $valor) {
-        $query->where('make_id', $valor);
+     */
+    public function scopelocation_id($query, $value)
+    {
+        $query->where('location_id', 'LIKE', "%$value%");
     }
 
-    public function scopModell($query, $valor) {
-        $query->where('modell_id', $valor);
+    public function scopevin($query, $value)
+    {
+        $query->where('vin', 'LIKE', "%$value%");
+    }
+    public function scopeMake($query, $value)
+    {
+        $query->where('make', 'LIKE', "%$value%");
+    }
+    public function scopeModel($query, $value)
+    {
+        $query->where('model', 'LIKE', "%$value%");
+    }
+    public function scopeModelYear($query, $value)
+    {
+        $query->where('model_year', 'LIKE', "%$value%");
+    }
+    public function scopeProductType($query, $value)
+    {
+        $query->where('product_type', 'LIKE', "%$value%");
+    }
+    public function scopebody($query, $value)
+    {
+        $query->where('body', 'LIKE', "%$value%");
+    }
+    public function scopeTrim($query, $value)
+    {
+        $query->where('trim', 'LIKE', "%$value%");
+    }
+    public function scopeseries($query, $value)
+    {
+        $query->where('series', 'LIKE', "%$value%");
+    }
+    public function scopeDrive($query, $value)
+    {
+        $query->where('drive', 'LIKE', "%$value%");
+    }
+    public function scopeEnginecylinders($query, $value)
+    {
+        $query->where('engine_cylinders', 'LIKE', "%$value%");
+    }
+    public function scopeNumberDoors($query, $value)
+    {
+        $query->where('number_of_doors', 'LIKE', "%$value%");
+    }
+    public function scopeNumberSeatrows($query, $value)
+    {
+        $query->where('number_of_seat_rows', 'LIKE', "%$value%");
+    }
+    public function scopeNumberseats($query, $value)
+    {
+        $query->where('number_of_seats', 'LIKE', "%$value%");
+    }
+    public function scopeSteeering($query, $value)
+    {
+        $query->where('steeering', 'LIKE', "%$value%");
+    }
+    public function scopeEngineDisplacement($query, $value)
+    {
+        $query->where('engine_displacement', 'LIKE', "%$value%");
+    }
+    public function scopeeEginePowerKw($query, $value)
+    {
+        $query->where('enginePowerKw', 'LIKE', "%$value%");
+    }
+    public function scopeeEginePowerHp($query, $value)
+    {
+        $query->where('engine_power_hp', 'LIKE', "%$value%");
+    }
+    public function scopeFuelPrimary($query, $value)
+    {
+        $query->where('fuel_tpe_primary', 'LIKE', "%$value%");
+    }
+    public function scopeFuelSecondary($query, $value)
+    {
+        $query->where('fuel_type_secondary', 'LIKE', "%$value%");
+    }
+    public function scopeEnginemodel($query, $value)
+    {
+        $query->where('engine_model', 'LIKE', "%$value%");
+    }
+    public function scopeTransmission($query, $value)
+    {
+        $query->where('transmission', 'LIKE', "%$value%");
+    }
+    public function scopeTransmissionFull($query, $value)
+    {
+        $query->where('transmission_full', 'LIKE', "%$value%");
+    }
+    public function scopenumber_of_gears($query, $value)
+    {
+        $query->where('number_of_gears', 'LIKE', "%$value%");
+    }
+    public function scopeColor($query, $value)
+    {
+        $query->where('color_exterior_id', 'LIKE', "%$value%")
+               ->orwhere('color_interior_id', 'LIKE', "%$value%");
     }
 
-    public function scopStatus($query, $valor) {
-        $query->where('status_id', $valor);
+    public function scopeDescription($query, $value)
+    {
+        $query->where('description', 'LIKE', "%$value%");
+    }
+    public function scopePrice($query, $value)
+    {
+        $query->where('price', 'LIKE', "%$value%");
     }
 
-    public function scopStyle($query, $valor) {
-        $query->where('style_id', $valor);
+    public function scopeSlug($query, $value)
+    {
+        $query->where('slug', 'LIKE', "%$value%");
+    }
+    public function scopeMiles($query, $value)
+    {
+        $query->where('miles', 'LIKE', "%$value%");
+    }
+    public function scopeAvailable($query, $available=true)
+    {
+        $query->where('available', $available);
+    }
+    public function scopeShow($query, $show=true)
+    {
+        $query->where('show', $show);
     }
 
-    public function scopColorExterior($query, $valor) {
-        $query->where('color_exterior_id', $valor);
-    }
 
-    public function scopColorInterior($query, $valor) {
-        $query->where('color_interior_id', $valor);
-    }
-
-    public function scopTransmission($query, $valor) {
-        $query->where('transmission_id', $valor);
-    }
-
-
-    public function scopTrain($query, $valor) {
-        $query->where('train_id', $valor);
-    }
-
-    public function scopTrim($query, $valor) {
-        $query->where('trim_id', $valor);
-    }
-
-    public function scopFuel($query, $valor) {
-        $query->where('fuel_id', $valor);
-    }
-
-    public function scopPrice($query, $valor) {
-        $query->where('price', $valor);
-    }
 }

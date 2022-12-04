@@ -1,29 +1,21 @@
 <tr>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        {{ $record->dealer->name }}</td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        {{ $record->make->name }}</td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        {{ $record->modell->name }}</td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        @if(App::isLocale('es'))
-            {{ $record->color_exterior->spanish}}
-        @else
-            {{ $record->color_exterior->english}}
+    <td>{{ $record->name }}</td>
+    <td>{{ $record->email }}</td>
+    <td>{{ $record->phone }}</td>
+    <td>{{ $record->address}}</td>
+    <td>{{ $record->zipcode}}</td>
+    <td class="text-center">
+        @if ($record->logotipo)
+            <img src="{{Storage::url($record->logotipo)}}" class="avatar-sm" alt="image">
         @endif
     </td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        @if(App::isLocale('es'))
-            {{ $record->transmission->spanish}}
-        @else
-            {{ $record->transmission->english}}
-        @endif
+    <td class="text-center">
+        <img src="{{ $record->active ? asset('images/acertado.png') : asset('images/fallado.png')}}"
+            alt="{{ $record->active ? __('Yes') : __('No') }}"
+            height="24px"
+            width="24px"
+            class="rounded-circle"
+        >
     </td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        {{ $record->drivetrain->name }}</td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        {{ $record->trim->name }}</td>
-    <td class="border px-2 py-1 leading-relaxed sm:text-base md:text-xl xl:text-base text-gray-600">
-        {{ $record->fuel->name }}</td>
     @include('common.crud_actions')
 </tr>

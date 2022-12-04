@@ -14,3 +14,11 @@
             </a>
     </li>
 
+      {{-- Vehículos --}}
+      <li>
+        <a href="{{route('my-vehicles')}}" class="waves-effect">
+            <i class="mdi mdi-car-arrow-left"></i>
+            <span> {{__('Vehicles')}} </span>
+            </a>
+    </li>
+

@@ -1,16 +1,24 @@
-<table class="table w-auto">
-    <thead>
-        <tr class="bg-gray-100">
-        <th class="px-2 py-1">{{__("Dealer")}}</th>
-        <th class="px-2 py-1">{{__("Make")}}</th>
-        <th class="px-2 py-1">{{__("Model")}}</th>
-        <th class="px-2 py-1">{{__("Color")}}</th>
-        <th class="px-2 py-1">{{__("Transmission")}}</th>
-        <th class="px-2 py-1">{{__("Drivetrain")}}</th>
-        <th class="px-2 py-1">{{__("Trim")}}</th>
-        <th class="px-2 py-1">{{__("Fuel")}}</th>
+<thead>
+    <tr class="bg-dark text-white">
+        <th class="flex orderby"
+            wire:click="order('name')">{{__("Name")}}
+            @if($sort == 'name')
+                @if($direction == 'asc')
+                    <span class="float-right"><i class="fas fa-sort-alpha-up-alt"></i></span>
+                @else
+                    <i class="fas fa-sort-alpha-down-alt float-right"></i>
+                @endif
+            @else
+                <i class="fas fa-sort float-right"></i>
+            @endif
+        </th>
+
+        <th>{{__("Email")}}</th>
+        <th>{{__("Phone")}}</th>
+        <th>{{__("Address")}}</th>
+        <th>{{__("Zipcode")}}</th>
+        <th>{{__("Logotipo")}}</th>
+        <th class="text-center">{{__("Active")}}</th>
         <th colspan="2" class="px-4 py-1 text-center">{{__("Actions")}}</th>
-        </tr>
-    </thead>
-    @include('livewire.each_record')
-</table>
+    </tr>
+</thead>
