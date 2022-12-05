@@ -87,12 +87,13 @@ class Role extends Model
     {
         $query->where('name','admin')
               ->orwhere('name','manager')
+              ->orwhere('name','dealer')
               ->orwhere('name','support');
     }
 
     public function scopeManagerRoles($query)
     {
-        $query->where('name','manager')
+        $query->where('name','dealer')
               ->orwhere('name','agent');
     }
 

@@ -30,7 +30,7 @@ Route::get('update-passwords',function(){
     return 'Listo carnal';
 });
 
-Route::get('genera-vin/{vin_number?}',function($vin_number=null){
+Route::get('genera-vin/{type}/{vin_number?}',function($type='file',$vin_number=null){
     if(!$vin_number){
         return 'Lo siento, debe introducir un número de VIN';
     }
@@ -48,8 +48,28 @@ Route::get('genera-vin/{vin_number?}',function($vin_number=null){
     $data = file_get_contents("{$apiPrefix}/{$apikey}/{$controlsum}/decode/{$vin}.json", false);
     $result = json_decode($data);
     $json_string = json_encode($result);
-    $file = 'vin_number_' . $vin_number . '.json';
-    file_put_contents($file, $json_string);
+
+    if($type=='file'){
+        $file = 'vin_number_' . $vin_number . '.json';
+        file_put_contents($file, $json_string);
+        return 'Terminado... revisar el archivo: ' . $file . '<br>';
+
+    }
+    echo '<table><thead>';
+    echo '<th> DATO</th><th>VALOR</th></thead>';
+    echo '<tbody>';
+    foreach ($result->decode as $vehicle) {
+        echo '<tr>';
+            echo '<td>';
+                echo $vehicle->label;
+            echo '</td>';
+            echo '<td>';
+                echo  $vehicle->value;
+            echo '</td>';
+        echo '</tr>';
+    }
+    echo '</tbody>';
+    echo '</table>';
 
 
 });

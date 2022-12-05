@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
         User::create([
 			'name' => 'Administrador General',
 			'email' => 'admin@admin.com',
@@ -27,6 +28,14 @@ class UserSeeder extends Seeder
         User::create([
 			'name' => 'Manager General',
 			'email' => 'manager@cuervo.com',
+            'email_verified_at' => now(),
+            'active' => 1,
+            'password' => Hash::make('password')
+        ]);
+
+        User::create([
+			'name' => 'Distribuidor',
+			'email' => 'dealer@cuervo.com',
             'email_verified_at' => now(),
             'active' => 1,
             'password' => Hash::make('password')
@@ -55,6 +64,6 @@ class UserSeeder extends Seeder
             'active' => 1,
             'password' => Hash::make('password')
         ]);
-        
+
     }
 }
