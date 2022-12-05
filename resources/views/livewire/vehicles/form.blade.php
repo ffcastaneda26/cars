@@ -1,48 +1,45 @@
 <div class="container">
-    <x-jet-validation-errors></x-jet-validation-errors>
     <div class="row align-items-start">
-        <div class="col-md-5 flex flex-col">
-            <label class="input-group-text mb-2">{{ __('Name') }}</label>
-            <label class="input-group-text mb-2">{{ __('Email') }}</label>
-            <label class="input-group-text mb-2">{{ __('Phone') }}</label>
-            <label class="input-group-text mb-2">{{ __('Address') }}</label>
-            <label class="input-group-text mb-2">{{ __('Zipcode') }}</label>
-            @if($main_record->zipcode)
-                <label class="input-group-text mb-2">{{__("City")}}</label>
-            @endif
-            <label class="input-group-text mb-2">{{ __('Website') }}</label>
-            <label class="input-group-text mb-2">{{ __('Expire At') }}</label>
-            <label class="input-group-text mb-2">{{ __('Max Locations') }}</label>
-            <label class="input-group-text mb-2">{{ __('Active') }}</label>
+        <div class="w-auto flex flex-col">
+            <label class="input-group-text mb-2">{{ __('VIN') }}</label>
+        </div>
+        <div class="w-auto flex flex-col">
+            <div class="d-flex">
+                <div class="flex-flex-column ">
+                    <input type="text"
+                        wire:model="vin_number"
+                        wire:keyup="search_vin"
+                        maxlength="17"
+                        minlength="17"
+                        placeholder="{{__("VIN number")}}"
+                        class="form-control mb-2"
+                    >
+                </div>
+                @if($error_message)
+                    <div class="flex-flex-column ml-20">
+                        <label  class="bg-danger ml-5"><h3>{{ $error_message }}</h3></label>
+
+                    </div>
+                @endif
+            </div>
         </div>
 
-            <div class="col flex flex-col">
-                <form>
-                      @include('livewire.commons.main_record_input_name_field')
-                    @include('livewire.commons.main_record_input_email_field')
-                    @include('livewire.commons.main_record_input_phone_field')
-                    @include('livewire.commons.main_record_input_address_field')
-                    @include('livewire.commons.input_zipcode_field')
-                    @include('livewire.commons.label_town_state')
-                    @include('livewire.commons.main_record_input_website_field')
-                    @include('livewire.commons.main_record_input_expire_at_field')
-                    {{-- Máximo de sucursales --}}
-                    <div class="flex-flex-column mb-2">
-                        {{-- <input type="number"
-                            wire:model="main_record.max_locations"
-                            min="0"
-                            max="9999"
-                        > --}}
-                        <x-jet-input type='number'
-                                wire:model="main_record.max_locations"
-                                min="0"
-                                max="9999"
-                        />
-                    </div>
-                    @include('livewire.commons.input_active_field')
-                </form>
-            </div>
-            {{-- Logotipo  --}}
-            @include('livewire.commons.input_logotipo_field')
+    </div>
+    <div class="contanier-fluid">
+
+        <x-jet-validation-errors></x-jet-validation-errors>
+        <div class="row align-items-start">
+            @if($show_form)
+                @include('livewire.vehicles.form_col_01')
+                @include('livewire.vehicles.form_col_02')
+                @include('livewire.vehicles.form_col_03')
+            @else
+                @include('livewire.vehicles.form_col_01_labels')
+                @include('livewire.vehicles.form_col_02_labels')
+                @include('livewire.vehicles.form_col_03_labels')
+
+            @endif
+
+        </div>
     </div>
 </div>

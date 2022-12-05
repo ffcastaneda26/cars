@@ -65,8 +65,12 @@ class Users extends Component {
             ]);
         }
         $this->show_dealers = false;
-        $records = Auth::user()->dealers->first()->users()->User($this->search)->paginate($this->pagination);
+        if(Auth::user()->dealers->count()){
+            $records = Auth::user()->dealers->first()->users->paginate($this->pagination);
 
+        }else{
+            $records = null;
+        }
         return view('livewire.index', compact('records'));
 	}
 

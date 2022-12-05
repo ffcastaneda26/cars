@@ -36,7 +36,7 @@ class CreateVehiclesTable extends Migration
             $table->Integer('engine_displacement')->nullable()->comment('Motor');
             $table->Integer('engine_power_kw')->nullable()->comment('Potencia motor (kw)');
             $table->Integer('engine_power_hp')->nullable()->comment('Potencia motor(hp)');
-            $table->string('fuel_tpe_primary')->nullable()->comment('Combustible primario');
+            $table->string('fuel_type_primary')->nullable()->comment('Combustible primario');
             $table->string('fuel_type_secondary')->nullable()->comment('Combustible secundario');
             $table->string('engine_model')->nullable()->comment('Modelo motor');
             $table->string('transmission')->nullable()->comment('Transmisión');

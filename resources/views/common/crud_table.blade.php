@@ -1,4 +1,4 @@
-@if($records->count())
+@if(isset($records) && $records->count())
     <table class="table table-hover mb-0">
         @if(isset($view_table))
             @include($view_table)

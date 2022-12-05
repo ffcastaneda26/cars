@@ -40,7 +40,7 @@ class Vehicles extends Component
         'main_record.engine_displacement'   =>'required',
         'main_record.engine_power_kw'       =>'required',
         'main_record.engine_power_hp'       =>'required',
-        'main_record.fuel_tpe_primary'      =>'required',
+        'main_record.fuel_type_primary'     =>'required',
         'main_record.fuel_type_secondary'   =>'required',
         'main_record.engine_model'          =>'required',
         'main_record.transmission'          =>'required',
@@ -62,16 +62,22 @@ class Vehicles extends Component
     public $available;
     public $show;
     public $show_locations = true;
+    public $show_form = false;
+
+    public $vin_number = '4T1B61HK9JU514132';
+    public $error_message = null;
 
     public function mount()
     {
         $this->authorize('hasaccess', 'vehicles.index');
-        $this->manage_title = __('Manage') . ' ' . __('Vehicles');
-        $this->search_label = __('Make,Model,Year....');
-        $this->view_form    = 'livewire.vehicles.form';
-        $this->view_table   = 'livewire.vehicles.table';
-        $this->view_list    = 'livewire.vehicles.list';
-        $this->view_search  = 'livewire.vehicles.search';
+        $this->manage_title     = __('Manage') . ' ' . __('Vehicles');
+        $this->search_label     = __('Make,Model,Year....');
+        $this->view_form        = 'livewire.vehicles.form';
+        $this->view_table       = 'livewire.vehicles.table';
+        $this->view_list        = 'livewire.vehicles.list';
+        $this->view_search      = 'livewire.vehicles.search';
+        $this->view_crud_modal  = 'livewire.vehicles.modal_form';
+
 
         $this->main_record  = new Vehicle();
         $this->locations    = Auth::user()->locations()->get();
@@ -85,9 +91,8 @@ class Vehicles extends Component
 
     public function render()
     {
-        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Location')
-                                                            : __('Create') . ' ' . __('Location');
-
+        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
+                                                            : __('Create') . ' ' . __('Vehicle');
 
 
         $records = Vehicle::paginate($this->pagination);
@@ -95,9 +100,30 @@ class Vehicles extends Component
 
     }
 
+    /**
+     * Busca el vehiculo con VIN
+     */
+
+     public function search_vin(){
+        $this->reset('available', 'show','error_message','show_form');
+
+        $this->main_record = new Vehicle();
+        if (strlen($this->vin_number) != 17) return;
+        $this->show_form =true;
+
+        $this->vin_number = strtoupper($this->vin_number);
+        $this->vehicle_record = Vehicle::Vin($this->vin_number)->first();
+        if(!$this->vehicle_record){
+            $this->error_message= 'Implementar búsqueda con la API';
+            return;
+        }
+        $this->main_record = $this->vehicle_record;
+        $this->error_message= 'Vehículo ya existe';
+     }
+
     public function resetInputFields()
     {
-        $this->reset('available', 'show');
+        $this->reset('available', 'show','vin_number');
         $this->main_record = new Vehicle();
         $this->resetErrorBag();
     }

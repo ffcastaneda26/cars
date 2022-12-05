@@ -28,6 +28,6 @@
 
         {{-- Formulario Crear o Editar --}}
         @if($isOpen && isset($view_form))
-            @include('common.crud_modal_form')
+            @include($view_crud_modal)
         @endif
 </div>

@@ -83,4 +83,17 @@ class Role extends Model
          }
     }
 
+    public function scopeAdminRoles($query)
+    {
+        $query->where('name','admin')
+              ->orwhere('name','manager')
+              ->orwhere('name','support');
+    }
+
+    public function scopeManagerRoles($query)
+    {
+        $query->where('name','manager')
+              ->orwhere('name','agent');
+    }
+
 }

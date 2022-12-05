@@ -46,6 +46,7 @@ trait CrudTrait {
 
     // Vistas
     public $view_search = 'common.crud_search';
+    public $view_crud_modal = 'common.crud_modal_form';
     public $view_form;
     public $view_table;
     public $view_list;
@@ -70,6 +71,11 @@ trait CrudTrait {
 		$this->resetInputFields();
         $this->resetErrorBag();
 		$this->openModal();
+        if($this->view_crud_modal  == 'livewire.vehicles.modal_form' ){
+            $this->search_vin();
+        }
+
+
 	}
 
 

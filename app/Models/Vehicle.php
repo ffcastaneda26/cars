@@ -30,7 +30,7 @@ class Vehicle extends Model
         'engine_displacement',
         'engine_power_kw',
         'engine_power_hp',
-        'fuel_tpe_primary',
+        'fuel_type_primary',
         'fuel_type_secondary',
         'engine_model',
         'transmission',
@@ -93,7 +93,7 @@ class Vehicle extends Model
 
     public function scopevin($query, $value)
     {
-        $query->where('vin', 'LIKE', "%$value%");
+        $query->where('vin', $value);
     }
     public function scopeMake($query, $value)
     {
