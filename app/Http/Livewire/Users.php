@@ -65,8 +65,10 @@ class Users extends Component {
             ]);
         }
         $this->show_dealers = false;
+
         if(Auth::user()->dealers->count()){
-            $records = Auth::user()->dealers->first()->users->paginate($this->pagination);
+
+            $records = Auth::user()->dealers->first()->users()->paginate($this->pagination);
 
         }else{
             $records = null;
@@ -136,7 +138,7 @@ class Users extends Component {
         }
 
 
-        if($this->role_id == 2){
+        if($this->role_id == 2 || $this->role_id == 4){
             $this->validate([
                 'dealer_id' => 'required|exists:roles,id',
             ]);
@@ -150,6 +152,7 @@ class Users extends Component {
      */
 
     private function createUser(){
+
         $user = User::create([
 			'name'              => $this->name,
 			'email'             => $this->email,
@@ -223,6 +226,11 @@ class Users extends Component {
 		$this->active   = $record->active;
         $this->role_id  = $record->roles()->first()->id;
         $this->updating_record = true;
+        if(!Auth::user()->isAdmin()){
+            $this->dealer_id = Auth::user()->dealers->first()->id;
+        }
+
+
         $this->openModal();
 	}
 
