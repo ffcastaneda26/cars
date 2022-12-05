@@ -1,17 +1,14 @@
 <tr>
-    <td>{{ $record->name }}</td>
-    <td>{{ $record->email }}</td>
-    <td>{{ $record->phone }}</td>
-    <td>{{ $record->address}}</td>
-    <td>{{ $record->zipcode}}</td>
+    <td>{{ $record->make }}</td>
+    <td>{{ $record->model }}</td>
+    <td>{{ $record->model_year }}</td>
+    <td>{{ $record->product_type}}</td>
+    <td>{{ $record->body}}</td>
+    <td>{{ $record->trim}}</td>
+    <td>{{ $record->miles}}</td>
     <td class="text-center">
-        @if ($record->logotipo)
-            <img src="{{Storage::url($record->logotipo)}}" class="avatar-sm" alt="image">
-        @endif
-    </td>
-    <td class="text-center">
-        <img src="{{ $record->active ? asset('images/acertado.png') : asset('images/fallado.png')}}"
-            alt="{{ $record->active ? __('Yes') : __('No') }}"
+        <img src="{{ $record->available ? asset('images/acertado.png') : asset('images/fallado.png')}}"
+            alt="{{ $record->available ? __('Yes') : __('No') }}"
             height="24px"
             width="24px"
             class="rounded-circle"
