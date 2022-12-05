@@ -43,7 +43,6 @@ class Color extends Model
 
     public function scopeComplete($query,$valor)
     {
-
         if ( trim($valor) != "") {
             $query->where('spanish','LIKE',"%$valor%")
                   ->orwhere('english','LIKE',"%$valor%");

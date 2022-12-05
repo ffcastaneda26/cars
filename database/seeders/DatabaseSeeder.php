@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'roles',
             'permissions',
             'statuses',
+            'colors',
             'dealers',
             'locations',
         ]);
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             StatusSeeder::class,
+            ColorSeeder::class,
             DealerSeeder::class,
             LocationSeeder::class,
         ]);

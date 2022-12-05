@@ -23,8 +23,8 @@ class Colors extends Component
 
 
     protected $rules = [
-        'main_record.spanish'       => 'required|min:3|max:25|unique:colors,spanish',
-        'main_record.english'       => 'required|min:3|max:25|unique:colors,english',
+        'main_record.spanish'       => 'required|min:3|max:50|unique:colors,spanish',
+        'main_record.english'       => 'required|min:3|max:50|unique:colors,english',
     ];
 
     public function mount()
@@ -62,11 +62,11 @@ class Colors extends Component
 
     public function store()
     {
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|max:25|unique:colors,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:3|max:25|unique:colors,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|max:25|unique:colors,english,{$this->main_record->id}"
-                                                                     : 'required|min:3|max:25|unique:colors,english';
- 
+        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|max:50|unique:colors,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:3|max:50|unique:colors,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|max:50|unique:colors,english,{$this->main_record->id}"
+                                                                     : 'required|min:3|max:50|unique:colors,english';
+
         $this->validate();
         $this->close_store('Color');
     }

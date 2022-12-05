@@ -13,7 +13,7 @@
             <div class="flex-flex-column">
                 <input type="text" wire:model="main_record.spanish" required placeholder="{{__("Spanish")}}"
                 class="form-control mb-2"
-                maxlength="25">
+                maxlength="50">
             </div>
 
 
