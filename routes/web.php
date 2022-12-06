@@ -56,3 +56,6 @@ Route::get('figma-inicio',function(){
     return view('figma.inicio');
 });
 
+Route::get('figma-crear-cuenta',function(){
+   return view('figma.crear-cuenta');
+});
