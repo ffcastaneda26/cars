@@ -91,7 +91,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public function can_be_delete(){
-
         return true;
     }
 
@@ -99,6 +98,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->active;
     }
+
+    // ¿Tiene asignada una sucursal?
+    public function hasLocation($location_id){
+        foreach($this->locations as $location){
+            if($location->id == $location_id){
+                return true;
+            }
+        }
+        return false;
+	}
 
         /*+-----------------+
         | Búsquedas         |
@@ -111,4 +120,6 @@ class User extends Authenticatable implements MustVerifyEmail
             $query->where('name', 'LIKE', "%$valor%")->orwhere('email', 'LIKE', "%$valor%");
         }
     }
+
+
 }

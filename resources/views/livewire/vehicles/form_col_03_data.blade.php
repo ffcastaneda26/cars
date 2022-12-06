@@ -16,11 +16,13 @@
 
                 {{-- Color Interior --}}
                 <div class="flex-flex-column">
-                    <select wire:model="main_record.location_id"
+                    <select wire:model="main_record.interior_color_id"
                             class="form-select mb-2">
-                        <option value="">{{__("Location")}}</option>
-                        @foreach($locations as $location)
-                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        <option value="">{{__("Interior")}}</option>
+                        @foreach($colors as $color_interior)
+                                <option value="{{ $color_interior->id }}">
+                                    {{ App::isLocale('en') ? $color_interior->english : $color_interior->spanish }}
+                                                                </option>
                         @endforeach
                     </select>
 
@@ -29,11 +31,13 @@
 
                 {{-- Color Exterior --}}
                 <div class="flex-flex-column">
-                    <select wire:model="main_record.location_id"
+                    <select wire:model="main_record.exterior_color_id"
                         class="form-select mb-2">
-                        <option value="">{{__("Location")}}</option>
-                        @foreach($locations as $location)
-                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        <option value="">{{__("Exterior")}}</option>
+                        @foreach($colors as $color_exterior)
+                                <option value="{{ $color_exterior->id }}">
+                                    {{ App::isLocale('en') ? $color_exterior->english : $color_exterior->spanish }}
+                                </option>
                         @endforeach
                     </select>
                 </div>

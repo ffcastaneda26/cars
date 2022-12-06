@@ -8,8 +8,10 @@
 
     <div class="p-2 w-30">
         <select wire:model="main_record.location_id"
+                wire:change="search_vin"
                 class="form-select mb-2"
-                @if($locations->count() == 1) disabled @endif>
+                @if($locations->count() == 1) disabled @endif
+        >
                 <option value="">{{__("Location")}}</option>
                 @foreach($locations as $location)
                         <option value="{{ $location->id }}"
@@ -43,7 +45,7 @@
     {{-- Mensaje de Error --}}
     @if($error_message)
         <div class="p-2  bd-highlight">
-            <label  class="bg-danger ml-5"><h3>{{ $error_message }}</h3></label>
+            <label  class="bg-danger ml-5"><h5>{{ $error_message }}</h5></label>
         </div>
     @endif
 </div>

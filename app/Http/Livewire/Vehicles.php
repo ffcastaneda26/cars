@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Color;
 use App\Models\Vehicle;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -71,7 +72,7 @@ class Vehicles extends Component
         'main_record.front_suspension'          =>'nullable',
         'main_record.drag_coefficient'          =>'nullable',
         'main_record.wheel_rims_size'           =>'nullable',
-        'main_record.wheel_rims Size_array'     =>'nullable',
+        'main_record.wheel_rims_size'           =>'nullable',
         'main_record.wheel_size'                =>'nullable',
         'main_record.wheel_size_array'          =>'nullable',
         'main_record.wheelbase'                 =>'nullable',
@@ -110,14 +111,16 @@ class Vehicles extends Component
     ];
 
 
-
     public $locations,$location_id;
+    public $colors=null;
     public $available;
     public $show;
     public $show_locations = true;
     public $show_form = false;
+    public $exists_in_vehicles=false;
 
     public $vin_number = '4T1B61HK9JU514132';
+
     public $error_message = null;
 
     public function mount()
@@ -130,11 +133,14 @@ class Vehicles extends Component
         $this->view_list        = 'livewire.vehicles.list';
         $this->view_search      = 'livewire.vehicles.search';
         $this->view_crud_modal  = 'livewire.vehicles.modal_form';
-        $this->main_record  = new Vehicle();
-        $this->locations    = Auth::user()->locations()->get();
+        $this->main_record      = new Vehicle();
+        $this->colors           = Color::all();
+        $this->locations        = Auth::user()->locations()->get();
+
         if( $this->locations->count()==1){
             $this->main_record->location_id = $this->locations->first()->id;
         }
+
         $this->openModal();
     }
 
@@ -160,19 +166,49 @@ class Vehicles extends Component
 
      public function search_vin(){
 
-        $this->reset('available', 'show','error_message','show_form');
+        $this->reset('available', 'show','error_message','show_form','exists_in_vehicles');
 
         if (strlen($this->vin_number) != 17) return;
         $this->show_form =true;
 
         $this->vin_number = strtoupper($this->vin_number);
         $this->vehicle_record = Vehicle::Vin($this->vin_number)->first();
+
+        $bk_location_id = $this->main_record->location_id;
+
         if(!$this->vehicle_record){
             $this->error_message= 'Implementar búsqueda con la API';
+            $this->show_form = false;
+            $bk_location_id = $this->main_record->location_id;
+            $this->main_record = new Vehicle();
+            $this->main_record->location_id = $bk_location_id;
+            unset($bk_location_id);
             return;
         }
-        $this->main_record = $this->vehicle_record;
-        $this->error_message= 'Vehículo ya existe';
+
+
+        // ¿Es de la misma sucursal?
+        if($this->vehicle_record->location_id == $this->main_record->location_id){
+            $this->main_record = $this->vehicle_record;
+            return;
+        }
+
+        // ¿Es del mismo dealer per de diferente sucursal?
+        if($this->vehicle_record->location->dealer_id == $this->main_record->location->dealer_id){
+            if(Auth::user()->hasLocation($this->vehicle_record->location_id)){
+                $this->error_message= __('Vehicle is in another location');
+                $this->main_record = $this->vehicle_record;
+                $this->main_record->location_id = $bk_location_id;
+
+                return;
+            }
+            $this->error_message= __('Vehicle is in another location you can not manage it');
+            $this->show_form = false;
+            return;
+
+        }
+
+
      }
 
     public function resetInputFields()
