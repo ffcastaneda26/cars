@@ -1,0 +1,161 @@
+{
+    "price": 0,
+    "price_currency": "USD",
+    "balance": {
+        "API Decode": 17
+    },
+    "decode": [
+        {
+            "label": "VIN",
+            "value": "4T1B61HK9JU514132"
+        },
+        {
+            "label": "Vehicle ID",
+            "value": 4557
+        },
+        {
+            "label": "Make",
+            "value": "Toyota",
+            "id": 108
+        },
+        {
+            "label": "Model",
+            "value": "Camry",
+            "id": 17526
+        },
+        {
+            "label": "Model Year",
+            "value": 2018
+        },
+        {
+            "label": "Product Type",
+            "value": "Car",
+            "id": 4
+        },
+        {
+            "label": "Body",
+            "value": "Sedan\/Saloon",
+            "id": 28
+        },
+        {
+            "label": "Trim",
+            "value": "LB20"
+        },
+        {
+            "label": "Series",
+            "value": "AXVA70L\/GSV70L\/AXVH70L\/AXVH71L"
+        },
+        {
+            "label": "Drive",
+            "value": "4x2",
+            "id": null
+        },
+        {
+            "label": "Engine Displacement (ccm)",
+            "value": 2500
+        },
+        {
+            "label": "Engine Power (kW)",
+            "value": 154
+        },
+        {
+            "label": "Engine Power (HP)",
+            "value": 207
+        },
+        {
+            "label": "Fuel Type - Primary",
+            "value": "Gasoline",
+            "id": 8
+        },
+        {
+            "label": "Fuel Type - Secondary",
+            "value": "Electric",
+            "id": null
+        },
+        {
+            "label": "Engine Model",
+            "value": "2500CC 16-VALVE DOHC"
+        },
+        {
+            "label": "Transmission",
+            "value": "Automatic",
+            "id": 2
+        },
+        {
+            "label": "Transmission (full)",
+            "value": "ATM, 8-SPEED FLOOR SHIFT"
+        },
+        {
+            "label": "Number of Gears",
+            "value": 8
+        },
+        {
+            "label": "Manufacturer",
+            "value": "Toyota Motor Manufacturing Kentucky Inc"
+        },
+        {
+            "label": "Manufacturer Address",
+            "value": "1001 Cherry Blossom Way, Georgetown  KY 40324-9598"
+        },
+        {
+            "label": "Plant City",
+            "value": "GEORGETOWN"
+        },
+        {
+            "label": "Plant Company",
+            "value": "Toyota Motor Manufacturing, Kentucky, Inc."
+        },
+        {
+            "label": "Plant Country",
+            "value": "UNITED STATES (USA)"
+        },
+        {
+            "label": "Plant State",
+            "value": "KENTUCKY"
+        },
+        {
+            "label": "Market",
+            "value": "NA"
+        },
+        {
+            "label": "Made",
+            "value": "2020-10-01"
+        },
+        {
+            "label": "Production Started",
+            "value": 2017
+        },
+        {
+            "label": "Production Stopped",
+            "value": 2020
+        },
+        {
+            "label": "Engine Cylinders",
+            "value": 4
+        },
+        {
+            "label": "Number of Doors",
+            "value": 4
+        },
+        {
+            "label": "Number of Seat Rows",
+            "value": 2
+        },
+        {
+            "label": "Number of Seats",
+            "value": "5"
+        },
+        {
+            "label": "Steering",
+            "value": "Left Hand Drive (LHD)"
+        },
+        {
+            "label": "Check Digit",
+            "value": "9"
+        },
+        {
+            "label": "Sequential Number",
+            "value": "514132"
+        }
+    ]
+}

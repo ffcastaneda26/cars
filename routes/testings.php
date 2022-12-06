@@ -33,7 +33,7 @@ Route::get('update-passwords',function(){
     return 'Listo carnal';
 });
 
-Route::get('genera-vin/{type}/{vin_number?}',function($type='file',$vin_number=null){
+Route::get('genera-vin/{vin_number?}',function($vin_number=null){
     if(!$vin_number){
         return 'Lo siento, debe introducir un número de VIN';
     }
@@ -65,9 +65,9 @@ Route::get('genera-vin/{type}/{vin_number?}',function($type='file',$vin_number=n
                 echo $vehicle->label;
             echo '</td>';
             echo '<td>';
-                if($vehicle->labe == 'Wheel Rims Size Array' ||
-                   $vehicle->labe == 'Wheel Size Array' ||
-                   $vehicle->labe ==  'Wheelbase Array (mm)' ){
+                if($vehicle->label == 'Wheel Rims Size Array' ||
+                   $vehicle->label == 'Wheel Size Array' ||
+                   $vehicle->label ==  'Wheelbase Array (mm)' ){
                     echo 'array';
                 }else{
                     echo  $vehicle->value;
@@ -128,7 +128,14 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
     if(strlen($vin_number) != 17){
         return 'Lo siento, número VIN debe tener 17 carácteres';
     }
+
     $file = 'vin_number_' . $vin_number . '.json';
+
+    if(!file_exists($file)) {
+        return 'El archivo '.$file.' '. ' No Existe';
+    }
+
+
     $datos_vehicle = file_get_contents($file);
     $json_vehicle = json_decode($datos_vehicle, false);
     $record_vehicle = new Vehicle();
@@ -137,6 +144,7 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
     foreach ($json_vehicle->decode as $vehicle) {
         $search_tag = strtolower($vehicle->label);
         $api_tag_attributte_record = ApiTagsAttribute::Tag($search_tag)->first();
+
         if(!$api_tag_attributte_record){
             $is_array = strpos($vehicle->label,'rray',1);
             if ($is_array) {
@@ -152,17 +160,17 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
             continue;
         }
 
-        $attribute_talbe=$api_tag_attributte_record->table_attribute;
+        $attribute_table=$api_tag_attributte_record->table_attribute;
 
         if( $vehicle->label == 'Wheel Rims Size Array' ||
             $vehicle->label == 'Wheel Size Array' ||
             $vehicle->label ==  'Wheelbase Array (mm)' ){
-            // foreach($vehicle->value as $arr_value){
-            //       $record_vehicle->$attribute_talbe=$vehicle->$arr_value;
-            // }
-            continue;
+                foreach($vehicle->value as $value_array){
+                    $record_vehicle->$attribute_table=$value_array;
+                }
+
         }else{
-            $record_vehicle->$attribute_talbe=$vehicle->value;
+            $record_vehicle->$attribute_table=$vehicle->value;
         }
 
     }
@@ -171,12 +179,12 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
     // Borramos el archivo
         echo  'Se grabó el vehículo sin problemas... ' . '<br>';
 
-        If (unlink($file)) {
-            return  'Archivo:' . $file . ' Fue eliminado....' ;
-        } else {
-           return 'ATENCION Hubo problemas al intentar eliminar el archivo:' . $file ;
+        // If (unlink($file)) {
+        //     return  'Archivo:' . $file . ' Fue eliminado....' ;
+        // } else {
+        //    return 'ATENCION Hubo problemas al intentar eliminar el archivo:' . $file ;
 
-        }
+        // }
 
 
 });
