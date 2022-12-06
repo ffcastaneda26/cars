@@ -8,10 +8,16 @@
 
     <div class="p-2 w-30">
         <select wire:model="main_record.location_id"
-                class="form-select mb-2">
+                class="form-select mb-2"
+                @if($locations->count() == 1) disabled @endif>
                 <option value="">{{__("Location")}}</option>
                 @foreach($locations as $location)
-                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                        <option value="{{ $location->id }}"
+                            @if($locations->count() == 1) selected @endif
+                        >
+                            {{ $location->name }}
+                        </option>
+
                 @endforeach
         </select>
     </div>
@@ -22,17 +28,18 @@
             {{ __('VIN') }}
         </label>
     </div>
-    <div class="p-2">
-        <input type="text"
-            wire:model="vin_number"
-            wire:keyup="search_vin"
-            maxlength="17"
-            minlength="17"
-            placeholder="{{__("VIN number")}}"
-            class="form-control mb-2"
-        >
-    </div>
-
+    @if($main_record->location_id)
+        <div class="p-2">
+            <input type="text"
+                wire:model="vin_number"
+                wire:keyup="search_vin"
+                maxlength="17"
+                minlength="17"
+                placeholder="{{__("VIN number")}}"
+                class="form-control mb-2"
+            >
+        </div>
+    @endif
     {{-- Mensaje de Error --}}
     @if($error_message)
         <div class="p-2  bd-highlight">

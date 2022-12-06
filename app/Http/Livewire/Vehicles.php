@@ -130,11 +130,12 @@ class Vehicles extends Component
         $this->view_list        = 'livewire.vehicles.list';
         $this->view_search      = 'livewire.vehicles.search';
         $this->view_crud_modal  = 'livewire.vehicles.modal_form';
-
-
         $this->main_record  = new Vehicle();
         $this->locations    = Auth::user()->locations()->get();
-        $this->show_locations = $this->locations->count();
+        if( $this->locations->count()==1){
+            $this->main_record->location_id = $this->locations->first()->id;
+        }
+        $this->openModal();
     }
 
     /*+---------------------------------+
@@ -158,9 +159,9 @@ class Vehicles extends Component
      */
 
      public function search_vin(){
+
         $this->reset('available', 'show','error_message','show_form');
 
-        $this->main_record = new Vehicle();
         if (strlen($this->vin_number) != 17) return;
         $this->show_form =true;
 
