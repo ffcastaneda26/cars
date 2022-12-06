@@ -7,6 +7,7 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Color;
+use App\Models\TemporaryVehicle;
 use App\Models\Vehicle;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -110,7 +111,7 @@ class Vehicles extends Component
 
     ];
 
-
+    public $vehicle_record = null;
     public $locations,$location_id;
     public $colors=null;
     public $available;
@@ -118,8 +119,13 @@ class Vehicles extends Component
     public $show_locations = true;
     public $show_form = false;
     public $exists_in_vehicles=false;
-
+    public $source=null;
+    public $sources = ['vehicles','temporary','api_vehicles'];
     public $vin_number = '4T1B61HK9JU514132';
+    // public $vin_number = '3FA6P0H73JR127338';
+
+
+
 
     public $error_message = null;
 
@@ -167,23 +173,37 @@ class Vehicles extends Component
      public function search_vin(){
 
         $this->reset('available', 'show','error_message','show_form','exists_in_vehicles');
+       
+        if (!$this->main_record->location_id || strlen($this->vin_number) != 17) return;
 
-        if (strlen($this->vin_number) != 17) return;
         $this->show_form =true;
-
         $this->vin_number = strtoupper($this->vin_number);
-        $this->vehicle_record = Vehicle::Vin($this->vin_number)->first();
-
-        $bk_location_id = $this->main_record->location_id;
-
-        if(!$this->vehicle_record){
-            $this->error_message= 'Implementar búsqueda con la API';
-            $this->show_form = false;
+        
+        if($this->main_record->location_id){
             $bk_location_id = $this->main_record->location_id;
-            $this->main_record = new Vehicle();
+        }
+
+
+        foreach($this->sources as $source){
+            $this->source = $source;
+            $this->vehicle_record = $this->searchVehicle($this->source ,$this->vin_number);
+            if($this->vehicle_record) {
+                break;
+            }
+        }
+
+        // ¿Encontró el vehículo en algun lado?
+       
+        if (!$this->vehicle_record) {
+            $this->error_message= __('Vehicle does not exists');
+            $this->show_form = false;
+            return; 
+        }
+
+        // Pasa datos al registro principal
+        $this->main_record = $this->vehicle_record;
+        if($bk_location_id){
             $this->main_record->location_id = $bk_location_id;
-            unset($bk_location_id);
-            return;
         }
 
 
@@ -192,22 +212,56 @@ class Vehicles extends Component
             $this->main_record = $this->vehicle_record;
             return;
         }
-
         // ¿Es del mismo dealer per de diferente sucursal?
         if($this->vehicle_record->location->dealer_id == $this->main_record->location->dealer_id){
             if(Auth::user()->hasLocation($this->vehicle_record->location_id)){
                 $this->error_message= __('Vehicle is in another location');
                 $this->main_record = $this->vehicle_record;
                 $this->main_record->location_id = $bk_location_id;
-
                 return;
             }
             $this->error_message= __('Vehicle is in another location you can not manage it');
             $this->show_form = false;
             return;
-
         }
 
+        if(!$this->vehicle_record){
+            $this->main_record = new Vehicle();
+            $this->main_record->location_id = $bk_location_id;
+            $this->vehicle_record = TemporaryVehicle::Vin($this->vin_number)->first();
+          
+            if(! $this->vehicle_record){
+                $this->error_message= 'No está en vehículos temporales,buscar con API';
+                $this->show_form = false;
+                return;
+            }
+
+            $this->main_record = $this->vehicle_record;
+            $this->show_form = true;
+            $this->error_message= 'Se tomó de los temporales';
+            return;
+
+
+            $this->show_form = false;
+            $bk_location_id = $this->main_record->location_id;
+            $this->main_record = new Vehicle();
+            unset($bk_location_id);
+            return;
+        }
+
+     }
+
+
+     // Buscar Vehículo con el VIN
+     private function searchVehicle($source,$vin_number){
+
+        if($source == 'vehicles'){
+            return  Vehicle::Vin($vin_number)->first();
+        }
+
+        if($source == 'temporary'){
+            return  TemporaryVehicle::Vin($vin_number)->first();
+        }
 
      }
 

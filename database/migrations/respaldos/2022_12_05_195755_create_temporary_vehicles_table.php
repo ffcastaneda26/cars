@@ -65,7 +65,7 @@ return new class extends Migration
             $table->string('front_suspension',50)->nullable()->comment('Suspensión delantera');
             $table->float('drag_coefficient',4,2)->nullable()->comment('Coeficiente de Arrastre');
             $table->string('wheel_rims_size',20)->nullable()->comment('Tamaño de llantas');
-            $table->string('wheel_rims Size_array',)->nullable()->comment('Tamaño matriz tamaño de llantas');
+            $table->string('wheel_rims_size_array',)->nullable()->comment('Tamaño matriz tamaño de llantas');
             $table->string('wheel_size',20)->nullable()->comment('Tamaño de la rueda');
             $table->string('wheel_size_array',)->nullable()->comment('Tamaño matriz de ruedas');
             $table->smallInteger('wheelbase',)->nullable()->comment('Distancia entre ejes mm');

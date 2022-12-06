@@ -165,15 +165,17 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
         if( $vehicle->label == 'Wheel Rims Size Array' ||
             $vehicle->label == 'Wheel Size Array' ||
             $vehicle->label ==  'Wheelbase Array (mm)' ){
-                foreach($vehicle->value as $value_array){
-                    $record_vehicle->$attribute_table=$value_array;
-                }
-
+                // foreach($vehicle->value as $value_array){
+                //     $record_vehicle->$attribute_table=$value_array;
+                // }
+            continue;
         }else{
             $record_vehicle->$attribute_table=$vehicle->value;
         }
 
     }
+    // dd($record_vehicle);
+    
     $record_vehicle->save();
 
     // Borramos el archivo

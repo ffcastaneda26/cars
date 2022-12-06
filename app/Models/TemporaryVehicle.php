@@ -61,7 +61,7 @@ class TemporaryVehicle extends Model
         'front_suspension',
         'drag_coefficient',
         'wheel_rims_size',
-        'wheel_rims Size_array',
+        'wheel_rims_size_array',
         'wheel_size',
         'wheel_size_array',
         'wheelbase',

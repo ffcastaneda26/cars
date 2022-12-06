@@ -109,11 +109,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Secondary Fuel') .':' . $main_record->fuel_type_secondary }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.fuel_type_secondary"
                     class="form-control mb-2"
-                >
+                > --}}
             @endif
 
         </div>
@@ -124,11 +124,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Engine Model') .':' . $main_record->engine_model }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.engine_model"
                     class="form-control mb-2"
-                >
+                > --}}
             @endif
 
         </div>
@@ -155,11 +155,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Transmission Full') .':' . $main_record->transmission_full }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.transmission_full"
                     class="form-control mb-2"
-                >
+                > --}}
             @endif
 
         </div>

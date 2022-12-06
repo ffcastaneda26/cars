@@ -7,12 +7,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Make') .':' . $main_record->make }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.make"
-                    class="form-control mb-2"
-                >
-
             @endif
 
         </div>
@@ -25,12 +19,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Model') .':' . $main_record->model }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.model"
-                    class="form-control mb-2"
-                >
-
             @endif
 
         </div>
@@ -41,11 +29,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Model Year') .':' . $main_record->model_year }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.model_year"
                     class="form-control mb-2"
-                >
+                > --}}
 
             @endif
         </div>
@@ -56,11 +44,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Type') .':' . $main_record->product_type }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.product_type"
                     class="form-control mb-2"
-                >
+                > --}}
 
             @endif
 
@@ -73,11 +61,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Body') .':' . $main_record->product_type }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.product_type"
                     class="form-control mb-2"
-                >
+                > --}}
 
             @endif
 
@@ -90,12 +78,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Trim') .':' . $main_record->trim }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.trim"
-                    class="form-control mb-2"
-                >
-
             @endif
         </div>
 
@@ -105,11 +87,11 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Series') .':' . $main_record->series }}
                 </label>
-            @else
+            {{-- @else
                 <input type="text"
                     wire:model="main_record.series"
                     class="form-control mb-2"
-                >
+                > --}}
 
             @endif
 
@@ -122,12 +104,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Drive') .':' . $main_record->drive }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.drive"
-                    class="form-control mb-2"
-                >
-
             @endif
 
 
@@ -140,12 +116,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Cylinders') .':' . $main_record->engine_cylinders }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.engine_cylinders"
-                    class="form-control mb-2"
-                >
-
              @endif
 
         </div>
@@ -157,11 +127,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Seat Rows') .':' . $main_record->number_of_seat_rows }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.number_of_seat_rows"
-                    class="form-control mb-2"
-                >
 
             @endif
 
@@ -173,11 +138,6 @@
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Seats') .':' . $main_record->number_of_seats }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.number_of_seats"
-                    class="form-control mb-2"
-                >
             @endif
 
         </div>
