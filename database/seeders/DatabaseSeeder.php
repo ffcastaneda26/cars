@@ -18,9 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
-            'users',
-            'role_user',
+            'dealer_user',
+            'location_user',
             'permission_user',
+            'permission_role',
+            'role_user',
+            'users',
             'roles',
             'permissions',
             'statuses',

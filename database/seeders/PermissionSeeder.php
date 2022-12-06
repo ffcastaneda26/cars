@@ -17,7 +17,7 @@ class PermissionSeeder extends Seeder
     {
 
         $sql= "INSERT INTO permissions (name,slug,english,spanish) VALUES
-        ('users','user.index','Users','Usuarios'),
+        ('users','users.index','Users','Usuarios'),
         ('locations','locations.index','Locations','Sucursales'),
         ('vehicles','vehicles.index','Vehicles','Vehículos')";
 

@@ -37,6 +37,7 @@ class Users extends Component {
     */
 
 	public function mount() {
+
         $this->authorize('hasaccess', 'users.index');
         $this->manage_title = __('Manage') . ' ' . __('Users');
         $this->header = __('Manage') . ' ' . __('Users');
