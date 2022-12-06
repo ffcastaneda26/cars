@@ -18,7 +18,7 @@ class CreateDealersTable extends Migration
             $table->string('name',150)->unique()->comment('Nombre');
             $table->string('email',100)->unique()->comment('Correo electrónico');
             $table->string('website')->nullable()->default(null)->comment('Sitio Web');
-            $table->unsignedBigInteger('zipcode')->nullable()->unsigned()->comment('Zona Postal');
+            $table->integer('zipcode')->nullable()->unsigned()->comment('Zona Postal');
             $table->string('address',100)->nullable()->comment('Dirección');
             $table->string('phone',10)->nullable()->comment('Teléfono');
             $table->string('logotipo')->nullable()->default(null)->comment('Logo');
@@ -30,6 +30,9 @@ class CreateDealersTable extends Migration
             $table->timestamp('expire_at')->nullable()->default(null)->comment('Fecha expira licencia');
             $table->boolean('active')->default(1)->comment('Activo?');
             $table->timestamps();
+            // Llaves foráneas
+			$table->foreign('zipcode')->references('zipcode')->on('zipcodes')->onDelete('cascade');
+
         });
     }
 

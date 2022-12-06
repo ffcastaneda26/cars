@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\ApiTagsAttribute;
 use App\Models\Location;
+use App\Models\MissingTag;
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -49,12 +52,10 @@ Route::get('genera-vin/{type}/{vin_number?}',function($type='file',$vin_number=n
     $result = json_decode($data);
     $json_string = json_encode($result);
 
-    if($type=='file'){
-        $file = 'vin_number_' . $vin_number . '.json';
-        file_put_contents($file, $json_string);
-        return 'Terminado... revisar el archivo: ' . $file . '<br>';
 
-    }
+    $file = 'vin_number_' . $vin_number . '.json';
+    file_put_contents($file, $json_string);
+
     echo '<table><thead>';
     echo '<th> DATO</th><th>VALOR</th></thead>';
     echo '<tbody>';
@@ -64,7 +65,13 @@ Route::get('genera-vin/{type}/{vin_number?}',function($type='file',$vin_number=n
                 echo $vehicle->label;
             echo '</td>';
             echo '<td>';
-                echo  $vehicle->value;
+                if($vehicle->labe == 'Wheel Rims Size Array' ||
+                   $vehicle->labe == 'Wheel Size Array' ||
+                   $vehicle->labe ==  'Wheelbase Array (mm)' ){
+                    echo 'array';
+                }else{
+                    echo  $vehicle->value;
+                }
             echo '</td>';
         echo '</tr>';
     }
@@ -95,9 +102,81 @@ Route::get('consulta-vin/{vin_number?}',function($vin_number=null){
                 echo $vehicle->label;
             echo '</td>';
             echo '<td>';
-                echo  $vehicle->value;
+                if( $vehicle->label == 'Wheel Rims Size Array' ||
+                    $vehicle->label == 'Wheel Size Array' ||
+                    $vehicle->label ==  'Wheelbase Array (mm)' ){
+                    foreach($vehicle->value as $arr_value){
+                        // echo $arr_value;
+
+                    }
+
+                }else{
+                    echo  $vehicle->value;
+                }
             echo '</td>';
         echo '</tr>';
     }
     echo '</tbody>';
+});
+
+
+Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
+    if(!$vin_number){
+        return 'Lo siento, debe introducir un número de VIN';
+    }
+
+    if(strlen($vin_number) != 17){
+        return 'Lo siento, número VIN debe tener 17 carácteres';
+    }
+    $file = 'vin_number_' . $vin_number . '.json';
+    $datos_vehicle = file_get_contents($file);
+    $json_vehicle = json_decode($datos_vehicle, false);
+    $record_vehicle = new Vehicle();
+    $record_vehicle->location_id= Location::all()->random()->id;
+
+    foreach ($json_vehicle->decode as $vehicle) {
+        $search_tag = strtolower($vehicle->label);
+        $api_tag_attributte_record = ApiTagsAttribute::Tag($search_tag)->first();
+        if(!$api_tag_attributte_record){
+            $is_array = strpos($vehicle->label,'rray',1);
+            if ($is_array) {
+                $value_tag = 'Es Array';
+            }else{
+                $value_tag = $vehicle->value;
+            }
+
+            MissingTag::create([
+                'api_tag'   => $vehicle->label,
+                'value_tag' => $value_tag
+            ]);
+            continue;
+        }
+
+        $attribute_talbe=$api_tag_attributte_record->table_attribute;
+
+        if( $vehicle->label == 'Wheel Rims Size Array' ||
+            $vehicle->label == 'Wheel Size Array' ||
+            $vehicle->label ==  'Wheelbase Array (mm)' ){
+            // foreach($vehicle->value as $arr_value){
+            //       $record_vehicle->$attribute_talbe=$vehicle->$arr_value;
+            // }
+            continue;
+        }else{
+            $record_vehicle->$attribute_talbe=$vehicle->value;
+        }
+
+    }
+    $record_vehicle->save();
+
+    // Borramos el archivo
+        echo  'Se grabó el vehículo sin problemas... ' . '<br>';
+
+        If (unlink($file)) {
+            return  'Archivo:' . $file . ' Fue eliminado....' ;
+        } else {
+           return 'ATENCION Hubo problemas al intentar eliminar el archivo:' . $file ;
+
+        }
+
+
 });

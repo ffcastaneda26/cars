@@ -11,42 +11,93 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $table = 'vehicles';
-    protected $fillable = [
+    protected $fillable =[
         'location_id',
         'vin',
+        'vehicle_id',
         'make',
         'model',
         'model_year',
         'product_type',
         'body',
-        'trim',
         'series',
         'drive',
-        'engine_cylinders',
-        'number_of_doors',
-        'number_of_seat_rows',
-        'number_of_seats',
-        'steeering',
         'engine_displacement',
         'engine_power_kw',
         'engine_power_hp',
         'fuel_type_primary',
+        'transmission',
+        'number_of_gears',
+        'manufacturer',
+        'manufacturer_address',
+        'plant_city',
+        'plant_company',
+        'plant_country',
+        'production_stopped',
+        'engine_compression_ratio',
+        'engine_cylinder_bore_mm',
+        'engine_cylinders',
+        'engine_cylinders_position',
+        'engine_position',
+        'engine_rpm',
+        'engine_stroke_m',
+        'engine_torque_rpm',
+        'engine_turbine',
+        'valve_train',
+        'fuel_capacity',
+        'fuel_consumption_combined',
+        'fuel_consumption_extra_Urba',
+        'fuel_consumption_Urban',
+        'fuel_system',
+        'valves_per_cylinder',
+        'number_of_doors',
+        'number_of_seat_rows',
+        'number_of_seats',
+        'front_brakes',
+        'rear_brakes',
+        'steeering',
+        'steering_tyype',
+        'rear_suspension',
+        'front_suspension',
+        'drag_coefficient',
+        'wheel_rims_size',
+        'wheel_rims Size_array',
+        'wheel_size',
+        'wheel_size_array',
+        'wheelbase',
+        'wheel_base_array',
+        'height',
+        'lenght',
+        'width',
+        'width_including mirrors',
+        'track_front',
+        'track_rear',
+        'acceleration',
+        'max_speed',
+        'minimum_turning_circle',
+        'minimum_trunk_capacity',
+        'weight_empty_kg',
+        'abs',
+        'check_digit',
+        'sequential_number',
+        'trim',
         'fuel_type_secondary',
         'engine_model',
-        'transmission',
         'transmission_full',
-        'number_of_gears',
-        'color_exterior_id',
-        'color_interior_id',
-        'description',
+        'plant_state',
+        'market',
+        'made_date',
+        'production_started',
+        'interior_color_id',
+        'exterior_color_id',
         'price',
-        'slug',
         'miles',
         'available',
         'show',
-        'manufacturer',
-        'vehicle_id',
+        'description',
+        'slug',
     ];
+
     /**+-------------+
      * | Relaciones |
      * +------------+
@@ -63,14 +114,14 @@ class Vehicle extends Model
         return $this->hasMany(Photo::class);
     }
 
-    public function color_exterior()
+    public function interior_color()
     {
-        return $this->belongsTo(Color::class, 'color_exterior_id', 'id');
+        return $this->belongsTo(Color::class, 'interior_color_id', 'id');
     }
 
-    public function color_interior()
+    public function exterior_color()
     {
-        return $this->belongsTo(Color::class, 'color_interior_id', 'id');
+        return $this->belongsTo(Color::class, 'exterior_color_id', 'id');
     }
 
 
@@ -86,10 +137,7 @@ class Vehicle extends Model
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
      */
-    public function scopelocation_id($query, $value)
-    {
-        $query->where('location_id', 'LIKE', "%$value%");
-    }
+
 
     public function scopevin($query, $value)
     {
@@ -131,6 +179,7 @@ class Vehicle extends Model
     {
         $query->where('engine_cylinders', 'LIKE', "%$value%");
     }
+
     public function scopeNumberDoors($query, $value)
     {
         $query->where('number_of_doors', 'LIKE', "%$value%");
@@ -147,61 +196,28 @@ class Vehicle extends Model
     {
         $query->where('steeering', 'LIKE', "%$value%");
     }
-    public function scopeEngineDisplacement($query, $value)
+
+    public function scopeFue($query, $value)
     {
-        $query->where('engine_displacement', 'LIKE', "%$value%");
+        $query->where('fuel_type_primary', 'LIKE', "%$value%")
+              ->orwhere('fuel_type_secondary', 'LIKE', "%$value%");
     }
-    public function scopeeEginePowerKw($query, $value)
-    {
-        $query->where('enginePowerKw', 'LIKE', "%$value%");
-    }
-    public function scopeeEginePowerHp($query, $value)
-    {
-        $query->where('engine_power_hp', 'LIKE', "%$value%");
-    }
-    public function scopeFuelPrimary($query, $value)
-    {
-        $query->where('fuel_tpe_primary', 'LIKE', "%$value%");
-    }
-    public function scopeFuelSecondary($query, $value)
-    {
-        $query->where('fuel_type_secondary', 'LIKE', "%$value%");
-    }
-    public function scopeEnginemodel($query, $value)
-    {
-        $query->where('engine_model', 'LIKE', "%$value%");
-    }
+
+
+
     public function scopeTransmission($query, $value)
     {
         $query->where('transmission', 'LIKE', "%$value%");
     }
-    public function scopeTransmissionFull($query, $value)
-    {
-        $query->where('transmission_full', 'LIKE', "%$value%");
-    }
-    public function scopenumber_of_gears($query, $value)
-    {
-        $query->where('number_of_gears', 'LIKE', "%$value%");
-    }
+
     public function scopeColor($query, $value)
     {
         $query->where('color_exterior_id', 'LIKE', "%$value%")
                ->orwhere('color_interior_id', 'LIKE', "%$value%");
     }
 
-    public function scopeDescription($query, $value)
-    {
-        $query->where('description', 'LIKE', "%$value%");
-    }
-    public function scopePrice($query, $value)
-    {
-        $query->where('price', 'LIKE', "%$value%");
-    }
 
-    public function scopeSlug($query, $value)
-    {
-        $query->where('slug', 'LIKE', "%$value%");
-    }
+
     public function scopeMiles($query, $value)
     {
         $query->where('miles', 'LIKE', "%$value%");
