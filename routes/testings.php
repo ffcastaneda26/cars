@@ -4,6 +4,7 @@ use App\Models\ApiTagsAttribute;
 use App\Models\Dealer;
 use App\Models\Location;
 use App\Models\MissingTag;
+use App\Models\TemporaryVehicle;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\Auth;
@@ -196,3 +197,11 @@ Route::get('asignar-dealers/{user}/{dealer}',function(User $user,Dealer $dealer)
     $user->locations()->attach($dealer->locations);
     
 });
+
+Route::get('copiar-vehiculo/{vehicle}',function(Vehicle $vehicle){
+    $new_values_to_temporary= $vehicle->toArray();
+    $value_to_temporary_id= TemporaryVehicle::max('id')+2;
+    $new_values_to_temporary['id'] = $value_to_temporary_id;
+    TemporaryVehicle::create($new_values_to_temporary);
+
+}); 

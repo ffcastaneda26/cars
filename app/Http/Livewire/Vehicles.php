@@ -259,6 +259,7 @@ class Vehicles extends Component
             return  Vehicle::Vin($vin_number)->first();
         }
 
+        // TODO: Evaluar que pasa si lo encuentra en el TEMPORAL ¿Lo ctoma como vehículo o como temporal?
         if($source == 'temporary'){
             return  TemporaryVehicle::Vin($vin_number)->first();
         }
@@ -290,11 +291,8 @@ class Vehicles extends Component
         $this->main_record->available   = $this->available ? 1 : 0;
         $this->main_record->show        = $this->show ? 1 : 0;
         $this->main_record->save();
-
-        // $record_temporary = TemporaryVehicle::vin($this->main_record->vin)->first();
-        // if($record_temporary && $record_temporary->location->dealer_id == $this->main_record->location->dealer_id){
-        //     $record_temporary->delete();
-        // }    
+        // TODO: Validar que si está en el TEMPORAL se elimine
+  
 
         $this->close_store('Vahicle');
     }
