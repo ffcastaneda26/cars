@@ -90,6 +90,9 @@ trait ApiVehiclesTrait {
                 $vehicle->label ==  'Wheelbase Array (mm)' ){
                  continue;
             }else{
+                if($api_tag_attributte_record->truncate && strlen($vehicle->value) > $api_tag_attributte_record->length_truncate ){
+                    $vehicle->value = substr($vehicle->value,0,$api_tag_attributte_record->length_truncate);
+                }
                 $temporary_vehicle_record->$attribute_table=$vehicle->value;
                 $new_vehicle_record->$attribute_table=$vehicle->value;
                
@@ -100,8 +103,8 @@ trait ApiVehiclesTrait {
         $temporary_vehicle_record->location_id=$location_id;
         $new_vehicle_record->location_id=$location_id;
 
-        $temporary_vehicle_record->save();
-        $new_vehicle_record->save();
+       // $temporary_vehicle_record->save();
+      //  $new_vehicle_record->save();
 
 
         unlink($file);

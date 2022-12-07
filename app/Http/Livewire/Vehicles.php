@@ -153,20 +153,25 @@ class Vehicles extends Component
 
     public function render()
     {
+
+        $this->allow_save = $this->show_form;
+
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
                                                             : __('Create') . ' ' . __('Vehicle');
 
+                               
         $user_locations= LocationUser::select('location_id')
                         ->Where('user_id',Auth::user()->id)
                         ->orderBy('location_id')
                         ->get()
                         ->toArray();
          
-        $records = Vehicle::WhereIn('location_id',$user_locations)
+         $records = Vehicle::WhereIn('location_id',$user_locations)
                 ->SearchFull($this->search)->orderby($this->sort,$this->direction)
                 ->paginate(10);
         
         return view('livewire.index',compact('records'));
+
 
     }
 
@@ -262,6 +267,7 @@ class Vehicles extends Component
            return $this->searchApiVin($vin_number,$this->main_record->location_id);
         }
 
+        
      }
 
 
@@ -281,14 +287,14 @@ class Vehicles extends Component
     {
         $this->validate();
 
-        $this->main_record->available = $this->available ? 1 : 0;
-        $this->main_record->show = $this->show ? 1 : 0;
+        $this->main_record->available   = $this->available ? 1 : 0;
+        $this->main_record->show        = $this->show ? 1 : 0;
         $this->main_record->save();
 
-        $record_temporary = TemporaryVehicle::vin($this->main_record->vin)->first();
-        if($record_temporary && $record_temporary->location->dealer_id == $this->main_record->location->dealer_id){
-            $record_temporary->delete();
-        }    
+        // $record_temporary = TemporaryVehicle::vin($this->main_record->vin)->first();
+        // if($record_temporary && $record_temporary->location->dealer_id == $this->main_record->location->dealer_id){
+        //     $record_temporary->delete();
+        // }    
 
         $this->close_store('Vahicle');
     }

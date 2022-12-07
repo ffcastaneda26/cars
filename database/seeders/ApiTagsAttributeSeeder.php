@@ -90,11 +90,15 @@ class ApiTagsAttributeSeeder extends Seeder
             ('plant state','plant_state',1,8),
             ('market','market',1,2),
             ('made','made_date',1,10),
-            ('production started','production_started',0,null)";
+            ('production started','production_started',0,null),
+            ('production started','production_started',0,null),
+            ('Average CO2 Emission (g/km))','average_co2_emmision',0,null),
+            ('Number of Axles','number_of_axies',0,null),
+            ('Power Steering','power_steering',1,16),
+            ('Max Weight (kg)','max_weight_kg',0,null),
+            ('Permitted trailer load without brakes (kg)','permitted_trailer_load_whithout_brakes_kg',0,null)";
 
-
-
-        DB::update ($sql);
+            DB::update ($sql);
 
     }
 }
