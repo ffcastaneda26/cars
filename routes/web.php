@@ -56,10 +56,6 @@ Route::get('figma-inicio',function(){
     return view('figma.inicio');
 });
 
-Route::get('figma-crear-cuenta',function(){
-   return view('figma.cuervo-crearcuenta.crearcuenta');
-});
-
-Route::get('figma-crear-cuenta-alterada',function(){
-    return view('figma.crear-cuenta');
+Route::get('figma-create-account',function(){
+   return view('figma.create-account');
 });

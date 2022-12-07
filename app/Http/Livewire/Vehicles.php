@@ -9,6 +9,7 @@ use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Color;
 use App\Models\TemporaryVehicle;
 use App\Models\Vehicle;
+use App\Traits\ApiVehiclesTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class Vehicles extends Component
     use WithPagination;
     use CrudTrait;
     use UserTrait;
-
+    use ApiVehiclesTrait;
     protected $listeners = ['destroy'];
 
     protected $rules = [
@@ -199,7 +200,7 @@ class Vehicles extends Component
             $this->show_form = false;
             return; 
         }
-
+    
         // Pasa datos al registro principal
         $this->main_record = $this->vehicle_record;
         if($bk_location_id){
@@ -226,6 +227,8 @@ class Vehicles extends Component
         }
 
         if(!$this->vehicle_record){
+            $this->error_message= __('Vehicle does not exists');
+
             $this->main_record = new Vehicle();
             $this->main_record->location_id = $bk_location_id;
             $this->vehicle_record = TemporaryVehicle::Vin($this->vin_number)->first();
@@ -236,17 +239,9 @@ class Vehicles extends Component
                 return;
             }
 
-            $this->main_record = $this->vehicle_record;
-            $this->show_form = true;
-            $this->error_message= 'Se tomó de los temporales';
-            return;
 
 
-            $this->show_form = false;
-            $bk_location_id = $this->main_record->location_id;
-            $this->main_record = new Vehicle();
-            unset($bk_location_id);
-            return;
+
         }
 
      }
@@ -263,7 +258,12 @@ class Vehicles extends Component
             return  TemporaryVehicle::Vin($vin_number)->first();
         }
 
+        if($source == 'api_vehicles'){
+           return $this->searchApiVin($vin_number,$this->main_record->location_id);
+        }
+
      }
+
 
     public function resetInputFields()
     {
