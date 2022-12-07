@@ -7,6 +7,7 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Color;
+use App\Models\LocationUser;
 use App\Models\TemporaryVehicle;
 use App\Models\Vehicle;
 use App\Traits\ApiVehiclesTrait;
@@ -25,11 +26,13 @@ class Vehicles extends Component
     protected $rules = [
         'main_record.location_id'               =>'required|exists:locations,id',
         'main_record.vin'                       =>'required|min:17|max:17',
+        'main_record.interior_color_id'         =>'required|exists:colors,id',
+        'main_record.exterior_color_id'         =>'required|exists:colors,id',
+        'main_record.price'                     =>'required|integer',
+        'main_record.miles'                     =>'required|integer',
         'main_record.make'                      =>'required',
         'main_record.model'                     =>'required',
         'main_record.vehicle_id'                =>'nullable',
-        'main_record.make'                      =>'required',
-        'main_record.model'                     =>'required',
         'main_record.model_year'                =>'required',
         'main_record.product_type'              =>'nullable',
         'main_record.body'                      =>'nullable',
@@ -101,10 +104,6 @@ class Vehicles extends Component
         'main_record.market'                    =>'nullable',
         'main_record.made_date'                 =>'nullable',
         'main_record.production_started'        =>'nullable',
-        'main_record.interior_color_id'         =>'nullable',
-        'main_record.exterior_color_id'         =>'nullable',
-        'main_record.price'                     =>'nullable',
-        'main_record.miles'                     =>'nullable',
         'main_record.available'                 =>'nullable',
         'main_record.show'                      =>'nullable',
         'main_record.description'               =>'nullable',
@@ -122,10 +121,8 @@ class Vehicles extends Component
     public $exists_in_vehicles=false;
     public $source=null;
     public $sources = ['vehicles','temporary','api_vehicles'];
-    public $vin_number = '4T1B61HK9JU514132';
-    // public $vin_number = '3FA6P0H73JR127338';
-
-
+    public $vin_number;
+    // public $vin_number = '4T1B61HK9JU514132';
 
 
     public $error_message = null;
@@ -147,8 +144,6 @@ class Vehicles extends Component
         if( $this->locations->count()==1){
             $this->main_record->location_id = $this->locations->first()->id;
         }
-
-        $this->openModal();
     }
 
     /*+---------------------------------+
@@ -161,8 +156,16 @@ class Vehicles extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
                                                             : __('Create') . ' ' . __('Vehicle');
 
-
-        $records = Vehicle::paginate($this->pagination);
+        $user_locations= LocationUser::select('location_id')
+                        ->Where('user_id',Auth::user()->id)
+                        ->orderBy('location_id')
+                        ->get()
+                        ->toArray();
+         
+        $records = Vehicle::WhereIn('location_id',$user_locations)
+                ->SearchFull($this->search)->orderby($this->sort,$this->direction)
+                ->paginate(10);
+        
         return view('livewire.index',compact('records'));
 
     }
@@ -174,7 +177,7 @@ class Vehicles extends Component
      public function search_vin(){
 
         $this->reset('available', 'show','error_message','show_form','exists_in_vehicles');
-       
+ 
         if (!$this->main_record->location_id || strlen($this->vin_number) != 17) return;
 
         $this->show_form =true;
@@ -239,9 +242,6 @@ class Vehicles extends Component
                 return;
             }
 
-
-
-
         }
 
      }
@@ -283,8 +283,12 @@ class Vehicles extends Component
 
         $this->main_record->available = $this->available ? 1 : 0;
         $this->main_record->show = $this->show ? 1 : 0;
-
         $this->main_record->save();
+
+        $record_temporary = TemporaryVehicle::vin($this->main_record->vin)->first();
+        if($record_temporary && $record_temporary->location->dealer_id == $this->main_record->location->dealer_id){
+            $record_temporary->delete();
+        }    
 
         $this->close_store('Vahicle');
     }
@@ -296,10 +300,12 @@ class Vehicles extends Component
 
     public function edit(Vehicle $record)
     {
+        $this->record_id    = null;
         $this->main_record  = $record;
         $this->record_id    = $record->id;
         $this->available    = $record->available;
         $this->show         = $record->show;
+        $this->vin_number   = $record->vin;
         $this->openModal();
     }
 

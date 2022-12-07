@@ -16,6 +16,7 @@ use App\Models\ApiTagsAttribute;
 use App\Models\MissingTag;
 use App\Models\TemporaryInventory;
 use App\Models\TemporaryVehicle;
+use App\Models\Vehicle;
 
 trait ApiVehiclesTrait {
 
@@ -57,8 +58,10 @@ trait ApiVehiclesTrait {
         $datos_vehicle = file_get_contents($file);
         $json_vehicle = json_decode($datos_vehicle, false);
        
-        $record_vehicle = new TemporaryVehicle();
-    
+        $temporary_vehicle_record   = new TemporaryVehicle();
+        $new_vehicle_record         = new Vehicle();
+        
+           
         foreach ($json_vehicle->decode as $vehicle) {
            
             $search_tag = strtolower($vehicle->label);
@@ -80,23 +83,30 @@ trait ApiVehiclesTrait {
             }
     
             $attribute_table=$api_tag_attributte_record->table_attribute;
+
     
             if( $vehicle->label == 'Wheel Rims Size Array' ||
                 $vehicle->label == 'Wheel Size Array' ||
                 $vehicle->label ==  'Wheelbase Array (mm)' ){
                  continue;
             }else{
-                $record_vehicle->$attribute_table=$vehicle->value;
+                $temporary_vehicle_record->$attribute_table=$vehicle->value;
+                $new_vehicle_record->$attribute_table=$vehicle->value;
+               
             }
 
         }
 
-        $record_vehicle->location_id=$location_id;
+        $temporary_vehicle_record->location_id=$location_id;
+        $new_vehicle_record->location_id=$location_id;
 
-        $record_vehicle->save();
+        $temporary_vehicle_record->save();
+        $new_vehicle_record->save();
+
+
         unlink($file);
 
-        return $record_vehicle;
+        return $new_vehicle_record;
     
     }
 

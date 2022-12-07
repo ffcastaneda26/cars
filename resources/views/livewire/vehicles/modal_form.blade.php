@@ -4,8 +4,7 @@
             @include('common.crud_modal_header')
 
             @include($view_form)
-
-            @include('common.crud_modal_footer')
+          
 
         </div>
     </div>

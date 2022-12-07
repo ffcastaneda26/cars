@@ -95,7 +95,7 @@ return [
 	'password' => 'La contraseña es incorrecta.',
 	'present' => ':attribute debe estar presente.',
 	'regex' => 'El formato de :attribute es inválido.',
-	'required' => ':attribute es obligatorio.',
+	'required' => 'Debe introducir :attribute',
 	'required_if' => ':attribute es obligatorio cuando :other es :value.',
 	'required_unless' => ':attribute es requerido a menos que :other se encuentre en :values.',
 	'required_with' => ':attribute es obligatorio cuando :values está presente.',
@@ -207,10 +207,15 @@ return [
         'uuid'=>'UUID',
         'website'=>'Website',
         'youtube'=>'Youtube',
-        'zipcode'=>'Zona Postal',
-        'agree_be_legal_age' => 'Aceptar Las Reglas',
-        'agree_be_rules' => 'Aceptar mayoría de edad',
-        'dealer_id' => 'Distribuidor'
-	]
+        'zipcode'               =>'Zona Postal',
+        'agree_be_legal_age'    => 'Aceptar Las Reglas',
+        'agree_be_rules'        => 'Aceptar mayoría de edad',
+        'dealer_id'             => 'Distribuidor',
+        'price'                 => 'Precio',
+        'miles'                 => 'Millas',
+        'interior_color_id'     => 'Color Interior',
+        'exterior_color_id'     => 'Color Exterior',
+
+    ]
 
 ];

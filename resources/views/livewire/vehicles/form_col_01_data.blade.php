@@ -82,20 +82,13 @@
         </div>
 
         {{-- Series --}}
-        <div class="flex-flex-column">
+        {{-- <div class="flex-flex-column">
             @if($main_record->series)
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Series') .':' . $main_record->series }}
                 </label>
-            {{-- @else
-                <input type="text"
-                    wire:model="main_record.series"
-                    class="form-control mb-2"
-                > --}}
-
             @endif
-
-        </div>
+        </div> --}}
 
         {{-- Drive --}}
         <div class="flex-flex-column">
@@ -105,7 +98,6 @@
                     {{ __('Drive') .':' . $main_record->drive }}
                 </label>
             @endif
-
 
         </div>
 

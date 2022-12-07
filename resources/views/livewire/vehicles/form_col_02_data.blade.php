@@ -150,19 +150,13 @@
         </div>
 
         {{-- Transmisión Completa --}}
-        <div class="flex-flex-column">
+        {{-- <div class="flex-flex-column">
             @if($main_record->transmission_full)
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Transmission Full') .':' . $main_record->transmission_full }}
                 </label>
-            {{-- @else
-                <input type="text"
-                    wire:model="main_record.transmission_full"
-                    class="form-control mb-2"
-                > --}}
             @endif
-
-        </div>
+        </div> --}}
 
         {{-- Engranes --}}
         <div class="flex-flex-column">

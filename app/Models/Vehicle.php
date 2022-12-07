@@ -138,6 +138,20 @@ class Vehicle extends Model
      * +----------------------------------------+
      */
 
+    public function scopeSearchFull($query,$value){
+        if($value) {
+            $value = trim($value);
+            $query->where('make', 'LIKE', "%$value%")
+                    ->where('model', 'LIKE', "%$value%") 
+                    ->where('model_year', 'LIKE', "%$value%") 
+                    ->where('product_type', 'LIKE', "%$value%") 
+                    ->where('body', 'LIKE', "%$value%") 
+                    ->where('series', 'LIKE', "%$value%") 
+                    ->where('drive', 'LIKE', "%$value%");
+
+        }
+
+    }
 
     public function scopevin($query, $value)
     {

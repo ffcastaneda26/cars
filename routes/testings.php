@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ApiTagsAttribute;
+use App\Models\Dealer;
 use App\Models\Location;
 use App\Models\MissingTag;
 use App\Models\User;
@@ -17,7 +18,6 @@ Route::get('/', function () {
 
 
 Route::get('sucursales',function(){
-    $search ='Moe';
     $records = Auth::user()->locations()->Name($search)->get();
     foreach($records as $record){
         echo $record->name . '<br>';
@@ -30,7 +30,7 @@ Route::get('update-passwords',function(){
         $user->password = Hash::make('password');
         $user->save();
     }
-    return 'Listo carnal';
+    return 'Listo todos los usuarios tienen la clave < password >';
 });
 
 Route::get('genera-vin/{vin_number?}',function($vin_number=null){
@@ -189,4 +189,10 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
         // }
 
 
+});
+
+Route::get('asignar-dealers/{user}/{dealer}',function(User $user,Dealer $dealer){
+    $user->dealers()->detach($dealer);
+    $user->locations()->attach($dealer->locations);
+    
 });

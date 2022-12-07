@@ -1,41 +1,32 @@
 
+        
         <div class="w-auto col flex flex-col">
             <form>
-                {{-- Sucursal --}}
-                <div class="flex-flex-column">
-                    <select wire:model="main_record.location_id"
-                             class="form-select mb-2">
-                        <option value="">{{__("Location")}}</option>
-                        @foreach($locations as $location)
-                                <option value="{{ $location->id }}">{{ $location->name }}</option>
-                        @endforeach
-                    </select>
-
-                </div>
-
-
                 {{-- Color Interior --}}
                 <div class="flex-flex-column">
                     <select wire:model="main_record.interior_color_id"
-                            class="form-select mb-2">
+                            class="form-select mb-2 
+                            {{ $errors->has('main_record.interior_color_id') ? 'field_error' : '' }}"
+                        >
                         <option value="">{{__("Interior")}}</option>
                         @foreach($colors as $color_interior)
-                                <option value="{{ $color_interior->id }}">
+                                <option value="{{ $color_interior->id }}" class="normal_option">
                                     {{ App::isLocale('en') ? $color_interior->english : $color_interior->spanish }}
                                                                 </option>
                         @endforeach
                     </select>
-
                 </div>
 
 
                 {{-- Color Exterior --}}
                 <div class="flex-flex-column">
                     <select wire:model="main_record.exterior_color_id"
-                        class="form-select mb-2">
+                        class="form-select mb-2
+                        {{ $errors->has('main_record.exterior_color_id') ? 'field_error' : '' }}"
+                    >
                         <option value="">{{__("Exterior")}}</option>
                         @foreach($colors as $color_exterior)
-                                <option value="{{ $color_exterior->id }}">
+                               <option value="{{ $color_exterior->id }}" class="normal_option">
                                     {{ App::isLocale('en') ? $color_exterior->english : $color_exterior->spanish }}
                                 </option>
                         @endforeach
@@ -43,19 +34,27 @@
                 </div>
 
                 {{-- Precio --}}
-                <div class="flex-flex-column">
                     <input type="text"
-                    wire:model="main_record.price"
-                    class="form-control mb-2"
-                >
-
+                        wire:model="main_record.price"
+                        class="mb-2 
+                        {{ $errors->has('main_record.price') ? 'field_error' : '' }}"
+                        maxlength="7"
+                        size="7"
+                    >
+                    @error('main_record.price')<span class="error_box">{{ $message }}</span>@enderror
+              
                 {{-- Millas --}}
 
                 <div class="flex-flex-column">
                     <input type="text"
-                    wire:model="main_record.miles"
-                    class="form-control mb-2"
-                >
+                        wire:model="main_record.miles"
+                        class="mb-2
+                        {{ $errors->has('main_record.miles') ? 'field_error' : '' }}"
+                        maxlength="7"
+                        size="7"
+                    >
+                    @error('main_record.miles')<span class="error_box">{{ $message }}</span>@enderror
+                </div>
 
                 {{-- Disponible --}}
                 <div class="flex-flex-column mb-2">
