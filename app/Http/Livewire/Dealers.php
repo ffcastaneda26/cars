@@ -9,6 +9,7 @@ use App\Traits\ZipCodeTrait;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Package;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,10 +23,9 @@ class Dealers extends Component
     use ZipCodeTrait;
 
     protected $listeners = ['destroy'];
-    public $town_state, $zipcode, $active, $logotipo;
-
 
     protected $rules = [
+        'main_record.package_id'        => 'required|exists:packages,id',
         'main_record.name'              => 'required|min:5|max:150',
         'main_record.email'             => 'required|email|max:100',
         'main_record.phone'             => 'required|digits:10',
@@ -42,6 +42,8 @@ class Dealers extends Component
         'main_record.complete_address'  =>'nullable',
     ];
 
+    public $town_state, $zipcode, $active, $logotipo;
+    public $packages;
 
     public function mount()
     {
@@ -52,6 +54,7 @@ class Dealers extends Component
         $this->view_table   = 'livewire.dealers.table';
         $this->view_list    = 'livewire.dealers.list';
         $this->main_record  = new Dealer();
+        $this->packages     = Package::select('id','name')->orderby('price')->get();
     }
 
     /*+---------------------------------+

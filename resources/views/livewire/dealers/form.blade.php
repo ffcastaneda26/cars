@@ -2,6 +2,7 @@
     <x-jet-validation-errors></x-jet-validation-errors>
     <div class="row align-items-start">
         <div class="col-md-5 flex flex-col">
+            <label class="input-group-text mb-2">{{ __('Dealer') }}</label>
             <label class="input-group-text mb-2">{{ __('Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
             <label class="input-group-text mb-2">{{ __('Phone') }}</label>
@@ -18,7 +19,17 @@
 
             <div class="col flex flex-col">
                 <form>
-                      @include('livewire.commons.main_record_input_name_field')
+                    {{-- Paquete --}}
+                    <div class="flex-flex-column mb-2">
+                        <select wire:model="main_record.package_id"
+                            class="form-select">
+                            <option value="">{{__("Package")}}</option>
+                            @foreach($packages as $package)
+                                    <option value="{{ $package->id }}">{{ $package->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @include('livewire.commons.main_record_input_name_field')
                     @include('livewire.commons.main_record_input_email_field')
                     @include('livewire.commons.main_record_input_phone_field')
                     @include('livewire.commons.main_record_input_address_field')
