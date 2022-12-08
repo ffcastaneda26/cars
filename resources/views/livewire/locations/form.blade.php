@@ -18,13 +18,17 @@
                 <form>
                     {{-- Distribuidor --}}
                     <div class="flex-flex-column mb-2">
-                        <select wire:model="main_record.dealer_id"
-                            class="form-select">
-                            <option value="">{{__("Dealer")}}</option>
-                            @foreach($dealers as $dealer)
-                                    <option value="{{ $dealer->id }}">{{ $dealer->name }}</option>
-                            @endforeach
-                        </select>
+                        @if($show_dealers)
+                            <select wire:model="main_record.dealer_id"
+                                class="form-select">
+                                <option value="">{{__("Dealer")}}</option>
+                                @foreach($dealers as $dealer)
+                                        <option value="{{ $dealer->id }}">{{ $dealer->name }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <label class="input-group-text mb-2">{{ $this->main_record->dealer->name }}</label>
+                        @endif
                     </div>
                     @include('livewire.commons.main_record_input_name_field')
                     @include('livewire.commons.main_record_input_email_field')

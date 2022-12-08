@@ -4,28 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Dealer extends Model
 {
     use HasFactory;
     protected $table = 'dealers';
-    protected $fillable = [
-        'name',
-        'email',
-        'website',
-        'zipcode',
-        'address',
-        'phone',
-        'logotipo',
-        'latitude',
-        'longitude',
-        'position',
-        'complete_address',
-        'expire_at',
-        'max_locations',
-        'active'
-    ];
+
 
     protected $casts = [
         'expire_at' => 'datetime:Y-m-d',
@@ -36,13 +24,20 @@ class Dealer extends Model
       +-------------+
     */
 
-     // Usuarios
-    public function users() {
+    // Paquete que tiene contratado
+    public function package(): BelongsTo
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    // Usuarios
+    public function users(): BelongsToMany {
 		return $this->belongsToMany(User::class);
 	}
 
     // Sucursales (Localidades)
-    public function locations() {
+    public function locations(): HasMany
+    {
 		return $this->hasMany(Location::class);
 	}
 

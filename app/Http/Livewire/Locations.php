@@ -22,8 +22,7 @@ class Locations extends Component
     use ZipCodeTrait;
 
     protected $listeners = ['destroy'];
-    public $town_state, $zipcode, $active, $logotipo;
-    public $dealers,$dealer_id;
+
 
     protected $rules = [
         'main_record.dealer_id'         => 'required|exists:dealers,id',
@@ -41,6 +40,10 @@ class Locations extends Component
         'main_record.complete_address'  =>'nullable',
     ];
 
+    public $town_state, $zipcode, $active, $logotipo;
+    public $dealers,$dealer_id;
+    public $dealer;
+    public $show_dealers = true;
 
     public function mount()
     {
@@ -51,7 +54,18 @@ class Locations extends Component
         $this->view_table   = 'livewire.locations.table';
         $this->view_list    = 'livewire.locations.list';
         $this->main_record  = new Location();
-        $this->dealers      = Auth::user()->dealers()->get();
+        if(Auth::user()->isAdmin()){
+            $this->dealers      = Auth::user()->dealers()->get();
+            $this->allow_create = true;
+            $this->show_dealers = true;
+        }else{
+            $this->dealers = Auth::user()->dealers;
+            $this->dealer = Auth::user()->dealers->first();
+
+            $this->main_record->dealer_id = $this->dealer->id;
+            $this->show_dealers = false;
+        }
+
     }
 
     /*+---------------------------------+
@@ -61,14 +75,23 @@ class Locations extends Component
 
     public function render()
     {
+
+        $this->allow_create =  $this->dealer->package->locations_allowed > $this->dealer->locations->count();
+
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Location')
                                                             : __('Create') . ' ' . __('Location');
 
+        if(Auth::user()->isAdmin()){
+            $records = Location::Name($this->search)
+                                    ->orderby($this->sort,$this->direction)
+                                    ->paginate($this->pagination);
+        }
 
-        $records = Auth::user()->locations()->Name($this->search)
-                                ->orderby($this->sort,$this->direction)
-                                ->paginate($this->pagination);
+        if(Auth::user()->isManager()){
+            $this->main_record->dealer_id = $this->dealer->id;
 
+            $records = $this->dealer->locations()->Name($this->search)->orderby($this->sort,$this->direction)->paginate($this->pagination);
+        }
         return view('livewire.index',compact('records'));
 
     }
