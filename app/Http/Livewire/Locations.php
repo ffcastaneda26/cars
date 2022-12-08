@@ -56,7 +56,6 @@ class Locations extends Component
         $this->main_record  = new Location();
         if(Auth::user()->isAdmin()){
             $this->dealers      = Auth::user()->dealers()->get();
-            $this->allow_create = true;
             $this->show_dealers = true;
         }else{
             $this->dealers = Auth::user()->dealers;
@@ -76,22 +75,25 @@ class Locations extends Component
     public function render()
     {
 
-        $this->allow_create =  $this->dealer->package->locations_allowed > $this->dealer->locations->count();
+
 
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Location')
                                                             : __('Create') . ' ' . __('Location');
 
         if(Auth::user()->isAdmin()){
+            $this->allow_create = true;
             $records = Location::Name($this->search)
                                     ->orderby($this->sort,$this->direction)
                                     ->paginate($this->pagination);
         }
 
+        $this->allow_create =  $this->dealer->package->locations_allowed > $this->dealer->locations->count();
+
         if(Auth::user()->isManager()){
             $this->main_record->dealer_id = $this->dealer->id;
-
             $records = $this->dealer->locations()->Name($this->search)->orderby($this->sort,$this->direction)->paginate($this->pagination);
         }
+
         return view('livewire.index',compact('records'));
 
     }
