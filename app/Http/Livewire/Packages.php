@@ -24,12 +24,12 @@ class Packages extends Component
 
     protected $rules = [
         'main_record.name'                              =>'required|min:3|max:100|unique:packages,name',
-        'main_record.price'                             =>'required|digist|integer',
+        'main_record.price'                             =>'required|integer',
         'main_record.max_show_vehicles_per_location'    =>'nullable|integer',
-        'main_record.photo_rotation'                    =>'nullable|new Enum(PhotoRotationEnum::class)',
+        'main_record.photo_rotation'                    =>'nullable',
         'main_record.phone_number_listing_per_location' =>'nullable|integer',
         'main_record.locations_allowed'                 =>'nullable|integer',
-        'main_record.team_cuervo_photo_upload'          =>'nullable|new Enum(TeamCuervoPhotoUploadEnum::class)',
+        'main_record.team_cuervo_photo_upload'          =>'nullable',
         'main_record.max_tags_higlights'                =>'nullable|integer',
         'main_record.premium_tag_search'                =>'nullable|integer',
         'main_record.vehicle_listing_bonus'             =>'nullable|integer',
@@ -66,6 +66,7 @@ class Packages extends Component
     public $count_time_see_vehicle;
     public $count_photos_see;
     public $use_order_to_search;
+    public $max_show_vehicles_per_location;
 
 
     public function mount()
@@ -76,7 +77,10 @@ class Packages extends Component
         $this->view_form    = 'livewire.packages.form';
         $this->view_table   = 'livewire.packages.table';
         $this->view_list    = 'livewire.packages.list';
+        $this->view_crud_modal  = 'livewire.packages.modal_form';
+
         $this->main_record  =  new Package();
+        $this->openModal();
 
     }
 
@@ -84,6 +88,7 @@ class Packages extends Component
     {
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Package')
                                                             : __('Create') . ' ' . __('Package');
+
 
         $records = Package::Name($this->search)->orderby($this->sort,$this->direction)->paginate(10);
         return view('livewire.index',compact('records'));
@@ -123,7 +128,7 @@ class Packages extends Component
         $this->main_record->use_order_to_search         = $this->use_order_to_search? 1 : 0;
 
         $this->validate();
-        $this->close_store('package');
+        $this->close_store('Package');
     }
 
     /*+------------------------------+
