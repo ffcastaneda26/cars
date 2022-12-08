@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Package;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ class CreateDealersTable extends Migration
     {
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Package::class)->comment('Paquete');
             $table->string('name',150)->unique()->comment('Nombre');
             $table->string('email',100)->unique()->comment('Correo electrónico');
             $table->string('website')->nullable()->default(null)->comment('Sitio Web');
@@ -28,6 +30,7 @@ class CreateDealersTable extends Migration
             $table->point('position')->nullable()->default(null)->comment('Ubicación en un mapa');
             $table->json('complete_address')->nullable()->default(null)->comment('Dirección completa');
             $table->timestamp('expire_at')->nullable()->default(null)->comment('Fecha expira licencia');
+            $table->tinyInteger('order_in_search',)->nullable()->default(0)->comment('Orden para presentar resultados');
             $table->boolean('active')->default(1)->comment('Activo?');
             $table->timestamps();
             // Llaves foráneas

@@ -1,4 +1,6 @@
 {
+    "Packages": "Paquetes",
+    "Package": "Paquete",
     "Please check, missing values": "Por favor revise, faltan valores",
     "Vehicle does not exists": "Vehículo no existe",
     "VIN Number": "Número VIN",

@@ -58,6 +58,16 @@
         </a>
     </li>
 
+    {{-- Paquetes --}}
+
+    <li>
+        <a href="{{route('packages')}}" class="waves-effect">
+            <i class="mdi mdi-package-variant"></i>
+            <span>{{__('Packages')}}</span>
+        </a>
+    </li>
+
+
     {{-- Distribuidores --}}
     <li>
         <a href="{{route('dealers')}}" class="waves-effect">
