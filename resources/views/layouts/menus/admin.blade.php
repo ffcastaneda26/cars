@@ -67,6 +67,14 @@
         </a>
     </li>
 
+    {{-- Etiquetas --}}
+
+    <li>
+        <a href="{{route('tags')}}" class="waves-effect">
+            <i class="mdi mdi-label-multiple-outline"></i>
+            <span>{{__('Tags')}}</span>
+        </a>
+    </li>
 
     {{-- Distribuidores --}}
     <li>

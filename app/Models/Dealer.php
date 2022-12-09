@@ -35,6 +35,11 @@ class Dealer extends Model
 		return $this->belongsToMany(User::class);
 	}
 
+    // Usuarios
+    public function tags(): BelongsToMany {
+        return $this->belongsToMany(Tag::class);
+    }
+
     // Sucursales (Localidades)
     public function locations(): HasMany
     {
@@ -53,6 +58,8 @@ class Dealer extends Model
 
     public function can_be_delete(){
         if($this->locations()->count()){ return false;}
+        if($this->tags()->count()){ return false;}
+
         return true;
     }
 

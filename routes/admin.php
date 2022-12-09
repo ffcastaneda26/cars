@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use App\Http\Livewire\SocialNetworks;
+use App\Http\Livewire\Tags;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('colors',Colors::class)->name('colors');                                 // Colores
     Route::get('social-networks',SocialNetworks::class)->name('social-networks');       // Redes Sociales
     Route::get('packages',Packages::class)->name('packages');                           // Paquetes
+    Route::get('tags',Tags::class)->name('tags');                                       // Etiquetas
+
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
 
 });
