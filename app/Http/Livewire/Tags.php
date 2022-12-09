@@ -29,7 +29,7 @@ class Tags extends Component
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'Tags.index');
+        $this->authorize('hasaccess', 'tags.index');
         $this->manage_title = __('Manage') . ' ' . __('Tags');
         $this->search_label = __('Tag');
         $this->view_form    = 'livewire.Tags.form';

@@ -24,6 +24,15 @@ class Tag extends Model
     }
 
 
+	public function hasDealer($dealer_id){
+        foreach($this->dealers as $dealer){
+            if($dealer->id == $dealer_id){
+                return true;
+            }
+        }
+        return false;
+	}
+
     /*+-----------------+
       | Funciones Apoyo |
       +-----------------+

@@ -1,6 +1,9 @@
 {
     "Tags": "Etiquetas",
     "Tag": "Etiqueta",
+    "Select Tags": "Seleccionar Etiquetas",
+    "To assign": "Seleccionar",
+    "Remove": "Quitar",
     "Max Vehicles Show in Results":"Máximo de vehículos a mostrar",
     "Photo Rotation":"Rotación de fotos",
     "Number Phones Listing per Location":"Teléfonos a mostrar x Sucursal",
