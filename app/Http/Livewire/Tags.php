@@ -32,9 +32,9 @@ class Tags extends Component
         $this->authorize('hasaccess', 'tags.index');
         $this->manage_title = __('Manage') . ' ' . __('Tags');
         $this->search_label = __('Tag');
-        $this->view_form    = 'livewire.Tags.form';
-        $this->view_table   = 'livewire.Tags.table';
-        $this->view_list    = 'livewire.Tags.list';
+        $this->view_form    = 'livewire.tags.form';
+        $this->view_table   = 'livewire.tags.table';
+        $this->view_list    = 'livewire.tags.list';
         $this->main_record  = new Tag();
     }
 
