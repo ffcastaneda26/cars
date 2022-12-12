@@ -3,8 +3,11 @@
     <div class="row align-items-start">
         {{-- Etiquetas de Campos --}}
         <div class="w-auto flex flex-col">
-            <label class="input-group-text mb-2">{{ __('Name') }}</label>
+            <label class="input-group-text mb-2">{{ __('First Name') }}</label>
+            <label class="input-group-text mb-2">{{ __('Last Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
+            <label class="input-group-text mb-2">{{ __('Phone') }}</label>
+
             <label class="input-group-text mb-2">{{ __('Role') }}</label>
             @if($show_dealers)
                 <label class="input-group-text mb-2">{{ __('Dealer') }}</label>
@@ -19,8 +22,18 @@
         <div class="col flex flex-col">
             {{-- Nombre --}}
             <div class="flex-flex-column">
-                <input type="text" wire:model="name" required placeholder="{{ __('Name') }}"
-                    class="form-control mb-2" maxlength="50"
+                <input type="text" wire:model="first_name" required placeholder="{{ __('First Name') }}"
+                    class="form-control mb-2" maxlength="60"
+                    @if(isset($record->id) && !$record->wolf)
+                        disabled
+                    @endif
+                >
+            </div>
+
+            {{-- Apellido --}}
+            <div class="flex-flex-column">
+                <input type="text" wire:model="last_name" required placeholder="{{ __('Last Name') }}"
+                    class="form-control mb-2" maxlength="60"
                     @if(isset($record->id) && !$record->wolf)
                         disabled
                     @endif
@@ -40,6 +53,19 @@
                     >
             </div>
 
+            {{-- Teléfono --}}
+            <div class="flex-flex-column">
+                <input type="text"
+                        wire:model="phone"
+                        maxlength="10"
+                        pattern="[0-9]"
+                        placeholder="{{ __('Phone') }}"
+                        class="form-control mb-2"
+                        @if(isset($record->id))
+                            disabled
+                        @endif
+                >
+            </div>
 
             {{-- Rol --}}
             <div class="flex-flex-column">

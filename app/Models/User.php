@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'phone', 'password', 'active'];
+    protected $fillable = ['first_mame','last_name', 'email', 'phone', 'password', 'active'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -117,7 +117,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeUser($query, $valor)
     {
         if (trim($valor) != '') {
-            $query->where('name', 'LIKE', "%$valor%")->orwhere('email', 'LIKE', "%$valor%");
+            $query->where('first_name', 'LIKE', "%$valor%")
+                ->orwhere('last_name', 'LIKE', "%$valor%")
+                ->orwhere('email', 'LIKE', "%$valor%")
+                ->orwhere('phone', 'LIKE', "%$valor%");
         }
     }
 
