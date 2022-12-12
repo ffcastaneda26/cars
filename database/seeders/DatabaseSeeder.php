@@ -28,6 +28,11 @@ class DatabaseSeeder extends Seeder
             'permissions',
             'statuses',
             'colors',
+            'packages',
+            'social_networks',
+            'api_tags_attributes',
+            'missing_tags',
+            'tags',
             'dealers',
             'locations',
         ]);
@@ -38,6 +43,10 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             StatusSeeder::class,
             ColorSeeder::class,
+            PackageSeeder::class,
+            SocialNetworkSeeder::class,
+            ApiTagsAttributeSeeder::class,
+            TagSeeder::class,
             DealerSeeder::class,
             LocationSeeder::class,
         ]);

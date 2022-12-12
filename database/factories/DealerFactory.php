@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Package;
 use App\Models\Zipcode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,12 +16,13 @@ class DealerFactory extends Factory
     public function definition()
     {
         return [
-            'name'      => $this->faker->unique()->company(),
-            'address'   => $this->faker->address(),
-            'phone'     => $this->faker->numerify('##########'),
-            'email'     => $this->faker->unique()->safeEmail(),
-            'zipcode'   => Zipcode::where('town','Houston')->get()->random()->zipcode,
-            'website'   => $this->faker->url(),
+            'package_id'    => Package::all()->random()->id,
+            'name'          => $this->faker->unique()->company(),
+            'address'       => $this->faker->address(),
+            'phone'         => $this->faker->numerify('##########'),
+            'email'         => $this->faker->unique()->safeEmail(),
+            'zipcode'       => Zipcode::where('town','Houston')->get()->random()->zipcode,
+            'website'       => $this->faker->url(),
         ];
     }
 }
