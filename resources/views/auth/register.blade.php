@@ -14,18 +14,38 @@
 
             <div>
                 <x-jet-label for="first_name" value="{{ __('First Name') }}" />
-                <x-jet-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="name" />
+                <x-jet-input id="first_name"
+                            class="block mt-1 w-full"
+                            type="text"
+                            name="first_name"
+                            :value="old('first_name')"
+                            required
+                            autofocus
+                            autocomplete="name"
+                />
             </div>
 
             <div>
                 <x-jet-label for="last_name" value="{{ __('Last Name') }}" />
-                <x-jet-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="name" />
+                <x-jet-input id="last_name"
+                            class="block mt-1 w-full"
+                            type="text"
+                            name="last_name"
+                            :value="old('last_name')"
+                            required
+                            autocomplete="name"
+                />
             </div>
 
 
             <div class="mt-2">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
+                <x-jet-input id="email"
+                            class="block mt-1 w-full"
+                            type="email"
+                            name="email"
+                            :value="old('email')"
+                />
             </div>
 
             <div class="mt-2">
@@ -33,13 +53,20 @@
                 <x-jet-input id="phone"
                             class="block mt-1 w-full"
                             type="text"
-                            name="phone" :value="old('phone')"
+                            name="phone"
+                            :value="old('phone')"
                 />
             </div>
 
             <div class="mt-2">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password"
+                            class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="new-password"
+                />
             </div>
 
             <div class="mt-2">

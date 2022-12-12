@@ -215,8 +215,9 @@ return [
         'miles'                 => 'Millas',
         'interior_color_id'     => 'Color Interior',
         'exterior_color_id'     => 'Color Exterior',
-        'package id'            => 'Paquete'
-
+        'package id'            => 'Paquete',
+        'first_name'            => 'Nombre',
+        'last_name'             => 'Apellido',
     ]
 
 ];
