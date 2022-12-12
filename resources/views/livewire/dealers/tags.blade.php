@@ -24,6 +24,7 @@
                                         @if($record->hasDealer($dealer->id))
                                             <button wire:click="unlinkRecord({{ $record->id }})" class="btn btn-lg btn-danger">{{__("Remove")}}</button>
                                         @else
+
                                             <button wire:click="linkRecord({{ $record->id }})"
                                                 class="btn btn-lg btn-success"
                                                 @if($dealer->tags->count() >= $this->dealer->package->max_tags_higlights)

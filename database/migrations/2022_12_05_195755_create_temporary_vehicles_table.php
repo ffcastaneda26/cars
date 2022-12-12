@@ -94,7 +94,7 @@ return new class extends Migration
             $table->year('production_started')->nullable()->comment('Inicio Producción');
             $table->unsignedBigInteger('interior_color_id')->nullable()->unsigned()->comment('Color Interior');
             $table->unsignedBigInteger('exterior_color_id')->nullable()->unsigned()->comment('Color Interior');
-            $table->float('price', 9, 2)->default('0')->comment('Precio');
+            $table->float('price', 9, 2)->nullable()->default(null)->comment('Precio');
             $table->unsignedBigInteger('miles')->default(0)->comment('Millas');
             $table->boolean('available')->default(1)->comment('Disponible?');
             $table->boolean('show')->default(1)->comment('Mostrarlo?');

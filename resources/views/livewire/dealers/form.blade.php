@@ -39,11 +39,7 @@
                     @include('livewire.commons.main_record_input_expire_at_field')
                     {{-- Máximo de sucursales --}}
                     <div class="flex-flex-column mb-2">
-                        {{-- <input type="number"
-                            wire:model="main_record.max_locations"
-                            min="0"
-                            max="9999"
-                        > --}}
+
                         <x-jet-input type='number'
                                 wire:model="main_record.max_locations"
                                 min="0"

@@ -30,12 +30,11 @@ class DealerTags extends Component
         $this->manage_title = "Select Tags";
         $this->search_label = "Tag";
         $this->dealer = Auth::user()->dealers->first();
-        $this->tags = Tag::all();
+        $this->read_tags();
     }
 
     public function render()
     {
-
         if(App::isLocale('en')){
             $records = Tag::orderby('english')->paginate($this->pagination);
         }else{
@@ -48,14 +47,20 @@ class DealerTags extends Component
     }
 
 
+    public function read_tags(){
+        $this->tags = null;
+        $this->tags = Tag::all();
+    }
     public function linkRecord($id)
     {
         $this->dealer->tags()->detach($id);
         $this->dealer->tags()->attach($id);
+
     }
 
     public function unlinkRecord($id)
     {
         $this->dealer->tags()->detach($id);
+        return redirect()->route('login');
     }
 }

@@ -28,7 +28,7 @@ class Vehicles extends Component
         'main_record.vin'                       =>'required|min:17|max:17',
         'main_record.interior_color_id'         =>'required|exists:colors,id',
         'main_record.exterior_color_id'         =>'required|exists:colors,id',
-        'main_record.price'                     =>'required|integer',
+        'main_record.price'                     =>'nullable',
         'main_record.miles'                     =>'required|integer',
         'main_record.make'                      =>'required',
         'main_record.model'                     =>'required',
@@ -159,17 +159,17 @@ class Vehicles extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
                                                             : __('Create') . ' ' . __('Vehicle');
 
-                               
+
         $user_locations= LocationUser::select('location_id')
                         ->Where('user_id',Auth::user()->id)
                         ->orderBy('location_id')
                         ->get()
                         ->toArray();
-         
+
          $records = Vehicle::WhereIn('location_id',$user_locations)
                 ->SearchFull($this->search)->orderby($this->sort,$this->direction)
                 ->paginate(10);
-        
+
         return view('livewire.index',compact('records'));
 
 
@@ -182,12 +182,12 @@ class Vehicles extends Component
      public function search_vin(){
 
         $this->reset('available', 'show','error_message','show_form','exists_in_vehicles');
- 
+
         if (!$this->main_record->location_id || strlen($this->vin_number) != 17) return;
 
         $this->show_form =true;
         $this->vin_number = strtoupper($this->vin_number);
-        
+
         if($this->main_record->location_id){
             $bk_location_id = $this->main_record->location_id;
         }
@@ -202,13 +202,13 @@ class Vehicles extends Component
         }
 
         // ¿Encontró el vehículo en algun lado?
-       
+
         if (!$this->vehicle_record) {
             $this->error_message= __('Vehicle does not exists');
             $this->show_form = false;
-            return; 
+            return;
         }
-    
+
         // Pasa datos al registro principal
         $this->main_record = $this->vehicle_record;
         if($bk_location_id){
@@ -240,7 +240,7 @@ class Vehicles extends Component
             $this->main_record = new Vehicle();
             $this->main_record->location_id = $bk_location_id;
             $this->vehicle_record = TemporaryVehicle::Vin($this->vin_number)->first();
-          
+
             if(! $this->vehicle_record){
                 $this->error_message= 'No está en vehículos temporales,buscar con API';
                 $this->show_form = false;
@@ -268,7 +268,7 @@ class Vehicles extends Component
            return $this->searchApiVin($vin_number,$this->main_record->location_id);
         }
 
-        
+
      }
 
 
@@ -290,11 +290,13 @@ class Vehicles extends Component
 
         $this->main_record->available   = $this->available ? 1 : 0;
         $this->main_record->show        = $this->show ? 1 : 0;
+        if(strlen($this->main_record->price) < 1) $this->main_record->price=null;
+        // dd($this->main_record->price);
         $this->main_record->save();
         // TODO: Validar que si está en el TEMPORAL se elimine
-  
 
-        $this->close_store('Vahicle');
+
+        $this->close_store('Vehicle');
     }
 
     /*+------------------------------+
@@ -304,12 +306,16 @@ class Vehicles extends Component
 
     public function edit(Vehicle $record)
     {
+        $this->main_record = null;
+        $this->main_record = new Vehicle();
+
         $this->record_id    = null;
         $this->main_record  = $record;
         $this->record_id    = $record->id;
         $this->available    = $record->available;
         $this->show         = $record->show;
         $this->vin_number   = $record->vin;
+        $this->show_form    = true;
         $this->openModal();
     }
 
