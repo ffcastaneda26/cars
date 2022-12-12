@@ -136,7 +136,7 @@ class Users extends Component
             'first_name'    => 'required|min:5|max:60',
             'last_name'     => 'required|min:5|max:60',
             'email'         => 'required|email|unique:users,email,' . $this->record_id,
-            'phone'         => 'required|digits|min:10:max:10|unique:users,phone,' . $this->record_id,
+            'phone'         => 'required|digits:10|unique:users,phone,' . $this->record_id,
             'role_id'       => 'required|exists:roles,id',
         ]);
 
