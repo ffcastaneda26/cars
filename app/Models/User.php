@@ -14,7 +14,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+/**
+ * class User extends Authenticatable implements MustVerifyEmail
+ * Se quitó la implementaci´no de verificar  el correo
+ */
+class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
@@ -29,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_mame',
+        'first_name',
         'last_name',
         'email',
         'phone',
