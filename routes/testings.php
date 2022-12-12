@@ -176,7 +176,7 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
 
     }
     // dd($record_vehicle);
-    
+
     $record_vehicle->save();
 
     // Borramos el archivo
@@ -195,7 +195,7 @@ Route::get('grabar-vin/{vin_number?}',function($vin_number=null){
 Route::get('asignar-dealers/{user}/{dealer}',function(User $user,Dealer $dealer){
     $user->dealers()->detach($dealer);
     $user->locations()->attach($dealer->locations);
-    
+
 });
 
 Route::get('copiar-vehiculo/{vehicle}',function(Vehicle $vehicle){
@@ -204,4 +204,8 @@ Route::get('copiar-vehiculo/{vehicle}',function(Vehicle $vehicle){
     $new_values_to_temporary['id'] = $value_to_temporary_id;
     TemporaryVehicle::create($new_values_to_temporary);
 
-}); 
+});
+
+Route::get('nombre-completo/{user}',function(User $user){
+    dd($user->Name);
+});

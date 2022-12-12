@@ -28,7 +28,14 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = ['first_mame','last_name', 'email', 'phone', 'password', 'active'];
+    protected $fillable = [
+        'first_mame',
+        'last_name',
+        'email',
+        'phone',
+        'password',
+        'active'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -53,13 +60,22 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = ['profile_photo_url'];
 
-
-    protected function Name(): Attribute
+    public function setFirstNamehAttribute($value)
     {
-        return Attribute::make(
-            set: fn ($value) => ucwords(strtolower($value)),
-        );
+        $this->attributes['first_name'] =  ucwords(strtolower($value));
     }
+
+    public function setLastNamehAttribute($value)
+    {
+        $this->attributes['lastname'] =  ucwords(strtolower($value));
+    }
+
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
 
     protected function Email(): Attribute
     {
