@@ -19,14 +19,14 @@
         @endif
 
         {{-- Etiquetas --}}
-        <li>
-            <a href="{{route('my-tags')}}" class="waves-effect">
-                <i class="mdi mdi-label-multiple"></i>
-                <span> {{__('Tags')}} </span>
-                </a>
-        </li>
-
-
+        @if(Auth::user()->dealers->first()->package->max_tags_higlights)
+            <li>
+                <a href="{{route('my-tags')}}" class="waves-effect">
+                    <i class="mdi mdi-label-multiple"></i>
+                    <span> {{__('Tags')}} </span>
+                    </a>
+            </li>
+        @endif
 
     @endif
 

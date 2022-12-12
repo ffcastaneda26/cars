@@ -29,21 +29,22 @@ class DealerTags extends Component
         $this->authorize('hasaccess', 'dealer_tags.index');
         $this->manage_title = "Select Tags";
         $this->search_label = "Tag";
-        $this->dealer = Auth::user()->dealers->first();
         $this->read_tags();
     }
 
     public function render()
     {
+
+
+        $this->dealer = Auth::user()->dealers->first();
+
+
         if(App::isLocale('en')){
             $records = Tag::orderby('english')->paginate($this->pagination);
         }else{
             $records = Tag::orderby('spanish')->paginate($this->pagination);
-
         }
-
         return view('livewire.dealers.tags', compact('records'));
-
     }
 
 
@@ -61,6 +62,7 @@ class DealerTags extends Component
     public function unlinkRecord($id)
     {
         $this->dealer->tags()->detach($id);
-        return redirect()->route('login');
+        // return back();
+
     }
 }
