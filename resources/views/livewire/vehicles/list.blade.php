@@ -24,13 +24,19 @@
             ${{number_format($record->price, 2, '.', ',') }}
         @endif
     </td>
+    @if($max_premium_allowed)
+        <td class="text-center">
+            <input type="checkbox"
+                    wire:click="change_premium({{ $record }})"
+                    @checked(old('active', $record->premium)) 
+                    @if(!$record->premium)
+                        @disabled(!$allow_change_premium)
+                    @endif
+            />
+        </td>
+    @endif
 
-    <td class="text-center">
-        <input type="checkbox"
-            wire:click="change_premium({{ $record }})"
-            {{ $record->premium ? 'checked' : '' }}
-        >
-    </td>
+
     @include('common.crud_actions')
 </tr>
 <style>

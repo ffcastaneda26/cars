@@ -124,7 +124,11 @@ class Vehicles extends Component
     public $source=null;
     public $sources = ['vehicles','temporary','api_vehicles'];
     public $vin_number;
+    public $dealer;
+
     // public $vin_number = '4T1B61HK9JU514132';
+    
+    public $allow_change_premium = true;
 
 
     public $error_message = null;
@@ -139,6 +143,7 @@ class Vehicles extends Component
         $this->view_list        = 'livewire.vehicles.list';
         $this->view_search      = 'livewire.vehicles.search';
         $this->view_crud_modal  = 'livewire.vehicles.modal_form';
+        $this->view_common_table= 'livewire.vehicles.crud_table';
         $this->main_record      = new Vehicle();
         $this->colors           = Color::all();
         $this->locations        = Auth::user()->locations()->get();
@@ -146,6 +151,11 @@ class Vehicles extends Component
         if( $this->locations->count()==1){
             $this->main_record->location_id = $this->locations->first()->id;
         }
+
+        $this->dealer = Auth::user()->dealers->first();
+
+        $this->max_premium_allowed  = $this->dealer->package->premium_tag_search;
+        $this->allow_change_premium = Auth::user()->dealers->first()->vehicles->where('premium',1)->count() <  $this->max_premium_allowed;
     }
 
     /*+---------------------------------+
@@ -278,6 +288,8 @@ class Vehicles extends Component
     {
         $this->reset('available', 'show','premium','vin_number');
         $this->main_record = new Vehicle();
+        $this->allow_change_premium = Auth::user()->dealers->first()->vehicles->where('premium',1)->count() <  $this->max_premium_allowed;
+
         $this->resetErrorBag();
     }
 
@@ -295,7 +307,7 @@ class Vehicles extends Component
         $this->main_record->premium     = $this->premium    ? 1 : 0;
 
         if(strlen($this->main_record->price) < 1) $this->main_record->price=null;
-        // dd($this->main_record->price);
+
         $this->main_record->save();
         // TODO: Validar que si está en el TEMPORAL se elimine
 
@@ -339,8 +351,9 @@ class Vehicles extends Component
     */
 
     public function change_premium(Vehicle $vehicle){
-      $vehicle->premium = !$vehicle->premium;
-      $vehicle->save();
+        $vehicle->premium = !$vehicle->premium;
+        $vehicle->save();
+        $this->allow_change_premium = Auth::user()->dealers->first()->vehicles->where('premium',1)->count() <  $this->max_premium_allowed;
     }
-}
+}   
 

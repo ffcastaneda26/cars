@@ -18,74 +18,46 @@
         </div>
 
         {{-- Direccion --}}
+        @if($main_record->steeering)
 
-        <div class="flex-flex-column">
-
-            @if($main_record->steeering)
+            <div class="flex-flex-column">
+         
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Steeering') .': ' . $main_record->steeering }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.steeering"
-                    class="form-control mb-2"
-                >
 
-            @endif
-
-
-        </div>
+            </div>
+        @endif
 
         {{-- Desplazamiento Motor --}}
-        <div class="flex-flex-column">
-            @if($main_record->engine_displacement)
-                <label class="form-control mb-2 input-group-text">
-                    {{ __('Engine Displacement') .':' . $main_record->engine_displacement }}
-                </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.engine_displacement"
-                    class="form-control mb-2"
-                >
+        @if($main_record->engine_displacement)
 
-            @endif
-
-
-        </div>
+            <div class="flex-flex-column">
+                    <label class="form-control mb-2 input-group-text">
+                        {{ __('Engine Displacement') .':' . $main_record->engine_displacement }}
+                    </label>
+            </div>
+        @endif
 
         {{-- Poder en Kw --}}
+        @if($main_record->engine_power_kw)
+            <div class="flex-flex-column">
+                    <label class="form-control mb-2 input-group-text">
+                        {{ __('Power kw') .':' . $main_record->engine_power_kw }}
+                    </label>
+            </div>
+        @endif
 
-        <div class="flex-flex-column">
-            @if($main_record->engine_power_kw)
-                <label class="form-control mb-2 input-group-text">
-                    {{ __('Power kw') .':' . $main_record->engine_power_kw }}
-                </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.engine_power_kw"
-                    class="form-control mb-2"
-                >
-
-            @endif
-
-        </div>
 
         {{-- Poder Hp --}}
-        <div class="flex-flex-column">
-
-            @if($main_record->engine_power_hp)
+        @if($main_record->engine_power_hp)
+        
+            <div class="flex-flex-column">
                 <label class="form-control mb-2 input-group-text">
                     {{ __('Power Hp') .':' . $main_record->engine_power_hp }}
                 </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.engine_power_hp"
-                    class="form-control mb-2"
-                >
-            @endif
-
-        </div>
-
+            </div>
+        @endif
 
         {{-- Combustible Primario --}}
         <div class="flex-flex-column">
@@ -103,51 +75,37 @@
         </div>
 
         {{-- Combustible Secundario --}}
-        <div class="flex-flex-column">
+        @if($main_record->fuel_type_secondary)
 
-            @if($main_record->fuel_type_secondary)
-                <label class="form-control mb-2 input-group-text">
-                    {{ __('Secondary Fuel') .':' . $main_record->fuel_type_secondary }}
-                </label>
-            {{-- @else
-                <input type="text"
-                    wire:model="main_record.fuel_type_secondary"
-                    class="form-control mb-2"
-                > --}}
+            <div class="flex-flex-column">
+
+                    <label class="form-control mb-2 input-group-text">
+                        {{ __('Secondary Fuel') .':' . $main_record->fuel_type_secondary }}
+                    </label>
+
+
+            </div>
             @endif
-
-        </div>
 
         {{-- Model motor --}}
-        <div class="flex-flex-column mb-2">
-            @if($main_record->engine_model)
-                <label class="form-control mb-2 input-group-text">
-                    {{ __('Engine Model') .':' . $main_record->engine_model }}
-                </label>
-            {{-- @else
-                <input type="text"
-                    wire:model="main_record.engine_model"
-                    class="form-control mb-2"
-                > --}}
-            @endif
+        @if($main_record->engine_model)
 
-        </div>
+            <div class="flex-flex-column mb-2">
+                    <label class="form-control mb-2 input-group-text">
+                        {{ __('Engine Model') .':' . $main_record->engine_model }}
+                    </label>
+            </div>
+        @endif
 
         {{-- Transmisión --}}
-        <div class="flex-flex-column">
-
-            @if($main_record->transmission)
-                <label class="form-control mb-2 input-group-text">
-                    {{ __('Transmission') .':' . $main_record->transmission }}
-                </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.transmission"
-                    class="form-control mb-2"
-                >
-            @endif
-
-        </div>
+        @if($main_record->transmission)
+        
+            <div class="flex-flex-column">
+                    <label class="form-control mb-2 input-group-text">
+                        {{ __('Transmission') .':' . $main_record->transmission }}
+                    </label>
+            </div>
+        @endif
 
         {{-- Transmisión Completa --}}
         {{-- <div class="flex-flex-column">
@@ -159,20 +117,14 @@
         </div> --}}
 
         {{-- Engranes --}}
-        <div class="flex-flex-column">
-            @if($main_record->number_of_gears)
-                <label class="form-control mb-2 input-group-text">
-                    {{ __('Gears') .':' . $main_record->number_of_gears }}
-                </label>
-            @else
-                <input type="text"
-                    wire:model="main_record.number_of_gears"
-                    class="form-control mb-2"
-                >
-            @endif
-
-
-        </div>
+        @if($main_record->number_of_gears)
+        
+            <div class="flex-flex-column">
+                    <label class="form-control mb-2 input-group-text">
+                        {{ __('Gears') .':' . $main_record->number_of_gears }}
+                    </label>
+            </div>
+        @endif
 
     </form>
 </div>

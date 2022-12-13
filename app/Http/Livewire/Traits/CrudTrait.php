@@ -50,6 +50,7 @@ trait CrudTrait {
     public $view_form;
     public $view_table;
     public $view_list;
+    public $view_common_table= 'common.crud_table';
 
     // Encabezado de lista de registros
     public $show_header_card = false;

@@ -210,6 +210,11 @@ Route::get('nombre-completo/{user}',function(User $user){
     dd($user->Name);
 });
 
-Route::get('registros-usuario',function(){
-   echo 'Vehículos del dealer=' . Auth::user()->dealers->first->vehicles . '<br>';
+Route::get('vehiculos-dealer',function(){
+//    echo 'Vehículos del dealer=' . Auth::user()->dealers->first->vehicles . '<br>';
+    $vehicles = Auth::user()->dealers->first()->vehicles->where('premium',1)->count();
+    dd($vehicles);
+    foreach($vehicles as $vehicle){
+        echo $vehicle->vin . '-'. $vehicle->make  . '' . $vehicle->model . '<br>';
+    }
 });

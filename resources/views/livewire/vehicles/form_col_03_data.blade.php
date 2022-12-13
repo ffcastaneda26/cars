@@ -79,16 +79,31 @@
                 </div>
 
                 {{-- Destacado --}}
-                <div class="flex-flex-column">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" wire:model="premium" class="btn-check" name="premium" id="premium_yes" value="1">
-                        <label class="btn btn-outline-success" for="premium_yes">{{__('Yes')}}</label>
+                @if($max_premium_allowed)
+                    <div class="flex-flex-column">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" 
+                                    wire:model="premium" 
+                                    class="btn-check" 
+                                    name="premium" 
+                                    id="premium_yes" 
+                                    value="1"
+                                    @disabled(!$allow_change_premium)
 
-                        <input type="radio" wire:model="premium" class="btn-check ml-4" name="premium" id="premium_no" value="0">
-                        <label class="btn btn-outline-danger" for="premium_no">{{__('No')}}</label>
+                            >
+                            <label class="btn btn-outline-success" for="premium_yes">{{__('Yes')}}</label>
+
+                            <input type="radio" 
+                                    wire:model="premium" 
+                                    class="btn-check ml-4" 
+                                    name="premium" 
+                                    id="premium_no" 
+                                    value="0"
+                            >
+                            <label class="btn btn-outline-danger" for="premium_no">{{__('No')}}</label>
+                        </div>
                     </div>
-                </div>
-
+                @endif
 
             </div>
 

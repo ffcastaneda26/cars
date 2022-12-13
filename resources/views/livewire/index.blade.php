@@ -22,7 +22,7 @@
         {{-- Detalle de registros --}}
         @if($view_table)
             <div class="table-responsive bg-white">
-                @include('common.crud_table')
+                @include($view_common_table)
             </div>
         @endif
 
