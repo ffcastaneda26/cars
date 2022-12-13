@@ -24,5 +24,23 @@
             ${{number_format($record->price, 2, '.', ',') }}
         @endif
     </td>
+
+    <td class="text-center">
+        <input type="checkbox"
+            wire:click="change_premium({{ $record }})"
+            {{ $record->premium ? 'checked' : '' }}
+        >
+    </td>
     @include('common.crud_actions')
 </tr>
+<style>
+    input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 8px;
+}
+</style>

@@ -98,6 +98,8 @@ class CreateVehiclesTable extends Migration
             $table->unsignedBigInteger('miles')->default(0)->comment('Millas');
             $table->boolean('available')->default(1)->comment('Disponible?');
             $table->boolean('show')->default(1)->comment('Mostrarlo?');
+            $table->boolean('premium')->default(0)->comment('¿Premium o destacado?');
+
             $table->text('description')->nullable()->default(null)->comment('Descripción');
             $table->string('slug',200)->nullable()->default(null)->comment('Slug');
             $table->smallInteger('average_co2_emmision',)->nullable()->comment('Promedio emisión CO2');

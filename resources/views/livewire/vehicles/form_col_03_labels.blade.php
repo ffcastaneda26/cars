@@ -5,4 +5,6 @@
     <label class="input-group-text mb-2">{{ __('Miles') }}</label>
     <label class="input-group-text mb-2">{{ __('Available') }}</label>
     <label class="input-group-text mb-2">{{ __('Show') }}</label>
+    <label class="input-group-text mb-2">{{ __('Premium?')}}</label>
+
 </div>

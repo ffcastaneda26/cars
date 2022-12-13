@@ -22,6 +22,7 @@
         <th>{{__("Miles")}}</th>
         <th class="text-center">{{__("Available")}}</th>
         <th class="text-center">{{__("Price")}}</th>
+        <th class="text-center">{{__("Premium?")}}</th>
 
         <th colspan="2" class="px-4 py-1 text-center">{{__("Actions")}}</th>
     </tr>

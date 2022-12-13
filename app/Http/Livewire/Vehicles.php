@@ -116,6 +116,8 @@ class Vehicles extends Component
     public $colors=null;
     public $available;
     public $show;
+    public $premium;
+
     public $show_locations = true;
     public $show_form = false;
     public $exists_in_vehicles=false;
@@ -274,7 +276,7 @@ class Vehicles extends Component
 
     public function resetInputFields()
     {
-        $this->reset('available', 'show','vin_number');
+        $this->reset('available', 'show','premium','vin_number');
         $this->main_record = new Vehicle();
         $this->resetErrorBag();
     }
@@ -288,8 +290,10 @@ class Vehicles extends Component
     {
         $this->validate();
 
-        $this->main_record->available   = $this->available ? 1 : 0;
-        $this->main_record->show        = $this->show ? 1 : 0;
+        $this->main_record->available   = $this->available  ? 1 : 0;
+        $this->main_record->show        = $this->show       ? 1 : 0;
+        $this->main_record->premium     = $this->premium    ? 1 : 0;
+
         if(strlen($this->main_record->price) < 1) $this->main_record->price=null;
         // dd($this->main_record->price);
         $this->main_record->save();
@@ -314,6 +318,7 @@ class Vehicles extends Component
         $this->record_id    = $record->id;
         $this->available    = $record->available;
         $this->show         = $record->show;
+        $this->premium      = $record->premium;
         $this->vin_number   = $record->vin;
         $this->show_form    = true;
         $this->openModal();
@@ -328,6 +333,14 @@ class Vehicles extends Component
         $this->delete_record($record, __('Vehicle') . ' ' . __('Deleted') . ' ' . __('Successfully!!'));
     }
 
+    /*+-----------------+
+      | Cambia Premium  |
+      +-----------------+
+    */
 
+    public function change_premium(Vehicle $vehicle){
+      $vehicle->premium = !$vehicle->premium;
+      $vehicle->save();
+    }
 }
 
