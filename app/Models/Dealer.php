@@ -53,6 +53,16 @@ class Dealer extends Model
         return $this->morphToMany(SocialNetwork::class,'socialable');
     }
 
+    /** Vehículos a través de localidades */
+    public function vehicles()
+    {
+        return $this->hasManyThrough(Vehicle::class, Location::class);
+    }
+
+    public function premium_vehicles()
+    {
+        return $this->vehicles()->where('premium',1);
+    }
 
     /** Funciones de Apoyo */
 

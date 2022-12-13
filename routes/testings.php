@@ -209,3 +209,7 @@ Route::get('copiar-vehiculo/{vehicle}',function(Vehicle $vehicle){
 Route::get('nombre-completo/{user}',function(User $user){
     dd($user->Name);
 });
+
+Route::get('registros-usuario',function(){
+   echo 'Vehículos del dealer=' . Auth::user()->dealers->first->vehicles . '<br>';
+});

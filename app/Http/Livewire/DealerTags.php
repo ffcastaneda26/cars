@@ -23,6 +23,8 @@ class DealerTags extends Component
 
     public $tags,$tag,$tag_id;
     public $dealer;
+    public $max_tags_allowed;
+    public $disable_link_button=true;
 
     public function mount()
     {
@@ -30,15 +32,14 @@ class DealerTags extends Component
         $this->manage_title = "Select Tags";
         $this->search_label = "Tag";
         $this->read_tags();
+        $this->max_tags_allowed = Auth::user()->dealers->first()->package->max_tags_higlights;
     }
 
     public function render()
     {
 
-
         $this->dealer = Auth::user()->dealers->first();
-
-
+        $this->disable_link_button = $this->dealer->tags->count() >= $this->max_tags_allowed ;
         if(App::isLocale('en')){
             $records = Tag::orderby('english')->paginate($this->pagination);
         }else{

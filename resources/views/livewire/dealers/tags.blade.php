@@ -26,9 +26,7 @@
                                         @else
                                             <button wire:click="linkRecord({{ $record->id }})"
                                                 class="btn btn-lg btn-success"
-                                                @if($dealer->tags->count() >= $this->dealer->package->max_tags_higlights)
-                                                    disabled
-                                                @endif
+                                                {{ $disable_link_button ? 'disabled' : ''}}
                                                 >
                                                 {{__("To assign")}}
                                             </button>
