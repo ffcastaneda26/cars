@@ -152,10 +152,10 @@ class Vehicles extends Component
             $this->main_record->location_id = $this->locations->first()->id;
         }
 
-        $this->dealer = Auth::user()->dealers->first();
+        $this->dealer = Auth::user()->dealers()->first();
 
         $this->max_premium_allowed  = $this->dealer->package->premium_tag_search;
-        $this->allow_change_premium = Auth::user()->dealers->first()->vehicles->where('premium',1)->count() <  $this->max_premium_allowed;
+        $this->allow_change_premium =  Auth::user()->dealers()->first()->premium_vehicles() <  $this->max_premium_allowed;
     }
 
     /*+---------------------------------+
@@ -353,7 +353,7 @@ class Vehicles extends Component
     public function change_premium(Vehicle $vehicle){
         $vehicle->premium = !$vehicle->premium;
         $vehicle->save();
-        $this->allow_change_premium = Auth::user()->dealers->first()->vehicles->where('premium',1)->count() <  $this->max_premium_allowed;
+        $this->allow_change_premium =  Auth::user()->dealers()->first()->premium_vehicles() <  $this->max_premium_allowed;
     }
 }   
 

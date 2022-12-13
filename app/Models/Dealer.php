@@ -61,8 +61,9 @@ class Dealer extends Model
 
     public function premium_vehicles()
     {
-        return $this->vehicles()->where('premium',1);
+        return $this->vehicles()->where('premium',1)->count();
     }
+    
 
     /** Funciones de Apoyo */
 

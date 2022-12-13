@@ -133,6 +133,17 @@ class Vehicle extends Model
         return true;
     }
 
+    public function total_photos()
+    {
+        return $this->photos()->count();
+    }
+
+    /** ¿Puede seguir agregando fotos */
+    
+    public function can_add_photos(){
+        return $this->location->dealer->package->max_photos_by_vehicle > $this->total_photos;
+    }
+
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+

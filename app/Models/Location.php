@@ -58,11 +58,31 @@ class Location extends Model
 		return $this->belongsToMany(User::class);
 	}
 
+    /** Fotos a través de vehículos */
+    public function photos()
+    {
+        return $this->hasManyThrough(Photo::class, Vehicle::class);
+    }
+
+    
+
     /** Funciones de Apoyo */
 
     public function can_be_delete(){
         if($this->vehicles()->count()){ return false;}
         return true;
+    }
+
+
+    public function total_photos()
+    {
+        return $this->photos()->count();
+    }
+
+    /** ¿Puede seguir agregando fotos */
+    
+    public function can_add_photos(){
+        return $this->dealer->package->max_photos_by_location > $this->total_photos;
     }
 
     // Las redes sociales
