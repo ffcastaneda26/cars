@@ -135,15 +135,20 @@ class Vehicle extends Model
 
     public function total_photos()
     {
-        return $this->photos()->count();
+        return $this->photos->count();
     }
 
     /** ¿Puede seguir agregando fotos */
-    
+
     public function can_add_photos(){
-        return $this->location->dealer->package->max_photos_by_vehicle > $this->total_photos;
+
+        return $this->location->dealer->package->max_photos_by_vehicle > $this->total_photos();
     }
 
+    public function max_photos_allowed(){
+
+        return $this->location->dealer->package->max_photos_by_vehicle - $this->total_photos();
+    }
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
@@ -153,11 +158,11 @@ class Vehicle extends Model
         if($value) {
             $value = trim($value);
             $query->where('make', 'LIKE', "%$value%")
-                    ->where('model', 'LIKE', "%$value%") 
-                    ->where('model_year', 'LIKE', "%$value%") 
-                    ->where('product_type', 'LIKE', "%$value%") 
-                    ->where('body', 'LIKE', "%$value%") 
-                    ->where('series', 'LIKE', "%$value%") 
+                    ->where('model', 'LIKE', "%$value%")
+                    ->where('model_year', 'LIKE', "%$value%")
+                    ->where('product_type', 'LIKE', "%$value%")
+                    ->where('body', 'LIKE', "%$value%")
+                    ->where('series', 'LIKE', "%$value%")
                     ->where('drive', 'LIKE', "%$value%");
 
         }

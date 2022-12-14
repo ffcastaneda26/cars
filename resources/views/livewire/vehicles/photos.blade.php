@@ -56,12 +56,15 @@
     </div>
 
     {{-- Zona para agregar imágenes --}}
-    <form method="post" action="{{url('manager/vehicles/photos/store')}}" enctype="multipart/form-data"
-                  class="dropzone mb-2" id="dropzone">
-        <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}" id="vehicle_id">
-        @csrf
-     {{-- TODO: Controlar el total de imágenes posibles a subir --}}
-    </form>
+    @if($vehicle->can_add_photos())
+        <form method="post" action="{{url('manager/vehicles/photos/store')}}" enctype="multipart/form-data"
+                    class="dropzone mb-2" id="dropzone">
+            <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}" id="vehicle_id">
+            @csrf
+
+        <div class="dz-message" data-dz-message><span>{{ __('Drag & Drop max')  . ' ' . $vehicle->max_photos_allowed() . ' ' . __('Photos') }}</span></div>
+        </form>
+    @endif
 
     {{-- Botón para regresar a vehículos --}}
     <div>
@@ -74,7 +77,7 @@
          {
 
             maxFilesize: 12,
-
+            maxFiles: {{ $vehicle->max_photos_allowed()  }},
             renameFile: function(file) {
                 var dt = new Date();
                 var time = dt.getTime();
