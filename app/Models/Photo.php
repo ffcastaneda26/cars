@@ -27,18 +27,5 @@ class Photo extends Model
 	}
 
 
-    /** Funciones de Apoyo */
 
-    public function can_be_delete(){
-        return true;
-    }
-
-    /**+----------------------------------------+
-     * | Búsquedas x diferentes criterios       |
-     * +----------------------------------------+
-    */
-
-    public function scopePath($query, $valor) {
-        $query->where('path',$valor);
-    }
 }
