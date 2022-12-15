@@ -30,7 +30,7 @@
 
         <!-- ========== Left Sidebar Start ========== -->
 
-       {{-- @include('livewire.searching.left_sidebar') --}}
+       @include('livewire.searching.left_sidebar')
 
 
         <!-- Contenido Principal -->
