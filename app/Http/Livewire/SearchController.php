@@ -21,6 +21,7 @@ class SearchController extends Component
 
     public function render()
     {
+  
         return view('livewire.search.search-controller')->layout('layouts.search_template');
     }
 

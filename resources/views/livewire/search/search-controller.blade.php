@@ -1,7 +1,10 @@
 
 <div class="container-fluid">
+
     @include('common.crud_header')
     @section('content')
+
+
 
         <div class="search_left text-center">
             <h2>Filtros </h2>
