@@ -10,6 +10,7 @@
 
             {{--  Vista busquedas de items  --}}
             @if(isset($view_search))
+            {{ $search }}
                 @include($view_search)
             @endif
         </div>

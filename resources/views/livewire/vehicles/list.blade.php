@@ -41,9 +41,10 @@
 
         <a href="{{ route('vehicles-photos', $record->id) }}">
             <button type="button"
-                class="btn btn-secondary waves-effect"
+                class=" btn {{  $record->total_photos() ?  'btn-warning' : ' btn-secondary' }} waves-effect"
                 title="{{__("Upload Photos")}}">
-                <i class="mdi mdi-camera"></i>
+                <i class="{{ $record->total_photos() ?  'mdi mdi-camera' : ' mdi mdi-camera-off' }} "></i>
+                {{ $record->total_photos() ? $record->total_photos() : ''}}
             </button>
         </a>
 

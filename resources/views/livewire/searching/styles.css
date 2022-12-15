@@ -1,0 +1,88 @@
+
+*
+{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* El Header de este CSS va 100% horizontal.
+Style the header */
+.header {
+  background-color: #FFFFFF;
+  padding: 30px;
+  text-align: center;
+  font-size: 15px;
+  border-bottom: 2px solid #ff6600;
+}
+
+/* HEADER
+Se crean columnas que flotan a un lado de la otra para usarse en el Header
+Create columns for Header */
+.column-header {
+  float: left;
+}
+
+/* Columna izquierda para el Header
+Header Left column */
+.column-header.left {
+  width: 20%;
+}
+
+/* Columna derecha para el Header
+Header right column */
+.column-header.right {
+  width: 80%;
+}
+
+/*
+/* COLUMNAS CONTENEDOR
+Aqui comenzaremos a armar la parte del contenedor para la informacion
+Creamos columnas que floten al lado */
+.column {
+  float: left;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 10px;
+  height: 300px; /* Por demostracion la tenemos en 300px pero hay que eliminar esta propiedad */
+}
+
+/* Columna izquierda */
+.column.left {
+  width: 20%;
+  border-right: 1px solid #d9d9d9;
+  box-shadow: 2px 0px #e6e6e6;
+}
+
+/* Columna Derecha */
+.column.right {
+  width: 80%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* FOOTER
+Comienza el Pie de pagina
+Style the footer */
+.footer {
+  background-color: #FFFFFF;
+  border-top: 2px solid #bfbfbf;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Responsive layout - hace que las columnas se coloquen encima de la otra en vez de al lado de la otra*/
+@media (max-width: 600px) {
+  .column.side, .column.right {
+    width: 100%;
+  }
+}
+

@@ -154,17 +154,18 @@ class Vehicle extends Model
      * +----------------------------------------+
      */
 
-    public function scopeSearchFull($query,$value){
+     public function scopeSearchFull($query,$value){
         if($value) {
             $value = trim($value);
             $query->where('make', 'LIKE', "%$value%")
-                    ->where('model', 'LIKE', "%$value%")
-                    ->where('model_year', 'LIKE', "%$value%")
-                    ->where('product_type', 'LIKE', "%$value%")
-                    ->where('body', 'LIKE', "%$value%")
-                    ->where('series', 'LIKE', "%$value%")
-                    ->where('drive', 'LIKE', "%$value%");
-
+                    ->orwhere('model', 'LIKE', "%$value%")
+                    ->orwhere('model_year', 'LIKE', "%$value%")
+                    ->orwhere('product_type', 'LIKE', "%$value%")
+                    ->orwhere('body', 'LIKE', "%$value%")
+                    ->orwhere('series', 'LIKE', "%$value%")
+                    ->orwhere('drive', 'LIKE', "%$value%")
+                    ->orwhere('miles', 'LIKE', "%$value%")
+                    ->orwhere('price', 'LIKE', "%$value%");
         }
 
     }
@@ -173,6 +174,7 @@ class Vehicle extends Model
     {
         $query->where('vin', $value);
     }
+
     public function scopeMake($query, $value)
     {
         $query->where('make', 'LIKE', "%$value%");

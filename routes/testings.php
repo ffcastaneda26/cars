@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\PruebasController;
 use App\Models\ApiTagsAttribute;
 use App\Models\Dealer;
 use App\Models\Location;
@@ -218,3 +219,5 @@ Route::get('vehiculos-dealer',function(){
         echo $vehicle->vin . '-'. $vehicle->make  . '' . $vehicle->model . '<br>';
     }
 });
+
+

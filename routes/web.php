@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\FacebookLoginController;
-
+use App\Http\Livewire\PruebasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,3 +59,10 @@ Route::get('figma-inicio',function(){
 Route::get('figma-create-account',function(){
    return view('figma.create-account');
 });
+
+Route::get('vehicles-search',function(){
+    return view('livewire.searching.template');
+});
+
+
+Route::get('vehicle-search',PruebasController::class)->name('vehicle-search');
