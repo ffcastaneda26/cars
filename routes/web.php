@@ -61,10 +61,6 @@ Route::get('figma-create-account',function(){
    return view('figma.create-account');
 });
 
-// Route::get('vehicles-search',function(){
-//     return view('livewire.searching.template');
-// });
-
 
 // Route::get('vehicle-search',PruebasController::class)->name('vehicle-search');
 Route::get('vehicle-search',SearchController::class)->name('vehicle-search');
