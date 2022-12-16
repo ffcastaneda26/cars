@@ -9,6 +9,8 @@ class FiltersTextController extends Component
 {
 
     use UserTrait;
+    public $search;
+
     public function mount()
     {
         $this->search_label     = __('Make,Model,Year....');
@@ -19,6 +21,14 @@ class FiltersTextController extends Component
     {
         return view('livewire.search.filters-text-controller');
     }
+
+
+    public function sendFilters(){
+
+        $this->emit('readFilterText',$this->search);
+
+    }
+
 
 
 }

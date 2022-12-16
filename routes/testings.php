@@ -229,4 +229,8 @@ Route::get('vehiculos-dealer',function(){
     }
 });
 
-
+Route::get('vehicle/{vehicle}',function(Vehicle $vehicle){
+    $dealer = Dealer::with('vehicles2')->where('id',1)->first();
+    dd($dealer);
+    dd($vehicle->dealer());
+});

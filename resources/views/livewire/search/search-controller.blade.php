@@ -3,13 +3,15 @@
 
     @include('common.crud_header')
     @section('content')
+    {{ $imprimir_en_vista  . '-->' . $datos_recibidos}}
+
         <div>
             @livewire('filters-text-controller')
         </div>
 
-        <div>
+        {{-- <div>
             @livewire('search-results-controller')
-        </div>
+        </div> --}}
 
     @endsection
 

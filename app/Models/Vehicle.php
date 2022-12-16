@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Vehicle extends Model
 {
@@ -94,6 +95,7 @@ class Vehicle extends Model
         'miles',
         'available',
         'show',
+        'premium',
         'description',
         'slug',
     ];
@@ -124,7 +126,10 @@ class Vehicle extends Model
         return $this->belongsTo(Color::class, 'exterior_color_id', 'id');
     }
 
-
+    public function users():BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     /** Funciones de Apoyo */
 
@@ -145,10 +150,74 @@ class Vehicle extends Model
         return $this->location->dealer->package->max_photos_by_vehicle > $this->total_photos();
     }
 
-    public function max_photos_allowed(){
-
+    public function max_photos_allowed()
+    {
         return $this->location->dealer->package->max_photos_by_vehicle - $this->total_photos();
     }
+
+    /** Es premium */
+    public function is_premium(){
+        return $this->premium;
+    }
+    /** Mostrar foto */
+    public function show_photo()
+    {
+        return $this->location->dealer->package->show_photo;
+    }
+
+    /** Mostrar Precio */
+
+    public function show_price()
+    {
+        return $this->location->dealer->package->show_prices;
+    }
+
+    /** Mostrar localidad */
+
+    public function show_location()
+    {
+        return $this->location->dealer->package->show_locations;
+    }
+
+    /** Contar Click */
+    public function count_clicks()
+    {
+        return $this->location->dealer->package->count_clicks_in_vehicle;
+
+    }
+
+    /** Contar fotos */
+
+    public function count_photos()
+    {
+        return $this->location->dealer->package->count_photos_see;
+
+    }
+
+    /** Agregar a favoritos */
+    public function add_favorites()
+    {
+        return $this->location->dealer->package->add_to_favorites;
+
+    }
+
+    /** Acceso a usuarios interesados */
+    public function access_interested_users()
+    {
+        return $this->location->dealer->package->access_interested_users;
+    }
+
+    /** ¿Está como favorito para un usuario? */
+
+    public function hasUser($user_id){
+        foreach($this->users as $user){
+            if($user->id == $user_id){
+                return true;
+            }
+        }
+        return false;
+	}
+
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
