@@ -74,9 +74,6 @@ class Locations extends Component
 
     public function render()
     {
-
-
-
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Location')
                                                             : __('Create') . ' ' . __('Location');
 
@@ -129,7 +126,6 @@ class Locations extends Component
         $this->main_record->users()->detach(Auth::user());
         $this->main_record->users()->attach(Auth::user());
 
-
         $this->close_store('Location');
     }
 
@@ -140,11 +136,9 @@ class Locations extends Component
 
     public function edit(Location $record)
     {
-        $this->main_record  = $record;
-        $this->record_id    = $record->id;
+        $this->editRecord($record);
         $this->active       = $record->active;
         $this->read_town_state($this->main_record->zipcode);
-        $this->openModal();
     }
 
     /*+------------------------------+

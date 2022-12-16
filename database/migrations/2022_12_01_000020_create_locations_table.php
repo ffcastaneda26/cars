@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Dealer::class)->comment('Distribuidor');
             $table->string('name',150)->unique()->comment('Nombre');
             $table->string('email',100)->unique()->comment('Correo electrónico');
+            $table->integer('zipcode')->nullable()->unsigned()->comment('Zona Postal');
             $table->string('website')->nullable()->default(null)->comment('Sitio Web');
             $table->unsignedBigInteger('zipcode')->nullable()->unsigned()->comment('Zona Postal');
             $table->string('address',100)->nullable()->comment('Dirección');
@@ -31,6 +32,8 @@ return new class extends Migration
             $table->timestamp('expire_at')->nullable()->default(null)->comment('Fecha expira licencia');
             $table->boolean('active')->default(1)->comment('Activo?');
             $table->timestamps();
+			$table->foreign('zipcode')->references('zipcode')->on('zipcodes')->onDelete('cascade');
+
         });
     }
 

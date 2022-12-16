@@ -110,12 +110,10 @@ class Dealers extends Component
 
     public function edit(Dealer $record)
     {
-        $this->main_record  = $record;
-        $this->record_id    = $record->id;
+        $this->editRecord($record);
         $this->active       = $record->active;
         $this->read_town_state($this->main_record->zipcode);
-        $this->create_button_label = __('Update') . ' ' . __('Dealer');
-        $this->openModal();
+
     }
 
     /*+------------------------------+

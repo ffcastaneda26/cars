@@ -138,8 +138,8 @@ class Packages extends Component
 
     public function edit(Package $record)
     {
-        $this->main_record  = $record;
-        $this->record_id    = $record->id;
+        $this->editRecord($record);
+
         $this->company_web_site_listing= $record->company_web_site_listing;
         $this->self_service_photo_upload= $record->self_service_photo_upload;
         $this->tag_higlights= $record->tag_higlights;
@@ -154,9 +154,6 @@ class Packages extends Component
         $this->count_time_see_vehicle= $record->count_time_see_vehicle;
         $this->count_photos_see= $record->count_photos_see;
         $this->use_order_to_search= $record->use_order_to_search;
-
-        $this->create_button_label = __('Update') . ' ' . __('Package');
-        $this->openModal();
     }
 
     /*+------------------------------+

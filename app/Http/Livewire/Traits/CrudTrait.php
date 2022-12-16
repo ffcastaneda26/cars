@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire\Traits;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Make;
+
 
 trait CrudTrait {
 
@@ -76,8 +79,23 @@ trait CrudTrait {
             $this->search_vin();
         }
 
-
 	}
+
+
+    /** Editar Registro */
+
+    public function editRecord($record){
+        $this->main_record  = $record;
+        $this->record_id    = $record->id;
+        $this->openModal();
+    }
+
+    /** Borrar Registro */
+    public function destroyRecord($record,$type_record)
+    {
+        $this->delete_record($record, __($type_record) . ' ' . __('Deleted Successfully!!'));
+        $this->reset('search');
+    }
 
 
 	/*+---------------------------------------------+

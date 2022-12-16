@@ -3,6 +3,7 @@
 use App\Http\Livewire\Colors;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Dealers;
+use App\Http\Livewire\Makes;
 use App\Http\Livewire\Packages;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('tags',Tags::class)->name('tags');                                       // Etiquetas
 
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
+
 
 });

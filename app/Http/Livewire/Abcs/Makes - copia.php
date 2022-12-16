@@ -10,7 +10,6 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Http\Livewire\Traits\CrudTrait;
-use App\Repositories\MakeRepository;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Makes extends Component
@@ -26,16 +25,11 @@ class Makes extends Component
     protected $listeners = ['destroy'];
     public $logotipo;
 
-    private $makeRepository;
 
     protected $rules = [
         'main_record.name'       => 'required|min:3|max:200|unique:makes,name'
     ];
 
-    public function boot(){
-        $this->main_record      = new Make();
-        $this->makeRepository   = New MakeRepository($this->main_record );
-    }
     public function mount()
     {
         $this->authorize('hasaccess', 'makes.index');
@@ -44,7 +38,7 @@ class Makes extends Component
         $this->view_form    = 'livewire.makes.form';
         $this->view_table   = 'livewire.makes.table';
         $this->view_list    = 'livewire.makes.list';
-
+        $this->main_record  = new Make();
 
     }
 
@@ -53,7 +47,7 @@ class Makes extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Make')
                                                             : __('Create') . ' ' . __('Make');
 
-        $records = $this->makeRepository->all('Name',$this->search,$this->sort,$this->direction,10);
+        $records = Make::Name($this->search)->orderby($this->sort,$this->direction)->paginate(10);
         return view('livewire.index',compact('records'));
     }
 
@@ -85,6 +79,7 @@ class Makes extends Component
         }
 
         $this->main_record->save();
+
         $this->close_store('Make');
     }
 
@@ -95,7 +90,10 @@ class Makes extends Component
 
     public function edit(Make $record)
     {
-        $this->editRecord($record);
+        $this->main_record  = $record;
+        $this->record_id    = $record->id;
+        $this->create_button_label = __('Update') . ' ' . __('Make');
+        $this->openModal();
     }
 
     /*+------------------------------+

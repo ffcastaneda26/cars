@@ -1,16 +1,20 @@
 <?php
 
-use App\Http\Livewire\PruebasController;
-use App\Models\ApiTagsAttribute;
+use App\Models\Make;
+use App\Models\User;
 use App\Models\Dealer;
+use App\Models\Vehicle;
 use App\Models\Location;
 use App\Models\MissingTag;
+use App\Models\ApiTagsAttribute;
 use App\Models\TemporaryVehicle;
-use App\Models\User;
-use App\Models\Vehicle;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\MakeRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Livewire\PruebasController;
 
 
 Route::get('/', function () {
@@ -207,8 +211,13 @@ Route::get('copiar-vehiculo/{vehicle}',function(Vehicle $vehicle){
 
 });
 
-Route::get('nombre-completo/{user}',function(User $user){
-    dd($user->Name);
+Route::get('registros',function(){
+    $records = Make::all();
+
+    dd($records);
+
+    $makeRepository   = New MakeRepository();
+    $records = $makeRepository->all();
 });
 
 Route::get('vehiculos-dealer',function(){

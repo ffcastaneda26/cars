@@ -77,9 +77,8 @@ class Tags extends Component
 
     public function edit(Tag $record)
     {
-        $this->main_record  = $record;
-        $this->record_id    = $record->id;
-        $this->openModal();
+        $this->editRecord($record);
+
     }
 
     /*+------------------------------+

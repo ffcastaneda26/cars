@@ -13,7 +13,7 @@ class Make extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'image_path'
+        'logotipo'
     ];
 
     /**+-----------------------------+
