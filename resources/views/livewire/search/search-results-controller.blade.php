@@ -1,7 +1,16 @@
 <div>
-    <div class="vehicles-list">
+    <div>
+        @if ($filters_list)
+            {{  $filters_list }}
+        @endif
 
-        @for ($i=0;$i<=20;$i++)
+        @if ($filters_text)
+            {{  $filters_text }}
+        @endif
+
+    </div>
+    <div class="vehicles-list">
+        @for ($i=0;$i<=5;$i++)
                 <div class="card vehicle-card" style="width: 18rem;">
                     <div class="text-center mt-2" >
                         <img src="{{ asset('images/acertado.png') }}" class="marco-foto vehicle-card-image" alt="..." height="50px" width="50px">
@@ -22,8 +31,6 @@
                         </div>
                     </div>
                 </div>
-
-
         @endfor
     </div>
 </div>

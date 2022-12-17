@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('email',100)->unique()->comment('Correo electrónico');
             $table->integer('zipcode')->nullable()->unsigned()->comment('Zona Postal');
             $table->string('website')->nullable()->default(null)->comment('Sitio Web');
-            $table->unsignedBigInteger('zipcode')->nullable()->unsigned()->comment('Zona Postal');
             $table->string('address',100)->nullable()->comment('Dirección');
             $table->string('phone',10)->nullable()->comment('Teléfono');
             $table->string('logotipo')->nullable()->default(null)->comment('Logo');

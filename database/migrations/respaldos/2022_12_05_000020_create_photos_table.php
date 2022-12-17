@@ -18,7 +18,7 @@ class CreatePhotosTable extends Migration
             $table->foreignId('vehicle_id')->constrained()->comment('Vehículo');
             $table->string('path',255)->unique()->comment('Ruta al archivo');
             $table->boolean('main')->default(0)->comment('¿Principal?');
-            $table->bigIncrements('seen_times')->nullable()->default(0)->comment('Veces vista');
+            $table->unsignedBigInteger('seen_times')->nullable()->default(0)->comment('Veces vista');
             $table->timestamps();
         });
     }
