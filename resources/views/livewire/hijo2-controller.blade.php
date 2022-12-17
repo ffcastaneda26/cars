@@ -1,7 +1,7 @@
 <div>
     <div class="card vehicle-card" style="width: 18rem;">
         <div class="card-header text-center" style="height: 50px">
-            <h4 class="mt-1 p-1">Hija</h4>
+            <h4 class="mt-1 p-1">Hijo 2</h4>
         </div>
         <div class="card-body">
             <div class="d-flex justify-content-center">
@@ -9,8 +9,5 @@
             </div>
         </div>
 
-        <div class="card-footer text-center">
-            <button class="btn btn-info" wire:click="enviar_a_padre">Mandar a Padre</button>
-        </div>
     </div>
 </div>

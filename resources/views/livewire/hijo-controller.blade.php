@@ -7,13 +7,15 @@
             <div class="d-flex justify-content-center">
                <input type="text"
                     wire:model="valor"
-                    wire:keyup="enviar_a_padre"
+                    wire:change="enviar_a_padre"
                 >
             </div>
         </div>
 
-        <div class="card-footer text-center">
-            <button class="btn btn-info" wire:click="enviar_a_padre">Mandar a Padre</button>
-        </div>
+        <card-footer>
+
+        </card-footer>
+
+
     </div>
 </div>
