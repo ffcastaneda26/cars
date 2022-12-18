@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Color extends Model
 {
@@ -22,8 +23,14 @@ class Color extends Model
       +-----------------+
      */
 
+    public function vehicles_exterior(): HasMany
+    {
+        return $this->hasMany(Vehicle::class,'exterior_color_id');
+    }
 
-
+    public function total_vehicles_exterior(){
+        return $this->vehicles_exterior->count();
+    }
 
     /*+-----------------+
       | Funciones Apoyo |

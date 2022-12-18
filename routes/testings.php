@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\PruebasController;
-
+use App\Http\Livewire\Vehicles;
 
 Route::get('/', function () {
 
@@ -233,4 +233,15 @@ Route::get('vehicle/{vehicle}',function(Vehicle $vehicle){
     $dealer = Dealer::with('vehicles2')->where('id',1)->first();
     dd($dealer);
     dd($vehicle->dealer());
+});
+
+Route::get('consulta/{tabla}/{atributo}',function($tabla,$atributo){
+
+    $records = DB::table($tabla)->select($atributo, DB::raw( 'count(*) as total'))
+        ->groupBy($atributo)
+        ->groupBy($atributo)
+        ->get();
+
+    dd($records);
+
 });

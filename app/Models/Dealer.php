@@ -63,7 +63,7 @@ class Dealer extends Model
     {
         return $this->vehicles()->where('premium',1)->count();
     }
-    
+
 
     /** Funciones de Apoyo */
 
