@@ -1,5 +1,5 @@
 <div>
-    {{ $search }}
+
     <div class="search-bar">
         <x-jet-input type="text"
                     wire:model="search"

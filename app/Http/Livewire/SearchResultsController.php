@@ -25,6 +25,8 @@ class SearchResultsController extends Component
     }
 
     public function readFilterText($value){
-        $this->filters_text = $value;
+        $this->filters_text = "Recibimos desde Filtros de Lista Tipo=" .   $value;
+
+
     }
 }
