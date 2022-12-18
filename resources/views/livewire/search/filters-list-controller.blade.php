@@ -66,6 +66,31 @@
                 </select>
             </div>
 
+            {{-- Rango de Millas --}}
+
+            <div class="flex flex-col">
+                <label class="input-group-text mb-2">{{ __('Miles') }}</label>
+                <div class="slider">
+                    <label >{{ __('From') }}</label>
+                    <input type="range"
+                            wire:change="sendFiltersList('miles_from',$event.target.value)"
+                            min="1000" max="150000" value="5000"
+                            oninput="rangeValue.innerText = this.value">
+                    <p id="rangeValue">5000</p>
+                </div>
+
+                <div class="slider">
+                    <label >{{ __('To') }}</label>
+                    <input type="range"
+                            wire:change="sendFiltersList('miles_to',$event.target.value)"
+                            min="1000" max="150000" value="5000"
+                            oninput="rangeValue2.innerText = this.value">
+                    <p id="rangeValue2">5000</p>
+                </div>
+
+            </div>
+
+
          </div>
     </div>
  </div>
