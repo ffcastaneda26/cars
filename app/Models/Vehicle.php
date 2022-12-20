@@ -155,6 +155,7 @@ class Vehicle extends Model
         return $this->location->dealer->package->max_photos_by_vehicle - $this->total_photos();
     }
 
+
     /** Es premium */
     public function is_premium(){
         return $this->premium;
@@ -218,6 +219,12 @@ class Vehicle extends Model
         return false;
 	}
 
+    /** Mostrar Etiquetas */
+    public function show_tags()
+    {
+        return $this->location->dealer->tags->count();
+    }
+
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
@@ -250,8 +257,7 @@ class Vehicle extends Model
     }
     public function scopeModel($query, $value)
     {
-        $query->where('model', 'LIKE', "%$value%")
-               ->orWhereNull('model');
+        $query->where('model', 'LIKE', "%$value%");
 
     }
     public function scopeModelYear($query, $value)

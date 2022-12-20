@@ -35,9 +35,16 @@ class Dealer extends Model
 		return $this->belongsToMany(User::class);
 	}
 
-    // Usuarios
+    // Etiquetas
     public function tags(): BelongsToMany {
         return $this->belongsToMany(Tag::class);
+    }
+
+    // Total de etiquetas
+    public function total_tags()
+    {
+        return $this->tags()->count();
+
     }
 
     // Sucursales (Localidades)

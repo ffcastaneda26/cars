@@ -69,12 +69,14 @@ class ShowVehiclesController extends Component
 
     public function searchVehicles(){
 
-        return Vehicle::Brand($this->make)
+        return Vehicle::with('location')
+                    ->Brand($this->make)
                         // ->model($this->model)
                          ->body($this->body)
                         // ->colorExterior($this->color_id)
                         // ->ModelYear($this->model_year)
                         // ->Miles($this->miles_from,$this->miles_to)
+                        ->whereIn('location_id',[5,10])
                         ->get();
 
     }
