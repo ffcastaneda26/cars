@@ -8,11 +8,15 @@
 
             <div class="flex flex-col">
                 <label class="input-group-text mb-2">{{ __('Make') }}</label>
-                <select wire:change="sendFiltersList('make',$event.target.value)"class="form-select">
+                <select wire:model="make"
+                        wire:change="fill_models_by_make()"class="form-select">
                         <option value="null">{{__("Make")}}</option>
-                        @foreach($makesList as $make)
-                            <option value="{{ $make->make }}">{{ $make->make . '(' . $make->total .')' }}</option>
+
+                         @foreach($makesList as $make_list)
+                            <option value="{{ $make_list->make }}">{{ $make_list->make . '(' . $make_list->total .')' }}</option>
                         @endforeach
+
+
                 </select>
             </div>
 
@@ -58,7 +62,7 @@
             {{-- Años --}}
             <div class="flex flex-col">
                 <label class="input-group-text mb-2">{{ __('Year') }}</label>
-                <select wire:change="sendFiltersList('body',$event.target.value)"class="form-select">
+                <select wire:change="sendFiltersList('model_year',$event.target.value)"class="form-select">
                     <option value="null">{{__("Year")}}</option>
                     @foreach($yearsList as $year)
                         <option value="{{ $year->model_year }}">{{ $year->model_year . '(' . $year->total .')' }}</option>
@@ -69,24 +73,40 @@
             {{-- Rango de Millas --}}
 
             <div class="flex flex-col">
-                <label class="input-group-text mb-2">{{ __('Miles') }}</label>
-                <div class="slider">
-                    <label >{{ __('From') }}</label>
-                    <input type="range"
-                            wire:change="sendFiltersList('miles_from',$event.target.value)"
-                            min="1000" max="150000" value="5000"
-                            oninput="rangeValue.innerText = this.value">
-                    <p id="rangeValue">5000</p>
-                </div>
+                    <label class="input-group-text mb-2">{{ __('Miles') }}</label>
+                    <div>
+                        <label >{{ __('From') }}</label>
+                        <input type="range"
+                                wire:model="miles_from";
+                                wire:change="sendFiltersList('miles_from',$event.target.value)"
+                                min="1000"
+                                max="150000"
+                        >
 
-                <div class="slider">
-                    <label >{{ __('To') }}</label>
-                    <input type="range"
-                            wire:change="sendFiltersList('miles_to',$event.target.value)"
-                            min="1000" max="150000" value="5000"
-                            oninput="rangeValue2.innerText = this.value">
-                    <p id="rangeValue2">5000</p>
-                </div>
+                        <p>
+                            @if($miles_from)
+                                {{number_format($miles_from, 0, '.', ',') }}
+                            @endif
+                        </p>
+                    </div>
+
+
+                    <div>
+                        <label >{{ __('To') }}</label>
+                        <input type="range"
+                                wire:model="miles_to";
+                                wire:change="sendFiltersList('miles_to',$event.target.value)"
+                                min="{{ $miles_from }}"
+                                max="150000"
+                        >
+
+                        <p>
+                            @if($miles_to)
+                                {{number_format($miles_to, 0, '.', ',') }}
+                            @endif
+                        </p>
+                    </div>
+
 
             </div>
 

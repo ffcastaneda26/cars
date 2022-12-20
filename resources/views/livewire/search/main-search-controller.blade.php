@@ -9,7 +9,7 @@
         </div>
 
         <div>
-            @livewire('search-results-controller')
+           @livewire('show-vehicles-controller')
         </div>
 
     @endsection

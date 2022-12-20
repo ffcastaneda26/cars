@@ -244,25 +244,31 @@ class Vehicle extends Model
         $query->where('vin', $value);
     }
 
-    public function scopeMake($query, $value)
+    public function scopeBrand($query, $value)
     {
         $query->where('make', 'LIKE', "%$value%");
     }
     public function scopeModel($query, $value)
     {
-        $query->where('model', 'LIKE', "%$value%");
+        $query->where('model', 'LIKE', "%$value%")
+               ->orWhereNull('model');
+
     }
     public function scopeModelYear($query, $value)
     {
-        $query->where('model_year', 'LIKE', "%$value%");
+        $query->where('model_year', 'LIKE', "%$value%")
+              ->orWhereNull('model_year');
     }
     public function scopeProductType($query, $value)
     {
-        $query->where('product_type', 'LIKE', "%$value%");
+        $query->where('product_type', 'LIKE', "%$value%")
+                ->orWhereNull('product_type');
+
     }
     public function scopebody($query, $value)
     {
-        $query->where('body', 'LIKE', "%$value%");
+        $query->where('body', 'LIKE', "%$value%")
+            ->orWhereNull('body');
     }
     public function scopeTrim($query, $value)
     {
@@ -313,16 +319,25 @@ class Vehicle extends Model
 
     public function scopeColor($query, $value)
     {
-        $query->where('color_exterior_id', 'LIKE', "%$value%")
-               ->orwhere('color_interior_id', 'LIKE', "%$value%");
+        $query->where('exterior_color_id', 'LIKE', "%$value%")
+               ->orwhere('interior_color_id', 'LIKE', "%$value%");
     }
 
 
-
-    public function scopeMiles($query, $value)
+    public function scopeColorExterior($query, $value)
     {
-        $query->where('miles', 'LIKE', "%$value%");
+        $query->where('exterior_color_id', 'LIKE', "%$value%");
     }
+
+
+    public function scopeMiles($query, $miles_from,$miles_to)
+    {
+        $query->wherebetween('miles', [$miles_from,$miles_to]);
+
+    }
+
+
+
     public function scopeAvailable($query, $available=true)
     {
         $query->where('available', $available);
