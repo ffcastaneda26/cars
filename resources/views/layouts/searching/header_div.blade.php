@@ -12,7 +12,9 @@
         <div class="d-flex">
             <!-- Favoritos-->
             @auth
-                @livewire('show-favorites')
+                @if(Auth::user()->favorites->count())
+                    @livewire('show-favorites')
+                @endif
             @endauth
             <!-- Cambio de idioma -->
             @if(env('APP_MULTI_LANGUAGE',false))

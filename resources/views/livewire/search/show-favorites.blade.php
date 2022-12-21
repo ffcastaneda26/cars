@@ -5,14 +5,15 @@
         data-bs-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false">
-            @if (Auth::user()->favorites)
-            <img width="32"
-                height="32"
-                class="rounded-circle object-cover"
-                src="{{ asset('/images/icons/favorite_yes.png') }}">
+            @if (Auth::user()->favorites->count())
+            {{-- <i class="mdi mdi-cards-heart"></i> --}}
+                <img width="48"
+                    height="48"
+                    class="rounded-circle object-cover"
+                    src="{{ asset('/images/icons/favorite_yes.png') }}"
+                >
                 <span class="badge bg-danger rounded-pill">{{ $total_my_favorites }}</span>
-
-        @endif
+            @endif
     </button>
     <div class="dropdown-menu dropdown-menu-end">
         <!-- item-->
