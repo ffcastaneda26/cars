@@ -5,13 +5,10 @@
     @section('content')
 
         <div class="d-flex justify-around">
-            <div style="width: 75%">
+            <div style="width: 30%">
                 @livewire('filters-text')
             </div>
 
-            <div class="ml-10" style="width: 20%">
-                @livewire('show-favorites')
-            </div>
         </div>
 
         <div>

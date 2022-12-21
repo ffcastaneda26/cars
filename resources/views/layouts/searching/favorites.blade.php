@@ -10,8 +10,6 @@
                 height="32"
                 class="rounded-circle object-cover"
                 src="{{ asset('/images/icons/favorite_yes.png') }}">
-                <span class="badge bg-danger rounded-pill">{{ $total_my_favorites }}</span>
-
         @endif
     </button>
     <div class="dropdown-menu dropdown-menu-end">
@@ -26,21 +24,25 @@
             <div class="dropdown-divider"></div>
             <ul class="list-group list-group-flush">
                 <ul class="list-group list-group-flush">
-                    @foreach(Auth::user()->favorites as $favorite)
-                        <li class="list-group-item text-bg-secondary p-1 mt-2">
-                                {{  $favorite->make }} - {{ $favorite->model_year }}
-                        </li>
-                    @endforeach
+                        @foreach(Auth::user()->favorites as $favorite)
+                            <li class="list-group-item text-bg-warning p-1">
+                                {{  $favorite->make }} - {{ $favorite->model_year }} - {{ $favorite->model }}
+                            </li>
+                        @endforeach
+                </ul>
             </ul>
 
             <div class="p-2 border-top">
                 <div class="d-grid">
                     <a class="btn btn-sm btn-link font-size-14  text-center" href="javascript:void(0)">
-                        {{ __('View all') }}
+                        View all
                     </a>
                 </div>
             </div>
         </div>
+
+
+
 
     </div>
 </div>

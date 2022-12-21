@@ -75,7 +75,7 @@ class ShowVehicles extends Component
                         ->colorExterior($this->color_id)
                         ->ModelYear($this->model_year)
                         ->Miles($this->miles_from,$this->miles_to)
-                        // ->whereIn('location_id',[5,10])
+                        ->whereIn('location_id',[5,10])
                         ->get();
 
     }
