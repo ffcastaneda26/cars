@@ -7,17 +7,19 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\FacebookLoginController;
-use App\Http\Livewire\ContenedorController;
 use App\Http\Livewire\MainSearch;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',MainSearch::class)->name('vehicle-search');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
+
+        if(!Auth::user()->roles()->count()){
+            return redirect('/vehicle-search');
+        }
         return view('dashboard');
     })->name('dashboard');
+
 });
 
 /* Cambio de Lenguaje */
@@ -48,21 +50,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users',Users::class)->name('users'); // Usuarios
 });
 
-
-Route::get('figma-test',function(){
-    return view('figma.square-history');
-});
-
-Route::get('figma-inicio',function(){
-    return view('figma.inicio');
-});
-
-Route::get('figma-create-account',function(){
-   return view('figma.create-account');
-});
-
-
-
 Route::get('vehicle-search',MainSearch::class)->name('vehicle-search');
-Route::get('contenedor',ContenedorController::class);
+
 

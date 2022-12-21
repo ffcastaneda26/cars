@@ -16,6 +16,7 @@
                     @livewire('show-favorites')
                 @endif
             @endauth
+
             <!-- Cambio de idioma -->
             @if(env('APP_MULTI_LANGUAGE',false))
                 @include('layouts.home.change_language')
@@ -24,6 +25,10 @@
             {{--  Profile / Logout  --}}
             @auth
                 @include('layouts.home.profile_logout')
+            @else
+                <button class="btn btn-outline-info waves-effect waves-light h-25" title="{{ __('Log in') }}">
+                    <a href="{{ route('login') }}">{{ __('Log in') }}</a>
+                </button>
             @endauth
 
         </div>
