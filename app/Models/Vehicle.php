@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -126,7 +128,7 @@ class Vehicle extends Model
         return $this->belongsTo(Color::class, 'exterior_color_id', 'id');
     }
 
-    public function users():BelongsToMany
+    public function interested():BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
@@ -210,9 +212,18 @@ class Vehicle extends Model
 
     /** ¿Está como favorito para un usuario? */
 
-    public function hasUser($user_id){
-        foreach($this->users as $user){
-            if($user->id == $user_id){
+    public function hasUser($user_id=null){
+        // No trae usuario y no está conectado regresa falso
+        if(is_null($user_id)){
+            if(Auth::check()){
+                $user_id = Auth::user()->id;
+            }else{
+                return false;
+            }
+        }
+
+        foreach($this->interested as $interested){
+            if($interested->id == $user_id){
                 return true;
             }
         }
@@ -233,15 +244,17 @@ class Vehicle extends Model
      public function scopeSearchFull($query,$value){
         if($value) {
             $value = trim($value);
-            $query->where('make', 'LIKE', "%$value%")
-                    ->orwhere('model', 'LIKE', "%$value%")
-                    ->orwhere('model_year', 'LIKE', "%$value%")
-                    ->orwhere('product_type', 'LIKE', "%$value%")
-                    ->orwhere('body', 'LIKE', "%$value%")
-                    ->orwhere('series', 'LIKE', "%$value%")
-                    ->orwhere('drive', 'LIKE', "%$value%")
-                    ->orwhere('miles', 'LIKE', "%$value%")
-                    ->orwhere('price', 'LIKE', "%$value%");
+            $query->where(DB::raw("CONCAT(make,model,model_year,body)"), 'LIKE', "%$value%");
+
+            // $query->where('make', 'LIKE', "%$value%")
+            //         ->orwhere('model', 'LIKE', "%$value%")
+            //         ->orwhere('model_year', 'LIKE', "%$value%")
+            //         ->orwhere('product_type', 'LIKE', "%$value%")
+            //         ->orwhere('body', 'LIKE', "%$value%")
+            //         ->orwhere('series', 'LIKE', "%$value%")
+            //         ->orwhere('drive', 'LIKE', "%$value%")
+            //         ->orwhere('miles', 'LIKE', "%$value%")
+            //         ->orwhere('price', 'LIKE', "%$value%");
         }
 
     }

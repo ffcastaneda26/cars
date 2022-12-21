@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Vehicle;
 use Livewire\Component;
 
-class ShowVehiclesController extends Component
+class ShowVehicles extends Component
 {
 
     protected $listeners = ['readFiltersList','readFilterText'];
@@ -26,8 +26,7 @@ class ShowVehiclesController extends Component
     public function render()
     {
         $vehicles = $this->searchVehicles();
-        return view('livewire.search.show-vehicles-controller',compact('vehicles'));
-
+        return view('livewire.search.show-vehicles',compact('vehicles'));
     }
 
 
@@ -71,12 +70,12 @@ class ShowVehiclesController extends Component
 
         return Vehicle::with('location')
                     ->Brand($this->make)
-                        // ->model($this->model)
-                         ->body($this->body)
-                        // ->colorExterior($this->color_id)
-                        // ->ModelYear($this->model_year)
-                        // ->Miles($this->miles_from,$this->miles_to)
-                        ->whereIn('location_id',[5,10])
+                        ->model($this->model)
+                        ->body($this->body)
+                        ->colorExterior($this->color_id)
+                        ->ModelYear($this->model_year)
+                        ->Miles($this->miles_from,$this->miles_to)
+                        // ->whereIn('location_id',[5,10])
                         ->get();
 
     }

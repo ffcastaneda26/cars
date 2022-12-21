@@ -1,5 +1,7 @@
 <thead>
     <tr class="bg-dark text-white">
+        <th>{{__("Vin")}}</th>
+
         <th class="flex orderby"
             wire:click="order('make')">{{__("Make")}}
             @if($sort == 'make')
@@ -14,17 +16,16 @@
         </th>
 
         <th>{{__("Model")}}</th>
-        <th>{{__("Year")}}</th>
-        <th>{{__("Type")}}</th>
         <th>{{__("Body")}}</th>
-        <th>{{__("Trim")}}</th>
 
+        <th>{{__("Year")}}</th>
         <th>{{__("Miles")}}</th>
         <th class="text-center">{{__("Available")}}</th>
         <th class="text-center">{{__("Price")}}</th>
         @if($max_premium_allowed)
             <th class="text-center">{{__("Premium?")}}</th>
         @endif
+        <th>{{__("Interested")}}</th>
 
         <th colspan="3" class="px-4 py-1 text-center">{{__("Actions")}}</th>
     </tr>

@@ -4,11 +4,6 @@
 
         @include('livewire.search.show-carrousel-images')
 
-        {{-- Ícono Favoritos --}}
-
-        @if($vehicle->add_favorites())
-            @include('livewire.search.show-vehicles-icon-favorite')
-        @endif
 
         <div class="card-body">
             <h5 class="card-title">{{ $vehicle->make }} - {{ $vehicle->model_year }} - {{ $vehicle->model }}</h5>
@@ -18,8 +13,17 @@
                     {{ $vehicle->body }}
                 @endif
             </h6>
-            @if($vehicle->miles_from)
-            <p class="card-text">{{number_format($vehicle->miles_from, 0, '.', ',') . ' ' . __('Miles')}} </p>
+
+            @if($vehicle->miles)
+                <p class="card-text">{{number_format($vehicle->miles, 0, '.', ',') . ' ' . __('Miles')}} </p>
+            @endif
+
+            {{-- Ícono Favoritos --}}
+
+            @if($vehicle->add_favorites())
+                {{-- @include('livewire.search.show-vehicles-icon-favorite') --}}
+                @livewire('vehicle-favorite',['vehicle' => $vehicle],key($vehicle->id))
+
             @endif
 
             <div class="vehicle-etiquetas">
@@ -33,9 +37,7 @@
                                     </li>
                                 @endforeach
                             @endif
-
                         </ul>
-
                 </ul>
             </div>
         </div>

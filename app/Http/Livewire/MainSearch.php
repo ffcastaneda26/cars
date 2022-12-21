@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Http\Livewire\Traits\CrudTrait;
 
-class MainSearchController extends Component
+class MainSearch extends Component
 {
     use CrudTrait;
 
@@ -21,8 +21,11 @@ class MainSearchController extends Component
 
     public function render()
     {
-        return view('livewire.search.main-search-controller')->layout('layouts.search_template');
+        return view('livewire.search.main-search')->layout('layouts.search_template');
     }
+
+
+
 
 }
 

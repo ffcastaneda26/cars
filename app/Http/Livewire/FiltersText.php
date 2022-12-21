@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Traits\UserTrait;
 
-class FiltersTextController extends Component
+class FiltersText extends Component
 {
 
     use UserTrait;
@@ -19,7 +19,7 @@ class FiltersTextController extends Component
 
     public function render()
     {
-        return view('livewire.search.filters-text-controller');
+        return view('livewire.search.filters-text');
     }
 
 

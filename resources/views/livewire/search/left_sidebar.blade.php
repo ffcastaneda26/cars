@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div>
-                @livewire('filters-list-controller')
+                @livewire('filters-list')
             </div>
             <div class="simplebar-placeholder" style="width: auto; height: 1120px;">
             </div>

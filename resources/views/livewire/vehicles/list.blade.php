@@ -1,15 +1,14 @@
 <tr>
+    <td>{{ $record->vin }}</td>
+
     <td>{{ $record->make }}</td>
     <td>{{ $record->model }}</td>
-    <td>{{ $record->model_year }}</td>
-    <td>{{ $record->product_type}}</td>
     <td>{{ $record->body}}</td>
-    <td>{{ $record->trim}}</td>
+    <td>{{ $record->model_year }}</td>
     <td>
         @if($record->miles)
             {{number_format($record->miles, 0, '.', ',') }}
         @endif
-
     </td>
     <td class="text-center">
         <img src="{{ $record->available ? asset('images/acertado.png') : asset('images/fallado.png')}}"
@@ -22,6 +21,11 @@
     <td class="text-right">
         @if($record->price)
             ${{number_format($record->price, 2, '.', ',') }}
+        @endif
+    </td>
+    <td>
+        @if($record->interested->count())
+            {{number_format($record->interested->count(), 0, '.', ',') }}
         @endif
     </td>
     @if($max_premium_allowed)
@@ -37,7 +41,6 @@
     @endif
 
     <td colspan="3" class="px-1 text-center">
-
 
         <a href="{{ route('vehicles-photos', $record->id) }}">
             <button type="button"

@@ -7,3 +7,4 @@
 <script src="/admiria/assets/libs/node-waves/waves.min.js"></script>
 <script src="/admiria/assets/js/app.js"></script>
 <script src="/admiria/assets/js/my_functions.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

@@ -106,8 +106,10 @@ class User extends Authenticatable
 
     // Vehiculos
     public function favorites(): BelongsToMany {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Vehicle::class);
     }
+
+
 
 
     /*+-------------+

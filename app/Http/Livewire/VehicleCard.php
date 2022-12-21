@@ -4,14 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class VehicleCardController extends Component
+class VehicleCard extends Component
 {
     public $vehicle;
 
     public function render()
     {
 
-        return view('livewire.search.vehicle-card-controller');
+        return view('livewire.search.vehicle-card');
 
     }
 }
