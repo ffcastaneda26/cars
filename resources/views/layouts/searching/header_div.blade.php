@@ -26,7 +26,9 @@
             @auth
                 @include('layouts.home.profile_logout')
             @else
-                <button class="btn btn-outline-info waves-effect waves-light h-25" title="{{ __('Log in') }}">
+                <button class="btn btn-xs"
+                        title="{{ __('Log in') }}"
+                        style="top: 15px">
                     <a href="{{ route('login') }}">{{ __('Log in') }}</a>
                 </button>
             @endauth

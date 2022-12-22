@@ -2,23 +2,11 @@
     <div class="carousel-inner">
         @foreach ($vehicle->photos as $photo )
             <div class="carousel-item active">
-                <img src="{{ asset('images/' .  $photo->path) }}" class="d-block w-100">
+                <img src="{{ asset('images/' .  $photo->path) }}" class="d-block w-100 photo-borders-superior">
             </div>
-            {{-- <div class="carousel-item active">
-                <img src="images/car.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="images/car-2.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="images/car-3.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="images/car-4.jpg" class="d-block w-100" alt="...">
-            </div> --}}
         @endforeach
     </div>
-    {{-- @if($vehicle->photos->count()) --}}
+    @if($vehicle->photos->count())
         <button class="carousel-control-prev" type="button"
             data-bs-target="#photo-{{ $vehicle->id }}" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -28,5 +16,5 @@
             data-bs-target="#photo-{{ $vehicle->id }}" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
-    {{-- @endif --}}
+    @endif
 </div>

@@ -3,7 +3,11 @@
     cursor: pointer;
 
 }
+.cursor-pointer
+{
+    cursor: pointer;
 
+}
 .galeria
 {
     display: flex;
@@ -109,7 +113,7 @@
     margin: 10px;
     border: 20px;
     padding: 10px;
-    gap: 2px;
+    gap: 15px;
 }
 
 .vehicle-card {
@@ -119,10 +123,14 @@
     text-align: left;
 }
 
+
 .vehicle-card-image{
     width: auto;
 }
 
+.photo-borders-superior {
+    border-radius: 50px 10px;
+}
 /*David's Classes */#f87903f4
 
 .vehicle-precio {
@@ -144,3 +152,5 @@
 .vehicle-alignleft {
 	float: left;
 }
+
+.

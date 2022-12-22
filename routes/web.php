@@ -52,4 +52,3 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('vehicle-search',MainSearch::class)->name('vehicle-search');
 
-
