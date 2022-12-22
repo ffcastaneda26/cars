@@ -4,9 +4,21 @@
 
          <div class="row text-center">
 
+
+            {{-- Años --}}
+            <div class="flex flex-col mb-2">
+                <label class="input-group-text mb-2">{{ __('Year') }}</label>
+                <select wire:change="sendFiltersList('model_year',$event.target.value)"class="form-select">
+                    <option value="null">{{__("Year")}}</option>
+                    @foreach($yearsList as $year)
+                        <option value="{{ $year->model_year }}">{{ $year->model_year . '(' . $year->total .')' }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             {{-- Marcas --}}
 
-            <div class="flex flex-col">
+            <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Make') }}</label>
                 <select wire:model="make"
                         wire:change="fill_models_by_make()"class="form-select">
@@ -34,7 +46,7 @@
 
             {{-- Estilos --}}
 
-            <div class="flex flex-col">
+            <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Body') }}</label>
                 <select wire:change="sendFiltersList('body',$event.target.value)"class="form-select">
                     <option value="null">{{__("Body")}}</option>
@@ -46,7 +58,7 @@
 
             {{-- Colores --}}
 
-            <div class="flex flex-col">
+            <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Color') }}</label>
                 <select wire:change="sendFiltersList('color_id',$event.target.value)"class="form-select">
                         <option value="">{{__("Color")}}</option>
@@ -59,16 +71,6 @@
 
             </div>
 
-            {{-- Años --}}
-            <div class="flex flex-col">
-                <label class="input-group-text mb-2">{{ __('Year') }}</label>
-                <select wire:change="sendFiltersList('model_year',$event.target.value)"class="form-select">
-                    <option value="null">{{__("Year")}}</option>
-                    @foreach($yearsList as $year)
-                        <option value="{{ $year->model_year }}">{{ $year->model_year . '(' . $year->total .')' }}</option>
-                    @endforeach
-                </select>
-            </div>
 
             {{-- Rango de Millas --}}
 

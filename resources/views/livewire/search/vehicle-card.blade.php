@@ -21,16 +21,23 @@
                 @endif
             </h6>
 
-            @if($vehicle->miles)
-                <p class="card-text">{{number_format($vehicle->miles, 0, '.', ',') . ' ' . __('Miles')}} </p>
-            @endif
+            <div class="d-flex justify-content-between align-items-start">
+                @if($vehicle->miles)
+                    <p class="card-text">{{number_format($vehicle->miles, 0, '.', ',') . ' ' . __('Miles')}} </p>
+                @else
+                    <div></div>
+                @endif
 
-            {{-- Ícono Favoritos --}}
+                {{-- Ícono Favoritos --}}
 
-            @if($vehicle->add_favorites())
-            
-                @livewire('vehicle-favorite',['vehicle' => $vehicle],key($vehicle->id))
-            @endif
+                @if($vehicle->add_favorites())
+                    @livewire('vehicle-favorite',['vehicle' => $vehicle],key($vehicle->id))
+                @endif
+
+            </div>
+
+
+
 
             <div class="vehicle-etiquetas">
                 <ul class="list-group list-group-flush">
@@ -45,14 +52,18 @@
             </div>
 
         </div>
-        <div class="card-footer text-muted">
-            <p class="vehicle-alignleft"><a href="#" class="btn btn-dark"><b>{{ __('More Information') }}</b></a></p>
-            <p class="vehicle-precio">
-                @if($vehicle->show_price())
-                    {{number_format($vehicle->price, 0, '.', ',') }}
-                @endif
-            </p>
+        <div class="card-footer text-muted">psear
+            <div class="d-flex justify-content-between align-items-start">
+                <p class="vehicle-alignleft"><a href="#" class="btn btn-dark"><b>{{ __('More Information') }}</b></a></p>
+                <p class="vehicle-precio">
+                    @if($vehicle->show_price())
+                        ${{number_format($vehicle->price, 0, '.', ',') }}
+                    @endif
+                </p>
+            </div>
 
         </div>
+
+
     </div>
 </div>
