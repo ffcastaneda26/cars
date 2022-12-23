@@ -246,17 +246,7 @@ class Vehicle extends Model
             $value = trim($value);
             $query->where(DB::raw("CONCAT(make,model,model_year,body)"), 'LIKE', "%$value%");
 
-            // $query->where('make', 'LIKE', "%$value%")
-            //         ->orwhere('model', 'LIKE', "%$value%")
-            //         ->orwhere('model_year', 'LIKE', "%$value%")
-            //         ->orwhere('product_type', 'LIKE', "%$value%")
-            //         ->orwhere('body', 'LIKE', "%$value%")
-            //         ->orwhere('series', 'LIKE', "%$value%")
-            //         ->orwhere('drive', 'LIKE', "%$value%")
-            //         ->orwhere('miles', 'LIKE', "%$value%")
-            //         ->orwhere('price', 'LIKE', "%$value%");
         }
-
     }
 
     public function scopevin($query, $value)
@@ -266,6 +256,7 @@ class Vehicle extends Model
 
     public function scopeBrand($query, $value)
     {
+
         $query->where('make', 'LIKE', "%$value%");
     }
     public function scopeModel($query, $value)
@@ -273,26 +264,31 @@ class Vehicle extends Model
         $query->where('model', 'LIKE', "%$value%");
 
     }
+
     public function scopeModelYear($query, $value)
     {
-        $query->where('model_year', 'LIKE', "%$value%")
-              ->orWhereNull('model_year');
+        if($value){
+            $value=trim($value);
+            $query->where('model_year', 'LIKE', "%$value%")
+                    ->orWhereNull('model_year');
+        }
     }
-    public function scopeProductType($query, $value)
-    {
-        $query->where('product_type', 'LIKE', "%$value%")
-                ->orWhereNull('product_type');
 
-    }
-    public function scopebody($query, $value)
+
+    public function scopeBody($query, $value)
     {
-        $query->where('body', 'LIKE', "%$value%")
-            ->orWhereNull('body');
+        if($value){
+            $value=trim($value);
+            $query->where('body', 'LIKE', "%$value%")
+                    ->orWhereNull('body');
+        }
     }
     public function scopeTrim($query, $value)
     {
         $query->where('trim', 'LIKE', "%$value%");
     }
+
+
     public function scopeseries($query, $value)
     {
         $query->where('series', 'LIKE', "%$value%");
@@ -354,8 +350,6 @@ class Vehicle extends Model
         $query->wherebetween('miles', [$miles_from,$miles_to]);
 
     }
-
-
 
     public function scopeAvailable($query, $available=true)
     {

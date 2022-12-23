@@ -4,12 +4,13 @@
 
          <div class="row text-center">
 
-
             {{-- Años --}}
             <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Year') }}</label>
-                <select wire:change="sendFiltersList('model_year',$event.target.value)"class="form-select">
-                    <option value="null">{{__("Year")}}</option>
+                <select wire:model="model_year"
+                        wire:change="sendFiltersList('model_year',$event.target.value)"
+                        class="form-select">
+                    <option value="">{{__("All")}}</option>
                     @foreach($yearsList as $year)
                         <option value="{{ $year->model_year }}">{{ $year->model_year . '(' . $year->total .')' }}</option>
                     @endforeach
@@ -21,8 +22,8 @@
             <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Make') }}</label>
                 <select wire:model="make"
-                        wire:change="fill_models_by_make()"class="form-select">
-                        <option value="null">{{__("Make")}}</option>
+                           wire:change="sendFiltersList('make',$event.target.value)"class="form-select">
+                           <option value="">{{__("All")}}</option>
 
                          @foreach($makesList as $make_list)
                             <option value="{{ $make_list->make }}">{{ $make_list->make . '(' . $make_list->total .')' }}</option>
@@ -36,8 +37,9 @@
 
             <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Model') }}</label>
-                <select wire:change="sendFiltersList('model',$event.target.value)"class="form-select">
-                    <option value="null">{{__("Model")}}</option>
+                <select wire:model="model"
+                        wire:change="sendFiltersList('model',$event.target.value)"class="form-select">
+                    <option value="">{{__("All")}}</option>
                     @foreach($modelsList as $model)
                         <option value="{{ $model->model }}">{{ $model->model . '(' . $model->total .')' }}</option>
                     @endforeach
@@ -48,8 +50,9 @@
 
             <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Body') }}</label>
-                <select wire:change="sendFiltersList('body',$event.target.value)"class="form-select">
-                    <option value="null">{{__("Body")}}</option>
+                <select wire:model="body"
+                        wire:change="sendFiltersList('body',$event.target.value)"class="form-select">
+                    <option value="">{{__("All")}}</option>
                     @foreach($bodiesList as $body)
                         <option value="{{ $body->body }}">{{ $body->body . '(' . $body->total .')' }}</option>
                     @endforeach
@@ -60,8 +63,9 @@
 
             <div class="flex flex-col mb-2">
                 <label class="input-group-text mb-2">{{ __('Color') }}</label>
-                <select wire:change="sendFiltersList('color_id',$event.target.value)"class="form-select">
-                        <option value="">{{__("Color")}}</option>
+                <select wire:model="color_id"
+                        wire:change="sendFiltersList('color_id',$event.target.value)"class="form-select">
+                        <option value="">{{__("All")}}</option>
                         @foreach($colors as $color)
                             <option value="{{ $color->id }}">
                                 {{  $color->color  . '(' . $color->total_vehicles_exterior() .')'}}

@@ -8,7 +8,6 @@ use App\Traits\UserTrait;
 class FiltersText extends Component
 {
 
-    use UserTrait;
     public $search;
 
     public function mount()

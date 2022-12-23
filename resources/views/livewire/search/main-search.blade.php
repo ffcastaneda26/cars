@@ -12,7 +12,7 @@
         </div>
 
         <div>
-           @livewire('show-vehicles')
+           @livewire('search-vehicles')
         </div>
 
     @endsection
