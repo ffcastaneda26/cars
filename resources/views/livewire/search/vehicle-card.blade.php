@@ -54,7 +54,7 @@
         </div>
         <div class="card-footer text-muted">
             <div class="d-flex justify-content-between align-items-start">
-                <p class="vehicle-alignleft"><a href="#" class="btn btn-dark"><b>{{ __('More Information') }}</b></a></p>
+                <p class="vehicle-alignleft"><a href="#" class="btn btn-dark"><b>{{ __('See more') }}</b></a></p>
                 <p class="vehicle-precio">
                     @if($vehicle->show_price())
                         ${{number_format($vehicle->price, 0, '.', ',') }}
