@@ -6,7 +6,6 @@
         aria-haspopup="true"
         aria-expanded="false">
             @if (Auth::user()->favorites->count())
-            {{-- <i class="mdi mdi-cards-heart"></i> --}}
                 <img width="48"
                     height="48"
                     class="rounded-circle object-cover"

@@ -9,14 +9,15 @@ use Livewire\Component;
 class VehicleFavorite extends Component
 {
     public $vehicle;
+    public $total_favorites_before;
 
     public function mount(Vehicle $vehicle){
         $this->vehicle = $vehicle;
+        $this->total_favorites_before = Auth::user()->favorites->count();
     }
 
     public function render()
     {
-
         return view('livewire.search.vehicle-favorite');
     }
 
@@ -30,6 +31,11 @@ class VehicleFavorite extends Component
             }
         }
         $this->vehicle = Vehicle::findOrFail($this->vehicle->id);
+
+        if(!$this->total_favorites_before){
+            $this->dispatchBrowserEvent('refresh_page');
+        }
+
         $this->emit('total_my_favorites');
 
     }

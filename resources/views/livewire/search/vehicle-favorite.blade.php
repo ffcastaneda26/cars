@@ -15,5 +15,12 @@
         </button>
     @endauth
 
-
 </div>
+@section('scripts')
+    <script>
+        window.addEventListener('refresh_page', event => {
+            window.location.reload();
+        })
+    </script>
+
+@endsection

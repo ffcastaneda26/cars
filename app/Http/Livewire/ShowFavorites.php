@@ -19,16 +19,10 @@ class ShowFavorites extends Component
         return view('livewire.search.show-favorites');
     }
 
-
     public function total_my_favorites(){
-        $this->total_my_favorites = 0;
         if(!Auth::check()){
             return 0;
         }
         $this->total_my_favorites = Auth::user()->favorites->count();
     }
-
-
-
-
 }
