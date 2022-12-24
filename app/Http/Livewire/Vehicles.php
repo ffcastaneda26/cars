@@ -127,7 +127,7 @@ class Vehicles extends Component
     public $dealer;
 
     // public $vin_number = '4T1B61HK9JU514132';
-    
+
     public $allow_change_premium = true;
 
 
@@ -277,6 +277,8 @@ class Vehicles extends Component
         }
 
         if($source == 'api_vehicles'){
+            dd($this->searchApiVin($vin_number,$this->main_record->location_id));
+
            return $this->searchApiVin($vin_number,$this->main_record->location_id);
         }
 
@@ -355,5 +357,5 @@ class Vehicles extends Component
         $vehicle->save();
         $this->allow_change_premium =  Auth::user()->dealers()->first()->premium_vehicles() <  $this->max_premium_allowed;
     }
-}   
+}
 

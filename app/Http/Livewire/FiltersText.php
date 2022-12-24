@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Traits\UserTrait;
 
 class FiltersText extends Component
 {

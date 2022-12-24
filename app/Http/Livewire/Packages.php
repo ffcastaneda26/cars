@@ -80,7 +80,7 @@ class Packages extends Component
         $this->view_crud_modal  = 'livewire.packages.modal_form';
 
         $this->main_record  =  new Package();
-        $this->openModal();
+
 
     }
 

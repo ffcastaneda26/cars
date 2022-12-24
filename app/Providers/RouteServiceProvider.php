@@ -58,9 +58,9 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/manager.php'));
 
         Route::middleware('web','auth')
-            ->prefix('cashier')
+            ->prefix('dealer')
             ->namespace($this->namespace)
-            ->group(base_path('routes/cashier.php'));
+            ->group(base_path('routes/dealer.php'));
 
         Route::middleware('web','auth')
             ->prefix('testing')

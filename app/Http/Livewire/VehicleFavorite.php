@@ -9,11 +9,17 @@ use Livewire\Component;
 class VehicleFavorite extends Component
 {
     public $vehicle;
-    public $total_favorites_before;
+    public $total_favorites_before = null;
 
     public function mount(Vehicle $vehicle){
         $this->vehicle = $vehicle;
-        $this->total_favorites_before = Auth::user()->favorites->count();
+        if (Auth::check()){
+            $this->total_favorites_before = Auth::user()->favorites->count();
+
+        }else{
+            $this->total_favorites_before = null;
+        }
+
     }
 
     public function render()

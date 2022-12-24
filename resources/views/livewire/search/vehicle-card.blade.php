@@ -13,7 +13,7 @@
                     {{  $vehicle->path }}
                 </h5>
             </div>
-            <h5 class="card-title">{{ $vehicle->make }} {{ $vehicle->model_year }} {{ $vehicle->model }}</h5>
+            <h5 class="card-title"> {{ $vehicle->model_year }} {{ $vehicle->make }}  {{ $vehicle->model }}</h5>
 
             <h6 class="card-subtitle mb-2 text-muted">
                 @if($vehicle->body)
@@ -56,7 +56,7 @@
             <div class="d-flex justify-content-between align-items-start">
                 <p class="vehicle-alignleft"><a href="#" class="btn btn-dark"><b>{{ __('See more') }}</b></a></p>
                 <p class="vehicle-precio">
-                    @if($vehicle->show_price())
+                    @if($vehicle->show_price() && $vehicle->price)
                         ${{number_format($vehicle->price, 0, '.', ',') }}
                     @endif
                 </p>

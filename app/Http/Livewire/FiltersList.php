@@ -12,8 +12,8 @@ class FiltersList extends Component
 
 
     public function mount(){
-        $this->miles_from   = 1000;
-        $this->miles_to     = 150000;
+        $this->miles_from   = 100;
+        $this->miles_to     = 500000;
       }
 
 

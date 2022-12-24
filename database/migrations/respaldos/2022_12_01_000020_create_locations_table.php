@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Dealer::class)->comment('Distribuidor');
             $table->string('name',150)->unique()->comment('Nombre');
-            $table->string('email',100)->unique()->comment('Correo electrónico');
+            $table->string('email',100)->comment('Correo electrónico');
             $table->integer('zipcode')->nullable()->unsigned()->comment('Zona Postal');
             $table->string('website')->nullable()->default(null)->comment('Sitio Web');
             $table->string('address',100)->nullable()->comment('Dirección');

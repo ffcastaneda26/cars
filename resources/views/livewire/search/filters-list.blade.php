@@ -82,39 +82,33 @@
                     <label class="input-group-text mb-2">{{ __('Miles') }}</label>
                     <div>
                         <label >{{ __('From') }}</label>
-                        <input type="range"
-                                wire:model="miles_from";
-                                wire:change="sendFiltersList('miles_from',$event.target.value)"
-                                min="1000"
-                                max="150000"
-                        >
+                        <select wire:model="miles_from"
+                                wire:change="sendFiltersList('miles_from',$event.target.value)">
+                                <option value="">{{__("All")}}</option>
+                                @for($i=5000;$i<=500000;$i=$i+10000)
+                                    <option value="{{ $i}}">
+                                        {{  $i }}
+                                    </option>
+                                @endfor
 
-                        <p>
-                            @if($miles_from)
-                                {{number_format($miles_from, 0, '.', ',') }}
-                            @endif
-                        </p>
+                        </select>
                     </div>
 
-
-                    <div>
+                    <div class="mt-2">
                         <label >{{ __('To') }}</label>
-                        <input type="range"
-                                wire:model="miles_to";
-                                wire:change="sendFiltersList('miles_to',$event.target.value)"
-                                min="{{ $miles_from }}"
-                                max="150000"
-                        >
+                        <select wire:model="miles_to"
+                                wire:change="sendFiltersList('miles_to',$event.target.value)">
+                                <option value="">{{__("All")}}</option>
+                                @for($i=5000;$i<=500000;$i=$i+10000)
+                                    <option value="{{ $i}}">
+                                        {{  $i }}
+                                    </option>
+                                @endfor
 
-                        <p>
-                            @if($miles_to)
-                                {{number_format($miles_to, 0, '.', ',') }}
-                            @endif
-                        </p>
+                        </select>
                     </div>
 
-
-            </div>
+              </div>
 
 
          </div>

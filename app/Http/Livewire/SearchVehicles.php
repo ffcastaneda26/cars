@@ -18,9 +18,12 @@ class SearchVehicles extends Component
     public $color_id    = null;
     public $model_year  = null;
     public $make        = null;
-    public $miles_from  = 1000;
-    public $miles_to    = 150000;
+    public $miles_from  = 100;
+    public $miles_to    = 500000;
 
+    // public function mount(){
+    //     $min_max_miles = Vehicle::select('max')
+    // }
 
     public function render()
     {
