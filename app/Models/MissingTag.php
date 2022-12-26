@@ -16,4 +16,16 @@ class MissingTag extends Model
         'api_tag',
         'value_tag'
     ];
+
+      /*+------------+
+       | Búsquedas  |
+       +------------+
+     */
+
+
+     public function scopeTag($query, $value)
+     {
+         $query->where('api_tag', $value);
+     }
+
 }

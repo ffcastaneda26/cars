@@ -31,7 +31,6 @@ trait ApiVehiclesTrait {
             return $this->store_temporary_vehicle($file,$location_id);
         }
         return false;
-
     }
 
 
@@ -73,10 +72,15 @@ trait ApiVehiclesTrait {
                     $value_tag = $vehicle->value;
                 }
 
-                MissingTag::create([
-                    'api_tag'   => $vehicle->label,
-                    'value_tag' => $value_tag
-                ]);
+                $record_missing_tag = MissingTag::Tag($search_tag)->first();
+
+                if(!$record_missing_tag){
+                    MissingTag::create([
+                        'api_tag'   => $vehicle->label,
+                        'value_tag' => $value_tag
+                    ]);
+                }
+
                 continue;
             }
 

@@ -23,7 +23,7 @@ class CreateVehiclesTable extends Migration
             $table->string('model',50)->nullable()->default(null)->comment('Modelo');
             $table->year('model_year',)->nullable()->default(null)->comment('Año');
             $table->string('product_type',50)->nullable()->default(null)->comment('Tipo producto');
-            $table->string('body',50)->nullable()->default(null)->comment('Body');
+            $table->string('body',100)->nullable()->default(null)->comment('Body');
             $table->string('series',50)->nullable()->default(null)->comment('Series');
             $table->string('drive',50)->nullable()->default(null)->comment('Tracción');
             $table->smallInteger('engine_displacement',)->nullable()->default(null)->comment('Motor');
@@ -84,7 +84,7 @@ class CreateVehiclesTable extends Migration
             $table->boolean('abs',)->nullable()->default(null)->comment('¿Abs?');
             $table->string('check_digit',)->nullable()->default(null)->comment('Digito verificador');
             $table->unsignedInteger('sequential_number',)->nullable()->default(null)->comment('Número de secuencia');
-            $table->string('trim',20)->nullable()->default(null)->comment('Trim');
+            $table->string('trim',100)->nullable()->default(null)->comment('Trim');
             $table->string('fuel_type_secondary',20)->nullable()->default(null)->comment('Combustible secundario');
             $table->string('engine_model',80)->nullable()->default(null)->comment('Modelo motor');
             $table->string('transmission_full',50)->nullable()->default(null)->comment('Transmisión completa');

@@ -34,7 +34,9 @@ trait VehicleTrait {
     public $filters_list = null;
     public $filters_text = null;
 
-
+    public $miles_min;
+    public $miles_max;
+    public $miles_step;
     // Llena combos recibiendo el atributo o campo
     public function fill_combos($attribute){
         return Vehicle::select($attribute, DB::raw( 'count(*) as total'))
@@ -76,5 +78,15 @@ trait VehicleTrait {
         }
     }
 
+    // Regresa el valor mínimo y máximo de millas
+    public function min_max_miles()
+    {
+        $miles_record =  Vehicle::select(DB::raw("MIN(miles) AS miles"))->whereNotNull('miles')->first();
+        $this->miles_min = $miles_record->miles;
+        $miles_record =  Vehicle::select(DB::raw("MAX(miles) AS miles"))->whereNotNull('miles')->first();
+        $this->miles_max = $miles_record->miles;
+        $this->miles_step = env('APP_STEP_MILES',5000);
+
+    }
 
 }
