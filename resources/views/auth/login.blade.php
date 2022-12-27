@@ -14,11 +14,6 @@
                     </div>
                 @endif
 
-                @if (session('vehicle'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        Tengo en sesion al vehículo de la marca {{ session('vehicle')->make }}
-                    </div>
-                @endif
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
