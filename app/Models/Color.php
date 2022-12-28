@@ -28,6 +28,11 @@ class Color extends Model
         return $this->hasMany(Vehicle::class,'exterior_color_id');
     }
 
+    public function vehicles_interior(): HasMany
+    {
+        return $this->hasMany(Vehicle::class,'interior_color_id');
+    }
+
     public function total_vehicles_exterior(){
         return $this->vehicles_exterior->count();
     }

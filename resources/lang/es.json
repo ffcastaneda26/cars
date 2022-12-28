@@ -1,4 +1,6 @@
 {
+    "Weel Size": "Medida Llanta",
+    "Body Type": "Tipo",
     "Year": "Año",
     "See more": "Ver mas",
     "View all": "Ver Todos",
@@ -100,6 +102,7 @@
     "Color Name": "Nombre Color",
     "Drivetrains": "Transimisiones",
     "Drivetrain": "Transmisión",
+    "Drive": "Conducción",
     "Fuels": "Combustibles",
     "Fuel": "Combustible",
     "Makes": "Marcas",

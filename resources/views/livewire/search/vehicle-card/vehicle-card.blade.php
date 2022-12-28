@@ -54,7 +54,12 @@
         </div>
         <div class="card-footer text-muted">
             <div class="d-flex justify-content-between align-items-start">
-                <p class="vehicle-alignleft"><a href="#" class="btn btn-dark"><b>{{ __('See more') }}</b></a></p>
+                <p class="vehicle-alignleft">
+                    <button wire:click.prevent="$toggle('show_more')" class="btn btn-dark"><b>{{ __('See more') }}</b>
+                    </button>
+                    <span>{{ $show_more }}</span>
+
+                </p>
                 <p class="vehicle-precio">
                     @if($vehicle->show_price() && $vehicle->price)
                         ${{number_format($vehicle->price, 0, '.', ',') }}
@@ -66,4 +71,10 @@
 
 
     </div>
+
+    @if($show_more )
+        @include('livewire.search.vehicle-card.see_more')
+    @endif
+
+
 </div>
