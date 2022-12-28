@@ -28,16 +28,19 @@
                 <ul class="list-group list-group-flush">
                     @foreach(Auth::user()->favorites as $favorite)
                         <li class="list-group-item text-bg-secondary p-1 mt-2">
-                                {{  $favorite->make }} - {{ $favorite->model_year }}
+                            {{ $favorite->model_year }}    {{  $favorite->make }} {{  $favorite->model }}
                         </li>
                     @endforeach
             </ul>
 
             <div class="p-2 border-top">
                 <div class="d-grid">
-                    <a class="btn btn-sm btn-link font-size-14  text-center" href="javascript:void(0)">
+                    <button wire:click="show_only_favorites" class="btn btn-sm btn-warning font-size-14  text-center">
                         {{ __('View all') }}
-                    </a>
+                    </button>
+                    {{-- <a class="btn btn-sm btn-warning font-size-14  text-center" href="javascript:void(0)">
+                        {{ __('View all') }}
+                    </a> --}}
                 </div>
             </div>
         </div>

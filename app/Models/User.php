@@ -109,6 +109,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Vehicle::class);
     }
 
+    // Total de favoritos
+    public function total_favorites()
+    {
+        return $this->favorites->count();
+    }
 
 
 

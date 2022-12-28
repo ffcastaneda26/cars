@@ -9,7 +9,7 @@
     <label class="input-group-text mb-2">{{__('Tag Higlights') }} </label>
     <label class="input-group-text mb-2">{{__('Max Tags Higligths') }} </label>
     <label class="input-group-text mb-2">{{__('Premium Tag Search') }} </label>
-    <label class="input-group-text mb-2">{{__('Add To Favoriteths') }} </label>
+    <label class="input-group-text mb-2">{{__('Add To Favorites') }} </label>
     <label class="input-group-text mb-2">{{__('Notify Add To Favorites') }} </label>
     <label class="input-group-text mb-2">{{__('Access Interested Users') }} </label>
 

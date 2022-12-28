@@ -8,9 +8,7 @@
             @endif
         </a>
     @else
-        {{-- TODO: Poner en sessión los datos del vehículo --}}
-
-        <button class="btn  waves-effect waves-light" title="{{ __('Log in') }}">
+        <button class="btn  waves-effect waves-light" title="{{ __('Add To Favorites') }}">
             <a href="{{ url('vehicle-add-favorite') .'/' . $vehicle->id }}">
                 <img   src="{{ asset('/images/icons/favorite_no.png') }}">
             </a>

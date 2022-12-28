@@ -1,15 +1,16 @@
 <div>
-    {{-- <div>
-       <h2> Vehiculos encontrados: {{ $vehicles->count() }} </h2>
-       <h3>Filtros: </h3>
-       <ul>
-            <li>Año: {{  $model_year }}</li>
-            <li>Marca: {{  $make }}</li>
-            <li>Modelo: {{  $model }}</li>
-            <li>Body: {{  $body }}</li>
-            <li>Color: {{  $color_id }}</li>
-       </ul>
-    </div> --}}
+    @if($show_only_favorites)
+        <div class="container">
+            <div class="text-right">
+                <button wire:click="$toggle('show_only_favorites')"
+                        class="btn btn-lg btn-success">
+                    {{ __('View All') }}
+                </button>
+            </div>
+        </div>
+
+    @endif
+
     <div class="vehicles-list">
 
         @foreach ($vehicles as $vehicle)

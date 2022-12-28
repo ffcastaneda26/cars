@@ -4,14 +4,16 @@ namespace App\Http\Livewire;
 
 use App\Models\Vehicle;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class SearchVehicles extends Component
 {
 
-    protected $listeners = ['readFiltersList','readFilterText'];
+    protected $listeners = ['readFiltersList','readFilterText','search_only_favorites'];
 
     public $filters_list = null;
     public $filters_text = null;
+    public $show_only_favorites = false;
 
     public $model       = null;
     public $body        = null;
@@ -21,13 +23,14 @@ class SearchVehicles extends Component
     public $miles_from  = 100;
     public $miles_to    = 500000;
 
-    // public function mount(){
-    //     $min_max_miles = Vehicle::select('max')
-    // }
-
     public function render()
     {
-        $vehicles = $this->searchVehicles();
+        if(  $this->show_only_favorites ) {
+            $vehicles = Auth::user()->favorites;
+        }else{
+            $vehicles = $this->searchVehicles();
+        }
+
         return view('livewire.search.search-vehicles',compact('vehicles'));
     }
 
@@ -102,5 +105,12 @@ class SearchVehicles extends Component
         }
     }
 
-
+    // Solo los favoritos
+    public function search_only_favorites()
+    {
+        $this->reset('show_only_favorites');
+        if(Auth::check()){
+            $this->show_only_favorites = Auth::user()->total_favorites();
+        }
+    }
 }

@@ -25,4 +25,8 @@ class ShowFavorites extends Component
         }
         $this->total_my_favorites = Auth::user()->favorites->count();
     }
+
+    public function show_only_favorites(){
+        $this->emit('search_only_favorites');
+    }
 }
