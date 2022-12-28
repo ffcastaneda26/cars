@@ -9,11 +9,9 @@
 
         <div class="card-body">
             <div class="card-title">
-                <h5>
-                    {{  $vehicle->path }}
-                </h5>
+                <h5 class="card-title"> {{ $vehicle->model_year }} {{ $vehicle->make }}  {{ $vehicle->model }}</h5>
             </div>
-            <h5 class="card-title"> {{ $vehicle->model_year }} {{ $vehicle->make }}  {{ $vehicle->model }}</h5>
+
 
             <h6 class="card-subtitle mb-2 text-muted">
                 @if($vehicle->body)
@@ -52,6 +50,7 @@
             </div>
 
         </div>
+
         <div class="card-footer text-muted">
             <div class="d-flex justify-content-between align-items-start">
                 <p class="vehicle-alignleft">

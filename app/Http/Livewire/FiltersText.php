@@ -17,7 +17,7 @@ class FiltersText extends Component
 
     public function render()
     {
-        return view('livewire.search.filters-text');
+        return view('livewire.search.filters-text.filters-text');
     }
 
 

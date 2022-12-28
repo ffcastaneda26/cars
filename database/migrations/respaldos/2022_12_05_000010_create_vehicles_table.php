@@ -19,11 +19,11 @@ class CreateVehiclesTable extends Migration
             $table->foreignIdFor(Location::class)->comment('Sucursal');
             $table->string('vin',17)->nullable()->default(null)->comment('Número VIN');
             $table->smallInteger('vehicle_id',)->nullable()->default(null)->comment('Id Vehículo');
-            $table->string('make',50)->nullable()->default(null)->comment('Marca');
-            $table->string('model',50)->nullable()->default(null)->comment('Modelo');
-            $table->year('model_year',)->nullable()->default(null)->comment('Año');
+            $table->string('make',50)->nullable()->default(null)->index()->comment('Marca');
+            $table->string('model',50)->nullable()->default(null)->index()->comment('Modelo');
+            $table->year('model_year',)->nullable()->default(null)->index()->comment('Año');
             $table->string('product_type',50)->nullable()->default(null)->comment('Tipo producto');
-            $table->string('body',100)->nullable()->default(null)->comment('Body');
+            $table->string('body',100)->nullable()->default(null)->index()->comment('Body');
             $table->string('series',50)->nullable()->default(null)->comment('Series');
             $table->string('drive',50)->nullable()->default(null)->comment('Tracción');
             $table->smallInteger('engine_displacement',)->nullable()->default(null)->comment('Motor');

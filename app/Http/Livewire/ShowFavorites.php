@@ -16,7 +16,7 @@ class ShowFavorites extends Component
     public function render()
     {
         $this->total_my_favorites();
-        return view('livewire.search.show-favorites');
+        return view('livewire.search.show-favorites.show-favorites');
     }
 
     public function total_my_favorites(){

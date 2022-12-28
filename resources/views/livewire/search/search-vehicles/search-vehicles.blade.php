@@ -1,5 +1,6 @@
 <div>
-    @if($show_only_favorites)
+    {{-- TODO: Habilitar solo en caso de que sea necesario --}}
+    {{-- @if($show_only_favorites)
         <div class="container">
             <div class="text-right">
                 <button wire:click="$toggle('show_only_favorites')"
@@ -9,10 +10,9 @@
             </div>
         </div>
 
-    @endif
+    @endif --}}
 
     <div class="vehicles-list">
-
         @foreach ($vehicles as $vehicle)
             @livewire('vehicle-card',['vehicle' => $vehicle],key($vehicle->id))
         @endforeach

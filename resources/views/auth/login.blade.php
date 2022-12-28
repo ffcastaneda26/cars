@@ -3,7 +3,7 @@
             <x-jet-authentication-card>
                 <x-slot name="logo">
                     {{-- <x-jet-authentication-card-logo /> --}}
-                    <img class="rounded-xs" src="{{asset('images/logo.png')}}" alt="" height="128px" width="128px">
+                    <img class="rounded-xs" src="{{asset('images/logo.png')}}" alt="" height="260px" width="260px">
                 </x-slot>
 
                 <x-jet-validation-errors class="mb-4" />
@@ -19,8 +19,8 @@
                     @csrf
 
                     <div>
-                        <x-jet-label for="email" value="{{ __('Email') }}" />
-                        <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                        <x-jet-label for="email" value="{{ __('Email or Phone') }}" />
+                        <x-jet-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus />
                     </div>
 
                     <div class="mt-4">
@@ -37,8 +37,8 @@
 
                     <div class="flex items-center justify-between mt-4">
                         @if (Route::has('register'))
-                            <x-jet-button>
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-white">{{ __('Register') }}</a>
+                            <x-jet-button class="ml-4 text-sm text-white" style="background-color: rgb(250, 67, 6)">
+                                <a href="{{ route('register') }}" >{{ __('Register') }}</a>
                             </x-jet-button>
                         @endif
 

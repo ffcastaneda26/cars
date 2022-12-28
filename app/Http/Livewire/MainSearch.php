@@ -11,7 +11,7 @@ class MainSearch extends Component
 
     public function mount()
     {
-        $this->manage_title     = __('Search') . ' ' . __('Vehicles');
+        $this->manage_title = null;
     }
 
     /*+-----------------+

@@ -31,7 +31,7 @@ class SearchVehicles extends Component
             $vehicles = $this->searchVehicles();
         }
 
-        return view('livewire.search.search-vehicles',compact('vehicles'));
+        return view('livewire.search.search-vehicles.search-vehicles',compact('vehicles'));
     }
 
 
@@ -64,7 +64,7 @@ class SearchVehicles extends Component
         }
 
         $this->reset_values($type);
-
+        $this->reset('show_only_favorites');
     }
 
     public function readFilterText($value){
@@ -75,7 +75,7 @@ class SearchVehicles extends Component
 
     // Busca vehículos
     public function searchVehicles(){
-        return Vehicle::with(['location.dealer','interested'])
+        return Vehicle::with(['location.dealer.package','location.dealer.tags','interested','photos'])
                     ->ModelYear($this->model_year)
                     ->Brand($this->make)
                     ->model($this->model)
