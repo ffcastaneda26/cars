@@ -132,6 +132,13 @@
     border-radius: 5px 5px;
 }
 
+.modal-ver-mas-fondo-encabezado {
+    background-color:azure
+}
+
+.modal-ver-mas-fondo-contenido {
+    background-color: beige
+}
 /*David's Classes */
 
 .vehicle-precio {
