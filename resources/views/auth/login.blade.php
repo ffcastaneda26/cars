@@ -37,7 +37,7 @@
 
                     <div class="flex items-center justify-between mt-4">
                         @if (Route::has('register'))
-                            <x-jet-button class="ml-4 text-sm text-white" style="background-color: rgb(250, 67, 6)">
+                            <x-jet-button class="ml-4 text-sm text-white boton-cuervo" style="background-color: rgb(250, 67, 6)">
                                 <a href="{{ route('register') }}" >{{ __('Register') }}</a>
                             </x-jet-button>
                         @endif

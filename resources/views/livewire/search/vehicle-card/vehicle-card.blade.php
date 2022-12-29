@@ -52,11 +52,9 @@
         <div class="card-footer text-muted">
             <div class="d-flex justify-content-between align-items-start">
                 <p class="vehicle-alignleft">
-                    <button class="btn btn-dark waves-effect" title="{{ __('See more') }}">
-                        <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" class="text-white">
-                            <strong>{{ __('See more') }}</strong>
-                        </a>
-                    </button>
+                       <x-jet-button class="btn boton-cuervo waves-effect">
+                        <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" class=" text-white">{{ __('See more') }}</a>
+                    </x-jet-button>
                 </p>
                 <p class="vehicle-precio">
                     @if($vehicle->show_price() && $vehicle->price)

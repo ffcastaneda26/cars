@@ -139,6 +139,17 @@
 .modal-ver-mas-fondo-contenido {
     background-color: beige
 }
+.boton-cuervo{
+    background-color: rgb(250, 67, 6);
+}
+
+.boton-cuervo:hover  {
+    background-color: black;
+    color: white;
+    font-size: 1.1rem;
+}
+
+
 /*David's Classes */
 
 .vehicle-precio {
