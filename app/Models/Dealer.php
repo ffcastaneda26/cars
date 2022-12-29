@@ -71,6 +71,18 @@ class Dealer extends Model
         return $this->vehicles()->where('premium',1)->count();
     }
 
+    public function available_vehicles()
+    {
+        return $this->vehicles()->where('available',1);
+
+    }
+
+    public function total_available_vehicles()
+    {
+        return $this->available_vehicles->count();
+    }
+
+
 
     /** Funciones de Apoyo */
 
@@ -81,6 +93,10 @@ class Dealer extends Model
         return true;
     }
 
+    /** Puede agregar vehículos */
+    public function can_create_vehicles(){
+        return $this->total_available_vehicles() < $this->package->max_vehicles_by_dealer;
+    }
 
 
     /**+------------+

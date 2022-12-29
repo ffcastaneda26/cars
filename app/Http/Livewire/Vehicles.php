@@ -7,6 +7,7 @@ use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Color;
+use App\Models\Dealer;
 use App\Models\LocationUser;
 use App\Models\TemporaryVehicle;
 use App\Models\Vehicle;
@@ -155,7 +156,7 @@ class Vehicles extends Component
         $this->dealer = Auth::user()->dealers()->first();
 
         $this->max_premium_allowed  = $this->dealer->package->premium_tag_search;
-        $this->allow_change_premium =  Auth::user()->dealers()->first()->premium_vehicles() <  $this->max_premium_allowed;
+        $this->allow_change_premium =  $this->dealer->premium_vehicles() <  $this->max_premium_allowed;
     }
 
     /*+---------------------------------+
@@ -165,11 +166,15 @@ class Vehicles extends Component
 
     public function render()
     {
-
+        $this->dealer = Dealer::findOrFail($this->dealer->id);
         $this->allow_save = $this->show_form;
-
-        $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
-                                                            : __('Create') . ' ' . __('Vehicle');
+        $this->allow_create = $this->dealer->can_create_vehicles();
+        if($this->allow_create){
+            $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
+            : __('Create') . ' ' . __('Vehicle');
+        }else{
+            $this->create_button_label = '';
+        }
 
 
         $user_locations= LocationUser::select('location_id')
@@ -183,7 +188,6 @@ class Vehicles extends Component
                 ->paginate(10);
 
         return view('livewire.index',compact('records'));
-
 
     }
 
