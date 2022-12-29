@@ -41,8 +41,10 @@ class FiltersList extends Component
     public function sendFiltersList($type,$value)
     {
         $this->reset_values($type);
-
         $this->emit('readFiltersList',$type,$value);
+        $this->emit('redirect_to_search');
+
+
     }
 
 

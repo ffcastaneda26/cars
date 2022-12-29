@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\FacebookLoginController;
 use App\Http\Controllers\VehicleAddFavorite;
 use App\Http\Livewire\MainSearch;
+use App\Http\Livewire\VehicleDetails;
 use App\Http\Livewire\VehicleFavorite;
 
 Route::get('/',MainSearch::class)->name('vehicle-search');
@@ -56,4 +57,5 @@ Route::get('vehicle-search',MainSearch::class)->name('vehicle-search');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('vehicle-add-favorite/{vehicle}',[VehicleAddFavorite::class,'add_to_my_favorites'])->name('vehicle-add-favorite');
+    Route::get('vehicle-details/{vehicle}',VehicleDetails::class)->name('vehicle-details');
 });

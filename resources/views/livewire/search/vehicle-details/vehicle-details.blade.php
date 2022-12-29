@@ -1,5 +1,5 @@
 <div>
-    <div class="card h-100" style="width: 18rem;">
+    <div class="card h-100">
         <!-- Carrusel de fotos del Vehiculo-->
         @if($vehicle->photos->count())
             @include('livewire.search.show-carrousel-images')
@@ -26,12 +26,6 @@
                     <div></div>
                 @endif
 
-                {{-- Ícono Favoritos --}}
-
-                @if($vehicle->add_favorites())
-                    @livewire('vehicle-favorite',['vehicle' => $vehicle],key($vehicle->id))
-                @endif
-
             </div>
 
 
@@ -50,29 +44,22 @@
         </div>
 
         <div class="card-footer text-muted">
-            <div class="d-flex justify-content-between align-items-start">
-                <p class="vehicle-alignleft">
-                    <button class="btn btn-dark waves-effect" title="{{ __('See more') }}">
-                        <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" class="text-white">
-                            <strong>{{ __('See more') }}</strong>
-                        </a>
-                    </button>
-                </p>
-                <p class="vehicle-precio">
+            <div class="vehicle-precio">
+
                     @if($vehicle->show_price() && $vehicle->price)
                         ${{number_format($vehicle->price, 0, '.', ',') }}
                     @endif
-                </p>
+
             </div>
 
         </div>
 
 
     </div>
-
-    @if($show_more )
-        @include('livewire.search.vehicle-card.see_more')
-    @endif
-
-
 </div>
+<script>
+    window.addEventListener('redirect_to_search', event => {
+        window.location.href = '/';
+    })
+</script>
+
