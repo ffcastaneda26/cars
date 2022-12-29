@@ -64,7 +64,7 @@ class Location extends Model
         return $this->hasManyThrough(Photo::class, Vehicle::class);
     }
 
-    
+
 
     /** Funciones de Apoyo */
 
@@ -80,9 +80,9 @@ class Location extends Model
     }
 
     /** ¿Puede seguir agregando fotos */
-    
+
     public function can_add_photos(){
-        return $this->dealer->package->max_photos_by_location > $this->total_photos;
+        return $this->dealer->package->max_vehicles_by_dealer  > $this->total_photos;
     }
 
     // Las redes sociales

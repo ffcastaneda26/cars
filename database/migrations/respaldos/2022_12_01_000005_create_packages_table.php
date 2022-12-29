@@ -34,7 +34,7 @@ return new class extends Migration
             $table->float('price_additional_location', 9, 2)->nullable()->default('10.00')->comment('Precio por localidad adicional');
             $table->tinyInteger('vehicle_listing_bonus',)->nullable()->default(0)->comment('Cantidad de vehículos adicionales poe cuota extra');
             $table->tinyInteger('max_photos_by_vehicle',)->nullable()->default(10)->comment('Máximo de fotos por vehículo');
-            $table->tinyInteger('max_photos_by_location',)->nullable()->default(40)->comment('Máximo de fotos por sucursal');
+            $table->unsignedSmallInteger('max_vehicles_by_dealer ',)->nullable()->default(40)->comment('Máximo de vehículos por distribuidor');
             $table->boolean('search_by_tags',)->nullable()->default(0)->comment('Buscar x Etiquetas');
             $table->boolean('show_prices',)->nullable()->default(0)->comment('Mostrar precios');
             $table->boolean('show_locations',)->nullable()->default(0)->comment('Mostrar sucursales');

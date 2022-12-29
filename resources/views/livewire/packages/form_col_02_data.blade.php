@@ -56,9 +56,9 @@
         {{-- Máxio de Fotos por Sucursal --}}
         <div class="flex-flex-column mb-2">
             <input type="number"
-                wire:model="main_record.max_photos_by_location"
+                wire:model="main_record.max_vehicles_by_dealer"
                 size="2"
-                max="10"
+                max="9999"
                 min="1"
                 size="4"
                 class=" mb-2"

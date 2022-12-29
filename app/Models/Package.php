@@ -33,7 +33,7 @@ class Package extends Model
         'price_additional_location',
         'vehicle_listing_bonus',
         'max_photos_by_vehicle',
-        'max_photos_by_location',
+        'max_vehicles_by_dealer ',
         'search_by_tags',
         'show_prices',
         'show_locations',

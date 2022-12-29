@@ -34,7 +34,7 @@ class Packages extends Component
         'main_record.premium_tag_search'                =>'nullable|integer',
         'main_record.vehicle_listing_bonus'             =>'nullable|integer',
         'main_record.max_photos_by_vehicle'             =>'nullable|integer',
-        'main_record.max_photos_by_location'            =>'nullable|integer',
+        'main_record.max_vehicles_by_dealer'            =>'nullable|integer',
         'main_record.company_web_site_listing'          =>'nullable',
         'main_record.self_service_photo_upload'         =>'nullable',
         'main_record.tag_higlights'                     =>'nullable',
