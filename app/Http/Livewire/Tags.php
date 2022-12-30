@@ -44,6 +44,7 @@ class Tags extends Component
                                                             : __('Create') . ' ' . __('Tag');
 
         $records = Tag::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
+
         return view('livewire.index',compact('records'));
     }
 
@@ -61,10 +62,10 @@ class Tags extends Component
 
     public function store()
     {
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|max:25|unique:Tags,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:3|max:25|unique:Tags,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|max:25|unique:Tags,english,{$this->main_record->id}"
-                                                                     : 'required|min:3|max:25|unique:Tags,english';
+        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:3|max:25|unique:tags,spanish,{$this->main_record->id}"
+                                                                     : 'required|min:3|max:25|unique:tags,spanish';
+        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:3|max:25|unique:tags,english,{$this->main_record->id}"
+                                                                     : 'required|min:3|max:25|unique:tags,english';
 
         $this->validate();
         $this->close_store('Tag');
