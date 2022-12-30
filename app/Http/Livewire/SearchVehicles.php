@@ -82,6 +82,7 @@ class SearchVehicles extends Component
                     ->body($this->body)
                     ->colorExterior($this->color_id)
                     ->Miles($this->miles_from,$this->miles_to)
+                    ->Available()
                     ->get();
 
     }
