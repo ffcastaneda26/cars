@@ -55,7 +55,9 @@ Route::get('genera-vin/{vin_number?}',function($vin_number=null){
     $vin = mb_strtoupper($vin_number);
     $controlsum = substr(sha1("{$vin}|{$id}|{$apikey}|{$secretkey}"), 0, 10);
     $data = file_get_contents("{$apiPrefix}/{$apikey}/{$controlsum}/decode/{$vin}.json", false);
+
     $result = json_decode($data);
+
     $json_string = json_encode($result);
 
 

@@ -255,6 +255,11 @@
     "Support": "Soporte",
     "You have not Support access": "No tiene acceso como soporte",
     "You have not Agent access": "No tiene acceso como agente",
-    "You have not Account Dealer access": "No tiene acceso como Distribuidor"
+    "You have not Account Dealer access": "No tiene acceso como Distribuidor",
+    "Loading...": "Cargando...",
+    "Interior Materials": "Materiales de Interior",
+    "Materials": "Materiales",
+    "Interior Material": "Material Interior",
+    "Interiors": "Interiores"
 
 }

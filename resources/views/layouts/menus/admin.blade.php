@@ -47,6 +47,14 @@
             </a>
     </li>
 
+    {{-- Material Interior --}}
+    <li>
+        <a href="{{route('materials')}}" class="waves-effect">
+            <i class="mdi mdi-car-seat"></i>
+            <span> {{__('Materials')}} </span>
+            </a>
+    </li>
+
     {{-- Redes Sociales --}}
     <li>
         <a href="{{route('social-networks')}}" class="waves-effect">

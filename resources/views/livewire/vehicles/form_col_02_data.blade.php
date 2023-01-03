@@ -34,7 +34,8 @@
 
             <div class="flex-flex-column">
                     <label class="form-control mb-2 input-group-text">
-                        {{ __('Engine Displacement') .':' . $main_record->engine_displacement }}
+                        {{ __('Engine Displacement') .':' . number_format(floatval($main_record->engine_displacement/1000),2) }}
+
                     </label>
             </div>
         @endif

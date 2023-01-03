@@ -46,7 +46,7 @@ class RoleSeeder extends Seeder
 
         // Distribuidor
         $user = User::findOrFail(3);
-        $role = Role::where('name','dealer')->first();
+        $role = Role::where('name','manager')->first();
         $user->roles()->attach($role);
 
         // Asigna los permisos del Distribuidor

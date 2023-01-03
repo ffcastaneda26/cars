@@ -2,6 +2,21 @@
 
         <div class="w-auto col flex flex-col">
             <form>
+                {{-- Material Interior --}}
+                <div class="flex-flex-column">
+                    <select wire:model="main_record.material_id"
+                            class="form-select mb-2
+                            {{ $errors->has('main_record.material_id') ? 'field_error' : '' }}"
+                        >
+                        <option value="">{{__("Interiors")}}</option>
+                        @foreach($materials as $material)
+                                <option value="{{ $material->id }}" class="normal_option">
+                                    {{ App::isLocale('en') ? $material->english : $material->spanish }}
+                                </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 {{-- Color Interior --}}
                 <div class="flex-flex-column">
                     <select wire:model="main_record.interior_color_id"

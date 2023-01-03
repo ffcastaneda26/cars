@@ -12,8 +12,9 @@
             <select wire:model="main_record.location_id"
                     wire:change="search_vin"
                     class="form-select mb-2"
-                    @if($locations->count() == 1) disabled @endif
+                    {{-- @if($locations->count() == 1) disabled @endif --}}
             >
+                    
                     <option value="">{{__("Location")}}</option>
                     @foreach($locations as $location)
                             <option value="{{ $location->id }}"

@@ -4,6 +4,7 @@ use App\Http\Livewire\Colors;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Dealers;
 use App\Http\Livewire\Makes;
+use App\Http\Livewire\Materials;
 use App\Http\Livewire\Packages;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('roles',Roles::class)->name('roles');                                    // Roles
     Route::get('role-permission',RolePermissions::class)->name('role-permission');      // Asigar Permisos al Rol
     Route::get('colors',Colors::class)->name('colors');                                 // Colores
+    Route::get('materials',Materials::class)->name('materials');                        // Material Interior
+
     Route::get('social-networks',SocialNetworks::class)->name('social-networks');       // Redes Sociales
     Route::get('packages',Packages::class)->name('packages');                           // Paquetes
     Route::get('tags',Tags::class)->name('tags');                                       // Etiquetas

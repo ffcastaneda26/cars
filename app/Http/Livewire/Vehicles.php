@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use App\Traits\UserTrait;
-use Livewire\WithPagination;
-use App\Http\Livewire\Traits\CrudTrait;
 use App\Models\Color;
 use App\Models\Dealer;
-use App\Models\LocationUser;
-use App\Models\TemporaryVehicle;
 use App\Models\Vehicle;
+use Livewire\Component;
+use App\Models\Material;
+use App\Traits\UserTrait;
+use App\Models\LocationUser;
+use Livewire\WithPagination;
+use App\Models\TemporaryVehicle;
 use App\Traits\ApiVehiclesTrait;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\Traits\CrudTrait;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Vehicles extends Component
 {
@@ -25,48 +27,39 @@ class Vehicles extends Component
     protected $listeners = ['destroy'];
 
     protected $rules = [
+        'main_record.material_id'               =>'required|exists:materials,id',
         'main_record.location_id'               =>'required|exists:locations,id',
         'main_record.vin'                       =>'required|min:17|max:17',
         'main_record.interior_color_id'         =>'required|exists:colors,id',
         'main_record.exterior_color_id'         =>'required|exists:colors,id',
         'main_record.price'                     =>'nullable',
         'main_record.miles'                     =>'required|integer',
-        'main_record.make'                      =>'required',
-        'main_record.model'                     =>'required',
-        'main_record.vehicle_id'                =>'nullable',
-        'main_record.model_year'                =>'required',
-        'main_record.product_type'              =>'nullable',
-        'main_record.body'                      =>'nullable',
-        'main_record.series'                    =>'nullable',
-        'main_record.drive'                     =>'nullable',
-        'main_record.engine_displacement'       =>'nullable',
-        'main_record.engine_power_kw'           =>'nullable',
-        'main_record.engine_power_hp'           =>'nullable',
-        'main_record.fuel_type_primary'         =>'nullable',
-        'main_record.transmission'              =>'nullable',
-        'main_record.number_of_gears'           =>'nullable',
-        'main_record.manufacturer'              =>'nullable',
-        'main_record.manufacturer_address'      =>'nullable',
-        'main_record.plant_city'                =>'nullable',
-        'main_record.plant_company'             =>'nullable',
-        'main_record.plant_country'             =>'nullable',
-        'main_record.production_stopped'        =>'nullable',
-        'main_record.engine_compression_ratio'  =>'nullable',
-        'main_record.engine_cylinder_bore_mm'   =>'nullable',
-        'main_record.engine_cylinders'          =>'nullable',
+        'main_record.available'             =>'nullable',
+        'main_record.show'                  =>'nullable',
+        'main_record.premium'               =>'nullable',
+        'main_record.description'           =>'nullable',
+        'main_record.vehicle_id'            =>'nullable',
+        'main_record.make'                  =>'nullable',
+        'main_record.model'                 =>'nullable',
+        'main_record.model_year'            =>'nullable',
+        'main_record.product_type'          =>'nullable',
+        'main_record.body'                  =>'nullable',
+        'main_record.series'                =>'nullable',
+        'main_record.drive'                 =>'nullable',
+        'main_record.engine_displacement'   =>'nullable',
+        'main_record.engine_power_kw'       =>'nullable',
+        'main_record.engine_power_hp'       =>'nullable',
+        'main_record.fuel_type_primary'     =>'nullable',
+        'main_record.transmission'          =>'nullable',
+        'main_record.number_of_gears'       =>'nullable',
+        'main_record.engine_cylinders'      =>'nullable',
         'main_record.engine_cylinders_position' =>'nullable',
         'main_record.engine_position'           =>'nullable',
         'main_record.engine_rpm'                =>'nullable',
         'main_record.engine_stroke_m'           =>'nullable',
-        'main_record.engine_torque_rpm'         =>'nullable',
-        'main_record.engine_turbine'            =>'nullable',
-        'main_record.valve_train'               =>'nullable',
         'main_record.fuel_capacity'             =>'nullable',
         'main_record.fuel_consumption_combined' =>'nullable',
-        'main_record.fuel_consumption_extra_Urba'=>'nullable',
-        'main_record.fuel_consumption_Urban'     =>'nullable',
         'main_record.fuel_system'               =>'nullable',
-        'main_record.valves_per_cylinder'       =>'nullable',
         'main_record.number_of_doors'           =>'nullable',
         'main_record.number_of_seat_rows'       =>'nullable',
         'main_record.number_of_seats'           =>'nullable',
@@ -78,7 +71,7 @@ class Vehicles extends Component
         'main_record.front_suspension'          =>'nullable',
         'main_record.drag_coefficient'          =>'nullable',
         'main_record.wheel_rims_size'           =>'nullable',
-        'main_record.wheel_rims_size'           =>'nullable',
+        'main_record.wheel_rims_size_array'     =>'nullable',
         'main_record.wheel_size'                =>'nullable',
         'main_record.wheel_size_array'          =>'nullable',
         'main_record.wheelbase'                 =>'nullable',
@@ -95,25 +88,18 @@ class Vehicles extends Component
         'main_record.minimum_trunk_capacity'    =>'nullable',
         'main_record.weight_empty_kg'           =>'nullable',
         'main_record.abs'                       =>'nullable',
-        'main_record.check_digit'               =>'nullable',
-        'main_record.sequential_number'         =>'nullable',
         'main_record.trim'                      =>'nullable',
         'main_record.fuel_type_secondary'       =>'nullable',
         'main_record.engine_model'              =>'nullable',
         'main_record.transmission_full'         =>'nullable',
-        'main_record.plant_state'               =>'nullable',
-        'main_record.market'                    =>'nullable',
-        'main_record.made_date'                 =>'nullable',
-        'main_record.production_started'        =>'nullable',
-        'main_record.available'                 =>'nullable',
-        'main_record.show'                      =>'nullable',
-        'main_record.description'               =>'nullable',
-        'main_record.slug'                      =>'nullable',
 
     ];
 
+
+
     public $vehicle_record = null;
     public $locations,$location_id;
+    public $materials;
     public $colors=null;
     public $available;
     public $show;
@@ -147,16 +133,18 @@ class Vehicles extends Component
         $this->view_common_table= 'livewire.vehicles.crud_table';
         $this->main_record      = new Vehicle();
         $this->colors           = Color::all();
+        $this->materials        = Material::all();
         $this->locations        = Auth::user()->locations()->get();
-
-        if( $this->locations->count()==1){
-            $this->main_record->location_id = $this->locations->first()->id;
-        }
-
         $this->dealer = Auth::user()->dealers()->first();
-
         $this->max_premium_allowed  = $this->dealer->package->premium_tag_search;
         $this->allow_change_premium =  $this->dealer->premium_vehicles() <  $this->max_premium_allowed;
+
+        if( $this->locations->count()==1){
+            // $this->main_record->location_id = $this->locations->first()->id;
+            $this->main_record->location_id = Auth::user()->locations()->first()->id;
+            $this->search_vin();
+        }
+
     }
 
     /*+---------------------------------+
@@ -281,7 +269,6 @@ class Vehicles extends Component
         }
 
         if($source == 'api_vehicles'){
-            dd($this->searchApiVin($vin_number,$this->main_record->location_id));
 
            return $this->searchApiVin($vin_number,$this->main_record->location_id);
         }
