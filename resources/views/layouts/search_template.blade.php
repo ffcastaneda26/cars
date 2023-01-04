@@ -19,7 +19,7 @@
 
         @include('layouts.home.main_content')
 
-        @include('layouts.home.footer')
+        {{-- @include('layouts.home.footer') --}}
     </div>
 
     @livewireScripts

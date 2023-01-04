@@ -133,6 +133,10 @@ class Vehicle extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function material(): BelongsTo
+    {
+        return $this->belongsTo(Material::class);
+    }
     /** Funciones de Apoyo */
 
     public function can_be_delete()

@@ -44,7 +44,7 @@
         <a href="{{route('colors')}}" class="waves-effect">
             <i class="mdi  mdi-palette-outline"></i>
             <span> {{__('Colors')}} </span>
-            </a>
+        </a>
     </li>
 
     {{-- Material Interior --}}
