@@ -1,12 +1,12 @@
 <div>
-    <div class="container">
-         <div class="text-center"><h4>{{ __('Select Filter') }}</h4></div>
+    <div class="container mt-3">
+   
 
          <div class="row text-center">
 
             {{-- Años --}}
-            <div class="flex flex-col mb-2">
-                <label class="input-group-text mb-2">{{ __('Year') }}</label>
+            <div class="flex flex-col mb-2 text-left">
+                <label class="mb-2"><strong>{{ __('Year') }}</strong></label>
                 <select wire:model="model_year"
                         wire:change="sendFiltersList('model_year',$event.target.value)"
                         class="form-select">
@@ -19,8 +19,8 @@
 
             {{-- Marcas --}}
 
-            <div class="flex flex-col mb-2">
-                <label class="input-group-text mb-2">{{ __('Make') }}</label>
+            <div class="flex flex-col mb-2 text-left">
+                <label class="mb-2"><strong>{{ __('Make') }}</strong></label>
                 <select wire:model="make"
                            wire:change="sendFiltersList('make',$event.target.value)"class="form-select">
                            <option value="">{{__("All")}}</option>
@@ -35,8 +35,8 @@
 
             {{-- Modelos --}}
 
-            <div class="flex flex-col mb-2">
-                <label class="input-group-text mb-2">{{ __('Model') }}</label>
+            <div class="flex flex-col mb-2 text-left">
+                <label class="mb-2"><strong>{{ __('Model') }}</strong></label>
                 <select wire:model="model"
                         wire:change="sendFiltersList('model',$event.target.value)"class="form-select">
                     <option value="">{{__("All")}}</option>
@@ -48,8 +48,9 @@
 
             {{-- Estilos --}}
 
-            <div class="flex flex-col mb-2">
-                <label class="input-group-text mb-2">{{ __('Body') }}</label>
+            <div class="flex flex-col mb-2 text-left">
+    
+                <label class="mb-2"><strong>{{ __('Body') }}</strong></label>
                 <select wire:model="body"
                         wire:change="sendFiltersList('body',$event.target.value)"class="form-select">
                     <option value="">{{__("All")}}</option>
@@ -61,8 +62,8 @@
 
             {{-- Colores --}}
 
-            <div class="flex flex-col mb-2">
-                <label class="input-group-text mb-2">{{ __('Color') }}</label>
+            <div class="flex flex-col mb-2 text-left">
+                <label class="mb-2"><strong>{{ __('Color') }}</strong></label>
                 <select wire:model="color_id"
                         wire:change="sendFiltersList('color_id',$event.target.value)"class="form-select">
                         <option value="">{{__("All")}}</option>
@@ -75,59 +76,33 @@
 
             </div>
 
+            {{-- Máximo de Millas --}}
+            <div class="flex flex-col mb-2 text-left">
+                <label class="mb-2"><strong>{{ __('Max Miles') }}</strong></label>
+                @if(env('APP_TYPE_MILES_SHOW_SELECT',false))
+                    <select wire:model="miles_to"
+                            wire:change="sendFiltersList('miles_to',$event.target.value)">
+                            <option value="">{{__("All")}}</option>
+                            @for($i=$miles_min;$i<$miles_max+$miles_step;$i=$i+$miles_step)
+                                <option value="{{ $i}}">
+                                    {{  $i }}
+                                </option>
+                            @endfor
 
-            {{-- Rango de Millas --}}
-              <div class="flex flex-col">
-                    <label class="input-group-text mb-2">{{ __('Miles') }}</label>
-                    <div class="d-flex justify-content-between">
-                        <label >{{ __('From') }}</label>
-                        @if(env('APP_TYPE_MILES_SHOW_SELECT',false))
-                            <select wire:model="miles_from"
-                                    wire:change="sendFiltersList('miles_from',$event.target.value)">
-                                    <option value="">{{__("All")}}</option>
-                                    @for($i=$miles_min;$i<$miles_max;$i=$i+$miles_step)
-                                        <option value="{{ $i}}">
-                                            {{  $i }}
-                                        </option>
-                                    @endfor
+                    </select>
+                @else
+                    <input type="number"
+                        wire:model="miles_to"
+                        wire:change="sendFiltersList('miles_to',$event.target.value)"
+                        min="{{ $miles_min }}"
+                        max={{ $miles_max + $miles_step }}
+                        step="{{ $miles_step }}">
+                @endif
 
-                            </select>
-                        @else
-                            <input type="number"
-                                wire:model="miles_from"
-                                wire:change="sendFiltersList('miles_from',$event.target.value)"
-                                min="{{ $miles_min }}"
-                                max={{ $miles_max }}
-                                step="{{ $miles_step }}">
-                        @endif
+            </div>
 
-                    </div>
 
-                    <div class="d-flex justify-content-between mt-2">
-                        <label >{{ __('To') }}</label>
 
-                        @if(env('APP_TYPE_MILES_SHOW_SELECT',false))
-                            <select wire:model="miles_to"
-                                    wire:change="sendFiltersList('miles_to',$event.target.value)">
-                                    <option value="">{{__("All")}}</option>
-                                    @for($i=$miles_min;$i<$miles_max+$miles_step;$i=$i+$miles_step)
-                                        <option value="{{ $i}}">
-                                            {{  $i }}
-                                        </option>
-                                    @endfor
-
-                            </select>
-                        @else
-                            <input type="number"
-                                wire:model="miles_to"
-                                wire:change="sendFiltersList('miles_to',$event.target.value)"
-                                min="{{ $miles_min }}"
-                                max={{ $miles_max }}
-                                step="{{ $miles_step }}">
-                        @endif
-                    </div>
-
-              </div>
 
 
          </div>

@@ -85,7 +85,7 @@ trait VehicleTrait {
         $this->miles_min = $miles_record->miles;
         $miles_record =  Vehicle::select(DB::raw("MAX(miles) AS miles"))->whereNotNull('miles')->first();
         $this->miles_max = $miles_record->miles;
-        $this->miles_step = env('APP_STEP_MILES',5000);
+        $this->miles_step = env('APP_STEP_MILES',500);
 
     }
 

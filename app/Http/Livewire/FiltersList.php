@@ -13,7 +13,7 @@ class FiltersList extends Component
 
     public function mount(){
         $this->min_max_miles();
-        $this->miles_from   = $this->miles_min;
+        $this->miles_from   = 0;
         $this->miles_to     = $this->miles_max;
       }
 
