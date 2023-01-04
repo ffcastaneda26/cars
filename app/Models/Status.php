@@ -35,10 +35,11 @@ class Status extends Model
       +-----------------+
      */
     
-     public function interested_vehicles(): HasMany
+     public function status_contact(): HasMany
      {
-        $this->hasMany(VehicleUser::class);
+        return $this->hasMany(UserVehicle::class,'user_updated_id');
      }
+
 
 
 

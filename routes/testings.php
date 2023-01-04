@@ -251,13 +251,10 @@ Route::get('consulta/{tabla}/{atributo}',function($tabla,$atributo){
 
 Route::get('contactar/{vehicle}',function(Vehicle $vehicle){
     
-    VehicleUser::create([
-        'user_id'       => Auth::user()->id,
-        'vehicle_id'    => $vehicle->id,
-        'status_id'     => 1
-    ]);
+    //$vehicle->interested_users()->attach(Auth::user()->id);
+   dd($vehicle->interested_users()->get());
+    return $vehicle->interested_users()->get();
 
-    return VehicleUser::all();
 });
 
 Route::get('interesados/{vehicle}',function(Vehicle $vehicle){

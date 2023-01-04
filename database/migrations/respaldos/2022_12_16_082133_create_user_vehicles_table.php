@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Status;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +20,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->comment('Usuario');
             $table->foreignIdFor(Vehicle::class)->comment('Vehículo');
+            $table->string('type',20)->nullable()->default('favorite')->comment('Tipo: favorite o contact');
+            $table->foreignIdFor(Status::class)->nullable()->comment('Estado');
+            $table->foreignId('user_updated_id')->nullable()->constrained('users')->comment('Usuario que actualizó');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_vehicles');
+        Schema::dropIfExists('user_vehicle');
     }
 };

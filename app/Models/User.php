@@ -12,6 +12,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -89,6 +90,7 @@ class User extends Authenticatable
     }
 
 
+
     /*+-------------+
       | Relaciones  |
       +-------------+
@@ -117,6 +119,22 @@ class User extends Authenticatable
 
 
 
+
+     // Vehículos en los que está interesado
+     public function interested_vehicles(): BelongsToMany
+     {
+        return $this->belongsToMany(Vehicle::class)
+                    ->as('interested')
+                    ->withPivot('status_id','user_updated_id')
+                    ->withTimesTamps();
+     }
+
+     // Usuario que actualizó al contactar
+     public function updated_user_contact(): HasMany
+     {
+        return $this->hasMany(UserVehicle::class,'user_updated_id');
+     }
+
     /*+-------------+
       | De Apoyo    |
       +-------------+
@@ -142,10 +160,10 @@ class User extends Authenticatable
         return false;
 	}
 
-        /*+-----------------+
-        | Búsquedas         |
-        +-------------------+
-        */
+    /*+-----------------+
+    | Búsquedas         |
+    +-------------------+
+    */
 
     public function scopeUser($query, $valor)
     {
