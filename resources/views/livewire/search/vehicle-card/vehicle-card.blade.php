@@ -37,9 +37,10 @@
 
             <div class="vehicle-etiquetas">
                 <ul class="list-group list-group-flush">
+
                     @if($vehicle->show_tags() )
-                        @foreach($vehicle->location->dealer->tags as $dealer_tag)
-                            <li class="list-group-item text-bg-warning p-1">
+                        @foreach($vehicle->read_tags_to_show(env('APP_MAX_TAGS_TO_SHOW',1)) as $dealer_tag)
+                            <li class="list-group-item estilo-cuervo p-1">
                                 {{ App::isLocale('en') ? $dealer_tag->english : $dealer_tag->spanish }}
                             </li>
                         @endforeach
@@ -59,6 +60,8 @@
                 <p class="vehicle-precio">
                     @if($vehicle->show_price() && $vehicle->price)
                         ${{number_format($vehicle->price, 0, '.', ',') }}
+                    @else
+                        {{ __('Call for Price') }}
                     @endif
                 </p>
             </div>

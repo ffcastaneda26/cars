@@ -147,6 +147,11 @@
     background-color: rgb(250, 67, 6);
 }
 
+.estilo-cuervo{
+    background-color: rgb(250, 67, 6);
+    color: white;
+}
+
 .boton-cuervo:hover  {
     background-color: black;
     color: white;

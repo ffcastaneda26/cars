@@ -240,6 +240,14 @@ class Vehicle extends Model
         return $this->location->dealer->tags->count();
     }
 
+    /** Leer las etiquetas aleatoriamente */
+
+    public function read_tags_to_show($total_tags=1)
+    {
+       return  $this->location->dealer->tags->random($total_tags);
+
+
+    }
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
