@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\PruebasController;
 use App\Http\Livewire\Vehicles;
+use App\Models\VehicleUser;
 
 Route::get('/', function () {
 
@@ -246,4 +247,20 @@ Route::get('consulta/{tabla}/{atributo}',function($tabla,$atributo){
 
     dd($records);
 
+});
+
+Route::get('contactar/{vehicle}',function(Vehicle $vehicle){
+    
+    VehicleUser::create([
+        'user_id'       => Auth::user()->id,
+        'vehicle_id'    => $vehicle->id,
+        'status_id'     => 1
+    ]);
+
+    return VehicleUser::all();
+});
+
+Route::get('interesados/{vehicle}',function(Vehicle $vehicle){
+    
+    return $vehicle->interested_users()->get();
 });

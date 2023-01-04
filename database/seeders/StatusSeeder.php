@@ -14,12 +14,17 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;'); // Desactivamos la revisión de claves foráneas
+        DB::table('statuses')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;'); // Desactivamos
+
         $sql= "INSERT INTO statuses (spanish,short_spanish,english,short_english) VALUES
-        ('Activo','Activ','Active','Activ'),
-        ('Proceso','Proces','Process','Proces'),
-        ('Terminado','Termin','Finished','Finish'),
-        ('Cancelado','Cancel','Canceled','Cancel')";
+                ('Interesado','Intere','Interested','Intere'),
+                ('Contactado','Contac','Conctacted','Contac'),
+                ('No Inteesado','NotInt','Not Interested','NotInt'),
+                ('Vendido','Vendid','Sold','Sold')";
 
         DB::update ($sql);
     }
 }
+

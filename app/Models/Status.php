@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Status extends Model
@@ -33,7 +34,11 @@ class Status extends Model
       | Relaciones      |
       +-----------------+
      */
-
+    
+     public function interested_vehicles(): HasMany
+     {
+        $this->hasMany(VehicleUser::class);
+     }
 
 
 
