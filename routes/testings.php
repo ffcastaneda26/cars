@@ -6,6 +6,9 @@ use App\Models\Dealer;
 use App\Models\Vehicle;
 use App\Models\Location;
 use App\Models\MissingTag;
+use App\Models\VehicleUser;
+use App\Models\LocationUser;
+use App\Http\Livewire\Vehicles;
 use App\Models\ApiTagsAttribute;
 use App\Models\TemporaryVehicle;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +18,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Livewire\PruebasController;
-use App\Http\Livewire\Vehicles;
-use App\Models\VehicleUser;
 
 Route::get('/', function () {
 
@@ -258,5 +259,35 @@ Route::get('contactar/{vehicle}',function(Vehicle $vehicle){
 });
 
 Route::get('interesados',function(){
-   return User::wherehas('interested_vehicles')->get();
+   
+    $user_locations= LocationUser::select('location_id')
+    ->Where('user_id',Auth::user()->id)
+    ->orderBy('location_id')
+    ->get()
+    ->toArray();
+
+    $users = User::wherehas('interested_vehicles',function($query) use ($user_locations){
+        $query->wherehas('location',function($query) use ($user_locations){
+            $query->wherein('id',$user_locations);
+        });
+    })->get();
+
+    echo 'El usuario tiene acceso a las siguientes localidades' . '<br>';
+    foreach(Auth::user()->locations as $location){
+        echo 'Id=' . $location->id . '=' . $location->name . '<br>';
+    }
+    echo '========================================================' . '<br>';
+    if($users){
+        foreach($users as $user){
+
+
+            echo 'Nombre=' . $user->id .'-' .$user->first_name . ' ' . $user->last_name . ' Tiene  interés en ' . $user->interested_vehicles()->count() . ' Vehículos' .'<br>';
+            foreach($user->interested_vehicles as $interested_vehicle) {
+                echo 'Vehículo: Id=' . $interested_vehicle->vin .' Localidad ->' .  $interested_vehicle->location->id . '=' . $interested_vehicle->location->name . '-' . $interested_vehicle->make . '-' . $interested_vehicle->mocel . '-'. '<br>';
+            }
+        }
+    }else{
+        echo 'No hay usuarios interesados en algún vehículo';
+    }
+
 });
