@@ -7,15 +7,16 @@
            
             @include('livewire.search.commons.vehicle_title')
 
-            @include('livewire.search.commons.vehicle_body')
-
-            <div class="d-flex justify-content-between align-items-start">
+            <div class="mb-0">
                 @include('livewire.search.commons.vehicle_miles')
-                @include('livewire.search.commons.vehicle_favorites')
+            </div>
+
+            <div class="mb-0">
+                @include('livewire.search.commons.vehicle_price')
             </div>
 
             @include('livewire.search.commons.vehicle_tags')
-
+         
         </div>
 
         <div class="card-footer text-muted">
@@ -25,7 +26,8 @@
                         <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" class=" text-white">{{ __('See more') }}</a>
                     </x-jet-button>
                 </p>
-                @include('livewire.search.commons.vehicle_price')
+                @include('livewire.search.commons.vehicle_favorites')
+
             </div>
         </div>
 

@@ -28,6 +28,14 @@
             </li>
         @endif
 
+     
+        <li>
+            <a href="{{route('interested-users')}}" class="waves-effect">
+                <i class="mdi mdi-account-key"></i>
+                <span> {{__('Interested Users')}} </span>
+                </a>
+        </li>
+       
     @endif
 
 

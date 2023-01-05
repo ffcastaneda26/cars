@@ -162,10 +162,8 @@
 /*David's Classes */
 
 .vehicle-precio {
-    text-align: right;
     font-weight: bold;
-    font-size:x-large;
-    float: right;
+    font-size:  x-large;
     color:black;
 }
 
@@ -174,7 +172,8 @@
 }
 
 .vehicle-etiquetas {
-    font-size:x-small;
+    font-size:large;
+    font-weight: bold;
 }
 
 .vehicle-alignleft {

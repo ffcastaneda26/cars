@@ -7,10 +7,9 @@
             aria-haspopup="true"
             aria-expanded="false">
             @if (Auth::user()->favorites->count())
-                <img width="48"
-                    height="48"
-                    class="rounded-circle object-cover"
+                <img class="rounded-circle object-cover"
                     src="{{ asset('/images/icons/favorite_yes.png') }}"
+                    height="35px"
                 >
                 <span class="badge bg-danger rounded-pill">{{ $total_my_favorites }}</span>
             @endif

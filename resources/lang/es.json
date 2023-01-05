@@ -1,4 +1,6 @@
 {
+    "Interested Users": "Usuarios Interesados",
+    
     "The dealer will contact you": "El Distribuidor se comunicará contigo",
     "Contact": "Contactar",
     "Search Vehicles": "Buscar Vehículos",
@@ -17,6 +19,7 @@
     "NUMBER OF SEATS": "NÚMERO DE ASIENTOS",
     "NUMBER OF DOORS": "NÚMERO DE PUERTAS",
     "Email or Phone": "Correo Electrónico o Teléfono",
+    "Name, Email or Phone": "Nombre, Correo  o Teléfono",
     "Weel Size": "Medida Llanta",
     "Body Type": "Tipo",
 
