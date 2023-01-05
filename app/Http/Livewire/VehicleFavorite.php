@@ -13,13 +13,7 @@ class VehicleFavorite extends Component
 
     public function mount(Vehicle $vehicle){
         $this->vehicle = $vehicle;
-        if (Auth::check()){
-            $this->total_favorites_before = Auth::user()->favorites->count();
-
-        }else{
-            $this->total_favorites_before = null;
-        }
-
+        $this->total_favorites_before = Auth::check() ? Auth::user()->total_favorites() : null;
     }
 
     public function render()
@@ -27,15 +21,14 @@ class VehicleFavorite extends Component
         return view('livewire.search.vehicle-favorite');
     }
 
+    // Agrega o quita de favoritos
     public function add_to_my_favorites(){
+        
         if (Auth::check()) {
-            if($this->vehicle->hasUser()){
-                $this->vehicle->interested()->detach(Auth::user()->id);
-
-            }else{
-                $this->vehicle->interested()->attach(Auth::user()->id);
-            }
+            $this->vehicle->hasUser() ? $this->vehicle->user_favorites()->detach(Auth::user()->id)
+                                      : $this->vehicle->user_favorites()->attach(Auth::user()->id,['type'=>'favorite','status_id' => null,'user_updated_id'=> null]);
         }
+
         $this->vehicle = Vehicle::findOrFail($this->vehicle->id);
 
         if(!$this->total_favorites_before){
@@ -45,7 +38,5 @@ class VehicleFavorite extends Component
         $this->emit('total_my_favorites');
 
     }
-
-
 
 }

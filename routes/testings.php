@@ -250,14 +250,13 @@ Route::get('consulta/{tabla}/{atributo}',function($tabla,$atributo){
 });
 
 Route::get('contactar/{vehicle}',function(Vehicle $vehicle){
-    
+
     //$vehicle->interested_users()->attach(Auth::user()->id);
    dd($vehicle->interested_users()->get());
     return $vehicle->interested_users()->get();
 
 });
 
-Route::get('interesados/{vehicle}',function(Vehicle $vehicle){
-    
-    return $vehicle->interested_users()->get();
+Route::get('interesados',function(){
+   return User::wherehas('interested_vehicles')->get();
 });

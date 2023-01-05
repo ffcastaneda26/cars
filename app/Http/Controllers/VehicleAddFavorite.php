@@ -10,7 +10,7 @@ class VehicleAddFavorite extends Controller
 {
     public function add_to_my_favorites(Vehicle $vehicle){
         if(!$vehicle->hasUser()){
-            $vehicle->interested()->attach(Auth::user()->id,['status_id' => null,'user_updated_id'=> null]);
+            $vehicle->user_favorites()->attach(Auth::user()->id);
         }
         return redirect()->route('vehicle-search');
     }

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class UserVehicle extends Model
+class UserVehicle extends Pivot
 {
     use HasFactory;
     protected $table = 'user_vehicle';
@@ -28,7 +29,7 @@ class UserVehicle extends Model
     
     public function status(): BelongsTo
     {
-        return $this->belongsTo(Status::class,'user_updated_id');
+        return $this->belongsTo(Status::class);
     }
 
 

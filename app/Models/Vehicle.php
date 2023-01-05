@@ -59,14 +59,30 @@ class Vehicle extends Model
     public function interested(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
-            ->as('interested')
-            ->withPivot('status_id','user_updated_id')
-            ->withTimesTamps();
+                    ->as('interested')
+                    ->withPivot('status_id','user_updated_id')
+                    ->wherePivot('type', 'favorite')
+                    ->withTimesTamps();
     }
+
+    public function interested_users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)
+                    ->as('interested')
+                    ->withPivot('status_id','user_updated_id')
+                    ->wherePivot('type', 'contact')
+                    ->withTimesTamps();
+    }
+    
 
     public function user_favorites():BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+                ->as('interested')
+                ->withPivot('status_id','user_updated_id')
+                ->wherePivot('type', 'favorite')
+                ->withTimesTamps();
+
     }
 
 
@@ -155,6 +171,7 @@ class Vehicle extends Model
 
     /** ¿Está como favorito para un usuario? */
 
+    // TODO: Cambiar por isFavorite
     public function hasUser($user_id=null){
         // No trae usuario y no está conectado regresa falso
         if(is_null($user_id)){
@@ -173,6 +190,30 @@ class Vehicle extends Model
         return false;
 	}
 
+    // ¿Está el vehículo asociado al usaurio como interesado?
+        public function isInterested($user_id=null){
+        // No trae usuario y no está conectado regresa falso
+        if(is_null($user_id)){
+            if(Auth::check()){
+                $user_id = Auth::user()->id;
+            }else{
+                return false;
+            }
+        }
+
+        return $this->belongsToMany(User::class)
+                    ->as('interested')
+                    ->using(UserVehicle::class)
+                    ->withPivot('status_id','user_updated_id')
+                    ->wherePivot('type', 'contact')
+                    ->wherePivot('user_id',$user_id)
+                    ->withTimesTamps()
+                    ->first();
+
+  	}
+
+
+
     /** Mostrar Etiquetas */
     public function show_tags()
     {
@@ -180,7 +221,7 @@ class Vehicle extends Model
     }
 
     /** Leer las etiquetas aleatoriamente */
-
+    // TODO: La cantidad de etiquetas configuralas a nivel distribuidor (Dealer)
     public function read_tags_to_show($total_tags=1)
     {
        return  $this->location->dealer->tags->random($total_tags);
