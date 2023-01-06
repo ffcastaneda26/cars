@@ -34,6 +34,8 @@
             {{__("Name")}}
         </th>
 
+
+
         <th class="flex orderby"
             wire:click="order('email')">
             @if($sort == 'email')
@@ -63,7 +65,11 @@
             {{__("Phone")}}
         </th>
 
-        <th colspan="2">{{__("Vehicles")}}</th>
+        <th class="">
+            {{__("Date")}}
+        </th>
+        <th>{{__("Status")}}</th>
+        <th>{{__("Actions")}}</th>
 
     </tr>
 </thead>

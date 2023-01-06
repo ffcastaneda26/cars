@@ -1,6 +1,6 @@
 {
     "Interested Users": "Usuarios Interesados",
-    
+    "Interested": "Interesado",
     "The dealer will contact you": "El Distribuidor se comunicará contigo",
     "Contact": "Contactar",
     "Search Vehicles": "Buscar Vehículos",
@@ -177,6 +177,7 @@
     "Email Address":"Correo Electrónico",
     "Phone Number": "Teléfono",
     "Date": "Fecha",
+    "Status": "Estado",
     "Next": "Siguiente",
     "Previous": "Anterior",
     "Contact Us": "Contáctanos",

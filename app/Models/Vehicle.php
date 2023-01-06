@@ -73,7 +73,7 @@ class Vehicle extends Model
                     ->wherePivot('type', 'contact')
                     ->withTimesTamps();
     }
-    
+
 
     public function user_favorites():BelongsToMany
     {
@@ -191,7 +191,7 @@ class Vehicle extends Model
 	}
 
     // ¿Está el vehículo asociado al usaurio como interesado?
-        public function isInterested($user_id=null){
+    public function isInterested($user_id=null){
         // No trae usuario y no está conectado regresa falso
         if(is_null($user_id)){
             if(Auth::check()){
@@ -209,7 +209,6 @@ class Vehicle extends Model
                     ->wherePivot('user_id',$user_id)
                     ->withTimesTamps()
                     ->first();
-
   	}
 
 

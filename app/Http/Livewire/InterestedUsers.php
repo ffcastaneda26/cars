@@ -2,14 +2,19 @@
 
 namespace App\Http\Livewire;
 
+use Exception;
 use App\Models\User;
 use App\Models\Dealer;
+use App\Models\Status;
 use Livewire\Component;
 use App\Traits\UserTrait;
+use App\Models\UserVehicle;
 use App\Models\LocationUser;
 use App\Traits\ZipCodeTrait;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Traits\CrudTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -24,6 +29,9 @@ class InterestedUsers extends Component
     use ZipCodeTrait;
 
     public $user_locations;
+    public $statuses;
+    public $user;
+    public $status_id;
 
     public function mount()
     {
@@ -34,11 +42,10 @@ class InterestedUsers extends Component
         $this->view_table   = 'livewire.intesrested_users.table';
         $this->view_list    = 'livewire.intesrested_users.list';
         $this->allow_create = false;
-        $this->user_locations= LocationUser::select('location_id')
-                                            ->Where('user_id',Auth::user()->id)
-                                            ->orderBy('location_id')
-                                            ->get()
-                                            ->toArray();
+        $this->statuses = App::isLocale('en') ? Status::select('id','english')->orderby('english')->get()
+                                            : Status::select('id','spanish')->orderby('spanish')->get();
+
+
     }
 
     /*+---------------------------------+
@@ -48,14 +55,14 @@ class InterestedUsers extends Component
 
     public function render()
     {
-
         $user_locations= LocationUser::select('location_id')
-        ->Where('user_id',Auth::user()->id)
-        ->orderBy('location_id')
-        ->get()
-        ->toArray();
-    
-        $records = User::wherehas('interested_vehicles',function($query) use ($user_locations){
+                        ->Where('user_id',Auth::user()->id)
+                        ->orderBy('location_id')
+                        ->get()
+                        ->toArray();
+
+        $records = User::With('interested_vehicles')
+                        ->wherehas('interested_vehicles',function($query) use ($user_locations){
                                                 $query->wherehas('location',function($query) use ($user_locations){
                                                     $query->wherein('id',$user_locations);
                                                 });
@@ -63,11 +70,59 @@ class InterestedUsers extends Component
                         ->User($this->search)
                         ->orderby($this->sort,$this->direction)
                         ->paginate($this->pagination);
+
         return view('livewire.index',compact('records'));
 
     }
 
-    
 
+    /*+---------+
+      | Editar  |
+      +---------+
+    */
+
+    public function edit(User $user)
+    {
+       
+        $this->record_id = $user->id;
+        $this->user = $user;
+        $this->status_id = $this->user->first_interested_vehicle()->interested->status_id;
+        $this->openModal();
+
+    }
+
+    /*+-------------+
+      | Atualizar   |
+      +-------------+
+     */
+
+    public function store(){
+        $this->validate([
+            'status_id' =>'required|exists:statuses,id',
+        ]);
+
+        try {
+            UserVehicle::where('user_id', $this->user->id)
+                        ->where('type', 'contact')
+                        ->update(['status_id' => $this->status_id,
+                                'user_updated_id' => Auth::user()->id
+                                ]);
+
+            $this->store_message(__('Interested') );
+
+
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            session()->flash('message',  $message);
+
+        }
+
+    }
+
+    public function resetInputFields()
+    {
+        $this->reset('status_id','user');
+        $this->resetErrorBag();
+    }
 
 }

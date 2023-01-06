@@ -1,0 +1,19 @@
+$sql = "SELECT usu.id ";
+        $sql .= "FROM users as usu,locations as loc,vehicles as veh,location_user as lou,user_vehicle as usv ";
+        $sql .= "WHERE usu.id = lou.user_id";
+        $sql .= "  AND usu.id = usv.user_id";
+        $sql .= "  AND loc.id = veh.location_id";
+        $sql .= "  AND veh.id = usv.vehicle_id";
+        $sql .= "  AND loc.id IN (";
+         foreach($this->user_locations as $user_location){
+            $sql.= $user_location['location_id'] . ",";
+         }
+        $sql = substr($sql,0,strlen($sql)-1);
+        $sql.= ")";
+
+        $records = DB::select($sql);
+        $interested_users = array();
+        foreach ($records as $record) {
+            array_push($interested_users,$record->id);
+        }
+        $records = User::whereIn('id',$interested_users)->paginate($this->pagination);

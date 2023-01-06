@@ -113,7 +113,7 @@ class User extends Authenticatable
                     ->withPivot('status_id','user_updated_id')
                     ->wherePivot('type', 'favorite')
                     ->withTimesTamps();
-        
+
         return $this->belongsToMany(Vehicle::class);
     }
 
@@ -136,6 +136,18 @@ class User extends Authenticatable
                     ->withTimesTamps();
 
       }
+
+      public function first_interested_vehicle()
+      {
+         return $this->belongsToMany(Vehicle::class)
+                     ->as('interested')
+                     ->using(UserVehicle::class)
+                     ->withPivot('status_id','user_updated_id')
+                     ->wherePivot('type', 'contact')
+                     ->withTimesTamps()
+                     ->first();
+       }
+
       // Total de vehículos interesados
       public function total_interested()
       {
