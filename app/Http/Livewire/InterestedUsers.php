@@ -45,7 +45,11 @@ class InterestedUsers extends Component
         $this->statuses = App::isLocale('en') ? Status::select('id','english')->orderby('english')->get()
                                             : Status::select('id','spanish')->orderby('spanish')->get();
 
-
+        $this->user_locations= LocationUser::select('location_id')
+                        ->Where('user_id',Auth::user()->id)
+                        ->orderBy('location_id')
+                        ->get()
+                        ->toArray();
     }
 
     /*+---------------------------------+
@@ -55,21 +59,40 @@ class InterestedUsers extends Component
 
     public function render()
     {
-        $user_locations= LocationUser::select('location_id')
-                        ->Where('user_id',Auth::user()->id)
-                        ->orderBy('location_id')
-                        ->get()
-                        ->toArray();
+        // $user_locations= LocationUser::select('location_id')
+        //                 ->Where('user_id',Auth::user()->id)
+        //                 ->orderBy('location_id')
+        //                 ->get()
+        //                 ->toArray();
 
-        $records = User::With('interested_vehicles')
-                        ->wherehas('interested_vehicles',function($query) use ($user_locations){
-                                                $query->wherehas('location',function($query) use ($user_locations){
-                                                    $query->wherein('id',$user_locations);
-                                                });
-                                            })
-                        ->User($this->search)
-                        ->orderby($this->sort,$this->direction)
-                        ->paginate($this->pagination);
+        // $records = User::With('interested_vehicles')
+        //                 ->wherehas('interested_vehicles',function($query) use ($user_locations){
+        //                                         $query->wherehas('location',function($query) use ($user_locations){
+        //                                             $query->wherein('id',$user_locations);
+        //                                         });
+        //                                     })
+        //                 ->User($this->search)
+        //                 ->orderby($this->sort,$this->direction)
+        //                 ->paginate($this->pagination);
+        $sql = "SELECT usu.id ";
+        $sql .= "FROM users as usu,locations as loc,vehicles as veh,location_user as lou,user_vehicle as usv ";
+        $sql .= "WHERE usu.id = lou.user_id";
+        $sql .= "  AND usu.id = usv.user_id";
+        $sql .= "  AND loc.id = veh.location_id";
+        $sql .= "  AND veh.id = usv.vehicle_id";
+        $sql .= "  AND loc.id IN (";
+         foreach($this->user_locations as $user_location){
+            $sql.= $user_location['location_id'] . ",";
+         }
+        $sql = substr($sql,0,strlen($sql)-1);
+        $sql.= ")";
+
+        $records = DB::select($sql);
+        $interested_users = array();
+        foreach ($records as $record) {
+            array_push($interested_users,$record->id);
+        }
+$records = User::whereIn('id',$interested_users)->paginate($this->pagination);
 
         return view('livewire.index',compact('records'));
 
@@ -83,7 +106,7 @@ class InterestedUsers extends Component
 
     public function edit(User $user)
     {
-       
+
         $this->record_id = $user->id;
         $this->user = $user;
         $this->status_id = $this->user->first_interested_vehicle()->interested->status_id;
