@@ -59,21 +59,16 @@ class InterestedUsers extends Component
 
     public function render()
     {
-        // $user_locations= LocationUser::select('location_id')
-        //                 ->Where('user_id',Auth::user()->id)
-        //                 ->orderBy('location_id')
-        //                 ->get()
-        //                 ->toArray();
 
-        // $records = User::With('interested_vehicles')
-        //                 ->wherehas('interested_vehicles',function($query) use ($user_locations){
-        //                                         $query->wherehas('location',function($query) use ($user_locations){
-        //                                             $query->wherein('id',$user_locations);
-        //                                         });
-        //                                     })
-        //                 ->User($this->search)
-        //                 ->orderby($this->sort,$this->direction)
-        //                 ->paginate($this->pagination);
+        $records = $this->read_records();
+
+        return view('livewire.index',compact('records'));
+
+    }
+
+    // Leer los registros
+
+    private function read_records(){
         $sql = "SELECT usu.id ";
         $sql .= "FROM users as usu,locations as loc,vehicles as veh,location_user as lou,user_vehicle as usv ";
         $sql .= "WHERE usu.id = lou.user_id";
@@ -86,18 +81,25 @@ class InterestedUsers extends Component
          }
         $sql = substr($sql,0,strlen($sql)-1);
         $sql.= ")";
+         if($this->search){
+            $sql .= " AND  (usu.first_name LIKE '%" . $this->search . "%' OR usu.last_name LIKE '%" . $this->search . "%'";
+            $sql .= "  OR   usu.email LIKE '%" . $this->search . "%' OR usu.phone LIKE '%" . $this->search . "%')";
+         }
 
         $records = DB::select($sql);
+
         $interested_users = array();
         foreach ($records as $record) {
             array_push($interested_users,$record->id);
         }
-$records = User::whereIn('id',$interested_users)->paginate($this->pagination);
+        if(count($interested_users)){
+            $records = User::whereIn('id',$interested_users)->paginate($this->pagination);
 
-        return view('livewire.index',compact('records'));
-
+        }else{
+            $records = null;
+        }
+        return $records;
     }
-
 
     /*+---------+
       | Editar  |

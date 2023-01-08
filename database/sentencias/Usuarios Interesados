@@ -1,19 +1,49 @@
-$sql = "SELECT usu.id ";
-        $sql .= "FROM users as usu,locations as loc,vehicles as veh,location_user as lou,user_vehicle as usv ";
-        $sql .= "WHERE usu.id = lou.user_id";
-        $sql .= "  AND usu.id = usv.user_id";
-        $sql .= "  AND loc.id = veh.location_id";
-        $sql .= "  AND veh.id = usv.vehicle_id";
-        $sql .= "  AND loc.id IN (";
-         foreach($this->user_locations as $user_location){
-            $sql.= $user_location['location_id'] . ",";
-         }
-        $sql = substr($sql,0,strlen($sql)-1);
-        $sql.= ")";
+<!-- Con el modelo -->
+ $user_locations= LocationUser::select('location_id')
+                         ->Where('user_id',Auth::user()->id)
+                         ->orderBy('location_id')
+                         ->get()
+                         ->toArray();
 
-        $records = DB::select($sql);
-        $interested_users = array();
-        foreach ($records as $record) {
-            array_push($interested_users,$record->id);
-        }
-        $records = User::whereIn('id',$interested_users)->paginate($this->pagination);
+         $records = User::With('interested_vehicles')
+                         ->wherehas('interested_vehicles',function($query) use ($user_locations){
+                                                 $query->wherehas('location',function($query) use ($user_locations){
+                                                     $query->wherein('id',$user_locations);
+                                                 });
+                                             })
+                         ->User($this->search)
+                         ->orderby($this->sort,$this->direction)
+                         ->paginate($this->pagination);
+
+<!-- Con Sql DIRECTO como está actualmente  -->
+
+// Temporalert alert-foreach($records as $record){
+    dd($record->name,
+        $record->email,
+        $record->phone,
+        $record->first_interested_vehicle()->interested->created_at->diffForHumans(),
+        $record->first_interested_vehicle()->interested->status->english,
+        $record->first_interested_vehicle()->interested->status->spanish);
+}
+
+<!-- Vista Temporal -->
+<tr>
+        <th>
+            <i class="mdi mdi-account-key"></i>
+            <i class="mdi mdi-cursor-pointer"></i>
+            <i class="mdi mdi-badge-account ml-3" ></i>
+            <i class="mdi mdi-badge-account-alert ml-3"></i>
+            <i class="mdi mdi-badge-account-alert-outline ml-3"></i>
+            <i class="mdi mdi-list-status ml-3"></i>
+            <i class="mdi mdi-contacts ml-3"></i>
+            <i class="mdi mdi-contacts-outline ml-3"></i>
+            <i class="mdi mdi-contacts-outline ml-3"></i>
+            <i class="mdi mdi-file-star ml-3"></i>
+            <i class="mdi mdi-file-star-outline ml-3"></i>
+            <i class="mdi mdi-account-star ml-3"></i>
+            <i class="mdi mdi-account-star-outline ml-3"></i>
+            <i class="mdi mdi-card-account-details-star ml-3"></i>
+            <i class="mdi mdi-card-account-details-star-outline ml-3"></i>
+        </th>
+
+    </tr>
