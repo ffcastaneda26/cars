@@ -62,7 +62,7 @@ class InterestedUsers extends Component
 
         $records = $this->read_records();
 
-        return view('livewire.intesrested_users.index',compact('records'));
+        return view('livewire.index',compact('records'));
 
     }
 
