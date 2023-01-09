@@ -1,10 +1,11 @@
 <div>
     {{-- TODO: Investigar si se puede habilitar "ver mas" en esta misma vista del componente --}}
+
     <div class="card h-100" style="width: 18rem;">
         @include('livewire.search.commons.vehicle_photos_carrousel')
 
         <div class="card-body">
-           
+
             @include('livewire.search.commons.vehicle_title')
 
             <div class="mb-0">
@@ -15,8 +16,8 @@
                 @include('livewire.search.commons.vehicle_price')
             </div>
 
-            @include('livewire.search.commons.vehicle_tags')
-         
+            {{-- @include('livewire.search.commons.vehicle_tags') --}}
+
         </div>
 
         <div class="card-footer text-muted">
