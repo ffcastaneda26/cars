@@ -35,9 +35,7 @@
 
         <!-- ========== Left Sidebar Start ========== -->
         @auth
-            @include(env('APP_MAIN_MENU','navigation_menu'))
-
-
+            @include('layouts.home.left_sidebar')
         @endauth
 
         <!-- Contenido Principal -->
