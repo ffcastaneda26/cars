@@ -62,42 +62,38 @@ class InterestedUsers extends Component
 
         $records = $this->read_records();
 
-        return view('livewire.index',compact('records'));
+        return view('livewire.intesrested_users.index',compact('records'));
 
     }
 
     // Leer los registros
 
     private function read_records(){
-        $sql = "SELECT usu.id ";
-        $sql .= "FROM users as usu,locations as loc,vehicles as veh,location_user as lou,user_vehicle as usv ";
-        $sql .= "WHERE usu.id = lou.user_id";
-        $sql .= "  AND usu.id = usv.user_id";
-        $sql .= "  AND loc.id = veh.location_id";
-        $sql .= "  AND veh.id = usv.vehicle_id";
-        $sql .= "  AND loc.id IN (";
-         foreach($this->user_locations as $user_location){
-            $sql.= $user_location['location_id'] . ",";
-         }
-        $sql = substr($sql,0,strlen($sql)-1);
-        $sql.= ")";
-         if($this->search){
-            $sql .= " AND  (usu.first_name LIKE '%" . $this->search . "%' OR usu.last_name LIKE '%" . $this->search . "%'";
-            $sql .= "  OR   usu.email LIKE '%" . $this->search . "%' OR usu.phone LIKE '%" . $this->search . "%')";
-         }
 
-        $records = DB::select($sql);
+        $records = DB::table('users')
+                ->join('user_vehicle', 'users.id', '=', 'user_vehicle.user_id')
+                ->join('vehicles', 'vehicles.id', '=', 'user_vehicle.vehicle_id')
+                ->join('locations', 'locations.id', '=', 'vehicles.location_id')
+                ->whereIn('locations.id',$this->user_locations)
+                ->select('users.id')
+                ->get()
+                ->toArray();
 
         $interested_users = array();
         foreach ($records as $record) {
             array_push($interested_users,$record->id);
         }
-        if(count($interested_users)){
-            $records = User::whereIn('id',$interested_users)->paginate($this->pagination);
 
-        }else{
-            $records = null;
+
+        if(count($interested_users)){
+            $records = User::with('interested_vehicles')
+                        ->whereIn('id',$interested_users)   
+                        ->User($this->search)
+                        ->orderby($this->sort,$this->direction)
+                        ->paginate($this->pagination);
+
         }
+
         return $records;
     }
 
