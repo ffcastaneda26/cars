@@ -34,6 +34,10 @@ trait UserTrait {
 		return $this->belongsToMany(Role::class)->withTimesTamps();
 	}
 
+    public function hasRoles(){
+        return $this->roles->count();
+    }
+
 	public function roles_by_name() {
 		return $this->belongsToMany(Role::class)->withTimesTamps()->orderby('role');
 	}

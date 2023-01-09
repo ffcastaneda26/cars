@@ -113,11 +113,7 @@ class Users extends Component
     {
 
         $this->validateUser();
-        if ($this->record_id) {
-            $user = $this->updateUser();
-        } else {
-            $user = $this->createUser();
-        }
+        $this->record_id ? $this->updateUser() : $this->createUser();
 
         $this->create_button_label = __('Create') . ' ' . __('User');
         $this->store_message(__('User'));
@@ -197,7 +193,7 @@ class Users extends Component
         $user->update([
             'first_name'    => $this->first_name,
             'last_name'     => $this->last_name,
-            'active'    => $this->active ? 1 : 0,
+            'active'        => $this->active ? 1 : 0,
         ]);
 
         if ($this->password) {
@@ -208,9 +204,13 @@ class Users extends Component
             $user->roles()->sync($this->role_id);
         }
 
-        if ($this->role_id == 2 && $this->dealer_id) {
-            $user->dealers()->sync($this->dealer_id);
+        if($user->isManager() && $this->dealer_id){
+            $dealer = Dealer::findOrFail($this->dealer_id);
+
+            $user->dealers()->sync($dealer);
+            $user->locations()->sync($dealer->locations);
         }
+
 
         if (Auth::user()->isAdmin() && $this->role_id == 2 && $this->dealer_id) {
             $user->dealers()->sync($this->dealer_id);
@@ -218,6 +218,13 @@ class Users extends Component
 
         if (Auth::user()->isManager()) {
             $user->dealers()->sync(Auth::user()->dealers->first());
+
+        }
+
+        if($user->isDealer() && $this->dealer_id){
+            $user->dealers()->sync($this->dealer_id);
+            $dealer = Dealer::findOrFail($this->dealer_id);
+            $user->locations()->sync($dealer->locations);
         }
 
         $user->save();
@@ -241,7 +248,10 @@ class Users extends Component
         $this->email        = $record->email;
         $this->phone        = $record->phone;
         $this->active       = $record->active;
-        $this->role_id      = $record->roles()->first()->id;
+
+        if($record->hasRoles()){
+            $this->role_id      = $record->roles()->first()->id;
+        }
         $this->updating_record = true;
         if (!Auth::user()->isAdmin()) {
             $this->dealer_id = Auth::user()->dealers->first()->id;
