@@ -24,7 +24,7 @@
             <div class="flex-flex-column">
                 <input type="text" wire:model="first_name" required placeholder="{{ __('First Name') }}"
                     class="form-control mb-2" maxlength="60"
-                    @if(isset($record->id) && !$record->wolf)
+                    @if(isset($record->id))
                         disabled
                     @endif
                 >

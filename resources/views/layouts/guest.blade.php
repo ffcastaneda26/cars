@@ -16,6 +16,58 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <style>
+            body {
+                margin: 0;
+            }
+
+            .container{
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                height: 100vh;
+            }
+
+            .left{
+                display: flex;
+                place-items: center;
+                text-align: center;
+            }
+
+            .left-contenido{
+                display: flex;
+                place-items: center;
+                text-align: center;
+            }
+
+
+            .right {
+                display: flex;
+                align-items: start;
+                justify-content: start;
+                margin-left: 70px;
+                margin-top: 15px;
+            }
+
+            .right-headings {
+                text-align: start;
+                color: rgb(250, 67, 6);
+                padding: 20px;
+            }
+
+            .right-headings  h1{
+                font-size: 50px;
+                font-weight: bold;
+            }
+
+            .right-headings h2 {
+                font-size: 35px;
+                font-weight: bold;
+            }
+            .right-headings h4 {
+                font-size: 20px;
+            }
+
+        </style>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

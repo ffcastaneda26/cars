@@ -24,6 +24,9 @@ Route::get('/', function () {
     return 'Bienvenido a Pruebas';
 });
 
+Route::get('/new_register',function(){
+    return view('auth.new_register');
+});
 
 Route::get('sucursales',function(){
     $records = Auth::user()->locations()->Name($search)->get();
