@@ -29,16 +29,13 @@
 
             .left{
                 display: flex;
-                place-items: center;
-                text-align: center;
             }
 
-            .left-contenido{
-                display: flex;
-                place-items: center;
-                text-align: center;
-            }
+  
 
+            .left-contenido  {
+                margin-top: 40px;
+            }
 
             .right {
                 display: flex;
