@@ -48,11 +48,6 @@ class Modell extends Model
         }
     }
 
-    public function scopeSlug($query, $valor) {
-        if (trim($valor) != "") {
-            $query->where('slug', '=', "%$valor%");
-        }
-    }
 
     public function scopeMakeId($query, $make_id) {
         if (trim($make_id) != "") {
