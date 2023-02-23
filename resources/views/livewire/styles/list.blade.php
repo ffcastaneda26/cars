@@ -1,6 +1,5 @@
 <tr>
-    <td>{{ $record->spanish }}</td>
-    <td>{{ $record->english }}</td>
+    <td>{{ $record->name }}</td>
     @include('common.crud_actions')
 </tr>
 

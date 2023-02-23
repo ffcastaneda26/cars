@@ -6,6 +6,7 @@ use App\Http\Livewire\Makes;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Colors;
 use App\Http\Livewire\Models;
+use App\Http\Livewire\Styles;
 use App\Http\Livewire\Dealers;
 use App\Http\Livewire\Packages;
 use App\Http\Livewire\Materials;
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('role-permission',RolePermissions::class)->name('role-permission');      // Asigar Permisos al Rol
     Route::get('makes',Makes::class)->name('makes');                                    // Marcas
     Route::get('models',Models::class)->name('models');                                 // Modelos
-
+    Route::get('styles',Styles::class)->name('styles');                                 // Estilos
 
 
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores

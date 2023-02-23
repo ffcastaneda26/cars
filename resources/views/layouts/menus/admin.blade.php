@@ -54,6 +54,15 @@
     </li>
 
 
+    {{-- Estilos --}}
+    <li>
+        <a href="{{route('styles')}}" class="waves-effect">
+            <i class="mdi mdi-alpha-s-box"></i>
+            <span> {{__('Styles')}} </span>
+        </a>
+    </li>
+
+
     {{-- Distribuidores --}}
     <li>
         <a href="{{route('dealers')}}" class="waves-effect">

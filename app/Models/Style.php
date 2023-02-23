@@ -11,8 +11,7 @@ class Style extends Model
     protected $table = 'styles';
     public $timestamps = false;
     protected $fillable =  [
-        'english',
-        'spanish',
+        'name'
     ];
 
 
@@ -40,41 +39,14 @@ class Style extends Model
       +-------------------+
     */
 
-    public function scopeComplete($query,$valor)
+    public function scopeName($query,$valor)
     {
 
         if ( trim($valor) != "") {
-            $query->where('spanish','LIKE',"%$valor%")
-                  ->orwhere('english','LIKE',"%$valor%");
+            $query->where('name','LIKE',"%$valor%");
          }
     }
 
-    public function scopeSpanish($query,$valor)
-    {
-        if ( trim($valor) != "") {
-            $query->where('spanish','LIKE',"%$valor%")
-                  ->orwhere('short_spanish','LIKE',"%$valor%");
-         }
-    }
-    public function scopeEnglish($query,$valor)
-    {
-        if ( trim($valor) != "") {
-            $query->where('english','LIKE',"%$valor%")
-                  ->orwhere('short_english','LIKE',"%$valor%");
-         }
-    }
 
-    public function scopeOnlyEnglish($query,$value){
-        if ( trim($value) != "") {
-            $value = trim($value);
-            $query->where('english',$value);
-         }
-    }
 
-    public function scopeOnlySpanish($query,$value){
-        if ( trim($value) != "") {
-            $value = trim($value);
-            $query->where('spanish',$value);
-         }
-    }
 }

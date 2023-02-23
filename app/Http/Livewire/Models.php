@@ -51,10 +51,9 @@ class Models extends Component
     {
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Model')
                                                             : __('Create') . ' ' . __('Model');
-        return view('livewire.index', [
-            'records' => Modell::Name($this->search)->paginate($this->pagination),
-        ]);
 
+        $records = Modell::Name($this->search)->orderby($this->sort,$this->direction)->paginate(10);
+        return view('livewire.index',compact('records'));
     }
 
 
@@ -86,7 +85,7 @@ class Models extends Component
     +------------------------------+
     */
 
-    public function edit(Model $record)
+    public function edit(Modell $record)
     {
         $this->editRecord($record);
     }
@@ -95,7 +94,7 @@ class Models extends Component
     | Elimina Registro             |
     +------------------------------+
     */
-    public function destroy(Model $record)
+    public function destroy(Modell $record)
     {
         $this->delete_record($record, __('Model') . ' ' . __('Deleted Successfully!!'));
         $this->reset('search');

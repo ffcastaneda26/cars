@@ -24,8 +24,7 @@ class Styles extends Component
 
 
     protected $rules = [
-        'main_record.spanish'       => 'required|min:5|max:25|unique:styles,spanish',
-        'main_record.english'       => 'required|min:5|max:25|unique:styles,english'
+        'main_record.name'       => 'required|min:5|max:25|unique:styles,name'
     ];
 
     public function mount()
@@ -45,7 +44,7 @@ class Styles extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Style')
                                                             : __('Create') . ' ' . __('Style');
 
-        $records = Style::Complete($this->search)->orderby($this->sort,$this->direction)->paginate(10);
+        $records = Style::Name($this->search)->orderby($this->sort,$this->direction)->paginate(10);
         return view('livewire.index',compact('records'));
     }
 
@@ -63,12 +62,9 @@ class Styles extends Component
 
     public function store()
     {
-        $this->rules['main_record.spanish'] = $this->main_record->id ? "required|min:5|max:25|unique:styles,spanish,{$this->main_record->id}"
-                                                                     : 'required|min:5|max:25|unique:styles,spanish';
-        $this->rules['main_record.english'] = $this->main_record->id ? "required|min:5|max:25|unique:styles,english,{$this->main_record->id}"
-                                                                     : 'required|min:5|max:25|unique:styles,english';
-
-        $this->validate();
+        $this->rules['main_record.name'] = $this->main_record->id ? "required|min:5|max:25|unique:styles,name,{$this->main_record->id}"
+                                                                  : 'required|min:5|max:25|unique:styles,name';
+         $this->validate();
         $this->close_store('Style');
     }
 
@@ -81,7 +77,6 @@ class Styles extends Component
     {
         $this->main_record  = $record;
         $this->record_id    = $record->id;
-        $this->create_button_label = __('Update') . ' ' . __('Style');
         $this->openModal();
     }
 
