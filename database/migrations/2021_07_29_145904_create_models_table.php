@@ -16,8 +16,7 @@ class CreateModelsTable extends Migration
         Schema::create('models', function (Blueprint $table) {
             $table->id();
             $table->foreignId('make_id')->constrained()->comment('Marca del vehículo');
-            $table->string('name',200)->comment('Modelo');
-            $table->string('slug',200)->unique()->comment('Slug');
+            $table->string('name',50)->comment('Modelo');
         });
     }
 

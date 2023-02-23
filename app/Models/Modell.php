@@ -12,8 +12,7 @@ class Modell extends Model
     public $timestamps = false;
     protected $fillable = [
         'make_id',
-        'name',
-        'slug'
+        'name'
     ];
 
     /**+-----------------------------+

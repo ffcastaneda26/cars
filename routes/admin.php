@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Livewire\Colors;
-use App\Http\Livewire\Roles;
-use App\Http\Livewire\Dealers;
+use App\Models\User;
+use App\Http\Livewire\Tags;
 use App\Http\Livewire\Makes;
-use App\Http\Livewire\Materials;
+use App\Http\Livewire\Roles;
+use App\Http\Livewire\Colors;
+use App\Http\Livewire\Models;
+use App\Http\Livewire\Dealers;
 use App\Http\Livewire\Packages;
+use App\Http\Livewire\Materials;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Livewire\SocialNetworks;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
-use App\Http\Livewire\SocialNetworks;
-use App\Http\Livewire\Tags;
-use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Hash;
 
 
 Route::get('storage-link',function(){
@@ -40,13 +41,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('roles',Roles::class)->name('roles');                                    // Roles
     Route::get('role-permission',RolePermissions::class)->name('role-permission');      // Asigar Permisos al Rol
     Route::get('makes',Makes::class)->name('makes');                                    // Marcas
+    Route::get('models',Models::class)->name('Models');                                 // Modelos
 
-    Route::get('colors',Colors::class)->name('colors');                                 // Colores
-    Route::get('materials',Materials::class)->name('materials');                        // Material Interior
 
-    Route::get('social-networks',SocialNetworks::class)->name('social-networks');       // Redes Sociales
-    Route::get('packages',Packages::class)->name('packages');                           // Paquetes
-    Route::get('tags',Tags::class)->name('tags');                                       // Etiquetas
 
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
 

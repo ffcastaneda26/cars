@@ -46,51 +46,6 @@
     </li>
 
 
-    {{-- Colores --}}
-    <li>
-        <a href="{{route('colors')}}" class="waves-effect">
-            <i class="mdi  mdi-palette-outline"></i>
-            <span> {{__('Colors')}} </span>
-        </a>
-    </li>
-
-    {{-- Material Interior --}}
-    <li>
-        <a href="{{route('materials')}}" class="waves-effect">
-            <i class="mdi mdi-car-seat"></i>
-            <span> {{__('Materials')}} </span>
-            </a>
-    </li>
-
-    {{-- Redes Sociales --}}
-    <li>
-        <a href="{{route('social-networks')}}" class="waves-effect">
-            <i class="mdi mdi-facebook"></i>
-            <i class="mdi mdi-instagram"></i>
-            <i class="mdi mdi-youtube"></i>
-            <span> {{__('Social Networks')}} </span>
-
-        </a>
-    </li>
-
-    {{-- Paquetes --}}
-
-    <li>
-        <a href="{{route('packages')}}" class="waves-effect">
-            <i class="mdi mdi-package-variant"></i>
-            <span>{{__('Packages')}}</span>
-        </a>
-    </li>
-
-    {{-- Etiquetas --}}
-
-    <li>
-        <a href="{{route('tags')}}" class="waves-effect">
-            <i class="mdi mdi-label-multiple-outline"></i>
-            <span>{{__('Tags')}}</span>
-        </a>
-    </li>
-
     {{-- Distribuidores --}}
     <li>
         <a href="{{route('dealers')}}" class="waves-effect">
