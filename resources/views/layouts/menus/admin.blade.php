@@ -40,8 +40,16 @@
     {{-- Marcas --}}
     <li>
         <a href="{{route('makes')}}" class="waves-effect">
-            <i class="mdi  mdi-palette-outline"></i>
+            <i class="mdi  mdi-airballoon-outline"></i>
             <span> {{__('Makes')}} </span>
+        </a>
+    </li>
+
+    {{-- Modelos --}}
+    <li>
+        <a href="{{route('models')}}" class="waves-effect">
+            <i class="mdi mdi-dump-truck"></i>
+            <span> {{__('Models')}} </span>
         </a>
     </li>
 

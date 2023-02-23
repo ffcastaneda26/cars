@@ -41,7 +41,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('roles',Roles::class)->name('roles');                                    // Roles
     Route::get('role-permission',RolePermissions::class)->name('role-permission');      // Asigar Permisos al Rol
     Route::get('makes',Makes::class)->name('makes');                                    // Marcas
-    Route::get('models',Models::class)->name('Models');                                 // Modelos
+    Route::get('models',Models::class)->name('models');                                 // Modelos
 
 
 
