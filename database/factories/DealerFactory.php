@@ -16,7 +16,6 @@ class DealerFactory extends Factory
     public function definition()
     {
         return [
-            'package_id'    => Package::all()->random()->id,
             'name'          => $this->faker->unique()->company(),
             'address'       => $this->faker->address(),
             'phone'         => $this->faker->numerify('##########'),

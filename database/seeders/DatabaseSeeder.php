@@ -25,15 +25,11 @@ class DatabaseSeeder extends Seeder
             'roles',
             'permissions',
             'statuses',
-            'colors',
-            'materials',
-            'packages',
-            'social_networks',
-            'api_tags_attributes',
-            'missing_tags',
-            'tags',
-            'dealers',
-            'locations',
+            'makes',
+            'models',
+            'styles',
+            'zipcodes',
+            'dealers'
         ]);
 
         $this->call([
@@ -41,14 +37,11 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             StatusSeeder::class,
-            ColorSeeder::class,
-            MaterialSeeder::class,
-            PackageSeeder::class,
-            SocialNetworkSeeder::class,
-            ApiTagsAttributeSeeder::class,
-            TagSeeder::class,
+            MakeSeeder::class,
+            ModelSeeder::class,
+            StyleSeeder::class,
+            ZipcodeSeeder::class,
             DealerSeeder::class,
-            LocationSeeder::class,
         ]);
 
     }

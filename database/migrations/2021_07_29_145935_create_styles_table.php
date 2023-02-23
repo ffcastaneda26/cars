@@ -15,7 +15,7 @@ class CreateStylesTable extends Migration
     {
         Schema::create('styles', function (Blueprint $table) {
             $table->id();
-            $table->string('style',25)->unique();
+            $table->string('name',25)->unique();
         });
     }
 

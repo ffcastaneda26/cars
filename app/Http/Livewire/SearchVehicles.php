@@ -4,33 +4,21 @@ namespace App\Http\Livewire;
 
 use App\Models\Vehicle;
 use Livewire\Component;
+use App\Traits\VariablesTrait;
 use Illuminate\Support\Facades\Auth;
 
 class SearchVehicles extends Component
 {
+    use VariablesTrait;
 
     protected $listeners = ['readFiltersList','readFilterText','search_only_favorites'];
 
     public $filters_list = null;
     public $filters_text = null;
-    public $show_only_favorites = false;
-
-    public $model       = null;
-    public $body        = null;
-    public $color_id    = null;
-    public $model_year  = null;
-    public $make        = null;
-    public $miles_from  = 100;
-    public $miles_to    = 500000;
 
     public function render()
     {
-        if(  $this->show_only_favorites ) {
-            $vehicles = Auth::user()->favorites;
-        }else{
-            $vehicles = $this->searchVehicles();
-        }
-
+        $vehicles = $this->searchVehicles();
         return view('livewire.search.search-vehicles.search-vehicles',compact('vehicles'));
     }
 
@@ -41,25 +29,14 @@ class SearchVehicles extends Component
             case 'model_year':
                 $this->model_year = $value;
                 break;
-
             case 'make':
-                $this->make = $value;
+                $this->search_make_id = $value;
                 break;
             case 'model':
-                $this->model = $value;
+                $this->search_model_id = $value;
                 break;
-            case 'body':
-                $this->body = $value;
-                break;
-            case 'color_id':
-                $this->color_id = $value;
-
-            case 'miles_from':
-                $this->miles_from = $value;
-                break;
-
-            case 'miles_to':
-                $this->miles_to = $value;
+            case 'style':
+                $this->search_style_id = $value;
                 break;
         }
 
@@ -69,22 +46,19 @@ class SearchVehicles extends Component
 
     public function readFilterText($value){
 
+        // TODO:Hay que extraer cada palabra y revisar si es marca,modelo, axo
         $this->filters_text =  $value;
 
     }
 
     // Busca vehículos
     public function searchVehicles(){
-        return Vehicle::with(['location.dealer.package','location.dealer.tags','interested','photos'])
-                    ->ModelYear($this->model_year)
-                    ->Brand($this->make)
-                    ->model($this->model)
-                    ->body($this->body)
-                    ->colorExterior($this->color_id)
-                    ->Miles($this->miles_from,$this->miles_to)
+        return Vehicle::ModelYear($this->model_year)
+                    // ->Brand($this->search_make_id)
+                    ->Model($this->search_model_id)
+                    ->Style($this->search_style_id)
                     ->Available()
                     ->get();
-
     }
 
     // Inicializa valores
@@ -94,24 +68,23 @@ class SearchVehicles extends Component
                 $this->reset('make','model','body','color_id');
                 break;
             case 'make':
-                $this->reset('model','body','color_id');
+                if($this->search_make_id == 'null'){
+                    $this->reset('search_make_id','search_model_id');
+                }else{
+                    $this->reset('search_model_id');
+                }
                 break;
             case 'model':
-                $this->reset('body','color_id');
+                if($this->search_make_id == 'null'){
+                    $this->reset('search_model_id');
+                }
                 break;
-            case 'body':
-                $this->reset('color_id');
+            case 'style':
+                if($this->search_make_id == 'null'){
+                    $this->reset('search_style_id');
+                }
                 break;
-
         }
     }
 
-    // Solo los favoritos
-    public function search_only_favorites()
-    {
-        $this->reset('show_only_favorites');
-        if(Auth::check()){
-            $this->show_only_favorites = Auth::user()->total_favorites();
-        }
-    }
 }

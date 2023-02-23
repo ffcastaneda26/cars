@@ -21,25 +21,14 @@ trait VariablesTrait {
     public $modelsList  = null;
     public $stylesList  = null;
 
+    // Buscar vehiculos
+    public $search_make_id = null;
+    public $search_model_id = null;
+    public $search_style_id = null;
 
 
-    public $colors;
-    public $miles_from;
-    public $miles_to;
-
-
-    public $make        = null;
-    public $model       = null;
-    public $body        = null;
-    public $color_id    = null;
-
-    public $bodiesList  =  null;
-    public $yearsList   =  null;
 
     public $filters_list = null;
     public $filters_text = null;
 
-    public $miles_min;
-    public $miles_max;
-    public $miles_step;
 }

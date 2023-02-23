@@ -37,7 +37,7 @@
             <div class="flex flex-col mb-2 text-left">
                 <label class="mb-2"><strong>{{ __('Model') }}</strong></label>
                 <select wire:model="model_id"
-                        wire:change="sendFiltersList('model_id',$event.target.value)"class="form-select">
+                        wire:change="sendFiltersList('model',$event.target.value)"class="form-select">
                     <option value="0">{{__("All")}}</option>
                     @foreach($modelsList as $model)
                         <option value="{{ $model->id }}">{{ $model->name  }}</option>
@@ -51,15 +51,13 @@
 
                 <label class="mb-2"><strong>{{ __('Style') }}</strong></label>
                 <select wire:model="style_id"
-                        wire:change="sendFiltersList('style_id',$event.target.value)"class="form-select">
+                        wire:change="sendFiltersList('style',$event.target.value)"class="form-select">
                     <option value="">{{__("All")}}</option>
                     @foreach($stylesList as $style)
                         <option value="{{ $style->id }}">{{ $style->name  }}</option>
                     @endforeach
                 </select>
             </div>
-
-
 
          </div>
     </div>

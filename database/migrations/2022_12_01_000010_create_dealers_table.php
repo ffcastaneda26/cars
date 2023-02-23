@@ -16,7 +16,6 @@ class CreateDealersTable extends Migration
     {
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Package::class)->comment('Paquete');
             $table->string('name',150)->unique()->comment('Nombre');
             $table->string('email',100)->unique()->comment('Correo electrónico');
             $table->string('website')->nullable()->default(null)->comment('Sitio Web');
