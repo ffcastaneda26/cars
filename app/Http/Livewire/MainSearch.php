@@ -25,7 +25,5 @@ class MainSearch extends Component
     }
 
 
-
-
 }
 

@@ -4,9 +4,9 @@
     @include('common.crud_header')
     @section('content')
         {{--  TODO: Incluir o no filtro superior  --}}
-        {{--  <div>
+        <div>
             @livewire('filters-text')
-        </div>  --}}
+        </div>
 
         <div>
            @livewire('search-vehicles')

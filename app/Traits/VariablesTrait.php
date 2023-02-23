@@ -14,8 +14,13 @@ namespace App\Traits;
 trait VariablesTrait {
     public $make_id;
     public $model_id;
+    public $style_id;
+
     public $model_year;
     public $makesList   = null;
+    public $modelsList  = null;
+    public $stylesList  = null;
+
 
 
     public $colors;
@@ -28,7 +33,6 @@ trait VariablesTrait {
     public $body        = null;
     public $color_id    = null;
 
-    public $modelsList  =  null;
     public $bodiesList  =  null;
     public $yearsList   =  null;
 
