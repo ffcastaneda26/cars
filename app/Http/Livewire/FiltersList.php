@@ -2,37 +2,27 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Make;
 use App\Models\Color;
 use Livewire\Component;
 use App\Traits\VehicleTrait;
+use App\Traits\VariablesTrait;
 
 class FiltersList extends Component
 {
     use VehicleTrait;
+    use VariablesTrait;
 
 
-    public function mount(){
-        $this->min_max_miles();
-        $this->miles_from   = 0;
-        $this->miles_to     = $this->miles_max;
-      }
 
 
     public function render()
     {
-        if($this->miles_from > $this->miles_to){
-            $this->miles_to = $this->miles_from;
-        }
 
         $this->yearsList      =  $this->fill_model_year_combo('model_year');
-        $this->makesList      =  $this->fill_combos('make');
+        $this->makesList      =  Make::all();
         $this->modelsList     =  $this->fill_combos('model');
         $this->bodiesList     =  $this->fill_combos('body');
-
-        // TODO:: Lista de colores considerar los demas filtros
-        $this->colors = Color::Select('id','english as color')
-                ->wherehas('vehicles_exterior')
-                ->get();
 
 
         return view('livewire.search.filters-list');

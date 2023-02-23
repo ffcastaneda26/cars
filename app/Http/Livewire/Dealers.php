@@ -30,7 +30,7 @@ class Dealers extends Component
         'main_record.email'             => 'required|email|max:100',
         'main_record.phone'             => 'required|digits:10',
         'main_record.address'           => 'required|min:5|max:100',
-        'main_record.zipcode'           => 'required|digits:5|exists:zipcodes,zipcode',
+        'main_record.zipcode'           => 'nullable',
         'main_record.website'           =>'nullable',
         'main_record.logotipo'          =>'nullable',
         'main_record.latitude'          =>'nullable',

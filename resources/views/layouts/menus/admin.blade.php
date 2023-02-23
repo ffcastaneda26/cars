@@ -37,6 +37,13 @@
         </a>
     </li>
 
+    {{-- Marcas --}}
+    <li>
+        <a href="{{route('makes')}}" class="waves-effect">
+            <i class="mdi  mdi-palette-outline"></i>
+            <span> {{__('Makes')}} </span>
+        </a>
+    </li>
 
 
     {{-- Colores --}}

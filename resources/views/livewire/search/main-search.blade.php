@@ -3,10 +3,10 @@
 
     @include('common.crud_header')
     @section('content')
-
-        <div>
+        {{--  TODO: Incluir o no filtro superior  --}}
+        {{--  <div>
             @livewire('filters-text')
-        </div>
+        </div>  --}}
 
         <div>
            @livewire('search-vehicles')

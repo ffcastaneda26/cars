@@ -16,27 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 trait VehicleTrait {
 
-    public $colors;
-    public $miles_from;
-    public $miles_to;
-    public $model_year;
 
-    public $make        = null;
-    public $model       = null;
-    public $body        = null;
-    public $color_id    = null;
-
-    public $makesList   = null;
-    public $modelsList  =  null;
-    public $bodiesList  =  null;
-    public $yearsList   =  null;
-
-    public $filters_list = null;
-    public $filters_text = null;
-
-    public $miles_min;
-    public $miles_max;
-    public $miles_step;
     // Llena combos recibiendo el atributo o campo
     public function fill_combos($attribute){
         return Vehicle::select($attribute, DB::raw( 'count(*) as total'))
