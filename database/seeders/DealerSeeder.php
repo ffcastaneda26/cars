@@ -14,7 +14,7 @@ class DealerSeeder extends Seeder
      */
     public function run()
     {
-        Dealer::factory(1)->create();
+        Dealer::factory(5)->create();
     }
-    
+
 }
