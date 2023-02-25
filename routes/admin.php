@@ -1,19 +1,15 @@
 <?php
 
 use App\Models\User;
-use App\Http\Livewire\Tags;
 use App\Http\Livewire\Makes;
 use App\Http\Livewire\Roles;
-use App\Http\Livewire\Colors;
 use App\Http\Livewire\Models;
 use App\Http\Livewire\Styles;
 use App\Http\Livewire\Dealers;
-use App\Http\Livewire\Packages;
-use App\Http\Livewire\Materials;
+use App\Http\Livewire\Vehicles;
 use App\Http\Livewire\Permissions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Livewire\SocialNetworks;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use Illuminate\Support\Facades\Artisan;
@@ -45,8 +41,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('models',Models::class)->name('models');                                 // Modelos
     Route::get('styles',Styles::class)->name('styles');                                 // Estilos
 
-
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
-
-
+    Route::get('vehicles',Vehicles::class)->name('vehicles');
 });

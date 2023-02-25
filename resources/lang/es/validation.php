@@ -218,6 +218,13 @@ return [
         'package id'            => 'Paquete',
         'first_name'            => 'Nombre',
         'last_name'             => 'Apellido',
+        'make_id'               => 'Marca',
+        'model_id'              => 'Modelo',
+        'style_id'              => 'Estilo',
+        'model_year'            => 'Axo',
+        'price'                 => 'Precio'
+
+
     ]
 
 ];

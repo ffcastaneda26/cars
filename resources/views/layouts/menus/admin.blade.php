@@ -66,11 +66,18 @@
     {{-- Distribuidores --}}
     <li>
         <a href="{{route('dealers')}}" class="waves-effect">
-            <i class="mdi mdi-car-arrow-right"></i>
+            <i class="mdi mdi-car-connected"></i>
             <span> {{__('Dealers')}} </span>
         </a>
     </li>
 
+    {{-- Vehiculos --}}
+    <li>
+        <a href="{{route('vehicles')}}" class="waves-effect">
+            <i class="mdi mdi-car"></i>
+            <span> {{__('Vehicles')}} </span>
+        </a>
+    </li>
 
 
 </ul>

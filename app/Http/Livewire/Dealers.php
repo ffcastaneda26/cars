@@ -25,7 +25,6 @@ class Dealers extends Component
     protected $listeners = ['destroy'];
 
     protected $rules = [
-        'main_record.package_id'        => 'required|exists:packages,id',
         'main_record.name'              => 'required|min:5|max:150',
         'main_record.email'             => 'required|email|max:100',
         'main_record.phone'             => 'required|digits:10',
@@ -36,8 +35,6 @@ class Dealers extends Component
         'main_record.latitude'          =>'nullable',
         'main_record.longitude'         =>'nullable',
         'main_record.position'          =>'nullable',
-        'main_record.expire_at'         =>'nullable',
-        'main_record.max_locations'     =>'nullable|numeric|min:1',
         'main_record.active'            =>'nullable',
         'main_record.complete_address'  =>'nullable',
     ];
@@ -54,7 +51,6 @@ class Dealers extends Component
         $this->view_table   = 'livewire.dealers.table';
         $this->view_list    = 'livewire.dealers.list';
         $this->main_record  = new Dealer();
-        $this->packages     = Package::select('id','name')->orderby('price')->get();
     }
 
     /*+---------------------------------+

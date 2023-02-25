@@ -12,11 +12,19 @@ namespace App\Traits;
 
 
 trait VariablesTrait {
-    public $make_id;
-    public $model_id;
-    public $style_id;
+    public $dealer_id   = null;
+    public $make_id     = null;
+    public $model_id    = null;
+    public $style_id    = null;
 
-    public $model_year;
+    public $dealer      = null;
+    public $make        = null;
+    public $model      = null;
+    public $style      = null;
+
+
+    public $model_year  = null;
+    public $dealersList = null;
     public $makesList   = null;
     public $modelsList  = null;
     public $stylesList  = null;
@@ -27,8 +35,8 @@ trait VariablesTrait {
     public $search_style_id = null;
 
 
-
     public $filters_list = null;
     public $filters_text = null;
+
 
 }

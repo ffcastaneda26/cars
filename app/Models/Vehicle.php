@@ -16,7 +16,7 @@ class Vehicle extends Model
 
     protected $table = 'vehicles';
     protected $fillable =[
-        'stock',
+        'dealer_id',
         'make_id',
         'model_id',
         'style_id',
@@ -24,8 +24,7 @@ class Vehicle extends Model
         'price',
         'available',
         'show',
-        'premium',
-        'description'
+        'stock',
     ];
 
     /**+-------------+
@@ -39,6 +38,10 @@ class Vehicle extends Model
         return $this->hasMany(Photo::class);
     }
 
+    public function dealer()
+    {
+        return $this->belongsTo(Dealer::class);
+    }
     public function make()
     {
         return $this->belongsTo(Make::class);
@@ -55,28 +58,33 @@ class Vehicle extends Model
     }
     /** Funciones de Apoyo */
 
-    public function can_be_delete()
-    {
+    public function can_be_delete(){
+        if($this->photos()->count()){ return false;}
         return true;
     }
 
-
-    /** Es premium */
-    public function is_premium(){
-        return $this->premium;
+    public function total_photos(){
+        return $this->photos()->count();
     }
+
+
 
     /**+----------------------------------------+
      * | Búsquedas x diferentes criterios       |
      * +----------------------------------------+
      */
 
-     public function scopeSearchFull($query,$value){
+     public function scopeComplete($query,$value){
         if($value) {
             $value = trim($value);
-            $query->where(DB::raw("CONCAT(make_id,model_id,style_id,model_year,body)"), 'LIKE', "%$value%");
+            $query->where(DB::raw("CONCAT(dealer_id,make_id,model_id,style_id,model_year,body)"), 'LIKE', "%$value%");
 
         }
+    }
+
+    public function scopeDealer($query, $value)
+    {
+        $query->where('dealer_id', $value);
     }
 
     public function scopeBrand($query, $value)
@@ -108,7 +116,7 @@ class Vehicle extends Model
     {
         if($value){
             $value=trim($value);
-            $query->where('stock', 'LIKE', "%$value%");
+            $query->where('stock',$value);
         }
     }
 

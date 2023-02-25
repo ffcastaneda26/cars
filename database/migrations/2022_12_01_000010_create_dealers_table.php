@@ -23,13 +23,10 @@ class CreateDealersTable extends Migration
             $table->string('address',100)->nullable()->comment('Dirección');
             $table->string('phone',10)->nullable()->comment('Teléfono');
             $table->string('logotipo')->nullable()->default(null)->comment('Logo');
-            $table->tinyInteger('max_locations')->nullable()->default(1)->comment('Máximo de sucursales');
             $table->float('latitude',15,11)->nullable()->default(0)->comment('Latitud');
             $table->float('longitude',15,11)->nullable()->default(0)->comment('Longitud');
             $table->point('position')->nullable()->default(null)->comment('Ubicación en un mapa');
             $table->json('complete_address')->nullable()->default(null)->comment('Dirección completa');
-            $table->timestamp('expire_at')->nullable()->default(null)->comment('Fecha expira licencia');
-            $table->tinyInteger('order_in_search',)->nullable()->default(0)->comment('Orden para presentar resultados');
             $table->boolean('active')->default(1)->comment('Activo?');
             $table->timestamps();
             // Llaves foráneas

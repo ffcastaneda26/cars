@@ -23,52 +23,15 @@ class Dealer extends Model
       | Relaciones  |
       +-------------+
     */
-
-    // Paquete que tiene contratado
-    public function package(): BelongsTo
+    public function vehicles(): HasMany
     {
-        return $this->belongsTo(Package::class);
-    }
-
-    // Usuarios
-    public function users(): BelongsToMany {
-		return $this->belongsToMany(User::class);
+		return $this->hasMany(Vehicle::class);
 	}
 
-    // Etiquetas
-    public function tags(): BelongsToMany {
-        return $this->belongsToMany(Tag::class);
-    }
 
-    // Total de etiquetas
-    public function total_tags()
+    public function show_vehicles()
     {
-        return $this->tags()->count();
-
-    }
-
-    // Sucursales (Localidades)
-    public function locations(): HasMany
-    {
-		return $this->hasMany(Location::class);
-	}
-
-    // Redes Sociales
-
-    public function socials(): MorphToMany
-    {
-        return $this->morphToMany(SocialNetwork::class,'socialable');
-    }
-
-    /** Vehículos a través de localidades */
-    public function vehicles()
-    {
-        return $this->hasManyThrough(Vehicle::class, Location::class);
-    }
-
-    public function premium_vehicles()
-    {
-        return $this->vehicles()->where('premium',1)->count();
+        return $this->vehicles()->where('show',1);
     }
 
     public function available_vehicles()
@@ -77,26 +40,14 @@ class Dealer extends Model
 
     }
 
-    public function total_available_vehicles()
-    {
-        return $this->available_vehicles->count();
-    }
-
-
-
     /** Funciones de Apoyo */
 
     public function can_be_delete(){
-        if($this->locations()->count()){ return false;}
-        if($this->tags()->count()){ return false;}
+        if($this->vehicles()->count()){ return false;}
 
         return true;
     }
 
-    /** Puede agregar vehículos */
-    public function can_create_vehicles(){
-        return $this->total_available_vehicles() < $this->package->max_vehicles_by_dealer;
-    }
 
 
     /**+------------+

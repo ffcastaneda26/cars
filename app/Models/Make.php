@@ -35,6 +35,8 @@ class Make extends Model
 
     public function can_be_delete(){
         if($this->models()->count()){ return false;}
+        if($this->vehicles()->count()){ return false;}
+
         return true;
     }
 
