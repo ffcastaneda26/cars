@@ -1,7 +1,6 @@
 <div>
     <div class="container mt-3">
 
-
          <div class="row text-center">
 
             {{-- Años --}}

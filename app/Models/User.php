@@ -101,65 +101,6 @@ class User extends Authenticatable
 		return $this->belongsToMany(Dealer::class);
 	}
 
-    public function locations(): BelongsToMany
-    {
-		return $this->belongsToMany(Location::class);
-	}
-
-    // Vehiculos
-    public function favorites(): BelongsToMany {
-        return $this->belongsToMany(Vehicle::class)
-                    ->as('favorites')
-                    ->withPivot('status_id','user_updated_id')
-                    ->wherePivot('type', 'favorite')
-                    ->withTimesTamps();
-
-        return $this->belongsToMany(Vehicle::class);
-    }
-
-    // Total de favoritos
-    public function total_favorites()
-    {
-        return $this->favorites->count();
-    }
-
-
-
-
-     // Vehículos en los que está interesado
-     public function interested_vehicles(): BelongsToMany
-     {
-        return $this->belongsToMany(Vehicle::class)
-                    ->as('interested')
-                    ->withPivot('status_id','user_updated_id')
-                    ->wherePivot('type', 'contact')
-                    ->withTimesTamps();
-
-      }
-
-      public function first_interested_vehicle()
-      {
-         return $this->belongsToMany(Vehicle::class)
-                     ->as('interested')
-                     ->using(UserVehicle::class)
-                     ->withPivot('status_id','user_updated_id')
-                     ->wherePivot('type', 'contact')
-                     ->withTimesTamps()
-                     ->first();
-       }
-
-      // Total de vehículos interesados
-      public function total_interested()
-      {
-          return $this->interested_vehicles->count();
-      }
-
-
-     // Usuario que actualizó al contactar
-     public function updated_user_contact(): HasMany
-     {
-        return $this->hasMany(UserVehicle::class,'user_updated_id');
-     }
 
     /*+-------------+
       | De Apoyo    |

@@ -27,7 +27,7 @@
                         <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" class=" text-white">{{ __('See more') }}</a>
                     </x-jet-button>
                 </p>
-                @include('livewire.search.commons.vehicle_favorites')
+
 
             </div>
         </div>

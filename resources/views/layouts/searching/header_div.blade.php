@@ -10,12 +10,7 @@
             @yield('main_title')
         </div>
         <div class="d-flex">
-            <!-- Favoritos-->
-            @auth
-                @if(Auth::user()->favorites->count())
-                    @livewire('show-favorites')
-                @endif
-            @endauth
+
 
             <!-- Cambio de idioma -->
             @if(env('APP_MULTI_LANGUAGE',false))

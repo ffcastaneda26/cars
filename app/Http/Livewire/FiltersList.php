@@ -24,6 +24,7 @@ class FiltersList extends Component
 
     public function render()
     {
+        $this->yearsList      =  $this->fill_model_year_combo('model_year');
         return view('livewire.search.filters-list');
     }
 
@@ -45,6 +46,7 @@ class FiltersList extends Component
         }
 
         $this->emit('readFiltersList',$type,$value);
+
         $this->emit('redirect_to_search');
 
     }
