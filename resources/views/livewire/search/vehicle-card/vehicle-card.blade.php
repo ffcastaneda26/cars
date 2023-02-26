@@ -9,14 +9,14 @@
             @include('livewire.search.commons.vehicle_title')
 
             <div class="mb-0">
-                @include('livewire.search.commons.vehicle_miles')
+                <p class="card-text">{{$vehicle->style->name}} </p>
             </div>
 
-            <div class="mb-0">
+            {{--  TODO: Mostrar o no precio?  --}}
+            {{--  <div class="mb-0">
                 @include('livewire.search.commons.vehicle_price')
-            </div>
+            </div>  --}}
 
-            {{-- @include('livewire.search.commons.vehicle_tags') --}}
 
         </div>
 
@@ -28,8 +28,14 @@
                     </x-jet-button>
                 </p>
 
-
+                <p class="vehicle-alignleft">
+                    <x-jet-button class="btn boton-cuervo waves-effect text-white">
+                        <a href="tel:+2811234567" class=" text-white">{{ __('2811234567') }}</a>
+                 </x-jet-button>
+                </p>
             </div>
+
+
         </div>
 
 
