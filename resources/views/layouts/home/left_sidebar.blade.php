@@ -26,15 +26,6 @@
                                             <li>@include('layouts.menus.admin')</li>
                                         @endif
 
-                                        @if(Auth::user()->isManager())
-                                            <li>@include('layouts.menus.manager')</li>
-                                        @endif
-
-
-                                        @if(Auth::user()->isDealer())
-                                            <li>@include('layouts.menus.dealer')</li>
-                                        @endif
-
                                     @endauth
 
 

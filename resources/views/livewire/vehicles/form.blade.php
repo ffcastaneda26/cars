@@ -126,7 +126,7 @@
                 <textarea wire:model="main_record.description"
                         class="form-control"
 
-                        placeholder="{{_('Descripcion')}}"></textarea>
+                        placeholder="{{_('Description')}}"></textarea>
             </div>
 
             {{--  Disponible  --}}

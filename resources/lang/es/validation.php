@@ -148,7 +148,6 @@ return [
 	'attributes' => [
         'active'=>'Activo',
         'address'=>'Dirección',
-        'color'=>'Color',
         'country'=>'País',
         'country_id'=>'País',
         'date'=>'Fecha',
@@ -157,7 +156,6 @@ return [
         'email'=>'Correo Electrónico',
         'email_verified_at'=>'Verificado el',
         'english'=>'Inglés',
-        'facebook'=>'Facebook',
         'failed_at'=>'Falló en',
         'full_access'=>'Acceso Total',
         'general'=>'General',
@@ -212,19 +210,13 @@ return [
         'agree_be_rules'        => 'Aceptar mayoría de edad',
         'dealer_id'             => 'Distribuidor',
         'price'                 => 'Precio',
-        'miles'                 => 'Millas',
-        'interior_color_id'     => 'Color Interior',
-        'exterior_color_id'     => 'Color Exterior',
-        'package id'            => 'Paquete',
         'first_name'            => 'Nombre',
         'last_name'             => 'Apellido',
         'make_id'               => 'Marca',
         'model_id'              => 'Modelo',
         'style_id'              => 'Estilo',
         'model_year'            => 'Axo',
-        'price'                 => 'Precio'
-
-
+        'price'                 => 'Precio',
     ]
 
 ];

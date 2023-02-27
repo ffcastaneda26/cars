@@ -96,22 +96,12 @@ trait UserTrait {
        return $this->is('admin');
     }
 
-    public function isManager(){
-        return $this->is('manager');
-    }
 
-    public function isDealer(){
-        return $this->is('dealer');
-    }
 
     public function isSupport(){
         return $this->is('support');
     }
 
-    public function isAgent(){
-        return $this->is('agent');
-
-    }
 
 
 }
