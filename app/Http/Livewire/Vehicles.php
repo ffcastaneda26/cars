@@ -24,8 +24,8 @@ class Vehicles extends Component
     use VariablesTrait;
 
     public $stock;
-    public $available;
-    public $show;
+    public $available = 1;
+    public $show = 1;
 
     protected $listeners = ['destroy'];
 
@@ -37,6 +37,7 @@ class Vehicles extends Component
         'main_record.style_id'      =>'required|exists:styles,id',
         'main_record.model_year'    =>'required|digits:4',
         'main_record.price'         =>'nullable',
+        'main_record.description'   =>'nullable',
         'main_record.available'     =>'nullable',
         'main_record.show'          =>'nullable',
         'main_record.stock'         =>'nullable',
@@ -124,7 +125,7 @@ class Vehicles extends Component
         $this->available    = $this->main_record->available;
         $this->show         = $this->main_record->show;
         $this->stock        = $this->main_record->stock;
-
+        $this->read_models();
         $this->openModal();
     }
 

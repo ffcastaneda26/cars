@@ -89,17 +89,23 @@ class Vehicle extends Model
 
     public function scopeBrand($query, $value)
     {
-        $query->where('make_id', $value);
+        if($value){
+            $query->where('make_id', $value);
+        }
     }
 
     public function scopeModel($query, $value)
     {
-        $query->where('model_id', $value);
+        if($value){
+            $query->where('model_id', $value);
+        }
     }
 
     public function scopeStyle($query, $value)
     {
-        $query->where('style_id', $value);
+        if($value){
+            $query->where('style_id', $value);
+        }
     }
 
     public function scopeModelYear($query, $value)

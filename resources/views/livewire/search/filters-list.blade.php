@@ -24,7 +24,9 @@
                            wire:change="sendFiltersList('make',$event.target.value)"class="form-select">
                         <option value="null">{{__("All")}}</option>
                          @foreach($makesList as $make_list)
-                            <option value="{{ $make_list->id }}">{{ $make_list->name }}</option>
+                            <option value="{{ $make_list->id }}">{{ $make_list->name }}
+                                ({{$make_list->vehicles_count }})
+                            </option>
                         @endforeach
 
 
@@ -39,7 +41,9 @@
                         wire:change="sendFiltersList('model',$event.target.value)"class="form-select">
                     <option value="0">{{__("All")}}</option>
                     @foreach($modelsList as $model)
-                        <option value="{{ $model->id }}">{{ $model->name  }}</option>
+                        <option value="{{ $model->id }}">{{ $model->name  }}
+                            ({{$model->vehicles_count }})
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -53,7 +57,9 @@
                         wire:change="sendFiltersList('style',$event.target.value)"class="form-select">
                     <option value="">{{__("All")}}</option>
                     @foreach($stylesList as $style)
-                        <option value="{{ $style->id }}">{{ $style->name  }}</option>
+                        <option value="{{ $style->id }}">{{ $style->name  }}
+                            ({{$style->vehicles_count }})
+                        </option>
                     @endforeach
                 </select>
             </div>

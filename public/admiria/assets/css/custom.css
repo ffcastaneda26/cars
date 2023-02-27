@@ -144,7 +144,8 @@
     background-color: beige
 }
 .boton-cuervo{
-    background-color: rgb(250, 67, 6);
+    background-color: rgb(251, 226, 4);
+    color: black;
 }
 
 .estilo-cuervo{
@@ -153,12 +154,31 @@
 }
 
 .boton-cuervo:hover  {
+    background-color: rgb(251, 226, 4);
+    color: black;
+}
+
+.boton-cuervo a {
+    color: black;
+    text-decoration: none;
+}
+
+.black-button {
     background-color: black;
     color: white;
     font-size: 1.1rem;
 }
 
+.black-button a {
+    color: white;
+    text-decoration: none;
+}
 
+.black-button:hover {
+    background-color: black;
+    color: white;
+    font-size: 1.1rem;
+}
 /*David's Classes */
 
 .vehicle-precio {

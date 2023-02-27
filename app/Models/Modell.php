@@ -22,7 +22,7 @@ class Modell extends Model
 
     // Vehículos
     public function vehicles() {
-		return $this->hasMany(Vehicle::class);
+		return $this->hasMany(Vehicle::class,'model_id','id');
 	}
 
     // Marca
@@ -34,6 +34,8 @@ class Modell extends Model
     /** Funciones de Apoyo */
 
     public function can_be_delete(){
+        if($this->vehicles()->count()){ return false;}
+
         return true;
     }
 
@@ -51,7 +53,7 @@ class Modell extends Model
 
     public function scopeMakeId($query, $make_id) {
         if (trim($make_id) != "") {
-            $query->where('make_id', '=', "%$valor%");
+            $query->where('make_id', $make_id);
         }
     }
 

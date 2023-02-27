@@ -17,6 +17,7 @@ class VehiclesController extends Controller
 
     public function photoStore(Request $request)
     {
+        dd('hola vas a guardar una foto');
         $phtoto = $request->file('file');
         $photoName = $phtoto->getClientOriginalName();
         $phtoto->move(public_path('images'),$photoName);

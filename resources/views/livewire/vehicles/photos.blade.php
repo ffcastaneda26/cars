@@ -32,7 +32,13 @@
 <body>
 <div class="container">
 
-    <h1 class="bg-success text-center">{{ $vehicle->make .'-' . $vehicle->model . '-' . $vehicle->body . '-' . $vehicle->model_year }}</h1>
+    <h1 class="bg-success text-center">
+        {{ $vehicle->model_year }}
+        {{ $vehicle->make->name }}
+        {{ $vehicle->model->name }}
+        {{ $vehicle->style->name }}
+    </h1>
+
     {{-- Muestra las fotos del vehículo y permite borrarlas --}}
     <div class="galeria">
 
@@ -56,19 +62,17 @@
     </div>
 
     {{-- Zona para agregar imágenes --}}
-    @if($vehicle->can_add_photos())
-        <form method="post" action="{{url('manager/vehicles/photos/store')}}" enctype="multipart/form-data"
+        <form method="post" action="{{url('admin/vehicles/photos/store')}}" enctype="multipart/form-data"
                     class="dropzone mb-2" id="dropzone">
             <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}" id="vehicle_id">
             @csrf
 
-        <div class="dz-message" data-dz-message><span>{{ __('Drag & Drop max')  . ' ' . $vehicle->max_photos_allowed() . ' ' . __('Photos') }}</span></div>
+        <div class="dz-message" data-dz-message><span>{{ __('Drag & Drop max')  . ' ' . __('Photos') }}</span></div>
         </form>
-    @endif
 
     {{-- Botón para regresar a vehículos --}}
     <div>
-        <a href="{{route('my-vehicles')}}">
+        <a href="{{route('vehicles')}}">
             <button class="mt-5 py-15 btn bg-success">{{ __('RETURN TO VEHICLES LIST') }}</button>
         </a>
     </div>
@@ -77,7 +81,6 @@
          {
 
             maxFilesize: 12,
-            maxFiles: {{ $vehicle->max_photos_allowed()  }},
             renameFile: function(file) {
                 var dt = new Date();
                 var time = dt.getTime();

@@ -15,7 +15,6 @@ class searchVehicles extends Component
 
     public $filters_list = null;
     public $filters_text = null;
-    public $mensaje_depurar = null;
 
     public function render()
     {
@@ -27,13 +26,18 @@ class searchVehicles extends Component
 
     // Busca vehículos
     public function searchVehicles(){
-        $this->mensaje_depurar .= 'Antes de hacer la lectura' . time();
         return Vehicle::ModelYear($this->model_year)
+                        ->Brand($this->search_make_id)
+                        ->Model($this->search_model_id)
+                        ->Style($this->search_style_id)
                         ->get();
     }
 
     // Lee el filtro recibido
     public function readFiltersList($type,$value){
+        // dd($type,$value);
+        $value = $value == 'null' ? null : $value;
+
             switch ($type) {
                 case 'model_year':
                     $this->model_year = $value;
@@ -82,7 +86,6 @@ class searchVehicles extends Component
                 }
                 break;
         }
-        $this->mensaje_depurar .= 'LUEGO DEPURE ' . time();
     }
 
 }

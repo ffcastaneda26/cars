@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\VehiclesController;
 
 
 Route::get('storage-link',function(){
@@ -43,4 +44,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
     Route::get('vehicles',Vehicles::class)->name('vehicles');
+    Route::get('vehicles/photos/{vehicle}',[VehiclesController::class,'vehicle_photos'])->name('vehicles-photos'); // Subir Fotos
+
 });

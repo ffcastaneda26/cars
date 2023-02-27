@@ -23,14 +23,14 @@
         <div class="card-footer text-muted">
             <div class="d-flex justify-content-between align-items-start">
                 <p class="vehicle-alignleft">
-                       <x-jet-button class="btn boton-cuervo waves-effect">
-                        <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" class=" text-white">{{ __('See more') }}</a>
+                       <x-jet-button class="btn boton-cuervo">
+                        <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" >{{ __('See more') }}</a>
                     </x-jet-button>
                 </p>
 
                 <p class="vehicle-alignleft">
-                    <x-jet-button class="btn boton-cuervo waves-effect text-white">
-                        <a href="tel:+2811234567" class=" text-white">{{ __('2811234567') }}</a>
+                    <x-jet-button class="btn black-button">
+                        <a href="tel:+7132313479">{{ __('Call') }}</a>
                  </x-jet-button>
                 </p>
             </div>

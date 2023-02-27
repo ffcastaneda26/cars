@@ -31,10 +31,9 @@
             <label class="input-group-text mb-2">{{__("Make")}}</label>
             <label class="input-group-text mb-2">{{__("Model")}}</label>
             <label class="input-group-text mb-2">{{__("Style")}}</label>
-            <label class="input-group-text mb-2">{{__("Axo")}}</label>
+            <label class="input-group-text mb-2">{{__("Year")}}</label>
             <label class="input-group-text mb-2">{{__("Price")}}</label>
-            <label class="input-group-text mb-2">{{__("Available")}}</label>
-            <label class="input-group-text mb-2">{{__("Show")}}</label>
+            <label class="input-group-text mb-2">{{__("Description")}}</label>
         </div>
 
         <div class="col flex flex-col">
@@ -78,7 +77,8 @@
                 <option value="">{{__("Model")}}</option>
                 @if($modelsList && $modelsList->count())
                         @foreach($modelsList as $model_select)
-                                <option value="{{ $model_select->id }}" class="normal_option">
+                                <option value="{{ $model_select->id }}"
+                                    class="normal_option">
                                     {{$model_select->name }}
                                 </option>
                         @endforeach
@@ -119,9 +119,19 @@
                     pattern="[0-9]"
                 >
             </div>
+
+
+            {{--  Descripcion  --}}
+            <div class="flex-flex-column mb-2">
+                <textarea wire:model="main_record.description"
+                        class="form-control"
+
+                        placeholder="{{_('Descripcion')}}"></textarea>
+            </div>
+
             {{--  Disponible  --}}
 
-            <div class="flex-flex-column mb-2">
+            {{--  <div class="flex-flex-column mb-2">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" wire:model="available" class="btn-check" id="available_yes" value="1">
                     <label class="btn btn-outline-success" for="available_yes">{{__('Yes')}}</label>
@@ -129,19 +139,9 @@
                     <input type="radio" wire:model="available" class="btn-check ml-4" id="available_no" value="0">
                     <label class="btn btn-outline-danger" for="available_no">{{__('No')}}</label>
                 </div>
-            </div>
+            </div>  --}}
 
             {{--  Mostrar  --}}
-            <div class="flex-flex-column mb-2">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" wire:model="show" class="btn-check" id="show_yes" value="1">
-                    <label class="btn btn-outline-success" for="show_yes">{{__('Yes')}}</label>
-
-                    <input type="radio" wire:model="show" class="btn-check ml-4" id="show_no" value="0">
-                    <label class="btn btn-outline-danger" for="show_no">{{__('No')}}</label>
-                </div>
-            </div>
-
             {{--  <div class="flex-flex-column mb-2">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" wire:model="show" class="btn-check" id="show_yes" value="1">
@@ -151,6 +151,8 @@
                     <label class="btn btn-outline-danger" for="show_no">{{__('No')}}</label>
                 </div>
             </div>  --}}
+
+
         </div>
 
     </div>

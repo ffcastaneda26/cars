@@ -19,7 +19,10 @@ class Style extends Model
       | Relaciones      |
       +-----------------+
      */
-
+    // Vehículos
+    public function vehicles() {
+		return $this->hasMany(Vehicle::class);
+	}
 
 
 
@@ -29,6 +32,8 @@ class Style extends Model
      */
 
     public function can_be_delete(){
+        if($this->vehicles()->count()){ return false;}
+
         return true;
     }
 

@@ -23,11 +23,16 @@
                 @include('livewire.search.commons.vehicle_title')
 
                 </div>
+                <div>
+                    <p>
+                        {{$vehicle->description }}
+                    </p>
+                </div>
             </div>
 
             <div class="row">
                 <div class="card-footer text-muted">
-                    <p class="alinea-derecha">
+                    <p class="rext-left">
                         <strong>{{__('Stock Number')}} {{$vehicle->stock }}</strong>
                     </p>
 
