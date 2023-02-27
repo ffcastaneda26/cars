@@ -37,7 +37,6 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
-        'phone',
         'password',
         'active'
     ];
@@ -137,8 +136,7 @@ class User extends Authenticatable
         if (trim($valor) != '') {
             $query->where('first_name', 'LIKE', "%$valor%")
                 ->orwhere('last_name', 'LIKE', "%$valor%")
-                ->orwhere('email', 'LIKE', "%$valor%")
-                ->orwhere('phone', 'LIKE', "%$valor%");
+                ->orwhere('email', 'LIKE', "%$valor%");
         }
     }
 

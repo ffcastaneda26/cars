@@ -12,6 +12,7 @@
 
 <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link href="/admiria/assets/css/custom.css" rel="stylesheet" type="text/css">
 
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -31,7 +32,7 @@
                 display: flex;
             }
 
-  
+
 
             .left-contenido  {
                 margin-top: 40px;

@@ -22,7 +22,7 @@ class Users extends Component
     use CrudTrait;
     use WithFileUploads;
 
-    public $first_name, $last_name, $email, $phone, $password, $active, $password_confirmation;
+    public $first_name, $last_name, $email,  $password, $active, $password_confirmation;
 
     public $roles = null, $role_id = null, $role = null;
     public $dealers = null, $dealer_id = null;
@@ -101,7 +101,7 @@ class Users extends Component
 
     private function resetInputFields()
     {
-        $this->reset(['record_id', 'first_name', 'last_name', 'email', 'phone', 'record', 'role_id', 'password', 'password_confirmation', 'dealer_id']);
+        $this->reset(['record_id', 'first_name', 'last_name', 'email', 'record', 'role_id', 'password', 'password_confirmation', 'dealer_id']);
     }
 
     /**+------------------------------------+
@@ -132,7 +132,6 @@ class Users extends Component
             'first_name'    => 'required|min:5|max:60',
             'last_name'     => 'required|min:5|max:60',
             'email'         => 'required|email|unique:users,email,' . $this->record_id,
-            'phone'         => 'required|digits:10|unique:users,phone,' . $this->record_id,
             'role_id'       => 'required|exists:roles,id',
         ]);
 
@@ -163,7 +162,6 @@ class Users extends Component
             'first_name'        => $this->first_name,
             'last_name'         => $this->last_name,
             'email'             => $this->email,
-            'phone'             => $this->phone,
             'password'          => Hash::make($this->password),
             'email_verified_at' => now()
         ]);
@@ -246,7 +244,6 @@ class Users extends Component
         $this->first_name   = $record->first_name;
         $this->last_name    = $record->last_name;
         $this->email        = $record->email;
-        $this->phone        = $record->phone;
         $this->active       = $record->active;
 
         if($record->hasRoles()){

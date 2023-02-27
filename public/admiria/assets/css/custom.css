@@ -143,15 +143,18 @@
 .modal-ver-mas-fondo-contenido {
     background-color: beige
 }
-.boton-cuervo{
-    background-color: rgb(251, 226, 4);
-    color: black;
-}
 
 .estilo-cuervo{
     background-color: rgb(250, 67, 6);
     color: white;
 }
+
+.boton-cuervo{
+    background-color: rgb(251, 226, 4);
+    color: black;
+}
+
+
 
 .boton-cuervo:hover  {
     background-color: rgb(251, 226, 4);

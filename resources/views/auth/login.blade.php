@@ -19,7 +19,7 @@
                     @csrf
 
                     <div>
-                        <x-jet-label for="email" value="{{ __('Email or Phone') }}" />
+                        <x-jet-label for="email" value="{{ __('Email') }}" />
                         <x-jet-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus />
                     </div>
 
@@ -30,14 +30,14 @@
 
                     <div class="block mt-4">
                         <label for="remember_me" class="flex items-center">
-                            <x-jet-checkbox id="remember_me" name="remember"  checked/>
-                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                            <x-jet-checkbox id="remember_me" name="remember"  checked class="hidden"/>
+                            <span class="ml-2 text-sm hidden">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
                     <div class="flex items-center justify-between mt-4">
                         @if (Route::has('register'))
-                            <x-jet-button class="ml-4 text-sm text-white boton-cuervo" style="background-color: rgb(250, 67, 6)">
+                              <x-jet-button class="btn boton-cuervo">
                                 <a href="{{ route('register') }}" >{{ __('Register') }}</a>
                             </x-jet-button>
                         @endif

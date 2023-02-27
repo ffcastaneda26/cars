@@ -23,7 +23,7 @@
         <div class="card-footer text-muted">
             <div class="d-flex justify-content-between align-items-start">
                 <p class="vehicle-alignleft">
-                       <x-jet-button class="btn boton-cuervo">
+                    <x-jet-button class="btn boton-cuervo">
                         <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" >{{ __('See more') }}</a>
                     </x-jet-button>
                 </p>
