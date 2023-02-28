@@ -35,6 +35,7 @@ class searchVehicles extends Component
 
     // Recibe los valores para el filtro
     public function readFiltersList($model_year=null,$make_id=null,$model_id=null,$style_id=null){
+        dd('datos recibidos');
         $this->model_year = $model_year;
         $this->make_id = $make_id;
         $this->model_id = $model_id;

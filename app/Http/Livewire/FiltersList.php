@@ -47,15 +47,16 @@ class FiltersList extends Component
     // Regresa el valor
     public function fill_combos_fields(){
         $this->yearsList    =  $this->fill_axos_list();
+        // dd('Cambio la marca=' .$this->make_id );
+
         $this->makesList    =  $this->fill_makes_list($this->model_year,$this->model_id,$this->style_id);
-        $this->modelsList   =  $this->fill_models_list($this->model_year,$this->style_id);
+        $this->modelsList   =  $this->fill_models_list($this->model_year,$this->make_id,$this->style_id);
         $this->stylesList   =  $this->fill_styles_list($this->model_year,$this->make_id,$this->model_id);
     }
 
 
     // Lista de axos
     public function fill_axos_list($make_id=null,$model_id=null,$style_id=null){
-
         return Vehicle::select('model_year', DB::raw( 'count(*) as total'))
                         ->Brand($this->make_id)
                         ->Model($this->model_id)
