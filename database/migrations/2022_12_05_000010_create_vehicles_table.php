@@ -30,7 +30,7 @@ class CreateVehiclesTable extends Migration
             $table->mediumText('description')->nullable()->default(null)->comment('Descripción');
             $table->boolean('available')->default(1)->comment('Disponible?');
             $table->boolean('show')->default(1)->comment('Mostrarlo?');
-            $table->string('stock',20)->nullable()->default(null)->comment('Id Stock Control');
+            $table->string('stock',20)->unique()->comment('Id Stock Control');
             $table->timestamps();
             // Llave foranea que no se pudo asignar con modelo
             $table->foreign('model_id')->references('id')->on('models');

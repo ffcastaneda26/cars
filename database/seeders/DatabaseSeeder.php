@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             'models',
             'styles',
             'zipcodes',
-            'dealers'
+            'dealers',
+            'vehicles'
         ]);
 
         $this->call([
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
             StyleSeeder::class,
             ZipcodeSeeder::class,
             DealerSeeder::class,
+            VehicleSeeder::class,
         ]);
 
     }
