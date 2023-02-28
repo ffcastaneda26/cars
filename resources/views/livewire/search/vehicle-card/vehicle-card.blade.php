@@ -2,16 +2,15 @@
     {{-- TODO: Investigar si se puede habilitar "ver mas" en esta misma vista del componente --}}
 
     <div class="card h-100" style="width: 18rem;">
-        {{--  @include('livewire.search.commons.vehicle_photos_carrousel')  --}}
+
         @if($vehicle->photos->count())
-            <img src="{{ asset('images/' . $vehicle->photos->first()->path) }}" class="d-block w-100 photo-borders-superior">
+            @include('livewire.search.commons.vehicle_photos_carrousel')
         @else
             <img src="{{ asset('images/NoPhotos.jpg') }}" alt="NO TIENE FOTO">
         @endif
 
 
         <div class="card-body">
-
             @include('livewire.search.commons.vehicle_title')
 
             <div class="mb-0">

@@ -50,7 +50,7 @@
                         <img src="{{ asset('images/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
                     </div>
                     <div class="text-center mb-5 py-5">
-                        <form method="post" action="{{url('manager/vehicles/photos/delete')}}" >
+                        <form method="post" action="{{url('admin/vehicles/photos/delete')}}" >
                             <input type="hidden" name="photo" value="{{ $photo->id }}" id="photo">
                             @csrf
                             <button type="submit" class="btn bg-danger">{{ __('Delete Photo') }}</button>
