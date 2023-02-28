@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="text-center">
 
-                        <img src="{{ asset('images/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
+                        <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
                     </div>
                     <div class="text-center mb-5 py-5">
                         <form method="post" action="{{url('admin/vehicles/photos/delete')}}" >
