@@ -27,19 +27,19 @@ class searchVehicles extends Component
     // Busca vehículos
     public function searchVehicles(){
         return Vehicle::ModelYear($this->model_year)
-                        ->Brand($this->make_id)
-                        ->Model($this->model_id)
-                        ->Style($this->style_id)
+                         ->Brand($this->make_id)
+                         ->Model($this->model_id)
+                         ->Style($this->style_id)
                         ->get();
     }
 
     // Recibe los valores para el filtro
     public function readFiltersList($model_year=null,$make_id=null,$model_id=null,$style_id=null){
-        dd('datos recibidos');
+        // dd($model_year);
         $this->model_year = $model_year;
         $this->make_id = $make_id;
         $this->model_id = $model_id;
-        $this->style_id = $model_year;
+        $this->style_id = $style_id;
     }
 
 

@@ -103,17 +103,20 @@ class Vehicle extends Model
 
     public function scopeStyle($query, $value)
     {
+
         if($value){
+            $value=trim($value);
             $query->where('style_id', $value);
         }
+
     }
 
     public function scopeModelYear($query, $value)
     {
+
         if($value){
             $value=trim($value);
-            $query->where('model_year', 'LIKE', "%$value%")
-                    ->orWhereNull('model_year');
+            $query->where('model_year', $value);
         }
     }
 

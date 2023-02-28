@@ -7,7 +7,7 @@
             <div class="flex flex-col mb-2 text-left">
                 <label class="mb-2"><strong>{{ __('Year') }}</strong></label>
                 <select wire:model="model_year"
-                        wire:change="fill_combos_fields"
+                        wire:change="sendFiltersList"
                         class="form-select">
                     <option value="{{null}}">{{__("All")}}</option>
                     @foreach($yearsList as $year)
@@ -21,7 +21,7 @@
             <div class="flex flex-col mb-2 text-left">
                 <label class="mb-2"><strong>{{ __('Make') }}</strong></label>
                 <select wire:model="make_id"
-                           wire:change="fill_combos_fields"
+                           wire:change="sendFiltersList"
                            class="form-select">
                         <option value="{{null}}">{{__("All")}}</option>
                          @foreach($makesList as $make_list)
@@ -39,7 +39,7 @@
             <div class="flex flex-col mb-2 text-left">
                 <label class="mb-2"><strong>{{ __('Model') }}</strong></label>
                 <select wire:model="model_id"
-                        wire:change="fill_combos_fields"
+                        wire:change="sendFiltersList"
                         class="form-select">
                     <option value="{{null}}">{{__("All")}}</option>
                     @foreach($modelsList as $model)
@@ -56,9 +56,9 @@
 
                 <label class="mb-2"><strong>{{ __('Style') }}</strong></label>
                 <select wire:model="style_id"
-                         wire:change="fill_combos_fields"
+                         wire:change="sendFiltersList"
                         class="form-select">
-                    <option value="{{null}}">{{__("All")}}</option>
+                    <option value="">{{__("All")}}</option>
                     @foreach($stylesList as $style)
                         <option value="{{ $style->id }}">{{ $style->name  }}
                             ({{$style->vehicles_count }})
