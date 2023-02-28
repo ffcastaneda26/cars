@@ -48,10 +48,11 @@
                             </a>
                         @endif
 
-
-                        <x-jet-button class="ml-4">
-                            {{ __('Log in') }}
-                        </x-jet-button>
+                        <div class="d-flex justify-content-right">
+                            <x-jet-button>
+                                {{ __('Log in') }}
+                            </x-jet-button>
+                        </div>
                     </div>
                 </form>
             </x-jet-authentication-card>

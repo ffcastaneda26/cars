@@ -11,7 +11,7 @@ class searchVehicles extends Component
 {
     use VariablesTrait;
 
-    protected $listeners = ['readFiltersList','readFilterText','search_only_favorites'];
+    protected $listeners = ['readFiltersList'];
 
     public $filters_list = null;
     public $filters_text = null;
@@ -27,14 +27,23 @@ class searchVehicles extends Component
     // Busca vehículos
     public function searchVehicles(){
         return Vehicle::ModelYear($this->model_year)
-                        ->Brand($this->search_make_id)
-                        ->Model($this->search_model_id)
-                        ->Style($this->search_style_id)
+                        ->Brand($this->make_id)
+                        ->Model($this->model_id)
+                        ->Style($this->style_id)
                         ->get();
     }
 
+    // Recibe los valores para el filtro
+    public function readFiltersList($model_year=null,$make_id=null,$model_id=null,$style_id=null){
+        $this->model_year = $model_year;
+        $this->make_id = $make_id;
+        $this->model_id = $model_id;
+        $this->style_id = $model_year;
+    }
+
+
     // Lee el filtro recibido
-    public function readFiltersList($type,$value){
+    public function readFiltersListOld($type,$value){
         // dd($type,$value);
         $value = $value == 'null' ? null : $value;
 

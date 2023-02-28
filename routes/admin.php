@@ -45,5 +45,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
     Route::get('vehicles',Vehicles::class)->name('vehicles');
     Route::get('vehicles/photos/{vehicle}',[VehiclesController::class,'vehicle_photos'])->name('vehicles-photos'); // Subir Fotos
-
+    Route::post('vehicles/photos/store',[VehiclesController::class, 'photoStore'])->name('vehiles-photos-store');
+    Route::post('vehicles/photos/delete',[VehiclesController::class, 'destroyPhoto'])->name('vehicles-photos-delete');
 });

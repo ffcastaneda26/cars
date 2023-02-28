@@ -7,9 +7,9 @@
             <div class="flex flex-col mb-2 text-left">
                 <label class="mb-2"><strong>{{ __('Year') }}</strong></label>
                 <select wire:model="model_year"
-                        wire:change="sendFiltersList('model_year',$event.target.value)"
+                        wire:change="fill_combos_fields"
                         class="form-select">
-                    <option value="">{{__("All")}}</option>
+                    <option value="{{null}}">{{__("All")}}</option>
                     @foreach($yearsList as $year)
                         <option value="{{ $year->model_year }}">{{ $year->model_year . '(' . $year->total .')' }}</option>
                     @endforeach
