@@ -39,9 +39,6 @@ class DatabaseSeeder extends Seeder
             MakeSeeder::class,
             ModelSeeder::class,
             StyleSeeder::class,
-            ZipcodeSeeder::class,
-            DealerSeeder::class,
-            VehicleSeeder::class,
         ]);
 
     }

@@ -12,6 +12,16 @@ use App\Http\Livewire\MainSearch;
 use App\Http\Livewire\VehicleDetails;
 use App\Http\Livewire\VehicleFavorite;
 
+Route::get('correr-migraciones',function(){
+    Artisan::call('migrate:fresh');
+    return 'Migraciones Ejecutadas';
+});
+
+Route::get('seeder-inicial',function(){
+    Artisan::call('db:seed');
+    return 'Se han poblado las tablas segun DatabaseSeeder';
+});
+
 Route::get('/',MainSearch::class)->name('vehicle-search');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
