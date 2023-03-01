@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Http\Livewire\Leads;
 use App\Http\Livewire\Makes;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Models;
@@ -43,8 +44,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('styles',Styles::class)->name('styles');                                 // Estilos
 
     Route::get('dealers',Dealers::class)->name('dealers');                              // Distribuidores
-    Route::get('vehicles',Vehicles::class)->name('vehicles');
+    Route::get('vehicles',Vehicles::class)->name('vehicles');                           // Vehiculos
+
+    // Manejo de fotograficas
     Route::get('vehicles/photos/{vehicle}',[VehiclesController::class,'vehicle_photos'])->name('vehicles-photos'); // Subir Fotos
     Route::post('vehicles/photos/store',[VehiclesController::class, 'photoStore'])->name('vehiles-photos-store');
     Route::post('vehicles/photos/delete',[VehiclesController::class, 'destroyPhoto'])->name('vehicles-photos-delete');
+
+    // Prospectos
+
+    Route::get('leads',Leads::class)->name('leads');                                     // Prospectos
+
 });

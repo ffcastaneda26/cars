@@ -80,4 +80,12 @@
     </li>
 
 
+    {{-- Prospectos --}}
+    <li>
+        <a href="{{route('leads')}}" class="waves-effect">
+            <i class="mdi mdi-account-supervisor-circle"></i>
+            <span> {{__('Leads')}} </span>
+        </a>
+    </li>
+
 </ul>

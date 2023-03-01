@@ -1,4 +1,7 @@
 {
+    "Name,Phone,Email": "Nombre,Tel, Correo",
+    "Leads" : "Prospectos",
+    "Lead": "Prospecto",
     "Call": "Llamar",
     "Description": "Descripción",
     "Stock Number": "# Stock",
