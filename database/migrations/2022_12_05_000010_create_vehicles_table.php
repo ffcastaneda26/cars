@@ -26,7 +26,6 @@ class CreateVehiclesTable extends Migration
             $table->unsignedBigInteger('model_id')->comment('Modelo');
             $table->foreignIdFor(Style::class)->comment('Estilo');
             $table->year('model_year',)->nullable()->default(null)->index()->comment('Año');
-            $table->float('price', 9, 2)->nullable()->default(null)->default(null)->comment('Precio');
             $table->mediumText('description')->nullable()->default(null)->comment('Descripción');
             $table->boolean('available')->default(1)->comment('Disponible?');
             $table->boolean('show')->default(1)->comment('Mostrarlo?');

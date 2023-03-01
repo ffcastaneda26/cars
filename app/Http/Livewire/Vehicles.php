@@ -36,17 +36,16 @@ class Vehicles extends Component
         'main_record.model_id'      =>'required|exists:models,id',
         'main_record.style_id'      =>'required|exists:styles,id',
         'main_record.model_year'    =>'required|digits:4',
-        'main_record.price'         =>'nullable',
         'main_record.description'   =>'nullable',
         'main_record.available'     =>'nullable',
         'main_record.show'          =>'nullable',
-        'main_record.stock'         =>'nullable',
+        'main_record.stock'         =>'required',
     ];
 
     public function mount()
     {
         $this->authorize('hasaccess', 'styles.index');
-        $this->manage_title = __('Manage') . ' ' . __('Styles');
+        $this->manage_title = __('Manage') . ' ' . __('Vehicles');
         $this->search_label = __('Style');
         $this->view_form    = 'livewire.vehicles.form';
         $this->view_table   = 'livewire.vehicles.table';
@@ -91,23 +90,23 @@ class Vehicles extends Component
 
     public function store()
     {
+        // Si es nuevo se le crea el stock
+        if(!$this->record_id && $this->main_record->dealer_id){
+            $continue = true;
+            while($continue){
+                $random_stock_number = str_pad($this->main_record->dealer_id, 3, "0", STR_PAD_LEFT) . '-' .  rand(1,10000);
+                $exists_stock_number = Vehicle::Stock($random_stock_number)->first();
+                $continue = $exists_stock_number;
+            }
+            $this->main_record->stock =  $random_stock_number;
+        }
 
         $this->validate();
         $this->main_record->available = $this->available ? 1 : 0;
         $this->main_record->show = $this->show ? 1 : 0;
         $this->main_record->save();
 
-        // Si es nuevo se le crea el stock
-        if(!$this->record_id){
-            $continue = true;
-            while($continue){
-                $random_stock_number = str_pad($this->main_record->id, 3, "0", STR_PAD_LEFT) . '-' .  rand(1,10000);
-                $exists_stock_number = Vehicle::Stock($random_stock_number)->first();
-                $continue = $exists_stock_number;
-            }
-            $this->main_record->stock =  $random_stock_number;
-            $this->main_record->save();
-        }
+
 
 
         $this->close_store('Vehicle');

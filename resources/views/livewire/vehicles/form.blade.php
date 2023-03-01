@@ -32,7 +32,6 @@
             <label class="input-group-text mb-2">{{__("Model")}}</label>
             <label class="input-group-text mb-2">{{__("Style")}}</label>
             <label class="input-group-text mb-2">{{__("Year")}}</label>
-            <label class="input-group-text mb-2">{{__("Price")}}</label>
             <label class="input-group-text mb-2">{{__("Description")}}</label>
         </div>
 
@@ -111,14 +110,6 @@
                     max="{{$axo_actual}}"
                 >
 
-            {{--  Precio  --}}
-            <div class="flex-flex-column mb-2">
-                <input type="text"
-                    wire:model="main_record.price"
-                    class="form-control col-md-4 mb-2"
-                    pattern="[0-9]"
-                >
-            </div>
 
 
             {{--  Descripcion  --}}

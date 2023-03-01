@@ -17,11 +17,7 @@ class DealerFactory extends Factory
     {
         return [
             'name'          => $this->faker->unique()->company(),
-            'address'       => $this->faker->address(),
-            'phone'         => $this->faker->numerify('##########'),
-            'email'         => $this->faker->unique()->safeEmail(),
             'zipcode'       => Zipcode::where('town','Houston')->get()->random()->zipcode,
-            'website'       => $this->faker->url(),
         ];
     }
 }

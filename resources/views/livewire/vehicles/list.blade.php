@@ -6,23 +6,7 @@
     <td>{{ $record->style->name}}</td>
     <td>{{ $record->model_year }}</td>
 
-    <td class="text-center">
-        <img src="{{ $record->available ? asset('images/acertado.png') : asset('images/fallado.png')}}"
-            alt="{{ $record->available ? __('Yes') : __('No') }}"
-            height="24px"
-            width="24px"
-            class="rounded-circle"
-        >
-    </td>
 
-    <td class="text-center">
-        <img src="{{ $record->show ? asset('images/acertado.png') : asset('images/fallado.png')}}"
-            alt="{{ $record->show ? __('Yes') : __('No') }}"
-            height="24px"
-            width="24px"
-            class="rounded-circle"
-        >
-    </td>
     <td>{{ $record->stock }}</td>
 
 

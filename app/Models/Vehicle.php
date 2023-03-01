@@ -15,17 +15,7 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $table = 'vehicles';
-    protected $fillable =[
-        'dealer_id',
-        'make_id',
-        'model_id',
-        'style_id',
-        'model_year',
-        'price',
-        'available',
-        'show',
-        'stock',
-    ];
+
 
     /**+-------------+
      * | Relaciones |
