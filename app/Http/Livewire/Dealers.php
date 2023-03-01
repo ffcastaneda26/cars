@@ -25,26 +25,17 @@ class Dealers extends Component
     protected $listeners = ['destroy'];
 
     protected $rules = [
-        'main_record.name'              => 'required|min:5|max:150',
-        'main_record.email'             => 'required|email|max:100',
-        'main_record.phone'             => 'required|digits:10',
-        'main_record.address'           => 'required|min:5|max:100',
-        'main_record.zipcode'           => 'nullable',
-        'main_record.website'           =>'nullable',
-        'main_record.logotipo'          =>'nullable',
-        'main_record.latitude'          =>'nullable',
-        'main_record.longitude'         =>'nullable',
-        'main_record.position'          =>'nullable',
-        'main_record.active'            =>'nullable',
-        'main_record.complete_address'  =>'nullable',
+        'main_record.name'      => 'required|min:3|max:150',
+        'main_record.zipcode'   => 'required|exists:zipcodes,zipcode',
+        'main_record.active'    =>'nullable',
     ];
 
-    public $town_state, $zipcode, $active, $logotipo;
+    public $town_state, $zipcode, $active;
     public $packages;
 
     public function mount()
     {
-        $this->authorize('hasaccess', 'dDealers.index');
+        $this->authorize('hasaccess', 'dealers.index');
         $this->manage_title = __('Manage') . ' ' . __('Dealers');
         $this->search_label = __('Dealer');
         $this->view_form    = 'livewire.dealers.form';
@@ -70,7 +61,7 @@ class Dealers extends Component
 
     public function resetInputFields()
     {
-        $this->reset('town_state', 'zipcode', 'active', 'logotipo');
+        $this->reset('town_state', 'zipcode', 'active');
         $this->main_record = new Dealer();
         $this->resetErrorBag();
     }
@@ -84,18 +75,7 @@ class Dealers extends Component
     {
         $this->validate();
         $this->main_record->active = $this->active ? 1 : 0;
-
-        if($this->logotipo){
-            $Image = $this->logotipo->Store('public/dealers');
-            $this->main_record->logotipo = $Image;
-        }
         $this->main_record->save();
-
-        if ($this->zipcode) {
-            $this->main_record->zipcode = $this->zipcode;
-            $this->main_record->save();
-        }
-
         $this->close_store('Dealer');
     }
 
@@ -109,7 +89,6 @@ class Dealers extends Component
         $this->editRecord($record);
         $this->active       = $record->active;
         $this->read_town_state($this->main_record->zipcode);
-
     }
 
     /*+------------------------------+

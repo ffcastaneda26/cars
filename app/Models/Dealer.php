@@ -29,22 +29,9 @@ class Dealer extends Model
 	}
 
 
-    public function show_vehicles()
-    {
-        return $this->vehicles()->where('show',1);
-    }
-
-    public function available_vehicles()
-    {
-        return $this->vehicles()->where('available',1);
-
-    }
-
     /** Funciones de Apoyo */
 
     public function can_be_delete(){
-        if($this->vehicles()->count()){ return false;}
-
         return true;
     }
 
