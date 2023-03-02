@@ -4,7 +4,9 @@
     <div class="card h-100" style="width: 18rem;">
 
         @if($vehicle->photos->count())
-            @include('livewire.search.commons.vehicle_photos_carrousel')
+            {{--  @include('livewire.search.commons.vehicle_photos_carrousel')  --}}
+            @include('livewire.search.vehicle-card.vehicle-card-carrousel-photos')
+
         @else
             <img src="{{ asset('images/NoPhotos.jpg') }}" alt="NO TIENE FOTO">
         @endif

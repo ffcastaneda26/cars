@@ -1,6 +1,6 @@
 <!-- Carrusel de fotos del Vehiculo-->
 {{--  Para ampliar al  maximo  --}}
-<div class="card h-100" style="width: 18rem;">
+<div class="card h-100">
     @if($vehicle->photos->count())
         @include('livewire.search.show-carrousel-images')
     @else
