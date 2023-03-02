@@ -20,12 +20,12 @@
             {{--  Profile / Logout  --}}
             @auth
                 @include('layouts.home.profile_logout')
-            @else
+            {{--  @else
                 <button class="btn btn-xs"
                         title="{{ __('Log in') }}"
                         style="top: 15px">
                     <a href="{{ route('login') }}">{{ __('Log in') }}</a>
-                </button>
+                </button>  --}}
             @endauth
 
         </div>
