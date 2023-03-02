@@ -19,13 +19,8 @@
                 <p class="card-text">{{$vehicle->style->name}} </p>
             </div>
 
-            {{--  TODO: Mostrar o no precio?  --}}
-            {{--  <div class="mb-0">
-                @include('livewire.search.commons.vehicle_price')
-            </div>  --}}
-
             <div class="d-flex justify-content-end">
-                <div>{{__('Phone')}}:  <strong>713-231-3479</strong></div>
+                <div>{{__('Phone')}}:  <strong>713-231-3470</strong></div>
               </div>
         </div>
 
@@ -39,7 +34,7 @@
 
                 <p class="vehicle-alignleft">
                     <x-jet-button class="btn black-button">
-                        <a href="tel:+7132313479">{{ __('Call') }}</a>
+                        <a href="tel:+7132313470">{{ __('Call') }}</a>
                  </x-jet-button>
                 </p>
             </div>
