@@ -34,7 +34,7 @@
 
                 <p class="vehicle-alignleft">
                     <x-jet-button class="btn black-button">
-                        <a href="tel:+7132313470">{{ __('Call') }}</a>
+                        <a href="tel:+17132313470">{{ __('Call') }}</a>
                  </x-jet-button>
                 </p>
             </div>
