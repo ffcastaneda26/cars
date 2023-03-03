@@ -1,4 +1,4 @@
-<div class="main-content" id="result">
+<div class="main-content-propio" id="result" >
     <div class="page-content">
         {{ $slot }}
          @yield('content')
