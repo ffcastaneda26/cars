@@ -1,5 +1,5 @@
 <header id="page-topbar">
-    <div class="navbar-header">
+    <div class="navbar-header background-top-header">
         <div class="d-flex">
             <!-- LOGO -->
             @include('layouts.home.logo')
@@ -18,7 +18,7 @@
             @if(env('APP_MULTI_LANGUAGE',false))
                 @include('layouts.home.change_language')
             @endif
-            
+
             {{--  Profile / Logout  --}}
             @auth
                 @include('layouts.home.profile_logout')

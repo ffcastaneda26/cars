@@ -1,5 +1,5 @@
 <header id="page-topbar">
-    <div class="navbar-header">
+    <div class="navbar-header background-top-header">
         <div class="d-flex">
             <!-- LOGO -->
             @include('layouts.home.logo')
