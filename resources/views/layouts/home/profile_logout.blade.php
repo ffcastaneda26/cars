@@ -13,9 +13,10 @@
     </button>
     <div class="dropdown-menu dropdown-menu-end">
         <!-- item-->
-        @if(!Auth::user()->update_account && !Auth::user()->change_password)
+        {{--  TODO: Enlace a perfil que no funciona  --}}
+        {{--  @if(!Auth::user()->update_account && !Auth::user()->change_password)
             <a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a>
-        @endif
+        @endif  --}}
 
         <div class="dropdown-divider"></div>
 
