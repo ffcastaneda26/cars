@@ -8,7 +8,7 @@
                 <div class="alinea-derecha">
                     <button class="btn btn-dark mb-2">
                         <a href="{{route('vehicle-search')}}" class="waves-effect" style="none">
-                            <span> {{__('Search Vehicles')}} </span>
+                            <span> {{__('Return')}} </span>
                         </a>
                     </button>
                 </div>
@@ -32,10 +32,18 @@
 
             <div class="row">
                 <div class="card-footer text-muted">
-                    <p class="rext-left">
-                        <strong>{{__('Stock Number')}} {{$vehicle->stock }}</strong>
-                    </p>
+                    <div class="d-flex justify-content-between align-items-start">
 
+                        <p class="vehicle-alignleft">
+                            <strong>{{__('Stock Number')}} {{$vehicle->stock }}</strong>
+                        </p>
+
+                        <p class="vehicle-alignright">
+                            <x-jet-button class="btn black-button">
+                                <a href="tel:+17132313470">{{ __('Call') }}</a>
+                            </x-jet-button>
+                        </p>
+                    </div>
                 </div>
             </div>
 
