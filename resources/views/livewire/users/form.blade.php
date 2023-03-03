@@ -6,12 +6,7 @@
             <label class="input-group-text mb-2">{{ __('First Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Last Name') }}</label>
             <label class="input-group-text mb-2">{{ __('Email') }}</label>
-            <label class="input-group-text mb-2">{{ __('Phone') }}</label>
-
             <label class="input-group-text mb-2">{{ __('Role') }}</label>
-            @if($show_dealers)
-                <label class="input-group-text mb-2">{{ __('Dealer') }}</label>
-            @endif
             <label class="input-group-text mb-2">{{ __('Password') }}</label>
             <label class="input-group-text mb-2">{{ __('Confirm') }}</label>
             @if(isset($record->id))
@@ -53,26 +48,13 @@
                     >
             </div>
 
-            {{-- Teléfono --}}
-            <div class="flex-flex-column">
-                <input type="text"
-                        wire:model="phone"
-                        maxlength="10"
-                        pattern="[0-9]"
-                        placeholder="{{ __('Phone') }}"
-                        class="form-control mb-2"
-                        @if(isset($record->id))
-                            disabled
-                        @endif
-                >
-            </div>
 
             {{-- Rol --}}
             <div class="flex-flex-column">
                 <select wire:model="role_id"
                         class="form-select form-select-md  rounded w-auto mb-2"
                 >
-                    <option>{{ __('Select Role') }}</option>
+                    <option>{{ __('Role') }}</option>
 
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}">
@@ -82,20 +64,6 @@
                 </select>
             </div>
 
-            @if($show_dealers)
-                <div class="flex-flex-column">
-                    <select wire:model="dealer_id"
-                            class="form-select form-select-md  rounded w-auto mb-2">
-                        <option>{{ __('Dealer') }}</option>
-                        @foreach ($dealers as $dealer)
-                            <option value="{{ $dealer->id }}">
-                                {{$dealer->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-            @endif
 
             {{-- Contraseña --}}
                 <div class="flex-flex-column">

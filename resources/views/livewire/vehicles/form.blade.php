@@ -28,10 +28,10 @@
     <div class="row align-items-start">
         <div class="col-md-4 flex flex-col">
             <label class="input-group-text mb-2">{{__("Dealer")}}</label>
+            <label class="input-group-text mb-2">{{__("Year")}}</label>
             <label class="input-group-text mb-2">{{__("Make")}}</label>
             <label class="input-group-text mb-2">{{__("Model")}}</label>
             <label class="input-group-text mb-2">{{__("Style")}}</label>
-            <label class="input-group-text mb-2">{{__("Year")}}</label>
             <label class="input-group-text mb-2">{{__("Description")}}</label>
         </div>
 
@@ -52,6 +52,18 @@
                         </option>
                 @endforeach
             </select>
+
+
+            {{--  Axo Modelo  --}}
+            @php
+                $axo_actual  =  date("Y");
+            @endphp
+            <input type="number"
+                wire:model="main_record.model_year"
+                class="form-control col-md-4 mb-2"
+                min="{{$axo_actual-20}}"
+                max="{{$axo_actual+1}}"
+            >
 
 
             {{--  Marca  --}}
@@ -98,19 +110,6 @@
                         @endforeach
                 @endif
             </select>
-
-            {{--  Axo Modelo  --}}
-                @php
-                    $axo_actual  =  date("Y");
-                @endphp
-                <input type="number"
-                    wire:model="main_record.model_year"
-                    class="form-control col-md-4 mb-2"
-                    min="{{$axo_actual-20}}"
-                    max="{{$axo_actual}}"
-                >
-
-
 
             {{--  Descripcion  --}}
             <div class="flex-flex-column mb-2">

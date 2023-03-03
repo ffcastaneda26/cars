@@ -6,12 +6,7 @@
                     <script>document.write(new Date().getFullYear())</script> © {{ config('app.name')}}.
                 </div>
 
-                <div class="d-flex justify-content-end fs-5">
-                    <span>{{ __('Made in ')}}</span>
-                    <a href="https://koddeplus.com/"
-                        target="_blank"> , {{ env('APP_COPYRIGHT','Koddeplus') }}
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>

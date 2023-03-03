@@ -5,11 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\Role;
 
 use App\Models\User;
-use App\Models\Dealer;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Livewire\Traits\CrudTrait;
@@ -25,9 +25,7 @@ class Users extends Component
     public $first_name, $last_name, $email,  $password, $active, $password_confirmation;
 
     public $roles = null, $role_id = null, $role = null;
-    public $dealers = null, $dealer_id = null;
     public $header;
-    public $show_dealers = false;
 
     /* Inicio de Paginacion y listener */
     protected $paginationTheme = 'bootstrap';
@@ -50,7 +48,6 @@ class Users extends Component
         $this->view_table   = 'livewire.users.table';
         $this->view_list    = 'livewire.users.list';
         $this->readRoles();
-        $this->readDealers();
     }
 
     /**
@@ -62,21 +59,11 @@ class Users extends Component
             : __('Create') . ' ' . __('User');
         $searchTerm = '%' . $this->search . '%';
 
-        if (Auth::user()->IsAdmin()) {
-            $this->show_dealers = $this->role_id == 2;
-            return view('livewire.index', [
-                'records' => User::User($this->search)->paginate($this->pagination),
-            ]);
-        }
-        $this->show_dealers = false;
+        return view('livewire.index', [
+            'records' => User::User($this->search)->paginate($this->pagination),
+        ]);
 
-        if (Auth::user()->dealers->count()) {
 
-            $records = Auth::user()->dealers->first()->users()->paginate($this->pagination);
-        } else {
-            $records = null;
-        }
-        return view('livewire.index', compact('records'));
     }
 
 
@@ -85,14 +72,10 @@ class Users extends Component
 
     private function readRoles()
     {
-        $this->roles = Auth::user()->isAdmin() ? Role::AdminRoles()->get() : Role::ManagerRoles()->get();
+        $this->roles = App::isLocale('en') ? Role::orderby('english')->get() : Role::orderby('spanish')->get();
     }
 
-    // Lee los dealers
-    private function readDealers()
-    {
-        $this->dealers = Auth::user()->isAdmin() ? Dealer::orderby('name')->get() : null;
-    }
+
 
 
     /**
@@ -101,7 +84,7 @@ class Users extends Component
 
     private function resetInputFields()
     {
-        $this->reset(['record_id', 'first_name', 'last_name', 'email', 'record', 'role_id', 'password', 'password_confirmation', 'dealer_id']);
+        $this->reset(['record_id', 'first_name', 'last_name', 'email', 'record', 'role_id', 'password', 'password_confirmation']);
     }
 
     /**+------------------------------------+
@@ -111,11 +94,8 @@ class Users extends Component
 
     public function store()
     {
-
         $this->validateUser();
         $this->record_id ? $this->updateUser() : $this->createUser();
-
-        $this->create_button_label = __('Create') . ' ' . __('User');
         $this->store_message(__('User'));
         $this->closeModal();
         $this->resetInputFields();
@@ -143,11 +123,7 @@ class Users extends Component
         }
 
 
-        if ($this->role_id == 2 || $this->role_id == 4) {
-            $this->validate([
-                'dealer_id' => 'required|exists:roles,id',
-            ]);
-        }
+
     }
 
     /**+----------------+
@@ -167,15 +143,6 @@ class Users extends Component
         ]);
 
         $user->roles()->sync($this->role_id);
-
-        if (Auth::user()->isAdmin() && $this->role_id == 2 && $this->dealer_id) {
-            $user->dealers()->sync($this->dealer_id);
-        }
-
-        if (Auth::user()->isManager()) {
-            $user->dealers()->sync(Auth::user()->dealers->first());
-        }
-
         $user->save();
         return $user;
     }
@@ -200,29 +167,6 @@ class Users extends Component
 
         if ($this->role_id) {
             $user->roles()->sync($this->role_id);
-        }
-
-        if($user->isManager() && $this->dealer_id){
-            $dealer = Dealer::findOrFail($this->dealer_id);
-
-            $user->dealers()->sync($dealer);
-            $user->locations()->sync($dealer->locations);
-        }
-
-
-        if (Auth::user()->isAdmin() && $this->role_id == 2 && $this->dealer_id) {
-            $user->dealers()->sync($this->dealer_id);
-        }
-
-        if (Auth::user()->isManager()) {
-            $user->dealers()->sync(Auth::user()->dealers->first());
-
-        }
-
-        if($user->isDealer() && $this->dealer_id){
-            $user->dealers()->sync($this->dealer_id);
-            $dealer = Dealer::findOrFail($this->dealer_id);
-            $user->locations()->sync($dealer->locations);
         }
 
         $user->save();
@@ -250,10 +194,6 @@ class Users extends Component
             $this->role_id      = $record->roles()->first()->id;
         }
         $this->updating_record = true;
-        if (!Auth::user()->isAdmin()) {
-            $this->dealer_id = Auth::user()->dealers->first()->id;
-        }
-
 
         $this->openModal();
     }
