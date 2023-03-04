@@ -16,12 +16,18 @@ class FiltersSearchTop extends Component
     use VehicleTrait;
     use VariablesTrait;
 
+    public $style_route =  null;
+
+
     public function mount(){
+
         $this->fill_combos_fields();
     }
 
+
     public function render()
     {
+        // dd('estilo desde la ruta=' . $this->style_route);
         return view('livewire.search.filters-search-top');
 
     }
@@ -48,8 +54,6 @@ class FiltersSearchTop extends Component
     // Regresa el valor
     public function fill_combos_fields(){
         $this->yearsList    =  $this->fill_axos_list();
-        // dd('Cambio la marca=' .$this->make_id );
-
         $this->makesList    =  $this->fill_makes_list($this->model_year,$this->model_id,$this->style_id);
         $this->modelsList   =  $this->fill_models_list($this->model_year,$this->make_id,$this->style_id);
         $this->stylesList   =  $this->fill_styles_list($this->model_year,$this->make_id,$this->model_id);
@@ -244,85 +248,90 @@ class FiltersSearchTop extends Component
 
     // Combo Estilos
     public function  fill_styles_list($model_year=null,$make_id=null,$model_id=null){
-        // Solo el axo
-        if($model_year && !$make_id && !$model_id){
-            return  Style::select('id','name')
-                    ->wherehas('vehicles',function($query) use($model_year){
-                        $query->where('model_year',$model_year);
-                    })
-                    ->withCount('vehicles')
-                    ->get();
-        }
+            // Solo el axo
+            if($model_year && !$make_id && !$model_id){
+                return  Style::select('id','name')
+                        ->wherehas('vehicles',function($query) use($model_year){
+                            $query->where('model_year',$model_year);
+                        })
+                        ->withCount('vehicles')
+                        ->get();
+            }
 
-        // Axo y marca
-        if($model_year && $make_id && !$model_id){
-            return  Style::select('id','name')
-                    ->wherehas('vehicles',function($query) use($model_year,$make_id){
-                        $query->where('model_year',$model_year)
-                                ->where('make_id',$make_id);
-                    })
-                    ->withCount('vehicles')
-                    ->get();
-        }
+            // Axo y marca
+            if($model_year && $make_id && !$model_id){
+                return  Style::select('id','name')
+                        ->wherehas('vehicles',function($query) use($model_year,$make_id){
+                            $query->where('model_year',$model_year)
+                                    ->where('make_id',$make_id);
+                        })
+                        ->withCount('vehicles')
+                        ->get();
+            }
 
-        // Axo - Marca - Modelo
-        if($model_year && $make_id && $model_id){
-            return  Style::select('id','name')
-                    ->wherehas('vehicles',function($query) use($model_year,$make_id,$model_id){
-                        $query->where('model_year',$model_year)
-                              ->where('make_id',$make_id)
-                              ->where('model_id',$model_id);
-                    })
-                    ->withCount('vehicles')
-                    ->get();
-        }
-
-        // Solo marca
-        if(!$model_year && $make_id && !$model_id){
-            return  Style::select('id','name')
-                    ->wherehas('vehicles',function($query) use($make_id){
-                        $query->where('make_id',$make_id);
-                    })
-                    ->withCount('vehicles')
-                    ->get();
-        }
-
-
-        // Marca y Modelo
-        if(!$model_year && $make_id && $model_id){
-            return  Style::select('id','name')
-                    ->wherehas('vehicles',function($query) use($make_id,$model_id){
-                        $query->where('make_id',$make_id)
+            // Axo - Marca - Modelo
+            if($model_year && $make_id && $model_id){
+                return  Style::select('id','name')
+                        ->wherehas('vehicles',function($query) use($model_year,$make_id,$model_id){
+                            $query->where('model_year',$model_year)
+                                ->where('make_id',$make_id)
                                 ->where('model_id',$model_id);
-                    })
-                    ->withCount('vehicles')
-                    ->get();
-        }
+                        })
+                        ->withCount('vehicles')
+                        ->get();
+            }
 
-        // Solo Modelo
-        if(!$model_year && !$make_id && $model_id){
-            return  Style::select('id','name')
-                    ->wherehas('vehicles',function($query) use($model_id){
-                        $query->where('model_id',$model_id);
-                    })
-                    ->withCount('vehicles')
-                    ->get();
-        }
+            // Solo marca
+            if(!$model_year && $make_id && !$model_id){
+                return  Style::select('id','name')
+                        ->wherehas('vehicles',function($query) use($make_id){
+                            $query->where('make_id',$make_id);
+                        })
+                        ->withCount('vehicles')
+                        ->get();
+            }
 
-        // Todos
-       return Style::orderby('name')
-                    ->wherehas('vehicles')
-                    ->orderby('name')
-                    ->withCount('vehicles')
-                    ->get();
+
+            // Marca y Modelo
+            if(!$model_year && $make_id && $model_id){
+                return  Style::select('id','name')
+                        ->wherehas('vehicles',function($query) use($make_id,$model_id){
+                            $query->where('make_id',$make_id)
+                                    ->where('model_id',$model_id);
+                        })
+                        ->withCount('vehicles')
+                        ->get();
+            }
+
+            // Solo Modelo
+            if(!$model_year && !$make_id && $model_id){
+                return  Style::select('id','name')
+                        ->wherehas('vehicles',function($query) use($model_id){
+                            $query->where('model_id',$model_id);
+                        })
+                        ->withCount('vehicles')
+                        ->get();
+            }
+
+            // Todos
+            return Style::orderby('name')
+                            ->wherehas('vehicles')
+                            ->orderby('name')
+                            ->withCount('vehicles')
+                            ->get();
+
     }
 
     // Envia el Filtros a Listener
-    public function sendFiltersList()
-    {
-        $this->fill_combos_fields();
+    public function sendFiltersList(){
+        // dd('estilo desde la ruta dentro de fill_styles_list=' . $this->style_route);
+        if(!$this->style_route){
+            dd('va a llenar combos');
+            $this->fill_combos_fields();
+        }
         $this->emit('readFiltersList',$this->model_year,$this->make_id,$this->model_id,$this->style_id);
         $this->emit('redirect_to_search');
 
     }
+
 }

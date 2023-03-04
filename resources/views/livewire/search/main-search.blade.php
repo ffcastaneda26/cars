@@ -4,11 +4,11 @@
     @include('common.crud_header')
     @section('content')
         <div>
-            @livewire('filters-search-top')
+            @livewire('filters-search-top', ['style_route' => $style_search])
         </div>
 
         <div>
-           @livewire('search-vehicles')
+           @livewire('search-vehicles',['style_route' => $style_search])
         </div>
 
     @endsection

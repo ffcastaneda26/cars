@@ -2,15 +2,22 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Style;
 use Livewire\Component;
 use App\Http\Livewire\Traits\CrudTrait;
 
 class MainSearch extends Component
 {
     use CrudTrait;
+    public $style_search = null;
 
-    public function mount()
+
+    public function mount($style = null)
     {
+        if($style){
+            $this->style_search = $style;
+        }
+
         $this->manage_title = null;
     }
 
@@ -18,6 +25,7 @@ class MainSearch extends Component
       | Regresa Vista   |
       +-----------------+
     */
+
 
     public function render()
     {

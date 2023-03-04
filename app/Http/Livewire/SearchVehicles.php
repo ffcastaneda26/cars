@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Style;
 use App\Models\Vehicle;
 use Livewire\Component;
 use App\Traits\VariablesTrait;
@@ -11,17 +12,31 @@ class searchVehicles extends Component
 {
     use VariablesTrait;
 
-    protected $listeners = ['readFiltersList'];
+    protected $listeners = ['readFiltersList','readRouteStyle'];
+
 
     public $filters_list = null;
-    public $filters_text = null;
+    public $style_route = null;
+
 
     public function render()
     {
+        if($this->style_route){
+            $this->style_route = strtoupper($this->style_route);
+            if( $this->style_route == 'PICKUP'){
+                $this->style_route = 'PICK-UP';
+            }
+
+            $record_style = Style::where('name',$this->style_route)->first();
+            if($record_style){
+                $this->style_id = $record_style->id;
+            }
+        }
         $vehicles = $this->searchVehicles();
         return view('livewire.search.search-vehicles.search-vehicles',compact('vehicles'));
     }
 
+        // Recibe los valores para el filtro
 
 
     // Busca vehículos
@@ -34,43 +49,16 @@ class searchVehicles extends Component
     }
 
     // Recibe los valores para el filtro
+    public function readRouteStyle($style_id=null){
+        $this->style_id = $style_id;
+    }
+
+    // Recibe los valores para el filtro
     public function readFiltersList($model_year=null,$make_id=null,$model_id=null,$style_id=null){
-        // dd($model_year);
         $this->model_year = $model_year;
         $this->make_id = $make_id;
         $this->model_id = $model_id;
         $this->style_id = $style_id;
-    }
-
-
-    // Lee el filtro recibido
-    public function readFiltersListOld($type,$value){
-        // dd($type,$value);
-        $value = $value == 'null' ? null : $value;
-
-            switch ($type) {
-                case 'model_year':
-                    $this->model_year = $value;
-                    break;
-                case 'make':
-                    $this->search_make_id = $value;
-                    break;
-                case 'model':
-                    $this->search_model_id = $value;
-                    break;
-                case 'style':
-                    $this->search_style_id = $value;
-                    break;
-            }
-
-            $this->reset_values($type);
-    }
-
-    public function readFilterText($value){
-
-        // TODO:Hay que extraer cada palabra y revisar si es marca,modelo, axo
-        $this->filters_text =  $value;
-
     }
     // Inicializa valores
     public function reset_values($type){

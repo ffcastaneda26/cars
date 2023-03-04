@@ -24,7 +24,8 @@ trait VariablesTrait {
     public $style      = null;
 
 
-
+    //    Estilos
+    public $yearsList   = null;
     public $dealersList = null;
     public $makesList   = null;
     public $modelsList  = null;

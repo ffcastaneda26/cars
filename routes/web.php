@@ -3,14 +3,15 @@
 use App\Http\Livewire\Users;
 
 
+use App\Http\Livewire\MainSearch;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\FacebookLoginController;
-use App\Http\Controllers\VehicleAddFavorite;
-use App\Http\Livewire\MainSearch;
 use App\Http\Livewire\VehicleDetails;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\SearchsByStyles;
 use App\Http\Livewire\VehicleFavorite;
+use App\Http\Controllers\VehicleAddFavorite;
+use App\Http\Controllers\Auth\FacebookLoginController;
 
 Route::get('correr-migraciones',function(){
     Artisan::call('migrate:fresh');
@@ -22,7 +23,7 @@ Route::get('seeder-inicial',function(){
     return 'Se han poblado las tablas segun DatabaseSeeder';
 });
 
-Route::get('/',MainSearch::class)->name('vehicle-search');
+Route::get('/{style?}',MainSearch::class)->name('vehicle-search');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
