@@ -27,7 +27,7 @@ class FiltersSearchTop extends Component
 
     public function render()
     {
-        // dd('estilo desde la ruta=' . $this->style_route);
+
         return view('livewire.search.filters-search-top');
 
     }
@@ -53,6 +53,18 @@ class FiltersSearchTop extends Component
 
     // Regresa el valor
     public function fill_combos_fields(){
+        // Si trae estilo en la ruta lee el registro de tabla estilos
+        if($this->style_route){
+            $this->style_route = strtoupper($this->style_route);
+            if( $this->style_route == 'PICKUP'){
+                $this->style_route = 'PICK-UP';
+            }
+
+            $record_style = Style::where('name',$this->style_route)->first();
+            if($record_style){
+                $this->style_id = $record_style->id;
+            }
+        }
         $this->yearsList    =  $this->fill_axos_list();
         $this->makesList    =  $this->fill_makes_list($this->model_year,$this->model_id,$this->style_id);
         $this->modelsList   =  $this->fill_models_list($this->model_year,$this->make_id,$this->style_id);
@@ -324,11 +336,7 @@ class FiltersSearchTop extends Component
 
     // Envia el Filtros a Listener
     public function sendFiltersList(){
-        // dd('estilo desde la ruta dentro de fill_styles_list=' . $this->style_route);
-        if(!$this->style_route){
-            dd('va a llenar combos');
-            $this->fill_combos_fields();
-        }
+        $this->fill_combos_fields();
         $this->emit('readFiltersList',$this->model_year,$this->make_id,$this->model_id,$this->style_id);
         $this->emit('redirect_to_search');
 
