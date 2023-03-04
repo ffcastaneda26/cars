@@ -1,5 +1,7 @@
 <thead>
     <tr class="bg-dark text-white">
+
+
         {{--  Distribuidor  --}}
         <th class="flex orderby"
             wire:click="order('dealer_id')">{{__("Dealer")}}
@@ -11,6 +13,22 @@
                 @endif
             @else
                 <i class="fas fa-sort float-left mr-2"></i>
+            @endif
+        </th>
+
+
+        {{--  Axo  --}}
+
+        <th class="flex orderby"
+            wire:click="order('model_year')">{{__("Year")}}
+            @if($sort == 'model_year')
+                @if($direction == 'asc')
+                    <span class="float-left mr-2 "><i class="fas fa-sort-alpha-up-alt"></i></span>
+                @else
+                    <i class="fas fa-sort-alpha-down-alt float-left  mr-2"></i>
+                @endif
+            @else
+                <i class="fas fa-sort float-left  mr-2"></i>
             @endif
         </th>
 
@@ -49,21 +67,6 @@
             @if($sort == 'style_id')
                 @if($direction == 'asc')
                     <span class="float-left  mr-2"><i class="fas fa-sort-alpha-up-alt"></i></span>
-                @else
-                    <i class="fas fa-sort-alpha-down-alt float-left  mr-2"></i>
-                @endif
-            @else
-                <i class="fas fa-sort float-left  mr-2"></i>
-            @endif
-        </th>
-
-        {{--  Axo  --}}
-
-        <th class="flex orderby"
-            wire:click="order('model_year')">{{__("Year")}}
-            @if($sort == 'model_year')
-                @if($direction == 'asc')
-                    <span class="float-left mr-2 "><i class="fas fa-sort-alpha-up-alt"></i></span>
                 @else
                     <i class="fas fa-sort-alpha-down-alt float-left  mr-2"></i>
                 @endif

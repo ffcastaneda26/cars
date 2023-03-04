@@ -1,12 +1,9 @@
 <tr>
     <td>{{ $record->dealer->name }}</td>
-
+    <td>{{ $record->model_year }}</td>
     <td>{{ $record->make->name }}</td>
     <td>{{ $record->model->name }}</td>
     <td>{{ $record->style->name}}</td>
-    <td>{{ $record->model_year }}</td>
-
-
     <td>{{ $record->stock }}</td>
 
 
