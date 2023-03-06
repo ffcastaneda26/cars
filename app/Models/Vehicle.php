@@ -91,7 +91,7 @@ class Vehicle extends Model
         }
     }
 
-    public function scopeStyle($query, $value)
+    public function scopeStyleSearch($query, $value)
     {
 
         if($value){

@@ -32,9 +32,16 @@ trait VariablesTrait {
     public $stylesList  = null;
 
     // Buscar vehiculos
+    public $search_model_year = null;
     public $search_make_id = null;
     public $search_model_id = null;
     public $search_style_id = null;
+
+    public $yearsList_search = null;
+    public $makesList_search = null;
+    public $modelsList_search = null;
+    public $stylesList_search = null;
+
 
 
     public $filters_list = null;

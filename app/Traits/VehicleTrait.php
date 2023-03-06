@@ -11,6 +11,9 @@
  */
 namespace App\Traits;
 
+use App\Models\Make;
+use App\Models\Style;
+use App\Models\Modell;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\DB;
 
@@ -38,6 +41,29 @@ trait VehicleTrait {
         }
     }
 
+    /*+---------------------+
+      | Combos para buscar  |
+      +---------------------+
+    */
+
+    public function fill_combos_to_search(){
+
+        $this->makesList_search = Make::select('id','name')
+                                        ->wherehas('vehicles')
+                                        ->withCount('vehicles')
+                                        ->orderby('name')->get();
+
+        $this->modelsList_search= Modell::select('id','name')
+                                        ->wherehas('vehicles')
+                                        ->withCount('vehicles')
+                                        ->orderby('name')->get();
+
+        $this->stylesList_search = Style::select('id','name')
+                                        ->wherehas('vehicles')
+                                        ->withCount('vehicles')
+                                        ->orderby('name')->get();
+
+    }
 
 
 }

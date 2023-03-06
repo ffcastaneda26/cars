@@ -12,7 +12,10 @@ use Livewire\Component;
 use App\Traits\UserTrait;
 use Livewire\WithPagination;
 use App\Traits\VariablesTrait;
+use Illuminate\Support\Facades\DB;
 use App\Http\Livewire\Traits\CrudTrait;
+use App\Models\Modell;
+use App\Traits\VehicleTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Vehicles extends Component
@@ -22,6 +25,7 @@ class Vehicles extends Component
     use CrudTrait;
     use UserTrait;
     use VariablesTrait;
+    use VehicleTrait;
 
     public $stock;
     public $available = 1;
@@ -51,12 +55,14 @@ class Vehicles extends Component
         $this->view_table   = 'livewire.vehicles.table';
         $this->view_list    = 'livewire.vehicles.list';
         $this->view_search  = 'livewire.vehicles.search';
-        // $this->view_crud_modal  = 'livewire.vehicles.modal_form';
 
         $this->dealersList  = Dealer::select('id','name')->orderby('name')->get();
         $this->makesList    = Make::orderby('name')->get();
         $this->stylesList   = Style::orderby('name')->get();
         $this->main_record  = new Vehicle();
+
+        // $this->view_crud_modal  = 'livewire.vehicles.modal_form';
+
 
     }
 
@@ -65,8 +71,16 @@ class Vehicles extends Component
         $this->create_button_label = $this->main_record->id ? __('Update') . ' ' . __('Vehicle')
                                                             : __('Create') . ' ' . __('Vehicle');
 
-        $records = Vehicle::orderby($this->sort,$this->direction)->paginate(10);
-        return view('livewire.index',compact('records'));
+       $this->yearsList_search = $this->fill_model_year_combo('model_year');
+       $this->fill_combos_to_search();
+
+        $records = Vehicle::ModelYear($this->search_model_year)
+                            ->Brand($this->search_make_id)
+                            ->Model($this->search_model_id)
+                            ->StyleSearch($this->search_style_id)
+                            ->orderby($this->sort,$this->direction)->paginate(10);
+
+                        return view('livewire.index',compact('records'));
     }
 
     public function read_models(){
@@ -105,11 +119,8 @@ class Vehicles extends Component
         $this->main_record->available = $this->available ? 1 : 0;
         $this->main_record->show = $this->show ? 1 : 0;
         $this->main_record->save();
-
-
-
-
         $this->close_store('Vehicle');
+        $this->fill_combos_to_search();
     }
 
     /*+------------------------------+
