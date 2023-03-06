@@ -44,7 +44,7 @@ class searchVehicles extends Component
         return Vehicle::ModelYear($this->model_year)
                          ->Brand($this->make_id)
                          ->Model($this->model_id)
-                         ->Style($this->style_id)
+                         ->StyleSearch($this->style_id)
                         ->get();
     }
 

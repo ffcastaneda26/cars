@@ -77,7 +77,7 @@ class FiltersSearchTop extends Component
         return Vehicle::select('model_year', DB::raw( 'count(*) as total'))
                         ->Brand($this->make_id)
                         ->Model($this->model_id)
-                        ->Style($this->style_id)
+                        ->StyleSearch($this->style_id)
                         ->groupBy('model_year')
                         ->get();
     }
