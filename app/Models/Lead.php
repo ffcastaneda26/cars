@@ -15,6 +15,14 @@ class Lead extends Model
         'email'
     ];
 
+
+    // Setters
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] =  strtolower($value);
+    }
+
+
     /** Funciones de Apoyo */
 
     public function can_be_delete(){

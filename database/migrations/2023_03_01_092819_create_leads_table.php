@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->string('name',80)->comment('Nombre');
-            $table->string('email',100)->unique()->comment('Correo Electrónico');
+            $table->string('email',100)->nullable()->comment('Correo Electrónico');
             $table->string('phone',10)->comment('Telefono');
             $table->timestamps();
         });
