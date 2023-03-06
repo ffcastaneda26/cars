@@ -52,7 +52,6 @@
                             <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
                         @endif
 
-                        {{--  <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">  --}}
                     </div>
                     <div class="text-center mb-5 py-5">
                         <form method="post" action="{{url('admin/vehicles/photos/delete')}}" >
