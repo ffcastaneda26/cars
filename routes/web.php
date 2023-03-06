@@ -8,22 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\VehicleDetails;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\SearchsByStyles;
-use App\Http\Livewire\VehicleFavorite;
-use App\Http\Controllers\VehicleAddFavorite;
-use App\Http\Controllers\Auth\FacebookLoginController;
 
-Route::get('correr-migraciones',function(){
-    Artisan::call('migrate:fresh');
-    return 'Migraciones Ejecutadas';
-});
-
-Route::get('seeder-inicial',function(){
-    Artisan::call('db:seed');
-    return 'Se han poblado las tablas segun DatabaseSeeder';
-});
-
-Route::get('/{style?}',MainSearch::class)->name('vehicle-search');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -35,6 +20,15 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     })->name('dashboard');
 
 });
+
+Route::middleware(['auth'])->group(function () {
+    /*  Route::get('role-permission',RolePermissions::class)->name('role-permission'); */
+     Route::get('users',Users::class)->name('users'); // Usuarios
+ });
+
+Route::get('/{style?}',MainSearch::class)->name('vehicle-search');
+
+
 
 /* Cambio de Lenguaje */
 Route::get('language/{locale}', function ($locale) {
@@ -57,14 +51,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
     });
 });
 
-Route::get('/login/facebook',[FacebookLoginController::class,'login'])->name('login.facebook');
-Route::get('/facebook/auth/callback',[FacebookLoginController::class,'loginWithFacebook'])->name('login.callback');
-Route::middleware(['auth'])->group(function () {
-   /*  Route::get('role-permission',RolePermissions::class)->name('role-permission'); */
-    Route::get('users',Users::class)->name('users'); // Usuarios
-});
 
-Route::get('vehicle-search',MainSearch::class)->name('vehicle-search');
-
+// Route::get('vehicle-search',MainSearch::class)->name('vehicle-search');
 
 Route::get('vehicle-details/{vehicle}',VehicleDetails::class)->name('vehicle-details');

@@ -37,13 +37,22 @@ class VehiclesController extends Controller
     {
         $photo = Photo::findOrFail($request->photo);
         $filename =  $photo->path;
-        $photo->delete();
-        $path=public_path().'/images/'.$filename;
+        if(str_contains($filename, 'storage/vehicles/photos/')){
+            $path=$filename;
+        }else{
+            $path=public_path().'/images/vehicles/photos/'.$filename;
+        }
+
         if (file_exists($path)) {
+            $photo->delete();
             unlink($path);
         }
 
-        return redirect()->route('vehicles-photos', [$photo->vehicle->id]);
+        if(str_contains($filename, 'storage/vehicles/photos/')){
+            return redirect()->route('vehicle-photos-multiple', [$photo->vehicle->id]);
+        }else{
+            return redirect()->route('vehicles-photos', [$photo->vehicle->id]);
+        }
 
     }
 }

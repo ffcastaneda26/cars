@@ -46,8 +46,13 @@
             <div class="galeria">
                 <div class="card">
                     <div class="text-center">
+                        @if(str_contains($photo->path, 'storage/vehicles/photos/'))
+                            <img src="{{  asset($photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
+                        @else
+                            <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
+                        @endif
 
-                        <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">
+                        {{--  <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="marco-foto" alt="..." height="75px" width="75px">  --}}
                     </div>
                     <div class="text-center mb-5 py-5">
                         <form method="post" action="{{url('admin/vehicles/photos/delete')}}" >
@@ -67,7 +72,7 @@
             <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}" id="vehicle_id">
             @csrf
 
-        <div class="dz-message" data-dz-message><span>{{ __('Drag & Drop max')  . ' ' . __('Photos') }}</span></div>
+        <div class="dz-message" data-dz-message><span>{{ __('Drag & Drop Here The Photos')  }}</span></div>
         </form>
 
     {{-- Botón para regresar a vehículos --}}
@@ -84,7 +89,7 @@
             renameFile: function(file) {
                 var dt = new Date();
                 var time = dt.getTime();
-               return time+file.name;
+               return time+'_'+file.name;
             },
             acceptedFiles: ".jpeg,.jpg,.png,.gif,.webp,jfif",
             addRemoveLinks: true,

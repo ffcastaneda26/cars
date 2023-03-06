@@ -9,10 +9,20 @@
 
     <td colspan="3" class="px-1 text-center">
 
+
+        <a href="{{ route('vehicle-photos-multiple', $record->id) }}">
+            <button type="button"
+                class=" btn {{  $record->total_photos() ?  'btn-success' : ' btn-info' }} waves-effect"
+                title="{{__("Upload Photos Selecting Files")}}">
+                <i class="{{ $record->total_photos() ?  'mdi mdi-camera-gopro' : ' mdi mdi-camera-off' }} "></i>
+                {{ $record->total_photos() ? $record->total_photos() : ''}}
+            </button>
+        </a>
+
         <a href="{{ route('vehicles-photos', $record->id) }}">
             <button type="button"
                 class=" btn {{  $record->total_photos() ?  'btn-warning' : ' btn-secondary' }} waves-effect"
-                title="{{__("Upload Photos")}}">
+                title="{{__("Upload Photos Using Drag & Drop")}}">
                 <i class="{{ $record->total_photos() ?  'mdi mdi-camera' : ' mdi mdi-camera-off' }} "></i>
                 {{ $record->total_photos() ? $record->total_photos() : ''}}
             </button>

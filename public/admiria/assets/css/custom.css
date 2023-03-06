@@ -32,8 +32,12 @@ a:visited {
     background-color: #fce315;
 }
 
-.main-content-propio {
+.main-content-without-leftsidebar {
     margin-left: 10px;
+}
+
+.main-content-with-leftsidebar {
+    margin-left: 240px;
 }
 
 .my-menu  ul {

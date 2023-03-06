@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\VehiclesController;
-
+use App\Http\Livewire\VehiclePhotos;
 
 Route::get('storage-link',function(){
 
@@ -51,6 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('vehicles/photos/store',[VehiclesController::class, 'photoStore'])->name('vehiles-photos-store');
     Route::post('vehicles/photos/delete',[VehiclesController::class, 'destroyPhoto'])->name('vehicles-photos-delete');
 
+    Route::get('vehicle-photos-multiple/{vehicle}',VehiclePhotos::class)->name('vehicle-photos-multiple');
     // Prospectos
 
     Route::get('leads',Leads::class)->name('leads');                                     // Prospectos
