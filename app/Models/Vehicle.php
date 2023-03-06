@@ -115,7 +115,7 @@ class Vehicle extends Model
     {
         if($value){
             $value=trim($value);
-            $query->where('stock',$value);
+            $query->where('stock','LIKE', "%$value%");
         }
     }
 

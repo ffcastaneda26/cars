@@ -51,5 +51,14 @@
             </select>
         </span>
 
+        {{--  Stock  --}}
+
+        <label class="ml-2 mr-5"><strong>{{ __('Stock') }}</strong></label>
+        <span>
+            <input type="text"
+            wire:model="stock_search"
+            class="form-control w-auto">
+        </span>
+
     </div>
 </div>

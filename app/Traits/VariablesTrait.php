@@ -36,6 +36,7 @@ trait VariablesTrait {
     public $search_make_id = null;
     public $search_model_id = null;
     public $search_style_id = null;
+    public $stock_search    = null;
 
     public $yearsList_search = null;
     public $makesList_search = null;

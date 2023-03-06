@@ -78,6 +78,7 @@ class Vehicles extends Component
                             ->Brand($this->search_make_id)
                             ->Model($this->search_model_id)
                             ->StyleSearch($this->search_style_id)
+                            ->Stock($this->stock_search)
                             ->orderby($this->sort,$this->direction)->paginate(10);
 
                         return view('livewire.index',compact('records'));
