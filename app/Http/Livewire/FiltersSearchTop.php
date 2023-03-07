@@ -79,6 +79,7 @@ class FiltersSearchTop extends Component
                         ->Model($this->model_id)
                         ->StyleSearch($this->style_id)
                         ->groupBy('model_year')
+                        ->orderBy('model_year','desc')
                         ->get();
     }
 
