@@ -1,9 +1,8 @@
 
 <div class="container">
-    {{-- TODO: Investigar si se puede insertar en la tarjeta del vehículo  --}}
 
-    <div class="row row-cols-1 row-cols-md-1 g-1">
-        <div class="card h-100">
+    <div class="row row-cols-1 row-cols-md-1 g-1 d-flex justify-content-center">
+        <div class="card w-75 h-75">
             <div class="row">
                 <div class="alinea-derecha">
                     <button class="btn btn-dark mb-2">
