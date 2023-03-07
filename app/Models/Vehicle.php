@@ -72,9 +72,12 @@ class Vehicle extends Model
         }
     }
 
-    public function scopeDealer($query, $value)
+    public function scopeDistribuidor($query, $value)
     {
-        $query->where('dealer_id', $value);
+        if($value){
+            $query->where('dealer_id', $value);
+        }
+
     }
 
     public function scopeBrand($query, $value)

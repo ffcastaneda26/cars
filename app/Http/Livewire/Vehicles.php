@@ -74,7 +74,8 @@ class Vehicles extends Component
        $this->yearsList_search = $this->fill_model_year_combo('model_year');
        $this->fill_combos_to_search();
 
-        $records = Vehicle::ModelYear($this->search_model_year)
+        $records = Vehicle::Distribuidor($this->search_dealer_id)
+                            ->ModelYear($this->search_model_year)
                             ->Brand($this->search_make_id)
                             ->Model($this->search_model_id)
                             ->StyleSearch($this->search_style_id)

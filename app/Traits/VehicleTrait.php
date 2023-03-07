@@ -13,6 +13,7 @@ namespace App\Traits;
 
 use App\Models\Make;
 use App\Models\Style;
+use App\Models\Dealer;
 use App\Models\Modell;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,10 @@ trait VehicleTrait {
     */
 
     public function fill_combos_to_search(){
+        $this->dealersList_search = Dealer::select('id','name')
+                                        ->wherehas('vehicles')
+                                        ->withCount('vehicles')
+                                        ->orderby('name')->get();
 
         $this->makesList_search = Make::select('id','name')
                                         ->wherehas('vehicles')
