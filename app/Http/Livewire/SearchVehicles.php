@@ -42,10 +42,11 @@ class searchVehicles extends Component
     // Busca vehículos
     public function searchVehicles(){
         return Vehicle::ModelYear($this->model_year)
-                         ->Brand($this->make_id)
-                         ->Model($this->model_id)
-                         ->StyleSearch($this->style_id)
-                        ->get();
+                    ->Brand($this->make_id)
+                    ->Model($this->model_id)
+                    ->StyleSearch($this->style_id)
+                    ->orderby('model_year','desc')
+                    ->get();
     }
 
     // Recibe los valores para el filtro
