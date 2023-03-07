@@ -1,4 +1,8 @@
-<div id="photo-{{$vehicle->id }}" class="carousel slide" data-bs-ride="carousel">
+{{--  <div id="photo-{{$vehicle->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+    data-interval="".
+    data-bs-interval="50000"--}}
+<div id="photo-{{$vehicle->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="60000">
+
     <div class="carousel-inner">
         @foreach ( $vehicle->photos as $photo )
             <div class="carousel-item {{$loop->index == 0 ? 'active' : ''}}">
