@@ -2,7 +2,7 @@
     <x-jet-validation-errors></x-jet-validation-errors>
 
     <div class="m-0 h-100  w-100  justify-content-center align-items-center">
-        <div class="col-md-6 p-5 text-center">
+        <div class="col-md-6 p-3 text-center">
             @if(!$message)
                 <div class="card justify-content-center" >
                     <div class="card-header">
@@ -15,12 +15,12 @@
                         {{--  Datos del vehiculo buscado  --}}
                         <div class="row align-items-start">
                             {{--  Campos del formulario  --}}
-                            <div class="col flex flex-col align-items-start">
+                            <div>
 
                                 {{--  Nombre  --}}
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-account"></i></span>
-                                    <span class="input-group-text" id="inputGroup-sizing-sm">{{__("Name")}}</span>
+                                    {{--  <span class="input-group-text" id="inputGroup-sizing-sm">{{__("Name")}}</span>  --}}
 
                                     <input type="text"
                                             wire:model="main_record.name"
@@ -34,7 +34,7 @@
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-cellphone"></i></span>
-                                    </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Phone")}}</span>
+                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Phone")}}</span>  --}}
 
                                     <input type="text"
                                             wire:model="main_record.phone"
@@ -45,8 +45,6 @@
                                             aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm">
                                 </div>
-
-
 
                                 {{--  Axo Modelo  --}}
                                 <div class="input-group input-group-sm mb-3">
@@ -59,7 +57,7 @@
                                         }
                                     @endphp
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-calendar"></i></span>
-                                    </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Year")}}</span>
+                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Year")}}</span>  --}}
 
                                     <select wire:model="main_record.model_year"
                                                 class="form-select form-control col-md-7 mb-2">
@@ -74,12 +72,10 @@
                                     </select>
                                 </div>
 
-
-
                                 {{--  Marca  --}}
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-alpha-m-box"></i></span>
-                                    </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Make")}}</span>
+                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Make")}}</span>  --}}
                                     <select wire:model="main_record.make_id"
                                             wire:change="read_make"
                                             class="form-select col-md-7 mb-2
@@ -95,36 +91,43 @@
                                 </div>
 
                                 {{--  Modelo  --}}
-
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-alpha-m-circle"></i></span>
-                                    </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Model")}}</span>
+                                    {{--  <span class="input-group-text" id="inputGroup-sizing-sm">{{__("Model")}}</span>  --}}
                                     <select wire:model="main_record.model_id"
-                                            class="form-control col-md-6 mb-2
-                                            {{ $errors->has('main_record.model_id') ? 'field_error' : '' }}"
-                                            @if(!isset($main_record->make_id) )
-                                                @disabled(true)
-                                            @endif
-                                        >
+                                                   class="form-select col-md-7 mb-2">
                                         <option value="">{{__("Model")}}</option>
-
                                         @if(isset($main_record->make_id) && $make->models->count())
-                                                @foreach($make->models as $model_select)
-                                                        <option value="{{ $model_select->id }}"
-                                                            class="normal_option">
-                                                            {{$model_select->name }}
-                                                        </option>
-                                                @endforeach
+                                            @foreach($make->models as $model_select)
+                                                    <option value="{{ $model_select->id }}"
+                                                        class="normal_option">
+                                                        {{$model_select->name }}
+                                                    </option>
+                                            @endforeach
                                         @endif
                                     </select>
                                 </div>
 
-
                                 {{--  Maximo de millas  --}}
 
-                                <div class="input-group input-group-sm mb-3">
+                                <div class="find-my-car input-group input-group-sm mb-3">
+                                    <div>
+                                        <span class="mt-2 input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-select-group"></i></span>
+                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Phone")}}</span>  --}}
+                                    </div>
+                                    <div>
+                                        <input type="text"
+                                                wire:model="main_record.max_miles"
+                                                maxlength="10"
+                                                pattern="[0-9]"
+                                                placeholder="{{ __('Miles') }}"
+                                                class="form-control col-md-5"
+                                                aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                </div>
+                                {{--  <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-select-group"></i></span>
-                                    </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Max Miles")}}</span>
 
                                     <input type="text"
                                             wire:model="main_record.max_miles"
@@ -134,7 +137,7 @@
                                             class="form-control col-md-3"
                                             aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm">
-                                </div>
+                                </div>  --}}
 
 
                             </div>
@@ -168,27 +171,24 @@
 
                        {{--  Dinero para el enganche  --}}
 
-                       <div class="row justify-content-center align-items-center">
-                            <div class="d-flex flex-wrap">
-                                    <label class="input-group-text mb-2 text-wrap">
-                                        <label class="input-group-text mb-2 text-wrap">{{__("How much money do you have for the down payment?")}}</label>
-                                    </label>
+                        <div class="row justify-content-center align-items-center">
+                                <div class="d-flex flex-wrap">
+                                        <label class="input-group-text mb-2 text-wrap">
+                                            <label class="input-group-text mb-2 text-wrap">{{__("How much money do you have for the down payment?")}}</label>
+                                        </label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center align-items-center">
+                                    <input type="text"
+                                            wire:model="main_record.downpayment"
+                                            maxlength="10"
+                                            pattern="[0-9]"
+                                            placeholder="{{ __('Amount') }}"
+                                            class="form-control mb-2 ml-2 col-md-3"
+                                    >
                             </div>
                         </div>
-
-                       <div class="d-flex justify-content-center align-items-center">
-                                <input type="text"
-                                        wire:model="main_record.downpayment"
-                                        maxlength="10"
-                                        pattern="[0-9]"
-                                        placeholder="{{ __('Amount') }}"
-                                        class="form-control mb-2 ml-2 col-md-3"
-                                >
-                        </div>
-
-                        </div>
-
-
 
 
                         {{--  Detalles adicionales  --}}
