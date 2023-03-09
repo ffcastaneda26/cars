@@ -120,7 +120,7 @@
                                                 wire:model="main_record.max_miles"
                                                 maxlength="10"
                                                 pattern="[0-9]"
-                                                placeholder="{{ __('Miles') }}"
+                                                placeholder="{{ __('Max Miles') }}"
                                                 class="form-control col-md-5"
                                                 aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-sm">
