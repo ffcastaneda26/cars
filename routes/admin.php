@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\RolePermissions;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\VehiclesController;
+use App\Http\Livewire\Requirements;
 use App\Http\Livewire\VehiclePhotos;
 
 Route::get('storage-link',function(){
@@ -55,5 +56,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Prospectos
 
     Route::get('leads',Leads::class)->name('leads');                                     // Prospectos
+    Route::get('requirements',Requirements::class)->name('requirements');                // Requerimientos
 
 });

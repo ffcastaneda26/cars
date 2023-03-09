@@ -41,6 +41,13 @@ class Requirement extends Model
      */
 
 
+     public function scopeComplete($query, $valor) {
+        if (trim($valor) != "") {
+            $query->where('name', 'LIKE', "%$valor%")
+                  ->orwhere('phone', 'LIKE', "%$valor%");
+        }
+    }
+
     public function scopeBrand($query, $value)
     {
         if($value){

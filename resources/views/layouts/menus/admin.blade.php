@@ -88,4 +88,12 @@
         </a>
     </li>
 
+    {{-- Requerimientos --}}
+    <li>
+        <a href="{{route('requirements')}}" class="waves-effect">
+            <i class="mdi mdi-car-side"></i>
+            <span> {{__('Requirements')}} </span>
+        </a>
+    </li>
+
 </ul>
