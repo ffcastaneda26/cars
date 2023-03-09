@@ -1,3 +1,19 @@
+.find-my-car{
+	display: flex;
+
+}
+
+.find-my-car div{
+	margin: 5px;
+}
+
+@media screen and (max-width: 640px) {
+    .find-my-car {
+		flex-direction: column;
+	}
+ }
+/* ----- */
+
 .cars-container {
 	display: flex;
 }

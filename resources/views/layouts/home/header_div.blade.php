@@ -4,8 +4,10 @@
             <!-- LOGO -->
             @include('layouts.home.logo')
             <!-- Botón contraer barra lateral -->
+            @auth
+                @include('layouts.home.button_show_hide_lateral_menu')
 
-            @include('layouts.home.button_show_hide_lateral_menu')
+            @endauth
 
         </div>
 
