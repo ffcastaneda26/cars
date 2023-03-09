@@ -119,29 +119,6 @@
                         placeholder="{{_('Description')}}"></textarea>
             </div>
 
-            {{--  Disponible  --}}
-
-            {{--  <div class="flex-flex-column mb-2">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" wire:model="available" class="btn-check" id="available_yes" value="1">
-                    <label class="btn btn-outline-success" for="available_yes">{{__('Yes')}}</label>
-
-                    <input type="radio" wire:model="available" class="btn-check ml-4" id="available_no" value="0">
-                    <label class="btn btn-outline-danger" for="available_no">{{__('No')}}</label>
-                </div>
-            </div>  --}}
-
-            {{--  Mostrar  --}}
-            {{--  <div class="flex-flex-column mb-2">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" wire:model="show" class="btn-check" id="show_yes" value="1">
-                    <label class="btn btn-outline-success" for="show_yes">{{__('Yes')}}</label>
-
-                    <input type="radio" wire:model="show" class="btn-check ml-4" id="show_no" value="0">
-                    <label class="btn btn-outline-danger" for="show_no">{{__('No')}}</label>
-                </div>
-            </div>  --}}
-
 
         </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\FindMyCars;
 use App\Http\Livewire\Users;
 
 
@@ -9,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\VehicleDetails;
 use Illuminate\Support\Facades\Route;
 
+
+// Registrar solicitudes
+Route::get('findmycar',FindMyCars::class)->name('findmycar'); // Solicitudes de usuarios
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -55,3 +59,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
 // Route::get('vehicle-search',MainSearch::class)->name('vehicle-search');
 
 Route::get('vehicle-details/{vehicle}',VehicleDetails::class)->name('vehicle-details');
+

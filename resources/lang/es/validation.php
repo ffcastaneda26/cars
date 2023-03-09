@@ -215,8 +215,12 @@ return [
         'make_id'               => 'Marca',
         'model_id'              => 'Modelo',
         'style_id'              => 'Estilo',
-        'model_year'            => 'Axo',
+        'model_year'            => 'Año',
         'price'                 => 'Precio',
+        'type_financing'        => 'Tipo de financiamiento',
+        'downpayment'           => 'Importe Inicial',
+        'details'               => 'Detalles adicionales',
+        'max_miles'             => 'Maximo de millas'
     ]
 
 ];
