@@ -1,7 +1,7 @@
 <div class="container">
     <x-jet-validation-errors></x-jet-validation-errors>
 
-    <div class="m-0 h-85  w-85  justify-content-center align-items-center">
+    <div class="m-0 h-100  w-100  justify-content-center align-items-center">
 
         <div class="col-md-6 p-3 text-center">
             @if(!$message)
@@ -200,15 +200,14 @@
 
                             <div class="d-flex justify-content-end">
 
-                                <div class="visible {{ $allow_save ? '' : 'invisible '}}">
-                                    <span class="mx-2">
+                                {{--  <div class="visible {{ $allow_save ? '' : 'invisible '}}">  --}}
+                                    <span class="mx-2 mt-2">
                                         <button type="button"
                                                 wire:click.prevent="store()"
                                                 wire:loading.remove wire:target="store"
-                                                {{ $allow_save ? '' : 'disabled'}}
 
                                                 class="btn btn-success">
-                                            {{__("Save") }}
+                                            {{__("Send") }}
                                         </button>
 
 
@@ -217,10 +216,10 @@
                                                 wire:loading wire:target="store"
                                                 disabled
                                                 class="btn btn-warning">
-                                                {{__("Saving") }}
+                                                {{__("Sending") }}
                                         </button>
                                     </span>
-                                </div>
+                                {{--  </div>  --}}
 
                             </div>
 

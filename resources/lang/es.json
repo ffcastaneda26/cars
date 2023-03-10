@@ -1,5 +1,4 @@
 {
-    "HOme": "Inicio",
     "Downpayment": "Enganche",
     "Requirement": "Requerimiento",
     "Requirements": "Requerimientos",
@@ -111,6 +110,7 @@
     "Permissions Role": "Permisos Rol",
 
     "Saving": "Salvando....",
+    "Sending": "Enviando....",
     "Welcome": "Bienvenido",
     "Accept you have read the rules": "Acepte que ha leído las reglas",
     "Accept you are a legal Age": "Acepte que es mayor de edad",
