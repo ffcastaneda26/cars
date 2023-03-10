@@ -43,7 +43,20 @@ a:visited {
     text-decoration: none;
 }
 
+/* Logotipo de la aplicacion */
+.app-logo
+{
+    width:  160px;
+    height: 80px;
+}
 
+@media only screen and (max-widht: 720px){
+    .app-logo
+    {
+        width:  80px;
+        height: 40px;
+    }
+}
 .background-top-header {
     background-color: #fce315;
 }
