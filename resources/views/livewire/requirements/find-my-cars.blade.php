@@ -1,13 +1,13 @@
 <div class="container">
     <x-jet-validation-errors></x-jet-validation-errors>
 
-    <div class="m-0 h-100  w-100  justify-content-center align-items-center">
+    <div class="m-0 h-85  w-85  justify-content-center align-items-center">
+
         <div class="col-md-6 p-3 text-center">
             @if(!$message)
                 <div class="card justify-content-center" >
                     <div class="card-header">
-                        <h3 class="text-capitalize text-center">{{__('Tell us what vehicle you are looking for')}}</h3>
-                        {{--  <h5 class="text-center">{{__('Fill in all the information to continue')}}</h5>  --}}
+                        <h3 class="text-center">{{__('Tell us what vehicle you are looking for')}}</h3>
                     </div>
 
                     {{--  Cuerpo de la tarjeta  --}}
@@ -29,6 +29,7 @@
                                             aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm">
                                 </div>
+
 
                                 {{-- Teléfono --}}
 
@@ -74,7 +75,7 @@
 
                                 {{--  Marca  --}}
                                 <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-alpha-m-box"></i></span>
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-car"></i></span>
                                     {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Make")}}</span>  --}}
                                     <select wire:model="main_record.make_id"
                                             wire:change="read_make"
@@ -110,52 +111,32 @@
 
                                 {{--  Maximo de millas  --}}
 
-                                <div class="find-my-car input-group input-group-sm mb-3">
-                                    <div>
-                                        <span class="mt-2 input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-select-group"></i></span>
-                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Phone")}}</span>  --}}
-                                    </div>
-                                    <div>
-                                        <input type="text"
-                                                wire:model="main_record.max_miles"
-                                                maxlength="10"
-                                                pattern="[0-9]"
-                                                placeholder="{{ __('Max Miles') }}"
-                                                class="form-control col-md-5"
-                                                aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                </div>
-                                {{--  <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-select-group"></i></span>
+
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-speedometer"></i></span>
 
                                     <input type="text"
                                             wire:model="main_record.max_miles"
                                             maxlength="10"
                                             pattern="[0-9]"
                                             placeholder="{{ __('Max Miles') }}"
-                                            class="form-control col-md-3"
+                                            class="form-control col-md-4"
                                             aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm">
-                                </div>  --}}
+                                </div>
 
+                                {{--  Tipo de Financiamiento  --}}
+                                <div class="input-group input-group-sm mb-2">
+                                    <label class="input-group-text mb-2 text-wrap">{{__("Do you want financing or cash?")}}</label>
+                                </div>
 
                             </div>
 
                         </div>
 
-                        {{--  Tipo de Financiamiento  --}}
-
-                        <div class="row justify-content-center align-items-center">
-                                <div class="d-flex flex-wrap">
-                                    <label class="input-group-text mb-2 text-wrap">
-                                        <label class="input-group-text mb-2 text-wrap">{{__("Do you want financing or cash?")}}</label>
-                                    </label>
-                                </div>
-                        </div>
-
+                        {{--  Opciones de financiamiento  --}}
                         <div class="find-my-car">
-                                <div class="mt-10 btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" wire:model="main_record.type_financing" class="btn-check" id="type_financial_financing" value="Financing">
                                     <label class="btn btn-outline-warning" for="type_financial_financing">{{__('Financing')}}</label>
                                 </div>
@@ -172,10 +153,8 @@
                        {{--  Dinero para el enganche  --}}
 
                         <div class="row justify-content-center align-items-center">
-                                <div class="d-flex flex-wrap">
-                                        <label class="input-group-text mb-2 text-wrap">
-                                            <label class="input-group-text mb-2 text-wrap">{{__("How much money do you have for the down payment?")}}</label>
-                                        </label>
+                                <div class="input-group input-group-sm mb-2">
+                                    <label class="input-group-text mb-2 text-wrap">{{__("How much money do you have for the down payment?")}}</label>
                                 </div>
                             </div>
 
@@ -248,9 +227,9 @@
                     </div>
                 </div>
 
-        @else
-            <h1 class="text-capitalize text-center">{{ $message}}</h1>
-        @endif
+            @else
+                <h1 class="text-capitalize text-center">{{ $message}}</h1>
+            @endif
         </div>
     </div>
 

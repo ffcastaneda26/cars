@@ -1,12 +1,13 @@
 .find-my-car{
 	display: flex;
+    /* flex-direction: column; */
 }
 
 .find-my-car div{
 	margin: 5px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 720px) {
     .find-my-car {
 		flex-direction: column;
 	}

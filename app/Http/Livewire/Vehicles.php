@@ -82,7 +82,7 @@ class Vehicles extends Component
                             ->Stock($this->stock_search)
                             ->orderby($this->sort,$this->direction)->paginate(10);
 
-                        return view('livewire.index',compact('records'));
+        return view('livewire.index',compact('records'));
     }
 
     public function read_models(){

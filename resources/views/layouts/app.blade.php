@@ -42,7 +42,7 @@
         @include('layouts.home.main_content')
 
         <!--Pie de página -->
-        @include('layouts.home.footer')
+        {{--  @include('layouts.home.footer')  --}}
     </div>
 
     @livewireScripts
