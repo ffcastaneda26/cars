@@ -1,5 +1,5 @@
 <div class="container">
-    <x-jet-validation-errors></x-jet-validation-errors>
+
 
     <div class="m-0 h-100  w-100  justify-content-center align-items-center">
 
@@ -20,7 +20,6 @@
                                 {{--  Nombre  --}}
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-account"></i></span>
-                                    {{--  <span class="input-group-text" id="inputGroup-sizing-sm">{{__("Name")}}</span>  --}}
 
                                     <input type="text"
                                             wire:model="main_record.name"
@@ -29,23 +28,29 @@
                                             aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm">
                                 </div>
+                                @error('main_record.name')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
 
 
                                 {{-- Teléfono --}}
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-cellphone"></i></span>
-                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Phone")}}</span>  --}}
-
                                     <input type="text"
                                             wire:model="main_record.phone"
                                             maxlength="10"
                                             pattern="[0-9]"
+                                            onkeypress="return only_numbers(event, this)"
                                             placeholder="{{ __('Phone') }}"
-                                            class="form-control col-md-7"
+                                            class="form-control col-md-6"
                                             aria-label="Sizing example input"
                                             aria-describedby="inputGroup-sizing-sm">
+
                                 </div>
+                                @error('main_record.phone')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
 
                                 {{--  Axo Modelo  --}}
                                 <div class="input-group input-group-sm mb-3">
@@ -58,10 +63,10 @@
                                         }
                                     @endphp
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-calendar"></i></span>
-                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Year")}}</span>  --}}
 
                                     <select wire:model="main_record.model_year"
-                                                class="form-select form-control col-md-7 mb-2">
+                                        class="form-select form-control"
+                                    >
 
                                         <option value="">{{__("Model Year")}}</option>
                                         @for ($axo=$axo_actual ;  $axo>=$axo_actual-13 ; $axo--)
@@ -73,14 +78,16 @@
                                     </select>
                                 </div>
 
+                                @error('main_record.model_year')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
+
                                 {{--  Marca  --}}
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-car"></i></span>
-                                    {{--  </span><span class="input-group-text" id="inputGroup-sizing-sm">{{__("Make")}}</span>  --}}
                                     <select wire:model="main_record.make_id"
                                             wire:change="read_make"
-                                            class="form-select col-md-7 mb-2
-                                            {{ $errors->has('main_record.make_id') ? 'field_error' : '' }}"
+                                            class="form-select mb-2"
                                         >
                                         <option value="">{{__("Make")}}</option>
                                         @foreach($makesList as $make_select)
@@ -90,6 +97,11 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+
+                                @error('main_record.make_id')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
 
                                 {{--  Modelo  --}}
                                 <div class="input-group input-group-sm mb-3">
@@ -109,26 +121,37 @@
                                     </select>
                                 </div>
 
+                                @error('main_record.model_id')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
+
+
                                 {{--  Maximo de millas  --}}
 
 
                                 <div class="input-group input-group-sm mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="mdi mdi-speedometer"></i></span>
-
+                                    <span class="input-group-text"><i class="ion ion-md-speedometer"></i></span>
                                     <input type="text"
                                             wire:model="main_record.max_miles"
                                             maxlength="10"
                                             pattern="[0-9]"
+                                            onkeypress="return only_numbers(event, this)"
                                             placeholder="{{ __('Max Miles') }}"
-                                            class="form-control col-md-4"
-                                            aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-sm">
+                                            class="form-control col-md-3">
                                 </div>
+
+
+                                @error('main_record.max_miles')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
 
                                 {{--  Tipo de Financiamiento  --}}
                                 <div class="input-group input-group-sm mb-2">
                                     <label class="input-group-text mb-2 text-wrap">{{__("Do you want financing or cash?")}}</label>
                                 </div>
+                                @error('main_record.type_financing')
+                                    <label class="w-auto field_error">{{ $message }}</label>
+                                @enderror
 
                             </div>
 
@@ -142,7 +165,7 @@
                                 </div>
                                 <div>
                                     <input type="radio" wire:model="main_record.type_financing" class="btn-check" id="type_financial_cash" value="Cash">
-                                    <label class="ml-2 btn btn-outline-success" for="type_financial_cash">{{__('Cash')}}</label>
+                                    <label class="ml-2 btn btn-outline-success" for="type_financial_cash">Cash</label>
                                 </div>
                                 <div>
                                     <input type="radio" wire:model="main_record.type_financing" class="btn-check" id="type_financial_indifferent" value="Indifferent">
@@ -158,12 +181,16 @@
                                 </div>
                             </div>
 
+                            @error('main_record.downpayment')
+                                <label class="w-auto field_error">{{ $message }}</label>
+                            @enderror
+
                             <div class="d-flex justify-content-center align-items-center">
                                     <input type="text"
                                             wire:model="main_record.downpayment"
                                             maxlength="10"
                                             pattern="[0-9]"
-                                            placeholder="{{ __('Amount') }}"
+                                            placeholder="Down Payment"
                                             class="form-control mb-2 ml-2 col-md-3"
                                     >
                             </div>

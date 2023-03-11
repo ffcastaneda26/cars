@@ -50,7 +50,8 @@
     <!-- JAVASCRIPT2 -->
     @include('layouts.home.javascript_files')
     @yield('scripts')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -101,29 +102,9 @@
             })
         }
 
-        function confirm_register_competidor() {
-            Swal.fire({
-                title: "{{ __('Are you sure?') }}",
-                text: "{{ __('The code can only be used to consult your picks') }}",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#2ECC71',
-                cancelButtonColor: '#d33',
-                confirmButtonText: "{{ __('Yes, save my picks') }}",
-                cancelButtonText: "{{ __('Cancel') }}",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.livewire.emit('validate_picks');
-                 }
-            })
-        }
-
-
     </script>
     <!-- add before </body> -->
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    {{-- CK-Editor --}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 
 </body>
 </html>
