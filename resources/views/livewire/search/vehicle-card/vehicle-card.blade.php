@@ -7,7 +7,7 @@
                     @if(str_contains($vehicle->photos->first()->path, 'storage/vehicles/photos/'))
                         <img src="{{  asset($vehicle->photos->first()->path) }}" class="d-block w-100 h-100" height="75px" width="75px">
                     @else
-                        <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="d-block w-100 h-100" alt="..." height="75px" width="75px">
+                        <img src="{{ asset('images/vehicles/photos/' .  $vehicle->photos->first()->path) }}" class="d-block w-100 h-100" alt="..." height="75px" width="75px">
                     @endif
                 </a>
 

@@ -33,6 +33,7 @@ class searchVehicles extends Component
                 $this->style_id = $record_style->id;
             }
         }
+
         $vehicles = $this->searchVehicles();
         return view('livewire.search.search-vehicles.search-vehicles',compact('vehicles'));
     }
