@@ -47,8 +47,6 @@ class FiltersList extends Component
     // Regresa el valor
     public function fill_combos_fields(){
         $this->yearsList    =  $this->fill_axos_list();
-        // dd('Cambio la marca=' .$this->make_id );
-
         $this->makesList    =  $this->fill_makes_list($this->model_year,$this->model_id,$this->style_id);
         $this->modelsList   =  $this->fill_models_list($this->model_year,$this->make_id,$this->style_id);
         $this->stylesList   =  $this->fill_styles_list($this->model_year,$this->make_id,$this->model_id);
