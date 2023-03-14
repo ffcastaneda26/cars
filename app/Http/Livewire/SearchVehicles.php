@@ -6,7 +6,6 @@ use App\Models\Style;
 use App\Models\Vehicle;
 use Livewire\Component;
 use App\Traits\VariablesTrait;
-use Illuminate\Support\Facades\Auth;
 
 class searchVehicles extends Component
 {
