@@ -10,4 +10,4 @@
 <script src="/admiria/assets/js/my_functions.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{asset('assets/js/my_functions.js')}}"></script>
-
+<script src="{{asset('assets/js/infinite_scroll.js')}}"></script>

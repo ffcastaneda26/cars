@@ -38,7 +38,7 @@
             </select>
         </div>
 
-          {{--  Estilos  --}}
+        {{--  Estilos  --}}
         @if(!$style_route)
             <div class="element">
                 <select wire:model="style_id"
@@ -46,13 +46,11 @@
                         class="form-select mr-5">
                         <option>{{__("Style")}}</option>
                     @foreach($stylesList as $style)
-                        <option value="{{ $style->id }}">{{ $style->name  }}
-                        </option>
+                        <option value="{{ $style->id }}">{{ $style->name  }}</option>
                     @endforeach
                 </select>
 
             </div>
         @endif
     </div>
-
 </div>
