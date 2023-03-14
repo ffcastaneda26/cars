@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class searchVehicles extends Component
 {
     use VariablesTrait;
+    public $limitPerPage = 12;
 
-    protected $listeners = ['readFiltersList','readRouteStyle'];
+    protected $listeners = ['readFiltersList','readRouteStyle','load-more' => 'loadMore'];
 
 
     public $filters_list = null;
     public $style_route = null;
+
 
 
     public function render()
@@ -36,7 +38,10 @@ class searchVehicles extends Component
         return view('livewire.search.search-vehicles.search-vehicles',compact('vehicles'));
     }
 
-        // Recibe los valores para el filtro
+    public function loadMore()
+    {
+        $this->limitPerPage = $this->limitPerPage + 12;
+    }
 
 
     // Busca vehículos
@@ -46,7 +51,7 @@ class searchVehicles extends Component
                     ->Model($this->model_id)
                     ->StyleSearch($this->style_id)
                     ->orderby('model_year','desc')
-                    ->get();
+                    ->paginate($this->limitPerPage);
     }
 
     // Recibe los valores para el filtro
