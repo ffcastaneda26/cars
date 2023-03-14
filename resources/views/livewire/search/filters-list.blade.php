@@ -41,7 +41,7 @@
                 <select wire:model="model_id"
                         wire:change="sendFiltersList"
                         class="form-select">
-                    <option value="{{null}}">{{__("All")}}</option>
+                    <option value="">{{__("All")}}</option>
                     @foreach($modelsList as $model)
                         <option value="{{ $model->id }}">{{ $model->name  }}
                             ({{$model->vehicles_count }})

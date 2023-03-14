@@ -1,17 +1,20 @@
-<div>
-    {{-- TODO: Investigar si se puede habilitar "ver mas" en esta misma vista del componente --}}
 
-    <div class="card h-100" style="width: 18rem;">
+<div class="card h-100" style="width: 18rem;">
 
         @if($vehicle->photos->count())
             {{--  @include('livewire.search.vehicle-card.vehicle-card-carrousel-photos')  --}}
+                <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" >
+                    @if(str_contains($vehicle->photos->first()->path, 'storage/vehicles/photos/'))
+                        <img src="{{  asset($vehicle->photos->first()->path) }}" class="d-block w-100 h-100" height="75px" width="75px">
+                    @else
+                        <img src="{{ asset('images/vehicles/photos/' .  $photo->path) }}" class="d-block w-100 h-100" alt="..." height="75px" width="75px">
+                    @endif
+                </a>
 
-                @if(str_contains($vehicle->photos->first()->path, 'storage/vehicles/photos/'))
-                        <a href="{{ url('vehicle-details') .'/' . $vehicle->id }}" ><img src="{{  asset($vehicle->photos->first()->path) }}" class="d-block w-100 h-100" alt="..." height="75px" width="75px"></a>                @else
-                    <img src="{{ asset('images/vehicles/photos/' .  $vehicle->photos->first()->path) }}" class="d-block w-100 h-100" alt="..." height="75px" width="75px">
-                @endif
         @else
+
             <img src="{{ asset('images/NoPhotos.jpg') }}" alt="NO TIENE FOTO">
+
         @endif
 
 
@@ -45,13 +48,5 @@
 
         </div>
 
-
-    </div>
-
-    {{--  TODO: Se puede eliminar ?  --}}
-    {{--  @if($show_more )
-        @include('livewire.search.vehicle-card.see_more')
-    @endif  --}}
-
-
 </div>
+

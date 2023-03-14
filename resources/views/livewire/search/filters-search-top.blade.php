@@ -31,21 +31,20 @@
             <select wire:model="model_id"
                     wire:change="sendFiltersList"
                     class="form-select  mr-5">
-                <option value="">{{__("Model")}}</option>
+                <option>{{__("Model")}}</option>
                 @foreach($modelsList as $model)
                     <option value="{{ $model->id }}">{{ $model->name  }}</option>
                 @endforeach
             </select>
         </div>
 
-        {{--  TODO: Si en la ruta se pone estilo no mostrar esta parte  --}}
-        {{--  Estilos  --}}
+          {{--  Estilos  --}}
         @if(!$style_route)
             <div class="element">
                 <select wire:model="style_id"
                         wire:change="sendFiltersList"
-                        class="form-select  mr-5">
-                    <option value="">{{__("Style")}}</option>
+                        class="form-select mr-5">
+                        <option>{{__("Style")}}</option>
                     @foreach($stylesList as $style)
                         <option value="{{ $style->id }}">{{ $style->name  }}
                         </option>
