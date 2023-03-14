@@ -15,11 +15,8 @@
 
         @include('layouts.searching.header_div')
 
-        {{--  @include('livewire.search.left_sidebar')  --}}
-
         @include('layouts.home.main_content')
 
-        {{-- @include('layouts.home.footer') --}}
     </div>
 
     @livewireScripts
