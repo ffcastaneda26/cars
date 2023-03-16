@@ -23,6 +23,14 @@
 
     <!-- add to document <head> -->
     @livewireStyles
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1MXGVM34V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-Q1MXGVM34V');
+    </script>
 
 </head>
