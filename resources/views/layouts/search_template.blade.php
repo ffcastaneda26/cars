@@ -13,7 +13,7 @@
             </header>
         @endif
 
-        @include('layouts.searching.header_div')
+        @include('layouts.home.header_div')
 
         @include('layouts.home.main_content')
 

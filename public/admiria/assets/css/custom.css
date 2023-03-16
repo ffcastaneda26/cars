@@ -1,5 +1,11 @@
+.cars-page-content{
+    margin-top: 10px;
+}
+
 .find-my-car{
 	display: flex;
+    margin-top: 10px;
+
     /* flex-direction: column; */
 }
 
@@ -10,6 +16,7 @@
 @media screen and (max-width: 720px) {
     .find-my-car {
 		flex-direction: column;
+        margin-top: 10px;
 	}
  }
 /* ----- */

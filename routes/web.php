@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\VehicleDetails;
 use Illuminate\Support\Facades\Route;
 
-Route::get('traduce',function(){
-    return __('HOme');
-});
 
 // Registrar solicitudes
 Route::get('findmycar',FindMyCars::class)->name('findmycar'); // Solicitudes de usuarios

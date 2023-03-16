@@ -1,20 +1,16 @@
 <header class="background-top-header">
-    <div class="navbar-header d-flex justify-content-between mb-2">
-        <div>
-            <div class="logo-cars">
-                <a href="{{route('vehicle-search')}}">
-                    <img class="app-logo p-2" src="{{asset('images/logo.png')}}">
-                </a>
-            </div>
-        </div>
-
-
-        <div class="d-flex ">
-            @yield('main_title')
+    <div class="d-flex justify-content-between">
+        <div class="logo-cars">
+            <a href="{{route('vehicle-search')}}" class="logo logo-light">
+                <img class="app-logo p-2" src="{{asset('images/logo.png')}}">
+            </a>
         </div>
 
         <div class="d-flex">
+            @yield('main_title')
+        </div>
 
+        <div class="d-flex justify-content-between">
             <div class="change-language-cars">
                 @if(App::isLocale('en'))
                     <button type="button" class="btn header-item noti-icon waves-effect" title="Cambiar a Español">
@@ -31,7 +27,7 @@
                 @endif
             </div>
 
-
+             {{--  Profile / Logout  --}}
             <div>
                 @auth
                     @include('layouts.home.profile_logout')
@@ -40,5 +36,4 @@
         </div>
 
     </div>
-
 </header>
