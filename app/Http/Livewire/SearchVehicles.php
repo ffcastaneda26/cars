@@ -51,7 +51,7 @@ class searchVehicles extends Component
                     ->Model($this->model_id)
                     ->StyleSearch($this->style_id)
                     ->orderby('model_year','desc')
-                    ->paginate($this->limitPerPage);
+                    ->paginate(10);
     }
 
     // Recibe los valores para el filtro
